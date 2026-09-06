@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Uniformes PRE | Uniformes de Alto Rendimiento en Cancún y Riviera Maya</title>
+    <meta name="description" content="Vistiendo al Caribe Mexicano con uniformes corporativos, hoteleros, médicos e industriales de alto rendimiento. Bordados computarizados y sucursal física en Cancún." />
+    <meta name="theme-color" content="#00086B" />
+
+    <!-- Protocolos de Seguridad y Políticas Web -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+
+    <!-- Favicon Oficial -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./favicon.svg" />
+
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Uniformes PRE | Uniformes de Alto Rendimiento" />
+    <meta property="og:description" content="Personalización, bordados de alta definición y catálogo especializado para hotelería, gastronomía y empresas en Quintana Roo." />
+    <meta property="og:url" content="https://uniformespre.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Preconexión de Fuentes y CDN para Máxima Velocidad -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+    <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+
+    <!-- Script de compatibilidad de rutas SPA para GitHub Pages -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    <script type="text/javascript">
+      (function() {
+        var theme = localStorage.getItem('pre_theme');
+        if (theme === 'dark') {
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.add('light');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
