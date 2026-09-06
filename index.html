@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Uniformes PRE | Uniformes de Alto Rendimiento en Cancún y Riviera Maya</title>
+  <meta name="description" content="Vistiendo al Caribe Mexicano con uniformes de alto rendimiento en Cancún y la Riviera Maya. Personalización, bordados y sucursal en Mega Soriana López Portillo.">
+  <meta name="theme-color" content="#00086B">
+
+  <!-- Favicon Oficial -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%2300086B'/%3E%3Cpath d='M30 25 L70 25 L70 52 C70 65 58 75 50 78 C42 75 30 65 30 52 Z' fill='%23F26D03'/%3E%3Cpath d='M50 15 L50 48' stroke='%23ffffff' stroke-width='4' stroke-linecap='round'/%3E%3Ctext x='50' y='65' font-family='Arial Black' font-size='18' fill='%23ffffff' text-anchor='middle'%3EPRE%3C/text%3E%3C/svg%3E">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'brand-navy': '#00086B',
+            'brand-orange': '#F26D03',
+          },
+          fontFamily: {
+            sans: ['"Hanken Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['"Bebas Neue"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Global Styles */
+    :root {
+      --brand-navy: #00086B;
+      --brand-orange: #F26D03;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Hanken Grotesk', sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Bebas Neue', sans-serif;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .dark ::-webkit-scrollbar-track {
+      background: #090e1f;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #F26D03;
+    }
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-[#030717] dark:text-slate-100 flex flex-col min-h-screen selection:bg-orange-600 selection:text-white">
+
+  <!-- =========================================================================
+       1. HEADER & TOP BANNER
+       ========================================================================= -->
+  <header class="sticky top-0 z-40 w-full bg-[#00086B] text-white shadow-md select-none">
+    <!-- Fast Announcement Bar -->
+    <div class="bg-[#F26D03] text-white text-[11px] sm:text-xs py-1.5 px-4 text-center font-bold tracking-wider uppercase flex items-center justify-center gap-2">
+      <span>⚡ ATENCIÓN INMEDIATA Y COTIZACIÓN MAYORISTA EN MENOS DE 24 HORAS EN CANCÚN Y RIVIERA MAYA</span>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 sm:h-24">
+        <!-- Logo -->
+        <a href="#inicio" onclick="navigateTo('inicio')" class="flex items-center gap-3 cursor-pointer group">
+          <div class="h-12 w-12 rounded-xl bg-white text-[#00086B] flex items-center justify-center font-display text-3xl font-bold shadow-md group-hover:scale-105 transition-transform">
+            PRE
+          </div>
+          <div>
+            <span class="font-display text-2xl sm:text-3xl tracking-wider text-white block leading-none">UNIFORMES <span class="text-[#F26D03]">PRE</span></span>
+            <span class="text-[9px] uppercase tracking-[0.25em] text-orange-200 block font-bold mt-0.5">Cancún • Riviera Maya</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-1 lg:space-x-2" aria-label="Navegación principal">
+          <button onclick="navigateTo('inicio')" id="nav-btn-inicio" class="px-3.5 py-2 text-xs lg:text-sm font-bold uppercase tracking-wider rounded-lg transition-all text-white border-2 border-white/90 bg-white/15">
+            Inicio
+          </button>
+          <button onclick="navigateTo('catalogo')" id="nav-btn-catalogo" class="px-3.5 py-2 text-xs lg:text-sm font-bold uppercase tracking-wider rounded-lg transition-all text-white/80 hover:text-white hover:bg-white/10">
+            Catálogo
+          </button>
+          <button onclick="navigateTo('quienes-somos')" id="nav-btn-quienes-somos" class="px-3.5 py-2 text-xs lg:text-sm font-bold uppercase tracking-wider rounded-lg transition-all text-white/80 hover:text-white hover:bg-white/10">
+            Quiénes Somos
+          </button>
+          <button onclick="navigateTo('contacto')" id="nav-btn-contacto" class="px-3.5 py-2 text-xs lg:text-sm font-bold uppercase tracking-wider rounded-lg transition-all text-white/80 hover:text-white hover:bg-white/10">
+            Contacto
+          </button>
+        </nav>
+
+        <!-- Right Quick Actions -->
+        <div class="flex items-center space-x-2 sm:space-x-3">
+          <!-- Theme Toggle (Light / Dark) -->
+          <button onclick="toggleTheme()" class="p-2.5 rounded-full hover:bg-white/15 text-white/90 hover:text-orange-400 transition-all active:scale-95 cursor-pointer" title="Cambiar tema">
+            <i id="theme-icon" data-lucide="moon" class="w-5 h-5"></i>
+          </button>
+
+          <!-- Favorites Drawer Button -->
+          <button onclick="openFavorites()" class="relative p-2.5 rounded-full hover:bg-white/15 text-white/90 hover:text-orange-400 transition-all active:scale-95 cursor-pointer" title="Mis Favoritos">
+            <i data-lucide="heart" class="w-5 h-5"></i>
+            <span id="fav-count-badge" class="hidden absolute -top-1 -right-1 h-5 w-5 bg-orange-600 text-[10px] font-bold rounded-full flex items-center justify-center ring-2 ring-[#00086B]">0</span>
+          </button>
+
+          <!-- Shopping Cart / Quote Drawer Button -->
+          <button onclick="openCart()" class="relative p-2.5 rounded-full hover:bg-white/15 text-white/90 hover:text-orange-400 transition-all active:scale-95 cursor-pointer" title="Ver Cotización">
+            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+            <span id="cart-count-badge" class="hidden absolute -top-1 -right-1 h-5 w-5 bg-orange-600 text-[10px] font-bold rounded-full flex items-center justify-center ring-2 ring-[#00086B]">0</span>
+          </button>
+
+          <!-- Direct Phone CTA (Desktop) -->
+          <a href="tel:+529989370850" class="hidden lg:flex items-center gap-1.5 py-2 px-3 rounded-lg bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow">
+            <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+            <span>998 937 0850</span>
+          </a>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button onclick="toggleMobileDrawer()" class="md:hidden p-2 rounded-lg hover:bg-white/15 text-white cursor-pointer" aria-label="Menú">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu Overlay -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 hidden transition-opacity">
+    <div onclick="toggleMobileDrawer()" class="absolute inset-0 bg-black/70 backdrop-blur-xs"></div>
+    <div class="absolute inset-y-0 right-0 max-w-xs w-full bg-[#00086B] text-white p-6 flex flex-col justify-between shadow-2xl z-10">
+      <div>
+        <div class="flex items-center justify-between pb-6 border-b border-white/15">
+          <div class="flex items-center gap-2">
+            <div class="h-9 w-9 rounded-lg bg-white text-[#00086B] font-display text-2xl font-bold flex items-center justify-center">PRE</div>
+            <span class="font-display text-xl text-white tracking-wider">UNIFORMES PRE</span>
+          </div>
+          <button onclick="toggleMobileDrawer()" class="p-1 rounded-full hover:bg-white/20 text-white/80 hover:text-white cursor-pointer">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+        </div>
+
+        <nav class="py-6 space-y-3">
+          <button onclick="navigateTo('inicio'); toggleMobileDrawer();" class="w-full text-left py-2.5 px-3 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-white/10 flex items-center justify-between">
+            <span>Inicio</span>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-orange-400"></i>
+          </button>
+          <button onclick="navigateTo('catalogo'); toggleMobileDrawer();" class="w-full text-left py-2.5 px-3 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-white/10 flex items-center justify-between">
+            <span>Catálogo Mayorista</span>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-orange-400"></i>
+          </button>
+          <button onclick="navigateTo('quienes-somos'); toggleMobileDrawer();" class="w-full text-left py-2.5 px-3 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-white/10 flex items-center justify-between">
+            <span>Quiénes Somos</span>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-orange-400"></i>
+          </button>
+          <button onclick="navigateTo('contacto'); toggleMobileDrawer();" class="w-full text-left py-2.5 px-3 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-white/10 flex items-center justify-between">
+            <span>Contacto y Sucursal</span>
+            <i data-lucide="chevron-right" class="w-4 h-4 text-orange-400"></i>
+          </button>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-white/15 space-y-3 text-xs">
+        <a href="https://wa.me/529989370850" target="_blank" class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>WhatsApp: 998 937 0850</span>
+        </a>
+        <p class="text-center text-[10px] text-white/70">
+          SM 92 MEGA Soriana López Portillo, Cancún, Q.R. <br>
+          Tel: 998 937 0850 • 998 341 5683
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. MAIN CONTENT VIEWS ROUTER
+       ========================================================================= -->
+  <main class="flex-1">
+    
+    <!-- VIEW: INICIO (HOME) -->
+    <div id="view-inicio" class="animate-fade-in space-y-16 pb-16">
+      <!-- HERO BANNER -->
+      <section class="relative bg-slate-900 overflow-hidden min-h-[540px] lg:min-h-[600px] flex items-center">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+          <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&q=80&w=1800" alt="Tejido Textil A Prueba de Sudor" class="w-full h-full object-cover object-center opacity-85">
+          <div class="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/60 to-transparent"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-600/20 border border-orange-500/40 text-orange-400 text-xs font-bold uppercase tracking-widest mb-4 shadow">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            <span>Innovación Textil Riviera Maya</span>
+          </div>
+
+          <h1 class="font-display text-6xl sm:text-7xl md:text-8xl tracking-wider text-white leading-none">
+            A PRUEBA. <br>
+            <span class="text-[#F26D03]">DE SUDOR.</span>
+          </h1>
+
+          <p class="mt-4 max-w-xl text-sm sm:text-base text-slate-200 font-sans leading-relaxed">
+            Uniformes corporativos de alto rendimiento diseñados específicamente para el clima del Caribe Mexicano. Máxima transpirabilidad, tejidos anti-mancha y durabilidad extrema en Cancún y la Riviera Maya.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <button onclick="navigateTo('catalogo')" class="py-3.5 px-8 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-lg shadow-orange-600/30 active:scale-95 flex items-center gap-2">
+              <span>Comprar Catálogo</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+            <button onclick="navigateTo('quienes-somos')" class="py-3.5 px-8 rounded-xl border border-white/30 bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider transition-all active:scale-95">
+              Saber más
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORIES GRID -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-2 mb-10">
+          <h2 class="font-display text-4xl sm:text-5xl text-slate-900 dark:text-white tracking-wider">
+            COMPRA POR CATEGORÍAS
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+            Fibras y patrones técnicos especializados para cada sector comercial e industrial de Quintana Roo.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+          <button onclick="filterByCat('restaurante')" class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 text-center flex flex-col items-center justify-between gap-4 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer group">
+            <div class="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-slate-800 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <i data-lucide="utensils" class="w-8 h-8"></i>
+            </div>
+            <span class="font-display text-2xl text-slate-900 dark:text-white tracking-wider uppercase">Restaurante</span>
+          </button>
+
+          <button onclick="filterByCat('hoteleria')" class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 text-center flex flex-col items-center justify-between gap-4 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer group">
+            <div class="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-slate-800 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <i data-lucide="sparkles" class="w-8 h-8"></i>
+            </div>
+            <span class="font-display text-2xl text-slate-900 dark:text-white tracking-wider uppercase">Hotelería</span>
+          </button>
+
+          <button onclick="filterByCat('medico')" class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 text-center flex flex-col items-center justify-between gap-4 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer group">
+            <div class="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-slate-800 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <i data-lucide="stethoscope" class="w-8 h-8"></i>
+            </div>
+            <span class="font-display text-2xl text-slate-900 dark:text-white tracking-wider uppercase">Médico</span>
+          </button>
+
+          <button onclick="filterByCat('ejecutivo')" class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 text-center flex flex-col items-center justify-between gap-4 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer group">
+            <div class="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-slate-800 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <i data-lucide="briefcase" class="w-8 h-8"></i>
+            </div>
+            <span class="font-display text-2xl text-slate-900 dark:text-white tracking-wider uppercase">Ejecutivo</span>
+          </button>
+
+          <button onclick="filterByCat('industrial')" class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-orange-500 text-center flex flex-col items-center justify-between gap-4 transition-all hover:-translate-y-1 shadow-sm hover:shadow-md cursor-pointer group col-span-2 sm:col-span-1">
+            <div class="w-16 h-16 rounded-2xl bg-orange-50 dark:bg-slate-800 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+              <i data-lucide="shield-alert" class="w-8 h-8"></i>
+            </div>
+            <span class="font-display text-2xl text-slate-900 dark:text-white tracking-wider uppercase">Industrial</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- BEST SELLERS -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <h2 class="font-display text-4xl sm:text-5xl text-slate-900 dark:text-white tracking-wider">
+              NUESTROS BEST SELLERS
+            </h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Las prendas más solicitadas por empresas en Cancún y la Riviera Maya.</p>
+          </div>
+          <button onclick="navigateTo('catalogo')" class="py-2.5 px-5 rounded-lg bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-all self-start sm:self-auto cursor-pointer flex items-center gap-1.5">
+            <span>Ver todo el catálogo</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <div id="home-best-sellers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- SPECIALIZED SERVICES BENTO GRID -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="text-center space-y-2">
+          <h2 class="font-display text-4xl sm:text-5xl text-slate-900 dark:text-white tracking-wider">
+            NUESTROS SERVICIOS ESPECIALIZADOS
+          </h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">Personalización computarizada y maquila industrial de alto volumen.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-7 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 flex flex-col justify-between shadow-sm">
+            <div class="space-y-4">
+              <span class="text-[10px] text-orange-600 font-bold uppercase tracking-widest block">BORDADOS Y SUBLIMACIÓN</span>
+              <h3 class="font-display text-3xl sm:text-4xl text-slate-900 dark:text-white tracking-wider">Logotipos Computarizados de Alta Definición</h3>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans">
+                Nuestras máquinas bordadoras industriales reproducen con fidelidad milimétrica la tipografía y matices cromáticos de su marca corporativa, con hilos de resistencia probada a 100+ ciclos de lavado industrial.
+              </p>
+            </div>
+            <div class="pt-6">
+              <button onclick="navigateTo('contacto')" class="py-2.5 px-5 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all cursor-pointer">
+                Cotizar Bordado
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-gradient-to-br from-[#00086B] to-[#010414] text-white rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-sm">
+            <div class="space-y-4">
+              <span class="text-[10px] text-orange-400 font-bold uppercase tracking-widest block">ASESORÍA TÉCNICA 360°</span>
+              <h3 class="font-display text-3xl text-white tracking-wider">Muestrarios Físicos en Cancún</h3>
+              <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                Visite nuestro taller matriz en Mega Soriana López Portillo o solicite la visita de un asesor a sus oficinas u hotel con muestras reales de telas transpirables y gabardinas.
+              </p>
+            </div>
+            <div class="pt-6">
+              <a href="https://wa.me/529989370850" target="_blank" class="inline-flex items-center gap-1.5 py-2.5 px-5 rounded-lg bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-all">
+                <span>Agendar Asesor</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REAL GOOGLE REVIEWS SECTION (Item 4) -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10" id="google-reviews-section">
+        <div class="text-center space-y-3">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 shadow-sm">
+            <span class="flex items-center text-amber-500 font-bold">★ 5.0</span>
+            <span class="text-slate-300 dark:text-slate-600">•</span>
+            <span>Reseñas en Google Maps</span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-400 font-bold">
+              100% Calificación 5 Estrellas
+            </span>
+          </div>
+
+          <h2 class="font-display text-4xl sm:text-5xl text-slate-900 dark:text-white tracking-wider">
+            OPINIONES REALES EN GOOGLE
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+            Uniformes PRE • SM 92 Mz 57, 58, 59 y 60, MEGA Soriana López Portillo, Local 7, Cancún, Q.R.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="google-reviews-container">
+          <!-- Card 1: Adriana Barrera Ugalde -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-sm text-left">
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-full bg-orange-600 text-white font-bold flex items-center justify-center text-sm shadow-sm">
+                  A
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white truncate">Adriana Barrera Ugalde</h4>
+                  <span class="text-[10px] text-slate-500 block">Hace 8 semanas • Reseña verificada</span>
+                </div>
+                <div class="text-slate-400">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="flex space-x-1 text-amber-400">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+
+              <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
+                "Excelente empresa, buen servicio al cliente de manera puntual y honesta y los materiales que usan son de alta calidad!!!"
+              </p>
+            </div>
+
+            <!-- Owner Response -->
+            <div class="mt-2 pt-3 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 p-3 rounded-xl space-y-1">
+              <div class="flex items-center gap-1.5 text-[10px] font-bold text-orange-600 dark:text-orange-400">
+                <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                <span>Respuesta de Uniformes Pre (propietario)</span>
+              </div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 italic pl-2.5 border-l-2 border-orange-500/40">
+                "Adriana, muchas gracias por tus comentarios."
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: Emanuel Perez soto -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-sm text-left">
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center text-sm shadow-sm">
+                  E
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white truncate">Emanuel Perez soto</h4>
+                  <span class="text-[10px] text-slate-500 block">Hace 8 semanas • Reseña verificada</span>
+                </div>
+                <div class="text-slate-400">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="flex space-x-1 text-amber-400">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+
+              <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
+                "Fui a comprar un pantalón para mi trabajo y muy buena atención, me enseñaron varios modelos termine comprando en varios colores para mi uso diario y para mi trabajo los recomiendo ampliamente"
+              </p>
+            </div>
+
+            <!-- Owner Response -->
+            <div class="mt-2 pt-3 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 p-3 rounded-xl space-y-1">
+              <div class="flex items-center gap-1.5 text-[10px] font-bold text-orange-600 dark:text-orange-400">
+                <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                <span>Respuesta de Uniformes Pre (propietario)</span>
+              </div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 italic pl-2.5 border-l-2 border-orange-500/40">
+                "Hola, Muchas gracias por tus comentarios ¡Esperamos poder atenderte pronto otra vez!"
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3: Alejandro Bernal -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-7 flex flex-col justify-between space-y-5 shadow-sm text-left">
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="h-10 w-10 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-sm shadow-sm">
+                  A
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white truncate">Alejandro Bernal</h4>
+                  <span class="text-[10px] text-slate-500 block">Hace 8 semanas • Reseña verificada</span>
+                </div>
+                <div class="text-slate-400">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="flex space-x-1 text-amber-400">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+
+              <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
+                "Muy buena atención y servicio. 10 de 10 con la filipina que repele el agua y el aceite. La mejor compra."
+              </p>
+            </div>
+
+            <!-- Owner Response -->
+            <div class="mt-2 pt-3 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 p-3 rounded-xl space-y-1">
+              <div class="flex items-center gap-1.5 text-[10px] font-bold text-orange-600 dark:text-orange-400">
+                <span class="w-1.5 h-1.5 rounded-full bg-orange-600"></span>
+                <span>Respuesta de Uniformes Pre (propietario)</span>
+              </div>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400 italic pl-2.5 border-l-2 border-orange-500/40">
+                "¡Nos encanta tu comentario! La Filipina repelente al agua y el aceite es una de las prendas más vendidas en nuestra tienda. No dudes en contactarnos si tienes alguna consulta ¡Gracias por compartirnos tu experiencia!"
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW: CATÁLOGO -->
+    <div id="view-catalogo" class="hidden animate-fade-in max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
+      <div class="text-center space-y-3">
+        <span class="text-orange-600 font-bold uppercase tracking-widest text-xs">Venta al Mayoreo y Menudeo</span>
+        <h1 class="font-display text-5xl sm:text-6xl text-slate-900 dark:text-white tracking-wider">CATÁLOGO DE UNIFORMES</h1>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+          Prendas con tabla de precios por volumen, IVA incluido y personalización opcional con bordado computarizado.
+        </p>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="space-y-4">
+        <!-- Search bar -->
+        <div class="max-w-md mx-auto relative">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+          <input type="text" id="catalog-search-input" oninput="handleSearch(this.value)" placeholder="Buscar por nombre, código o tela..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm focus:outline-none focus:border-orange-500">
+        </div>
+
+        <!-- Category Pills -->
+        <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
+          <button onclick="filterByCat('todos')" id="cat-pill-todos" class="cat-pill py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-600 text-white shadow-sm transition-all cursor-pointer">
+            Todos
+          </button>
+          <button onclick="filterByCat('restaurante')" id="cat-pill-restaurante" class="cat-pill py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-orange-500 transition-all cursor-pointer">
+            Restaurante
+          </button>
+          <button onclick="filterByCat('hoteleria')" id="cat-pill-hoteleria" class="cat-pill py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-orange-500 transition-all cursor-pointer">
+            Hotelería
+          </button>
+          <button onclick="filterByCat('medico')" id="cat-pill-medico" class="cat-pill py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-orange-500 transition-all cursor-pointer">
+            Médico
+          </button>
+          <button onclick="filterByCat('ejecutivo')" id="cat-pill-ejecutivo" class="cat-pill py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-orange-500 transition-all cursor-pointer">
+            Ejecutivo
+          </button>
+          <button onclick="filterByCat('industrial')" id="cat-pill-industrial" class="cat-pill py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-orange-500 transition-all cursor-pointer">
+            Industrial
+          </button>
+        </div>
+      </div>
+
+      <!-- Catalog Products Grid -->
+      <div id="catalog-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- VIEW: QUIÉNES SOMOS -->
+    <div id="view-quienes-somos" class="hidden animate-fade-in space-y-16 pb-16">
+      <section class="relative bg-slate-900 overflow-hidden min-h-[440px] flex items-center">
+        <div class="absolute inset-0 z-0">
+          <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=1600" alt="Fábrica de Uniformes PRE" class="w-full h-full object-cover opacity-60">
+          <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/70 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-left">
+          <span class="text-orange-500 text-xs font-bold tracking-widest uppercase block mb-3">12 AÑOS DE HISTORIA</span>
+          <h1 class="font-display text-5xl sm:text-6xl md:text-7xl tracking-wider text-white leading-none">
+            VISTIENDO EL ÉXITO DEL <br>
+            <span class="text-[#F26D03]">CARIBE MEXICANO</span>
+          </h1>
+          <p class="mt-4 max-w-xl text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+            En Uniformes PRE llevamos más de 12 años diseñando y confeccionando prendas de alto rendimiento para hotelería, gastronomía, sanidad y sectores industriales en Cancún, Playa del Carmen, Tulum y Riviera Maya.
+          </p>
+          <div class="mt-6 flex gap-4">
+            <button onclick="navigateTo('contacto')" class="py-3 px-6 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-all">
+              Visitar Nuestra Planta
+            </button>
+            <a href="https://wa.me/529989370850" target="_blank" class="py-3 px-6 rounded-xl border border-white/30 text-white hover:bg-white/10 font-bold text-xs uppercase tracking-wider transition-all flex items-center gap-1.5">
+              <span>WhatsApp 998 937 0850</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Ticker -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center shadow-sm">
+          <div>
+            <span class="font-display text-4xl sm:text-5xl text-orange-600 block">12+</span>
+            <span class="text-xs uppercase font-semibold text-slate-500">Años de Trayectoria</span>
+          </div>
+          <div>
+            <span class="font-display text-4xl sm:text-5xl text-orange-600 block">100k+</span>
+            <span class="text-xs uppercase font-semibold text-slate-500">Prendas Confeccionadas</span>
+          </div>
+          <div>
+            <span class="font-display text-4xl sm:text-5xl text-orange-600 block">100+</span>
+            <span class="text-xs uppercase font-semibold text-slate-500">Clientes Corporativos</span>
+          </div>
+          <div>
+            <span class="font-display text-4xl sm:text-5xl text-orange-600 block">100%</span>
+            <span class="text-xs uppercase font-semibold text-slate-500">Compromiso y Garantía</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- VIEW: CONTACTO (CONTACT) -->
+    <div id="view-contacto" class="hidden animate-fade-in max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+      <div class="text-center space-y-3">
+        <span class="text-orange-600 font-bold uppercase tracking-widest text-xs">Atención al Cliente y Ventas</span>
+        <h1 class="font-display text-5xl sm:text-6xl text-slate-900 dark:text-white tracking-wider">CONTACTO & SUCURSAL CANCÚN</h1>
+        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-xl mx-auto">
+          Visite nuestro punto de venta en Mega Soriana López Portillo o envíenos una solicitud de cotización digital.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- Contact Form -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-8 shadow-sm">
+          <h2 class="font-display text-2xl text-slate-900 dark:text-white tracking-wider mb-6">ENVÍENOS UN MENSAJE DIRECTO</h2>
+          
+          <form onsubmit="handleContactSubmit(event)" class="space-y-4 text-left">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-slate-600 dark:text-slate-400 font-bold mb-1">Nombre Completo *</label>
+                <input type="text" id="contact-name" required placeholder="Ej. Lic. Carlos Méndez" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm focus:outline-none focus:border-orange-500">
+              </div>
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-slate-600 dark:text-slate-400 font-bold mb-1">Empresa / Hotel</label>
+                <input type="text" id="contact-company" placeholder="Ej. Hotel Riviera Cancún" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm focus:outline-none focus:border-orange-500">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-slate-600 dark:text-slate-400 font-bold mb-1">Teléfono / WhatsApp *</label>
+                <input type="tel" id="contact-phone" required placeholder="Ej. 998 937 0850" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm focus:outline-none focus:border-orange-500">
+              </div>
+              <div>
+                <label class="block text-[11px] uppercase tracking-wider text-slate-600 dark:text-slate-400 font-bold mb-1">Correo Electrónico *</label>
+                <input type="email" id="contact-email" required placeholder="ejemplo@empresa.com" class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm focus:outline-none focus:border-orange-500">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] uppercase tracking-wider text-slate-600 dark:text-slate-400 font-bold mb-1">Requerimientos o Prendas de Interés *</label>
+              <textarea id="contact-message" rows="4" required placeholder="Indique cantidad aproximada de prendas, tallas, si requiere bordado de logotipo, etc." class="w-full px-3.5 py-2.5 rounded-lg bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-xs sm:text-sm focus:outline-none focus:border-orange-500"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 px-6 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-all duration-200 shadow-md cursor-pointer flex items-center justify-center gap-2">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>Enviar Solicitud a WhatsApp Oficial</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Store Info Cards -->
+        <div class="lg:col-span-5 space-y-6 text-left">
+          <!-- WhatsApp Card -->
+          <div class="bg-gradient-to-br from-[#00086B] to-[#010414] text-white p-6 sm:p-7 rounded-2xl shadow-sm space-y-4">
+            <span class="text-[10px] uppercase font-bold tracking-widest text-orange-400 block">Canal Directo Instantáneo</span>
+            <h3 class="font-display text-3xl text-white tracking-wider">WHATSAPP VENTAS CANCÚN</h3>
+            <p class="text-xs text-slate-300 leading-relaxed font-sans">
+              Atención directa y envío de catálogos en PDF adaptados a las necesidades de su corporación.
+            </p>
+            <a href="https://wa.me/529989370850" target="_blank" class="inline-flex items-center gap-2 py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+              <span>Iniciar Chat con 998 937 0850</span>
+            </a>
+          </div>
+
+          <!-- Official Details Card (Item 5) -->
+          <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-6 sm:p-7 space-y-4 shadow-sm text-xs">
+            <h3 class="font-display text-2xl text-slate-900 dark:text-white tracking-wider border-b border-slate-200 dark:border-slate-800 pb-3">
+              INFORMACIÓN OFICIAL
+            </h3>
+
+            <div class="flex items-start gap-3">
+              <i data-lucide="map-pin" class="w-5 h-5 text-orange-600 shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="block text-slate-900 dark:text-white text-xs uppercase font-bold">Ubicación Sucursal:</strong>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5">
+                  SM 92 Manzana 57, 58, 59 Y 60, MEGA Soriana Lopez Portillo, Local 7, C.P. 77516, Cancún, Quintana Roo.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <i data-lucide="phone" class="w-5 h-5 text-orange-600 shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="block text-slate-900 dark:text-white text-xs uppercase font-bold">Líneas Telefónicas:</strong>
+                <div class="text-slate-600 dark:text-slate-400 mt-0.5 space-y-1">
+                  <p>
+                    Ventas: <a href="tel:+529989370850" class="text-slate-900 dark:text-white hover:text-orange-600 font-semibold">998 937 0850</a>
+                    {' • '}
+                    <a href="https://wa.me/529989370850" target="_blank" class="text-emerald-600 font-semibold">WhatsApp</a>
+                  </p>
+                  <p>
+                    Comercialización: <a href="tel:+529983415683" class="text-slate-900 dark:text-white hover:text-orange-600 font-semibold">998 341 5683</a>
+                    {' • '}
+                    <a href="https://wa.me/529983415683" target="_blank" class="text-emerald-600 font-semibold">WhatsApp</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <i data-lucide="mail" class="w-5 h-5 text-orange-600 shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="block text-slate-900 dark:text-white text-xs uppercase font-bold">Correos Electrónicos:</strong>
+                <div class="text-slate-600 dark:text-slate-400 mt-0.5 space-y-0.5">
+                  <p><a href="mailto:ventas@uniformespre.com" class="text-orange-600 hover:underline font-semibold">ventas@uniformespre.com</a></p>
+                  <p><a href="mailto:comercializacion@uniformespre.com" class="text-orange-600 hover:underline font-semibold">comercializacion@uniformespre.com</a></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <i data-lucide="clock" class="w-5 h-5 text-orange-600 shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="block text-slate-900 dark:text-white text-xs uppercase font-bold">Horario de Servicio:</strong>
+                <p class="text-slate-600 dark:text-slate-400 mt-0.5">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
+                <p class="text-slate-600 dark:text-slate-400">Sábados: 9:00 AM - 2:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- =========================================================================
+       3. FOOTER
+       ========================================================================= -->
+  <footer class="bg-[#00086B] text-white/80 border-t border-white/10 mt-auto">
+    <!-- Top Contact Bar -->
+    <div class="bg-[#000654] border-b border-white/10 text-white py-8 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left">
+        <!-- Location -->
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-3">
+          <div class="p-3 rounded-full bg-white/10 text-orange-500 shrink-0">
+            <i data-lucide="map-pin" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-display text-xl text-white tracking-wider">UBICACIÓN EN CANCÚN</h4>
+            <p class="text-xs text-white/70 mt-1 leading-relaxed">
+              SM 92 Manzana 57, 58, 59 Y 60, MEGA Soriana Lopez Portillo, Local 7, C.P. 77516, Cancún, Quintana Roo.
+            </p>
+          </div>
+        </div>
+
+        <!-- Phone & WhatsApp -->
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-3">
+          <div class="p-3 rounded-full bg-white/10 text-orange-500 shrink-0">
+            <i data-lucide="phone" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-display text-xl text-white tracking-wider">TELÉFONOS & WHATSAPP</h4>
+            <div class="text-xs text-white/70 mt-1 space-y-1">
+              <p>
+                Ventas: <a href="tel:+529989370850" class="text-white hover:text-orange-400 font-semibold">998 937 0850</a> • <a href="https://wa.me/529989370850" target="_blank" class="text-emerald-400 hover:underline">WhatsApp</a>
+              </p>
+              <p>
+                Comercialización: <a href="tel:+529983415683" class="text-white hover:text-orange-400 font-semibold">998 341 5683</a> • <a href="https://wa.me/529983415683" target="_blank" class="text-emerald-400 hover:underline">WhatsApp</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Email & Hours -->
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-3">
+          <div class="p-3 rounded-full bg-white/10 text-orange-500 shrink-0">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="font-display text-xl text-white tracking-wider">CORREOS OFICIALES</h4>
+            <div class="text-xs mt-1 space-y-0.5">
+              <p><a href="mailto:ventas@uniformespre.com" class="text-orange-400 hover:underline font-semibold block">ventas@uniformespre.com</a></p>
+              <p><a href="mailto:comercializacion@uniformespre.com" class="text-orange-400 hover:underline font-semibold block">comercializacion@uniformespre.com</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Footer Links & Copyright -->
+    <div class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs">
+      <div class="flex items-center gap-3">
+        <div class="h-8 w-8 rounded-lg bg-white text-[#00086B] font-display text-xl font-bold flex items-center justify-center">PRE</div>
+        <span class="text-white/80">© 2026 Confecciones y Uniformes PRE. Todos los derechos reservados.</span>
+      </div>
+
+      <div class="flex space-x-6">
+        <button onclick="navigateTo('inicio')" class="text-white/70 hover:text-white cursor-pointer">Inicio</button>
+        <button onclick="navigateTo('catalogo')" class="text-white/70 hover:text-white cursor-pointer">Catálogo</button>
+        <button onclick="navigateTo('quienes-somos')" class="text-white/70 hover:text-white cursor-pointer">Quiénes Somos</button>
+        <button onclick="navigateTo('contacto')" class="text-white/70 hover:text-white cursor-pointer">Contacto</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       4. PRODUCT DETAIL MODAL
+       ========================================================================= -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden">
+    <div onclick="closeProductModal()" class="absolute inset-0 bg-black/75 backdrop-blur-xs"></div>
+    <div class="relative max-w-2xl w-full mx-auto my-8 p-4 sm:p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl z-10 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeProductModal()" class="absolute top-4 right-4 p-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+        <!-- Photo -->
+        <div class="aspect-square rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-950 flex items-center justify-center">
+          <img id="modal-product-img" src="" alt="" class="w-full h-full object-cover">
+        </div>
+
+        <!-- Info -->
+        <div class="space-y-4">
+          <div>
+            <span id="modal-product-cat" class="text-[10px] uppercase tracking-widest text-orange-600 font-bold block"></span>
+            <h3 id="modal-product-title" class="font-display text-3xl text-slate-900 dark:text-white tracking-wide mt-1"></h3>
+            <p id="modal-product-code" class="text-xs text-slate-500 font-mono"></p>
+          </div>
+
+          <div class="bg-orange-50 dark:bg-slate-950/60 p-3 rounded-xl border border-orange-200 dark:border-slate-800">
+            <span class="text-[10px] text-slate-500 block uppercase tracking-wider">Precio Unitario Mayoreo Neto:</span>
+            <span id="modal-product-price" class="font-display text-3xl text-orange-600 block"></span>
+            <span class="text-[9px] text-slate-500 block">IVA incluido • Precio sujeto a volumen</span>
+          </div>
+
+          <p id="modal-product-desc" class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+
+          <!-- Add to Cart Form -->
+          <div class="space-y-3 pt-2 border-t border-slate-200 dark:border-slate-800">
+            <div class="flex items-center gap-3">
+              <label class="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">Cantidad:</label>
+              <div class="flex items-center border border-slate-300 dark:border-slate-700 rounded-lg overflow-hidden">
+                <button onclick="changeModalQty(-1)" class="px-2.5 py-1 hover:bg-slate-200 dark:hover:bg-slate-800 cursor-pointer font-bold">-</button>
+                <input type="number" id="modal-qty-input" value="1" min="1" max="1000" class="w-12 text-center text-xs py-1 bg-transparent focus:outline-none font-bold">
+                <button onclick="changeModalQty(1)" class="px-2.5 py-1 hover:bg-slate-200 dark:hover:bg-slate-800 cursor-pointer font-bold">+</button>
+              </div>
+            </div>
+
+            <button onclick="addModalProductToCart()" class="w-full py-3 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-all shadow cursor-pointer flex items-center justify-center gap-2">
+              <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+              <span>Agregar a mi Cotización</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       5. QUOTE CART DRAWER (WhatsApp Pre-filled Order Generator)
+       ========================================================================= -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
+    <div onclick="closeCart()" class="absolute inset-0 bg-black/70 backdrop-blur-xs"></div>
+    <div class="absolute inset-y-0 right-0 max-w-md w-full bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between shadow-2xl z-10 text-left">
+      <!-- Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-2 text-orange-600">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <h3 class="font-display text-2xl text-slate-900 dark:text-white tracking-wider">COTIZADOR DE PRENDAS</h3>
+        </div>
+        <button onclick="closeCart()" class="p-1 rounded-full text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Items List -->
+      <div id="cart-items-container" class="flex-1 overflow-y-auto py-4 space-y-3">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Footer & WhatsApp Action -->
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-3 text-xs">
+        <div class="bg-slate-50 dark:bg-slate-950 p-3 rounded-xl border border-slate-200 dark:border-slate-800 space-y-1">
+          <div class="flex justify-between text-slate-500">
+            <span>Subtotal:</span>
+            <span id="cart-subtotal" class="font-mono">$0.00 MXN</span>
+          </div>
+          <div class="flex justify-between text-slate-500">
+            <span>IVA (16% Incluido):</span>
+            <span id="cart-iva" class="font-mono">$0.00 MXN</span>
+          </div>
+          <div class="flex justify-between text-base font-bold text-slate-900 dark:text-white pt-1 border-t border-slate-200 dark:border-slate-800">
+            <span>Total Neto:</span>
+            <span id="cart-total" class="text-orange-600 font-mono">$0.00 MXN</span>
+          </div>
+        </div>
+
+        <button onclick="sendOrderToWhatsApp()" class="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2 shadow-lg">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Enviar Pedido por WhatsApp</span>
+        </button>
+        <p class="text-[10px] text-center text-slate-500">
+          Se enviará el desglose completo del pedido a nuestro asesor comercial en Cancún al 998 937 0850.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       6. FAVORITES DRAWER
+       ========================================================================= -->
+  <div id="fav-drawer" class="fixed inset-0 z-50 hidden">
+    <div onclick="closeFavorites()" class="absolute inset-0 bg-black/70 backdrop-blur-xs"></div>
+    <div class="absolute inset-y-0 right-0 max-w-sm w-full bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 p-6 flex flex-col justify-between shadow-2xl z-10 text-left">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-2 text-orange-600">
+          <i data-lucide="heart" class="w-5 h-5 fill-orange-600"></i>
+          <h3 class="font-display text-2xl text-slate-900 dark:text-white tracking-wider">MIS FAVORITOS</h3>
+        </div>
+        <button onclick="closeFavorites()" class="p-1 rounded-full text-slate-500 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div id="fav-items-container" class="flex-1 overflow-y-auto py-4 space-y-3">
+        <!-- Rendered by JS -->
+      </div>
+
+      <button onclick="closeFavorites()" class="w-full py-2.5 rounded-lg bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-xs font-bold uppercase tracking-wider transition-all">
+        Seguir explorando
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       7. FLOATING WHATSAPP & SCROLL TO TOP WIDGETS
+       ========================================================================= -->
+  <!-- Floating Scroll To Top -->
+  <button id="scroll-top-btn" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="fixed bottom-24 right-6 z-40 p-3 rounded-full bg-slate-900/90 dark:bg-white text-white dark:text-slate-900 shadow-xl opacity-0 transition-opacity duration-300 pointer-events-none active:scale-95" title="Subir">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </button>
+
+  <!-- Floating WhatsApp Assistant Button -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <button onclick="toggleWhatsAppChat()" class="h-14 w-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shadow-2xl hover:scale-105 transition-all cursor-pointer group" title="Chat de WhatsApp">
+      <i data-lucide="message-circle" class="w-7 h-7"></i>
+      <span class="absolute right-16 bg-slate-900 text-white text-xs font-semibold py-1.5 px-3 rounded shadow opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+        ¿Dudas? Chat con nosotros
+      </span>
+      <span class="absolute -top-1 -right-1 h-3.5 w-3.5 bg-red-500 rounded-full animate-ping"></span>
+      <span class="absolute -top-1 -right-1 h-3.5 w-3.5 bg-red-500 rounded-full"></span>
+    </button>
+  </div>
+
+  <!-- WhatsApp Chat Modal Popup -->
+  <div id="whatsapp-chat-popup" class="fixed bottom-24 right-6 z-50 hidden max-w-sm w-[90vw] bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden animate-fade-in text-left">
+    <div class="bg-emerald-600 text-white p-4 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="h-9 w-9 rounded-full bg-slate-800 border border-emerald-400 flex items-center justify-center text-lg">
+          👩‍💼
+        </div>
+        <div>
+          <h4 class="font-bold text-xs text-white">Sofía • Uniformes PRE</h4>
+          <span class="text-[10px] text-emerald-100 block">Asesora Textil Cancún (En línea)</span>
+        </div>
+      </div>
+      <button onclick="toggleWhatsAppChat()" class="text-white hover:opacity-75 cursor-pointer">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <div class="p-4 space-y-3 text-xs bg-slate-50 dark:bg-slate-900 max-h-60 overflow-y-auto">
+      <div class="bg-white dark:bg-slate-800 p-3 rounded-xl shadow-xs text-slate-700 dark:text-slate-200">
+        ¡Hola! Bienvenido a Uniformes PRE. ¿En qué podemos apoyarle hoy con sus uniformes empresariales?
+      </div>
+      <div class="bg-white dark:bg-slate-800 p-2.5 rounded-xl shadow-xs text-[11px] text-slate-600 dark:text-slate-300">
+        📍 <strong>Sucursal:</strong> SM 92 MEGA Soriana López Portillo, Local 7, Cancún.
+      </div>
+    </div>
+
+    <div class="p-3 bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+      <a href="https://wa.me/529989370850" target="_blank" class="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5 shadow">
+        <span>Abrir WhatsApp 998 937 0850</span>
+        <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       8. JAVASCRIPT APPLICATION LOGIC
+       ========================================================================= -->
+  <script>
+    // -------------------------------------------------------------------------
+    // A. PRODUCTS DATA (REAL PRICES WITH IVA)
+    // -------------------------------------------------------------------------
+    const PRODUCTS = [
+      {
+        id: 'polo-dryfit-caballero-dama',
+        code: 'PL001',
+        name: 'Playera Polo Dry-Fit Caballero / Dama',
+        price: 240.00,
+        category: 'hoteleria',
+        image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&q=80&w=600',
+        rating: 4.9,
+        description: 'Playera Polo Dry-Fit manga corta de secado ultra rápido, micropiqué antitranspirante y termorregulación. Confección en silueta Dama o Caballero.',
+        isBestSeller: true
+      },
+      {
+        id: 'polo-manga-larga-dry-fit',
+        code: 'PL001ML',
+        name: 'Playera Manga Larga Dry Fit',
+        price: 210.00,
+        category: 'hoteleria',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430967/3.png',
+        rating: 4.9,
+        description: 'Playera de alto rendimiento con mangas largas confeccionada en tecnología Dry-Fit micro-perforada con protección UV para climas tropicales.',
+        isBestSeller: true
+      },
+      {
+        id: 'cazadora-manga-corta',
+        code: 'CZ001MC',
+        name: 'Cazadora Manga Corta Caballero',
+        price: 650.00,
+        category: 'restaurante',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788194431/MARINOFRENTE.png',
+        rating: 4.9,
+        description: 'Cazadora ejecutiva de cocina y servicio manga corta con canesú y respiradero en la espalda para ventilación continua.',
+        isBestSeller: true
+      },
+      {
+        id: 'filipina-chef-ejecutiva',
+        code: 'FL001',
+        name: 'Filipina de Chef Ejecutiva Antimancha',
+        price: 490.00,
+        category: 'restaurante',
+        image: 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&q=80&w=600',
+        rating: 5.0,
+        description: 'Filipina para cocina profesional con tratamiento repelente a líquidos, grasas y aceites. Cuello mao y botones reforzados.',
+        isBestSeller: true
+      },
+      {
+        id: 'pantalon-cargo-industrial',
+        code: 'PT002',
+        name: 'Pantalón Cargo Operativo Reforzado',
+        price: 395.00,
+        category: 'industrial',
+        image: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&q=80&w=600',
+        rating: 4.8,
+        description: 'Pantalón en gabardina de uso rudo con 6 bolsas multifunción, triple costura de refuerzo en tiro y pretina ergonómica.',
+        isBestSeller: false
+      },
+      {
+        id: 'bata-medica-antifluido',
+        code: 'MD001',
+        name: 'Bata Médica Clínica Antifluido',
+        price: 380.00,
+        category: 'medico',
+        image: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&q=80&w=600',
+        rating: 4.9,
+        description: 'Bata médica y de laboratorio en tela técnica hipoalergénica con barrera antifluido. Alta resistencia al cloro.',
+        isBestSeller: false
+      },
+      {
+        id: 'camisa-oxford-ejecutiva',
+        code: 'CM001',
+        name: 'Camisa Oxford Ejecutiva Manga Larga',
+        price: 340.00,
+        category: 'ejecutivo',
+        image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&q=80&w=600',
+        rating: 4.8,
+        description: 'Camisa de vestir para corporativos y recepción. Tejido Oxford peinado de suave textura y fácil planchado.',
+        isBestSeller: false
+      },
+      {
+        id: 'mandil-gourmet-peto',
+        code: 'MN001',
+        name: 'Mandil Gourmet con Peto y Ajuste de Cuero',
+        price: 280.00,
+        category: 'restaurante',
+        image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&q=80&w=600',
+        rating: 4.9,
+        description: 'Mandil de alta gama para baristas, bartenders y meseros con herrajes metálicos y tirantes cruzados ergonómicos.',
+        isBestSeller: false
+      }
+    ];
+
+    // -------------------------------------------------------------------------
+    // B. STATE MANAGEMENT (Light Default, Cart, Favs)
+    // -------------------------------------------------------------------------
+    let currentTheme = localStorage.getItem('pre_theme') === 'dark' ? 'dark' : 'light';
+    let activeTab = 'inicio';
+    let currentCat = 'todos';
+    let currentSearch = '';
+    let cart = JSON.parse(localStorage.getItem('pre_cart') || '[]');
+    let favorites = JSON.parse(localStorage.getItem('pre_favorites') || '[]');
+    let selectedModalProduct = null;
+
+    // Initialize Theme immediately
+    function applyTheme(theme) {
+      currentTheme = theme;
+      localStorage.setItem('pre_theme', theme);
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+        document.getElementById('theme-icon').setAttribute('data-lucide', 'sun');
+      } else {
+        document.documentElement.classList.add('light');
+        document.documentElement.classList.remove('dark');
+        document.getElementById('theme-icon').setAttribute('data-lucide', 'moon');
+      }
+      lucide.createIcons();
+    }
+
+    function toggleTheme() {
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
+    // -------------------------------------------------------------------------
+    // C. NAVIGATION & ROUTING
+    // -------------------------------------------------------------------------
+    function navigateTo(tab) {
+      activeTab = tab;
+      window.location.hash = '#' + tab;
+
+      const views = ['inicio', 'catalogo', 'quienes-somos', 'contacto'];
+      views.forEach(v => {
+        const el = document.getElementById('view-' + v);
+        if (el) el.classList.toggle('hidden', v !== tab);
+      });
+
+      // Update Nav Buttons active state
+      views.forEach(v => {
+        const btn = document.getElementById('nav-btn-' + v);
+        if (btn) {
+          if (v === tab) {
+            btn.className = 'px-3.5 py-2 text-xs lg:text-sm font-bold uppercase tracking-wider rounded-lg transition-all text-white border-2 border-white/90 bg-white/15';
+          } else {
+            btn.className = 'px-3.5 py-2 text-xs lg:text-sm font-bold uppercase tracking-wider rounded-lg transition-all text-white/80 hover:text-white hover:bg-white/10';
+          }
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // -------------------------------------------------------------------------
+    // D. RENDERING PRODUCTS (Home & Catalog)
+    // -------------------------------------------------------------------------
+    function renderProductCard(p) {
+      const isFav = favorites.some(f => f.id === p.id);
+      return `
+        <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 hover:border-orange-500 transition-all flex flex-col group shadow-sm hover:shadow-md">
+          <div onclick="openProductModal('${p.id}')" class="relative aspect-square overflow-hidden bg-slate-100 dark:bg-slate-950 cursor-pointer">
+            <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300" loading="lazy">
+            <button onclick="event.stopPropagation(); toggleFavorite('${p.id}')" class="absolute top-3 right-3 p-2 rounded-full bg-white/90 dark:bg-slate-900/90 text-slate-700 dark:text-slate-300 hover:text-orange-600 shadow cursor-pointer">
+              <i data-lucide="heart" class="w-4 h-4 ${isFav ? 'fill-orange-600 text-orange-600' : ''}"></i>
+            </button>
+            ${p.isBestSeller ? `<span class="absolute bottom-3 left-3 bg-orange-600 text-white text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded shadow">Best Seller</span>` : ''}
+          </div>
+
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-3 text-left">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-wider text-orange-600 block">${p.category}</span>
+              <h3 onclick="openProductModal('${p.id}')" class="font-bold text-sm text-slate-900 dark:text-white group-hover:text-orange-600 transition-colors cursor-pointer mt-0.5 line-clamp-1">
+                ${p.name}
+              </h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-1 leading-relaxed">
+                ${p.description}
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between mt-auto">
+              <div>
+                <span class="text-[9px] text-slate-400 block font-mono">Mayoreo Neto:</span>
+                <span class="text-base font-bold text-slate-900 dark:text-white font-mono">$${p.price.toFixed(2)}</span>
+              </div>
+              <button onclick="quickAddToCart('${p.id}')" class="py-1.5 px-3 rounded-lg bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                <span>Cotizar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderHomeBestSellers() {
+      const container = document.getElementById('home-best-sellers-grid');
+      if (!container) return;
+      const best = PRODUCTS.filter(p => p.isBestSeller).slice(0, 3);
+      container.innerHTML = best.map(renderProductCard).join('');
+    }
+
+    function renderCatalog() {
+      const container = document.getElementById('catalog-products-grid');
+      if (!container) return;
+
+      let filtered = PRODUCTS;
+      if (currentCat !== 'todos') {
+        filtered = filtered.filter(p => p.category.toLowerCase() === currentCat.toLowerCase());
+      }
+      if (currentSearch.trim()) {
+        const q = currentSearch.toLowerCase().trim();
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
+      }
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-500">
+            <p class="text-base font-bold text-slate-700 dark:text-slate-300">No encontramos prendas con esos filtros</p>
+            <p class="text-xs mt-1">Pruebe con otra palabra o seleccione otra categoría.</p>
+          </div>
+        `;
+      } else {
+        container.innerHTML = filtered.map(renderProductCard).join('');
+      }
+
+      lucide.createIcons();
+    }
+
+    function filterByCat(cat) {
+      currentCat = cat;
+      navigateTo('catalogo');
+
+      // Update pills
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        btn.className = 'cat-pill py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-wider bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-orange-500 transition-all cursor-pointer';
+      });
+      const activePill = document.getElementById('cat-pill-' + cat);
+      if (activePill) {
+        activePill.className = 'cat-pill py-1.5 px-4 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-600 text-white shadow-sm transition-all cursor-pointer';
+      }
+
+      renderCatalog();
+    }
+
+    function handleSearch(val) {
+      currentSearch = val;
+      renderCatalog();
+    }
+
+    // -------------------------------------------------------------------------
+    // E. CART & QUOTE MANAGEMENT
+    // -------------------------------------------------------------------------
+    function saveCart() {
+      localStorage.setItem('pre_cart', JSON.stringify(cart));
+      updateBadges();
+      renderCartItems();
+    }
+
+    function quickAddToCart(productId) {
+      const p = PRODUCTS.find(x => x.id === productId);
+      if (!p) return;
+      const existing = cart.find(x => x.productId === productId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ productId, quantity: 1, product: p });
+      }
+      saveCart();
+      openCart();
+    }
+
+    function updateCartQty(productId, delta) {
+      const item = cart.find(x => x.productId === productId);
+      if (!item) return;
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        cart = cart.filter(x => x.productId !== productId);
+      }
+      saveCart();
+    }
+
+    function removeCartItem(productId) {
+      cart = cart.filter(x => x.productId !== productId);
+      saveCart();
+    }
+
+    function renderCartItems() {
+      const container = document.getElementById('cart-items-container');
+      if (!container) return;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="h-64 flex flex-col items-center justify-center text-center text-slate-400 space-y-2">
+            <i data-lucide="shopping-bag" class="w-10 h-10 stroke-1 text-slate-300 dark:text-slate-600"></i>
+            <p class="font-bold text-sm text-slate-700 dark:text-slate-300">Tu cotizador está vacío</p>
+            <p class="text-xs">Agrega prendas desde el catálogo para generar tu pedido formal.</p>
+          </div>
+        `;
+        document.getElementById('cart-subtotal').innerText = '$0.00 MXN';
+        document.getElementById('cart-iva').innerText = '$0.00 MXN';
+        document.getElementById('cart-total').innerText = '$0.00 MXN';
+        lucide.createIcons();
+        return;
+      }
+
+      let total = 0;
+      container.innerHTML = cart.map(item => {
+        const lineTotal = item.product.price * item.quantity;
+        total += lineTotal;
+        return `
+          <div class="p-3 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+            <img src="${item.product.image}" class="w-14 h-14 rounded-lg object-cover border border-slate-200 dark:border-slate-800 shrink-0">
+            <div class="flex-1 min-w-0">
+              <h4 class="font-bold text-xs text-slate-900 dark:text-white truncate">${item.product.name}</h4>
+              <span class="text-[10px] text-slate-500 font-mono block">$${item.product.price.toFixed(2)} c/u</span>
+              <div class="flex items-center gap-2 mt-1.5">
+                <button onclick="updateCartQty('${item.productId}', -1)" class="w-5 h-5 rounded bg-slate-200 dark:bg-slate-800 text-xs font-bold flex items-center justify-center cursor-pointer">-</button>
+                <span class="font-mono text-xs font-bold">${item.quantity}</span>
+                <button onclick="updateCartQty('${item.productId}', 1)" class="w-5 h-5 rounded bg-slate-200 dark:bg-slate-800 text-xs font-bold flex items-center justify-center cursor-pointer">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="font-mono text-xs font-bold text-orange-600 block">$${lineTotal.toFixed(2)}</span>
+              <button onclick="removeCartItem('${item.productId}')" class="text-slate-400 hover:text-red-500 p-1 mt-1 cursor-pointer">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const subtotal = total / 1.16;
+      const iva = total - subtotal;
+      document.getElementById('cart-subtotal').innerText = '$' + subtotal.toFixed(2) + ' MXN';
+      document.getElementById('cart-iva').innerText = '$' + iva.toFixed(2) + ' MXN';
+      document.getElementById('cart-total').innerText = '$' + total.toFixed(2) + ' MXN';
+
+      lucide.createIcons();
+    }
+
+    // WhatsApp Order Sender (Item 5: Preserving WhatsApp preloaded message format)
+    function sendOrderToWhatsApp() {
+      if (cart.length === 0) {
+        alert('Agrega al menos una prenda para generar la cotización.');
+        return;
+      }
+
+      let total = 0;
+      const itemsList = cart.map(item => {
+        const lineTotal = item.product.price * item.quantity;
+        total += lineTotal;
+        return `• *${item.quantity} pz* x ${item.product.name} (${item.product.code}) - Subtotal: $${lineTotal.toFixed(2)} MXN`;
+      }).join('\n');
+
+      const message = 
+        `*SOLICITUD DE COTIZACIÓN - UNIFORMES PRE*\n\n` +
+        `Hola, me gustaría cotizar el siguiente pedido de uniformes para Cancún/Riviera Maya:\n\n` +
+        `📋 *PRENDAS SOLICITADAS:*\n${itemsList}\n\n` +
+        `💰 *TOTAL ESTIMADO:* $${total.toFixed(2)} MXN (IVA Incluido)\n\n` +
+        `📌 _Generado en la web oficial de Uniformes PRE (Sucursal Mega Soriana Cancún)._`;
+
+      const whatsappUrl = `https://wa.me/529989370850?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, '_blank');
+    }
+
+    function openCart() {
+      document.getElementById('cart-drawer').classList.remove('hidden');
+      renderCartItems();
+    }
+    function closeCart() {
+      document.getElementById('cart-drawer').classList.add('hidden');
+    }
+
+    // -------------------------------------------------------------------------
+    // F. FAVORITES MANAGEMENT
+    // -------------------------------------------------------------------------
+    function toggleFavorite(productId) {
+      const p = PRODUCTS.find(x => x.id === productId);
+      if (!p) return;
+      const idx = favorites.findIndex(x => x.id === productId);
+      if (idx > -1) {
+        favorites.splice(idx, 1);
+      } else {
+        favorites.push(p);
+      }
+      localStorage.setItem('pre_favorites', JSON.stringify(favorites));
+      updateBadges();
+      renderHomeBestSellers();
+      renderCatalog();
+      renderFavItems();
+    }
+
+    function renderFavItems() {
+      const container = document.getElementById('fav-items-container');
+      if (!container) return;
+      if (favorites.length === 0) {
+        container.innerHTML = `
+          <div class="h-64 flex flex-col items-center justify-center text-center text-slate-400 space-y-2">
+            <i data-lucide="heart" class="w-10 h-10 stroke-1 text-slate-300 dark:text-slate-600"></i>
+            <p class="font-bold text-sm text-slate-700 dark:text-slate-300">No tienes favoritos aún</p>
+            <p class="text-xs">Guarda las prendas que más te interesan para consultarlas rápido.</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }
+
+      container.innerHTML = favorites.map(p => `
+        <div class="p-3 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3">
+          <img src="${p.image}" class="w-12 h-12 rounded-lg object-cover border border-slate-200 dark:border-slate-800 shrink-0">
+          <div class="flex-1 min-w-0">
+            <h4 class="font-bold text-xs text-slate-900 dark:text-white truncate">${p.name}</h4>
+            <span class="font-mono text-xs font-bold text-orange-600">$${p.price.toFixed(2)}</span>
+          </div>
+          <div class="flex items-center gap-1">
+            <button onclick="quickAddToCart('${p.id}')" class="p-1.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 cursor-pointer" title="Cotizar">
+              <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i>
+            </button>
+            <button onclick="toggleFavorite('${p.id}')" class="p-1.5 text-slate-400 hover:text-red-500 cursor-pointer" title="Eliminar">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    function openFavorites() {
+      document.getElementById('fav-drawer').classList.remove('hidden');
+      renderFavItems();
+    }
+    function closeFavorites() {
+      document.getElementById('fav-drawer').classList.add('hidden');
+    }
+
+    function updateBadges() {
+      const cartBadge = document.getElementById('cart-count-badge');
+      const favBadge = document.getElementById('fav-count-badge');
+      const totalCartQty = cart.reduce((acc, i) => acc + i.quantity, 0);
+
+      if (totalCartQty > 0) {
+        cartBadge.innerText = totalCartQty;
+        cartBadge.classList.remove('hidden');
+      } else {
+        cartBadge.classList.add('hidden');
+      }
+
+      if (favorites.length > 0) {
+        favBadge.innerText = favorites.length;
+        favBadge.classList.remove('hidden');
+      } else {
+        favBadge.classList.add('hidden');
+      }
+    }
+
+    // -------------------------------------------------------------------------
+    // G. PRODUCT MODAL DETAIL
+    // -------------------------------------------------------------------------
+    function openProductModal(productId) {
+      const p = PRODUCTS.find(x => x.id === productId);
+      if (!p) return;
+      selectedModalProduct = p;
+
+      document.getElementById('modal-product-img').src = p.image;
+      document.getElementById('modal-product-cat').innerText = p.category;
+      document.getElementById('modal-product-title').innerText = p.name;
+      document.getElementById('modal-product-code').innerText = 'CÓDIGO: ' + p.code;
+      document.getElementById('modal-product-price').innerText = '$' + p.price.toFixed(2) + ' MXN';
+      document.getElementById('modal-product-desc').innerText = p.description;
+      document.getElementById('modal-qty-input').value = 1;
+
+      document.getElementById('product-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-modal').classList.add('hidden');
+    }
+
+    function changeModalQty(delta) {
+      const input = document.getElementById('modal-qty-input');
+      let val = parseInt(input.value || '1', 10) + delta;
+      if (val < 1) val = 1;
+      input.value = val;
+    }
+
+    function addModalProductToCart() {
+      if (!selectedModalProduct) return;
+      const qty = parseInt(document.getElementById('modal-qty-input').value || '1', 10);
+      const existing = cart.find(x => x.productId === selectedModalProduct.id);
+      if (existing) {
+        existing.quantity += qty;
+      } else {
+        cart.push({ productId: selectedModalProduct.id, quantity: qty, product: selectedModalProduct });
+      }
+      saveCart();
+      closeProductModal();
+      openCart();
+    }
+
+    // -------------------------------------------------------------------------
+    // H. CONTACT FORM & WHATSAPP
+    // -------------------------------------------------------------------------
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('contact-name').value.trim();
+      const company = document.getElementById('contact-company').value.trim() || 'Particular';
+      const phone = document.getElementById('contact-phone').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+
+      const text = 
+        `*NUEVA SOLICITUD DE CONTACTO - WEB UNIFORMES PRE*\n\n` +
+        `👤 *Nombre:* ${name}\n` +
+        `🏢 *Empresa:* ${company}\n` +
+        `📞 *Teléfono:* ${phone}\n` +
+        `📧 *Email:* ${email}\n\n` +
+        `📝 *Mensaje:* ${message}\n\n` +
+        `📌 _Enviado desde el formulario oficial de Uniformes PRE Cancún._`;
+
+      const whatsappUrl = `https://wa.me/529989370850?text=${encodeURIComponent(text)}`;
+      window.open(whatsappUrl, '_blank');
+      alert('¡Gracias! Se abrirá WhatsApp para conectar con nuestro asesor comercial de Cancún.');
+    }
+
+    // -------------------------------------------------------------------------
+    // I. UI HELPERS (Drawers, Floating Chat, Scroll)
+    // -------------------------------------------------------------------------
+    function toggleMobileDrawer() {
+      const el = document.getElementById('mobile-drawer');
+      el.classList.toggle('hidden');
+    }
+
+    function toggleWhatsAppChat() {
+      const el = document.getElementById('whatsapp-chat-popup');
+      el.classList.toggle('hidden');
+      lucide.createIcons();
+    }
+
+    // Scroll To Top behavior
+    window.addEventListener('scroll', () => {
+      const btn = document.getElementById('scroll-top-btn');
+      if (window.scrollY > 300) {
+        btn.classList.remove('opacity-0', 'pointer-events-none');
+        btn.classList.add('opacity-100');
+      } else {
+        btn.classList.add('opacity-0', 'pointer-events-none');
+        btn.classList.remove('opacity-100');
+      }
+    });
+
+    // Handle Hash Routing
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash.replace('#', '') || 'inicio';
+      if (['inicio', 'catalogo', 'quienes-somos', 'contacto'].includes(hash)) {
+        navigateTo(hash);
+      }
+    });
+
+    // -------------------------------------------------------------------------
+    // J. ON LOAD INITIALIZATION
+    // -------------------------------------------------------------------------
+    window.addEventListener('DOMContentLoaded', () => {
+      applyTheme(currentTheme);
+      updateBadges();
+      renderHomeBestSellers();
+      renderCatalog();
+
+      const initialHash = window.location.hash.replace('#', '') || 'inicio';
+      navigateTo(initialHash);
+
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
