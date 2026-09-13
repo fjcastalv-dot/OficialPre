@@ -56,7 +56,7 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
               type="button"
               className="flex items-center space-x-2 px-3 sm:px-4 py-2 text-xs font-bold tracking-wider uppercase transition-all rounded-lg cursor-pointer whitespace-nowrap"
               style={{
-                color: activeTab === 'returns' ? '#ea580c' : '#64748b',
+                color: activeTab === 'returns' ? '#ea580c' : '#334155',
                 backgroundColor: activeTab === 'returns' ? '#ffffff' : 'transparent',
                 borderBottom: activeTab === 'returns' ? '2px solid #ea580c' : '2px solid transparent',
                 boxShadow: activeTab === 'returns' ? '0 1px 3px rgba(0,0,0,0.05)' : 'none'
@@ -72,7 +72,7 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
               type="button"
               className="flex items-center space-x-2 px-3 sm:px-4 py-2 text-xs font-bold tracking-wider uppercase transition-all rounded-lg cursor-pointer whitespace-nowrap"
               style={{
-                color: activeTab === 'privacy' ? '#ea580c' : '#64748b',
+                color: activeTab === 'privacy' ? '#ea580c' : '#334155',
                 backgroundColor: activeTab === 'privacy' ? '#ffffff' : 'transparent',
                 borderBottom: activeTab === 'privacy' ? '2px solid #ea580c' : '2px solid transparent',
                 boxShadow: activeTab === 'privacy' ? '0 1px 3px rgba(0,0,0,0.05)' : 'none'
@@ -137,94 +137,98 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
                   Para solicitar un cambio o devolución, el cliente deberá comunicarse con nuestro equipo de atención dentro de un plazo de <strong style={{ color: '#0f172a' }}>5 días hábiles</strong> posteriores a la recepción del pedido.
                 </p>
                 <p style={{ color: '#334155' }}>
-                  El producto deberá conservarse en las condiciones en las que fue recibido, sin haber sido usado, lavado, alterado ni personalizado, y conservando sus etiquetas o empaques originales cuando aplique.
+                  El producto deberá conservarse en las condiciones en las que fue recibido, sin haber sido utilizado, lavado, alterado o modificado.
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  2. Productos personalizados y pedidos especiales
+                  2. Productos personalizados o confeccionados sobre pedido
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  Por tratarse de prendas confeccionadas, bordadas, estampadas o adaptadas conforme a requerimientos específicos de cada cliente, los productos personalizados no admiten cambios ni devoluciones por causas atribuibles a selección de talla, modelo, color o diseño previamente autorizado.
+                  Los uniformes y productos elaborados de acuerdo con especificaciones particulares del cliente —incluyendo medidas, colores, diseños, bordados, sublimados, estampados, logotipos, cortes o cualquier otra personalización— no son susceptibles de devolución por cambio de opinión, talla, color o diseño una vez iniciada su producción, debido a que han sido fabricados específicamente para cada proyecto.
                 </p>
                 <p style={{ color: '#334155' }}>
-                  En caso de presentarse algún defecto atribuible a la confección, bordado o personalización respecto a la muestra o especificación aprobada, el cliente podrá solicitar su revisión para reposición o ajuste conforme a lo acordado.
+                  Antes de iniciar la producción, nuestro equipo asesora al cliente y confirma las especificaciones del pedido para minimizar cualquier error.
+                </p>
+                <p style={{ color: '#334155' }}>
+                  Lo anterior no limita los derechos que correspondan al consumidor cuando exista un defecto de fabricación, incumplimiento de las especificaciones acordadas o alguna otra causa contemplada por la legislación aplicable.
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  3. Plazos para aclaraciones
+                  3. Productos con defectos de fabricación
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  Cualquier aclaración relacionada con faltantes, diferencias en cantidades o inconformidades en el pedido deberá notificarse dentro de los primeros <strong style={{ color: '#0f172a' }}>5 días hábiles</strong> posteriores a la entrega física del producto.
+                  Si un producto presenta un defecto atribuible a su fabricación, el cliente deberá reportarlo dentro del periodo de garantía correspondiente.
                 </p>
                 <p style={{ color: '#334155' }}>
-                  Transcurrido este plazo, se entenderá que el pedido ha sido recibido a entera satisfacción.
+                  Una vez recibido el reporte, Uniformes PRE evaluará el caso y, cuando corresponda, podrá ofrecer reparación, reposición del producto, cambio o la solución que legalmente proceda.
+                </p>
+                <p style={{ color: '#334155' }}>
+                  Cuando resulte aplicable una garantía, esta será informada al cliente de manera clara junto con sus condiciones y procedimiento para hacerla efectiva.
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  4. Procedimiento para solicitudes
+                  4. Productos incorrectos o faltantes
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  Para iniciar una solicitud de revisión, cambio o reposición, el cliente deberá compartir:
+                  Si recibes un producto diferente al solicitado o detectas piezas faltantes, comunícate con nosotros dentro de los <strong style={{ color: '#0f172a' }}>5 días hábiles</strong> posteriores a la recepción.
                 </p>
+                <p style={{ color: '#334155' }}>
+                  Nuestro equipo revisará la orden de compra y la evidencia proporcionada para determinar la solución correspondiente.
+                </p>
+
+                <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
+                  5. Requisitos para solicitar un cambio o devolución
+                </h4>
+                <p style={{ color: '#334155' }}>Para iniciar una solicitud, será necesario proporcionar:</p>
                 <ul className="list-disc list-inside space-y-1.5 pl-4 text-slate-700" style={{ color: '#334155' }}>
-                  <li>Número de pedido, factura o cotización correspondiente.</li>
-                  <li>Descripción detallada de la situación.</li>
-                  <li>Fotografías o evidencia visual que permita evaluar el caso.</li>
+                  <li>Número de pedido, cotización o factura.</li>
+                  <li>Nombre del cliente o empresa.</li>
+                  <li>Descripción del inconveniente.</li>
+                  <li>Fotografías o evidencia del producto, cuando corresponda.</li>
+                  <li>Datos de contacto para dar seguimiento al caso.</li>
                 </ul>
-                <p style={{ color: '#334155' }}>
-                  Nuestro equipo dará respuesta a la solicitud en un plazo máximo de <strong style={{ color: '#0f172a' }}>3 a 5 días hábiles</strong> con las opciones de solución correspondientes.
+                <p style={{ color: '#64748b' }}>
+                  El producto podrá ser solicitado para revisión física cuando sea necesario.
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  5. Reemplazos y ajustes
+                  6. Gastos de envío
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  Cuando proceda un cambio por defecto de fabricación, error en envío o inconformidad imputable a la empresa, Uniformes PRE gestionará la reposición o ajuste de la prenda en los tiempos de producción y entrega que se coordinen con el cliente.
+                  Cuando el cambio o reposición sea consecuencia de un error atribuible a Uniformes PRE o de un defecto de fabricación cubierto por la garantía, se determinará la forma de cubrir los gastos de envío correspondientes.
+                </p>
+                <p style={{ color: '#334155' }}>
+                  Cuando la solicitud derive de una causa no atribuible a Uniformes PRE, los gastos de traslado podrán correr por cuenta del cliente, siempre que legalmente corresponda.
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  6. Envíos en cambios y devoluciones
+                  7. Cancelaciones
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  En los casos en que la devolución o cambio derive de un error imputable a Uniformes PRE o de un defecto comprobable de fabricación, los costos de recolección y reenvío correrán por nuestra cuenta.
+                  Las solicitudes de cancelación deberán realizarse antes de que el pedido entre en producción.
                 </p>
                 <p style={{ color: '#334155' }}>
-                  En situaciones no atribuibles a defecto o error en el surtido acordado, los gastos logísticos asociados podrán ser responsabilidad del cliente.
-                </p>
-
-                <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  7. Reembolsos
-                </h4>
-                <p style={{ color: '#334155' }}>
-                  Las solicitudes que deriven en devolución económica, en caso de aplicar conforme a la evaluación del caso, se gestionarán mediante nota de crédito aplicable a futuras compras o mediante el método de pago original en los tiempos que determine la institución financiera correspondiente.
+                  Una vez iniciada la fabricación, personalización, bordado, sublimado, estampado o cualquier otro proceso específico para el cliente, la posibilidad de cancelación estará sujeta al avance del pedido y a los costos ya generados.
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  8. Atención y soporte
+                  8. Proceso de atención
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  Para cualquier duda, aclaración o seguimiento a un pedido, nuestro equipo se encuentra disponible a través de nuestros canales oficiales de contacto:
+                  Una vez recibida la solicitud, nuestro equipo revisará la información y se pondrá en contacto con el cliente para indicar los siguientes pasos.
                 </p>
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2 text-slate-700" style={{ backgroundColor: '#f8fafc', color: '#334155' }}>
-                  <p>
-                    <strong style={{ color: '#0f172a' }}>WhatsApp:</strong>{' '}
-                    <a href="https://wa.me/529988454220" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: '#ea580c' }}>
-                      998 845 4220
-                    </a>
-                  </p>
-                  <p>
-                    <strong style={{ color: '#0f172a' }}>Correo de atención:</strong>{' '}
-                    <a href="mailto:ventas@uniformespre.com" className="font-semibold hover:underline" style={{ color: '#ea580c' }}>
-                      ventas@uniformespre.com
-                    </a>
-                  </p>
-                </div>
+                <p style={{ color: '#334155' }}>
+                  Buscamos resolver cada caso de manera clara, profesional y justa, procurando siempre ofrecer una solución acorde con las características del pedido y la legislación aplicable.
+                </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  9. Modificaciones a la política
+                  9. Derechos del consumidor
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  Uniformes PRE se reserva el derecho de actualizar o modificar esta política cuando resulte necesario para mejorar nuestros procesos o cumplir con disposiciones operativas o legales. Las condiciones aplicables serán aquellas vigentes al momento de confirmar el pedido correspondiente.
+                  Esta política se interpreta y aplica de conformidad con la Ley Federal de Protección al Consumidor y demás disposiciones aplicables en México. Ninguna disposición de esta política pretende limitar los derechos que legalmente correspondan al consumidor.
+                </p>
+                <p className="pt-2 border-t border-slate-200 text-slate-500" style={{ color: '#64748b' }}>
+                  Para cualquier duda, aclaración o solicitud relacionada con un pedido, puedes contactar a nuestro equipo de atención a través de los medios oficiales publicados en este sitio web.
                 </p>
               </div>
             </div>
@@ -245,120 +249,111 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
 
               <div className="space-y-4 text-slate-700" style={{ color: '#334155' }}>
                 <p style={{ color: '#334155' }}>
-                  En cumplimiento con lo establecido en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (en adelante, la “Ley”), <strong style={{ color: '#0f172a' }}>Uniformes PRE</strong>, con domicilio en <strong style={{ color: '#0f172a' }}>Calle 72 Mza 34 Lote 2 SM 219, CP 77516, Cancún, Quintana Roo, México</strong>, hace de su conocimiento que es responsable del uso, tratamiento y protección de los datos personales que usted nos proporcione.
+                  <strong style={{ color: '#0f172a' }}>Confecciones y Uniformes PRE</strong> (en lo sucesivo Uniformes PRE) con domicilio en <strong style={{ color: '#0f172a' }}>Calle Onyx Lote 19 supermanzana 531 Cancún Quintana Roo</strong>, es el responsable del uso y protección de sus datos personales, y al respecto le informamos lo siguiente:
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  1. Datos personales que recabamos
+                  ¿Para qué fines utilizaremos sus datos personales?
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  Para la correcta atención, cotización, venta y entrega de nuestros productos y servicios, podremos solicitar los siguientes datos personales:
+                  Los datos personales que recabamos de usted, los utilizaremos para las siguientes finalidades que son necesarias para el servicio que solicita:
                 </p>
                 <ul className="list-disc list-inside space-y-1.5 pl-4 text-slate-700" style={{ color: '#334155' }}>
-                  <li>Nombre completo o razón social.</li>
-                  <li>Nombre de persona de contacto o representante.</li>
-                  <li>Número telefónico fijo y/o celular (incluyendo WhatsApp).</li>
-                  <li>Correo electrónico.</li>
-                  <li>Dirección de entrega, fiscal y/o de facturación.</li>
-                  <li>Datos fiscales (RFC, constancia de situación fiscal, uso de CFDI).</li>
-                  <li>Información relacionada con especificaciones de pedidos, logotipos, tallas y requerimientos de uniformes.</li>
+                  <li>Respuesta a mensajes del formulario de contacto</li>
+                  <li>Prestación de cualquier servicio solicitado.</li>
+                  <li>Compra de algún producto</li>
                 </ul>
-                <p style={{ color: '#334155' }}>
-                  Uniformes PRE no solicita ni recaba datos personales sensibles que requieran especial protección conforme a la Ley.
-                </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  2. Finalidades del tratamiento de datos
+                  ¿Qué datos personales utilizaremos para estos fines?
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  Los datos personales recabados serán utilizados para las siguientes finalidades necesarias:
+                  Para llevar a cabo las finalidades descritas en el presente aviso de privacidad, utilizaremos los siguientes datos personales:
                 </p>
                 <ul className="list-disc list-inside space-y-1.5 pl-4 text-slate-700" style={{ color: '#334155' }}>
-                  <li>Elaboración y envío de cotizaciones comerciales.</li>
-                  <li>Procesamiento de pedidos, confección y personalización de uniformes.</li>
-                  <li>Gestión de facturación y cobranza.</li>
-                  <li>Coordinación logística para entrega o envío de mercancía.</li>
-                  <li>Comunicación directa sobre el estatus de compras, producción o entregas.</li>
-                  <li>Atención a dudas, aclaraciones, garantías o servicio posventa.</li>
+                  <li>Datos de identificación y contacto</li>
+                  <li>Datos laborales</li>
                 </ul>
+
+                <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
+                  ¿Con quién compartimos su información personal y para qué fines?
+                </h4>
                 <p style={{ color: '#334155' }}>
-                  De manera adicional, podremos utilizar sus datos de contacto para finalidades secundarias que nos permiten brindarle una mejor atención, tales como:
+                  Le informamos que sus datos personales no son compartidos fuera del país, a excepción de los compartidos con empresas que nos brindan servicios relacionados con tecnología.
+                </p>
+                <p style={{ color: '#334155' }}>Dentro del país:</p>
+                <ul className="list-disc list-inside space-y-1.5 pl-4 text-slate-700" style={{ color: '#334155' }}>
+                  <li>Uniformes PRE para prospección de clientes.</li>
+                </ul>
+
+                <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
+                  ¿Cómo puede acceder, rectificar o cancelar sus datos personales, u oponerse a su uso o ejercer la revocación de consentimiento?
+                </h4>
+                <p style={{ color: '#334155' }}>
+                  Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); que la eliminemos de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada adecuadamente (Cancelación); así como oponerse al uso de sus datos personales para fines específicos (Oposición). Estos derechos se conocen como derechos ARCO.
+                </p>
+                <p style={{ color: '#334155' }}>
+                  Para el ejercicio de cualquiera de los derechos ARCO, debe enviar una petición vía correo electrónico a{' '}
+                  <a href="mailto:direccion@uniformespre.com" className="font-semibold hover:underline" style={{ color: '#ea580c' }}>
+                    direccion@uniformespre.com
+                  </a>{' '}
+                  y deberá contener:
                 </p>
                 <ul className="list-disc list-inside space-y-1.5 pl-4 text-slate-700" style={{ color: '#334155' }}>
-                  <li>Envío de catálogos actualizados, promociones o novedades de productos.</li>
-                  <li>Encuestas breves de satisfacción o evaluación del servicio.</li>
+                  <li>Nombre completo del titular.</li>
+                  <li>Domicilio.</li>
+                  <li>Teléfono.</li>
+                  <li>Correo electrónico usado en este sitio web.</li>
+                  <li>Copia de una identificación oficial adjunta.</li>
+                  <li>Asunto «Derechos ARCO»</li>
+                  <li>
+                    Descripción el objeto del escrito, los cuales pueden ser de manera enunciativa más no limitativa los siguientes: Revocación del consentimiento para tratar sus datos personales; y/o Notificación del uso indebido del tratamiento de sus datos personales; y/o Ejercitar sus Derechos ARCO, con una descripción clara y precisa de los datos a Acceder, Rectificar, Cancelar o bien, Oponerse. En caso de Rectificación de datos personales, deberá indicar la modificación exacta y anexar la documentación soporte; es importante en caso de revocación del consentimiento, que tenga en cuenta que no en todos los casos podremos atender su solicitud o concluir el uso de forma inmediata, ya que es posible que por alguna obligación legal requiramos seguir tratando sus datos personales. Asimismo, usted deberá considerar que para ciertos fines, la revocación de su consentimiento implicará que no le podamos seguir prestando el servicio que nos solicitó, o la conclusión de su relación con nosotros.
+                  </li>
                 </ul>
+
+                <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
+                  ¿En cuántos días le daremos respuesta a su solicitud?
+                </h4>
                 <p style={{ color: '#334155' }}>
-                  En caso de que no desee que sus datos personales sean tratados para estas finalidades secundarias, podrá manifestarlo en cualquier momento enviando un correo a:{' '}
-                  <a href="mailto:ventas@uniformespre.com" className="font-semibold hover:underline" style={{ color: '#ea580c' }}>
-                    ventas@uniformespre.com
-                  </a>.
+                  <strong style={{ color: '#0f172a' }}>10 días hábiles</strong>
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  3. Transferencia de datos personales
+                  ¿Por qué medio le comunicaremos la respuesta a su solicitud?
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  Uniformes PRE no vende, alquila ni comparte sus datos personales con terceros para fines ajenos a nuestra operación comercial.
+                  Al mismo correo electrónico de donde se envió la petición.
                 </p>
-                <p style={{ color: '#334155' }}>Sus datos únicamente podrán ser compartidos con:</p>
+
+                <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
+                  El uso de tecnologías de rastreo en nuestro portal de internet
+                </h4>
+                <p style={{ color: '#334155' }}>
+                  Le informamos que en nuestra página de internet utilizamos cookies, web beacons u otras tecnologías, a través de las cuales es posible monitorear su comportamiento como usuario de internet, así como brindarle un mejor servicio y experiencia al navegar en nuestra página. Los datos personales que obtenemos de estas tecnologías de rastreo son los siguientes:
+                </p>
                 <ul className="list-disc list-inside space-y-1.5 pl-4 text-slate-700" style={{ color: '#334155' }}>
-                  <li>Empresas de paquetería y logística necesarias para realizar la entrega de sus pedidos.</li>
-                  <li>Proveedores de servicios tecnológicos o contables indispensables para la facturación y operación de la empresa.</li>
-                  <li>Autoridades competentes cuando así lo exija la legislación aplicable.</li>
+                  <li>Identificadores, nombre de usuario y contraseñas de sesión</li>
+                  <li>Idioma preferido por el usuario</li>
+                  <li>Región en la que se encuentra el usuario</li>
+                  <li>Tipo de navegador del usuario</li>
+                  <li>Tipo de sistema operativo del usuario</li>
+                  <li>Páginas web visitadas por un usuario</li>
+                  <li>Búsquedas realizadas por un usuario</li>
+                  <li>Publicidad revisada por un usuario</li>
+                  <li>Listas y hábitos de consumo en páginas de compras</li>
                 </ul>
                 <p style={{ color: '#334155' }}>
-                  Estos terceros se encuentran obligados a mantener la confidencialidad de la información compartida y a utilizarla exclusivamente para el cumplimiento de los servicios contratados.
+                  Estas cookies, web beacons y otras tecnologías pueden ser deshabilitadas. Para conocer cómo hacerlo, consulte el menú de ayuda de su navegador. Tenga en cuenta que, en caso de desactivar las cookies, es posible que no pueda acceder a ciertas funciones personalizadas en nuestro Sitio Web.
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  4. Medidas de seguridad
+                  ¿Cómo puede conocer los cambios en este Aviso de Privacidad?
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  Uniformes PRE implementa medidas de seguridad técnicas, administrativas y físicas razonables para proteger sus datos personales contra daño, pérdida, alteración, destrucción o el uso, acceso o tratamiento no autorizado.
-                </p>
-
-                <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  5. Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)
-                </h4>
-                <p style={{ color: '#334155' }}>
-                  Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); que la eliminemos de nuestros registros cuando considere que no está siendo utilizada adecuadamente (Cancelación); así como oponerse al uso de sus datos para fines específicos (Oposición).
-                </p>
-                <p style={{ color: '#334155' }}>
-                  Para el ejercicio de cualquiera de los derechos ARCO, usted deberá enviar una solicitud por escrito al correo electrónico:{' '}
-                  <a href="mailto:ventas@uniformespre.com" className="font-semibold hover:underline" style={{ color: '#ea580c' }}>
-                    ventas@uniformespre.com
+                  El presente aviso de privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de nuevos requerimientos legales; de nuestras propias necesidades por los productos o servicios que ofrecemos; de nuestras prácticas de privacidad; de cambios en nuestro modelo de negocio, o por otras causas. Nos comprometemos a mantener actualizado este aviso de privacidad sobre los cambios que pueda sufrir y siempre podrá consultar las actualizaciones que existan en el sitio web{' '}
+                  <a href="https://uniformespre.com" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: '#ea580c' }}>
+                    uniformespre.com
                   </a>
-                </p>
-                <p style={{ color: '#334155' }}>La solicitud deberá contener:</p>
-                <ul className="list-disc list-inside space-y-1.5 pl-4 text-slate-700" style={{ color: '#334155' }}>
-                  <li>Nombre del titular y medio para comunicarle la respuesta.</li>
-                  <li>Documentos que acrediten su identidad o la representación legal correspondiente.</li>
-                  <li>Descripción clara y precisa de los datos respecto de los cuales busca ejercer alguno de los derechos ARCO.</li>
-                  <li>Cualquier otro elemento que facilite la localización de los datos.</li>
-                </ul>
-                <p style={{ color: '#334155' }}>
-                  Daremos respuesta a su solicitud en un plazo máximo de <strong style={{ color: '#0f172a' }}>10 días hábiles</strong> posteriores a la recepción de la misma.
-                </p>
-
-                <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  6. Uso de cookies o tecnologías similares
-                </h4>
-                <p style={{ color: '#334155' }}>
-                  Nuestro sitio web o canales digitales podrán utilizar cookies técnicas o herramientas de análisis para mejorar la experiencia de navegación, recordar preferencias y recopilar información estadística anónima de visitas. Usted puede desactivar o configurar el uso de cookies directamente en las opciones de su navegador web.
-                </p>
-
-                <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
-                  7. Cambios al Aviso de Privacidad
-                </h4>
-                <p style={{ color: '#334155' }}>
-                  El presente Aviso de Privacidad podrá ser modificado o actualizado en cualquier momento derivado de requerimientos legales, cambios en nuestras prácticas operativas o mejoras en nuestros servicios.
-                </p>
-                <p style={{ color: '#334155' }}>
-                  Cualquier modificación estará disponible para consulta a través de nuestro sitio web y canales oficiales de comunicación.
-                </p>
-                <p className="pt-2 border-t border-slate-200 text-xs font-semibold" style={{ color: '#64748b' }}>
-                  Última actualización: Marzo 2026.
                 </p>
               </div>
             </div>
