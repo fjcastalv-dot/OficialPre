@@ -249,7 +249,7 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
 
               <div className="space-y-4 text-slate-700" style={{ color: '#334155' }}>
                 <p style={{ color: '#334155' }}>
-                  <strong style={{ color: '#0f172a' }}>Confecciones y Uniformes PRE</strong> (en lo sucesivo Uniformes PRE) con domicilio en <strong style={{ color: '#0f172a' }}>Calle Onyx Lote 19 supermanzana 531 Cancún Quintana Roo</strong>, es el responsable del uso y protección de sus datos personales, y al respecto le informamos lo siguiente:
+                  Confecciones y Uniformes PRE (en lo sucesivo Uniformes PRE) con domicilio en Calle Onyx Lote 19 supermanzana 531 Cancún Quintana Roo, es el responsable del uso y protección de sus datos personales, y al respecto le informamos lo siguiente:
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
@@ -315,7 +315,7 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
                   ¿En cuántos días le daremos respuesta a su solicitud?
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  <strong style={{ color: '#0f172a' }}>10 días hábiles</strong>
+                  10 días hábiles
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
@@ -351,7 +351,7 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
                 </h4>
                 <p style={{ color: '#334155' }}>
                   El presente aviso de privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de nuevos requerimientos legales; de nuestras propias necesidades por los productos o servicios que ofrecemos; de nuestras prácticas de privacidad; de cambios en nuestro modelo de negocio, o por otras causas. Nos comprometemos a mantener actualizado este aviso de privacidad sobre los cambios que pueda sufrir y siempre podrá consultar las actualizaciones que existan en el sitio web{' '}
-                  <a href="https://uniformespre.com" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: '#ea580c' }}>
+                  <a href="http://uniformespre.com/" target="_blank" rel="noopener noreferrer" className="font-semibold hover:underline" style={{ color: '#ea580c' }}>
                     uniformespre.com
                   </a>
                 </p>
