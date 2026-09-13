@@ -1,4 +1,5 @@
-import { Sparkles, Shirt, Utensils, Briefcase, ShieldAlert, Footprints, ArrowRight, Star, Heart, Check, HelpCircle, GraduationCap, Stethoscope, CameraOff, Lightbulb, Award } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { Sparkles, Shirt, Utensils, Briefcase, ShieldAlert, Footprints, ArrowRight, Star, Heart, Check, HelpCircle, GraduationCap, Stethoscope, CameraOff, Lightbulb, Award, Volume2, VolumeX } from 'lucide-react';
 import { motion } from 'motion/react';
 import { ActiveTab, Product } from '../types';
 import { PRODUCTS, TESTIMONIALS, getCategoryName } from '../data';
@@ -39,6 +40,16 @@ export default function HomeView({
   setFilterCategory,
   theme,
 }: HomeViewProps) {
+  const [isHotelVideoMuted, setIsHotelVideoMuted] = useState(true);
+  const hotelVideoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleHotelVideoMute = () => {
+    if (hotelVideoRef.current) {
+      hotelVideoRef.current.muted = !hotelVideoRef.current.muted;
+      setIsHotelVideoMuted(hotelVideoRef.current.muted);
+    }
+  };
+
   // Get best sellers
   const bestSellers = PRODUCTS.filter((p) => p.isBestSeller).slice(0, 3);
 
@@ -313,21 +324,36 @@ export default function HomeView({
                 Cotizar Mantelería
               </button>
             </div>
-            <div className="md:w-1/2 relative h-48 md:h-auto min-h-[220px] bg-slate-900">
-              <img
-                src={luxuryTableclothImg || MANTELERIA_URL}
-                alt="Textiles que Visten tus Espacios"
-                className="w-full h-full object-cover"
-                loading="lazy"
-                decoding="async"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  if (e.currentTarget.src !== MANTELERIA_URL) {
-                    e.currentTarget.src = MANTELERIA_URL;
-                  }
-                }}
+            <div className="md:w-1/2 relative min-h-[260px] md:min-h-[300px] bg-slate-950 overflow-hidden group">
+              <video
+                ref={hotelVideoRef}
+                src="./videos/linea_hotelera_tienda.mp4"
+                autoPlay
+                loop
+                muted={isHotelVideoMuted}
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-slate-950 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-slate-950/60 via-transparent to-transparent pointer-events-none" />
+              <button
+                onClick={toggleHotelVideoMute}
+                type="button"
+                aria-label={isHotelVideoMuted ? "Activar sonido" : "Silenciar video"}
+                title={isHotelVideoMuted ? "Activar sonido" : "Silenciar video"}
+                className="absolute bottom-3 right-3 z-10 flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 text-white text-xs font-semibold backdrop-blur-md transition-all shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                {isHotelVideoMuted ? (
+                  <>
+                    <VolumeX className="h-4 w-4 text-orange-400" />
+                    <span className="text-[11px] font-sans font-medium text-slate-200">Activar sonido</span>
+                  </>
+                ) : (
+                  <>
+                    <Volume2 className="h-4 w-4 text-emerald-400 animate-pulse" />
+                    <span className="text-[11px] font-sans font-medium text-emerald-300">Silenciar</span>
+                  </>
+                )}
+              </button>
             </div>
           </div>
         </div>
