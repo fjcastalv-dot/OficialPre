@@ -124,7 +124,7 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
 
               <div className="space-y-4 text-slate-700" style={{ color: '#334155' }}>
                 <p style={{ color: '#334155' }}>
-                  En <strong style={{ color: '#0f172a' }}>Uniformes PRE</strong> trabajamos para entregar productos que cumplan con las características, cantidades y especificaciones acordadas en cada pedido. Nuestra prioridad es ofrecer una experiencia de compra clara, profesional y respaldada por un servicio de atención personalizado.
+                  En Uniformes PRE trabajamos para entregar productos que cumplan con las características, cantidades y especificaciones acordadas en cada pedido. Nuestra prioridad es ofrecer una experiencia de compra clara, profesional y respaldada por un servicio de atención personalizado.
                 </p>
 
                 <h4 className="font-bold text-base mt-6" style={{ color: '#00086B' }}>
@@ -134,7 +134,7 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
                   Los productos de línea podrán ser sujetos a cambio o devolución cuando presenten un defecto de fabricación, hayan sido enviados de manera incorrecta o no correspondan con las características especificadas en la orden de compra.
                 </p>
                 <p style={{ color: '#334155' }}>
-                  Para solicitar un cambio o devolución, el cliente deberá comunicarse con nuestro equipo de atención dentro de un plazo de <strong style={{ color: '#0f172a' }}>5 días hábiles</strong> posteriores a la recepción del pedido.
+                  Para solicitar un cambio o devolución, el cliente deberá comunicarse con nuestro equipo de atención dentro de un plazo de 5 días hábiles posteriores a la recepción del pedido.
                 </p>
                 <p style={{ color: '#334155' }}>
                   El producto deberá conservarse en las condiciones en las que fue recibido, sin haber sido utilizado, lavado, alterado o modificado.
@@ -170,7 +170,7 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
                   4. Productos incorrectos o faltantes
                 </h4>
                 <p style={{ color: '#334155' }}>
-                  Si recibes un producto diferente al solicitado o detectas piezas faltantes, comunícate con nosotros dentro de los <strong style={{ color: '#0f172a' }}>5 días hábiles</strong> posteriores a la recepción.
+                  Si recibes un producto diferente al solicitado o detectas piezas faltantes, comunícate con nosotros dentro de los 5 días hábiles posteriores a la recepción.
                 </p>
                 <p style={{ color: '#334155' }}>
                   Nuestro equipo revisará la orden de compra y la evidencia proporcionada para determinar la solución correspondiente.
