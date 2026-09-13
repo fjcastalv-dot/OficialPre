@@ -22,6 +22,9 @@ interface AboutViewProps {
 
 export default function AboutView({ setActiveTab }: AboutViewProps) {
   const [isTrayVideoMuted, setIsTrayVideoMuted] = useState(true);
+  const [isTrayPlaying, setIsTrayPlaying] = useState(true);
+  const [trayCurrentTime, setTrayCurrentTime] = useState(0);
+  const [trayDuration, setTrayDuration] = useState(0);
   const trayVideoRef = useRef<HTMLVideoElement>(null);
 
   const toggleTrayVideoMute = () => {
@@ -33,6 +36,42 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
         trayVideoRef.current.play().catch(() => {});
       }
     }
+  };
+
+  const toggleTrayPlay = () => {
+    if (trayVideoRef.current) {
+      if (trayVideoRef.current.paused) {
+        trayVideoRef.current.play();
+        setIsTrayPlaying(true);
+      } else {
+        trayVideoRef.current.pause();
+        setIsTrayPlaying(false);
+      }
+    }
+  };
+
+  const skipTrayTime = (seconds: number) => {
+    if (trayVideoRef.current) {
+      const newTime = Math.max(0, Math.min(trayVideoRef.current.duration || 0, trayVideoRef.current.currentTime + seconds));
+      trayVideoRef.current.currentTime = newTime;
+      setTrayCurrentTime(newTime);
+    }
+  };
+
+  const handleProgressBarClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (trayVideoRef.current && trayVideoRef.current.duration) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickPos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+      const newTime = clickPos * trayVideoRef.current.duration;
+      trayVideoRef.current.currentTime = newTime;
+      setTrayCurrentTime(newTime);
+    }
+  };
+
+  const formatVideoTime = (secs: number) => {
+    const m = Math.floor(secs / 60);
+    const s = Math.floor(secs % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
   const pillars = [
@@ -131,7 +170,7 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
           NUESTRA TRAYECTORIA SECTION
           ========================================== */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" id="trayectoria-section">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left: Narrative */}
           <div className="lg:col-span-5 space-y-6 text-left">
             <span className="text-[10px] text-orange-500 uppercase tracking-widest font-bold">Hecho en México</span>
@@ -158,9 +197,9 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
           </div>
 
           {/* Right: Video Container */}
-          <div className="lg:col-span-7 flex justify-center lg:justify-end">
+          <div className="lg:col-span-7 flex justify-center lg:justify-start">
             <div 
-              className="relative w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl group"
+              className="relative w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl group select-none"
               style={{ maxWidth: '380px', aspectRatio: '9 / 16' }}
             >
               <video
@@ -170,28 +209,136 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
                 loop
                 muted={isTrayVideoMuted}
                 playsInline
-                className="w-full h-full object-cover"
+                onClick={toggleTrayPlay}
+                onTimeUpdate={() => {
+                  if (trayVideoRef.current) {
+                    setTrayCurrentTime(trayVideoRef.current.currentTime);
+                  }
+                }}
+                onLoadedMetadata={() => {
+                  if (trayVideoRef.current) {
+                    setTrayDuration(trayVideoRef.current.duration);
+                  }
+                }}
+                onPlay={() => setIsTrayPlaying(true)}
+                onPause={() => setIsTrayPlaying(false)}
+                className="w-full h-full object-cover cursor-pointer"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent pointer-events-none" />
-              <button
-                onClick={toggleTrayVideoMute}
-                type="button"
-                aria-label={isTrayVideoMuted ? "Activar sonido" : "Silenciar video"}
-                title={isTrayVideoMuted ? "Activar sonido" : "Silenciar video"}
-                className="absolute bottom-4 right-4 z-10 flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 text-white text-xs font-semibold backdrop-blur-md transition-all shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                {isTrayVideoMuted ? (
-                  <>
-                    <VolumeX className="h-4 w-4 text-orange-400" />
-                    <span className="text-[11px] font-sans font-medium text-slate-200">Activar sonido</span>
-                  </>
-                ) : (
-                  <>
-                    <Volume2 className="h-4 w-4 text-emerald-400 animate-pulse" />
-                    <span className="text-[11px] font-sans font-medium text-emerald-300">Silenciar</span>
-                  </>
-                )}
-              </button>
+
+              {/* Big center play icon when paused */}
+              {!isTrayPlaying && (
+                <button
+                  onClick={toggleTrayPlay}
+                  type="button"
+                  aria-label="Reproducir video"
+                  className="absolute inset-0 m-auto h-16 w-16 rounded-full bg-slate-900/85 hover:bg-slate-900 border border-white/30 text-white flex items-center justify-center backdrop-blur-md shadow-2xl transition-transform active:scale-90 cursor-pointer z-10"
+                >
+                  <svg className="h-8 w-8 translate-x-0.5 fill-current" viewBox="0 0 24 24">
+                    <polygon points="6 3 20 12 6 21 6 3" />
+                  </svg>
+                </button>
+              )}
+
+              {/* Bottom Gradient overlay */}
+              <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/90 via-slate-950/60 to-transparent pointer-events-none" />
+
+              {/* Bottom Media Controls */}
+              <div className="absolute inset-x-0 bottom-0 p-3 space-y-2 z-20">
+                {/* Progress bar with scrubber */}
+                <div 
+                  className="w-full h-2 bg-white/25 hover:h-3 rounded-full cursor-pointer relative transition-all group/bar flex items-center"
+                  onClick={handleProgressBarClick}
+                  title="Avanzar / retroceder en la barra"
+                >
+                  <div 
+                    className="h-full bg-orange-500 rounded-full relative"
+                    style={{ width: `${(trayCurrentTime / (trayDuration || 1)) * 100}%` }}
+                  >
+                    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-md scale-0 group-hover/bar:scale-100 transition-transform" />
+                  </div>
+                </div>
+
+                {/* Control buttons row */}
+                <div className="flex items-center justify-between text-white text-xs">
+                  <div className="flex items-center space-x-1.5">
+                    {/* Play/Pause */}
+                    <button
+                      onClick={toggleTrayPlay}
+                      type="button"
+                      aria-label={isTrayPlaying ? "Pausar" : "Reproducir"}
+                      title={isTrayPlaying ? "Pausar" : "Reproducir"}
+                      className="p-1.5 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 transition-all cursor-pointer"
+                    >
+                      {isTrayPlaying ? (
+                        <svg className="h-3.5 w-3.5 fill-current" viewBox="0 0 24 24">
+                          <rect x="6" y="4" width="4" height="16" />
+                          <rect x="14" y="4" width="4" height="16" />
+                        </svg>
+                      ) : (
+                        <svg className="h-3.5 w-3.5 fill-current translate-x-0.5" viewBox="0 0 24 24">
+                          <polygon points="5 3 19 12 5 21 5 3" />
+                        </svg>
+                      )}
+                    </button>
+
+                    {/* Rewind -5s */}
+                    <button
+                      onClick={() => skipTrayTime(-5)}
+                      type="button"
+                      aria-label="Retroceder 5 segundos"
+                      title="Retroceder 5s"
+                      className="px-1.5 py-1 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 transition-all cursor-pointer flex items-center gap-0.5 text-[10px] font-bold"
+                    >
+                      <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="11 17 6 12 11 7" />
+                        <polyline points="18 17 13 12 18 7" />
+                      </svg>
+                      <span>-5s</span>
+                    </button>
+
+                    {/* Forward +5s */}
+                    <button
+                      onClick={() => skipTrayTime(5)}
+                      type="button"
+                      aria-label="Avanzar 5 segundos"
+                      title="Avanzar 5s"
+                      className="px-1.5 py-1 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 transition-all cursor-pointer flex items-center gap-0.5 text-[10px] font-bold"
+                    >
+                      <span>+5s</span>
+                      <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="13 17 18 12 13 7" />
+                        <polyline points="6 17 11 12 6 7" />
+                      </svg>
+                    </button>
+
+                    {/* Time indicator */}
+                    <span className="text-[10px] text-slate-300 font-mono tracking-tight pl-1">
+                      {formatVideoTime(trayCurrentTime)} / {formatVideoTime(trayDuration)}
+                    </span>
+                  </div>
+
+                  {/* Sound toggle button */}
+                  <button
+                    onClick={toggleTrayVideoMute}
+                    type="button"
+                    aria-label={isTrayVideoMuted ? "Activar sonido" : "Silenciar video"}
+                    title={isTrayVideoMuted ? "Activar sonido" : "Silenciar video"}
+                    className="flex items-center space-x-1 px-2.5 py-1 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 text-xs font-semibold backdrop-blur-md transition-all cursor-pointer"
+                  >
+                    {isTrayVideoMuted ? (
+                      <>
+                        <VolumeX className="h-3 w-3 text-orange-400" />
+                        <span className="text-[10px] font-medium text-slate-200">Activar sonido</span>
+                      </>
+                    ) : (
+                      <>
+                        <Volume2 className="h-3 w-3 text-emerald-400 animate-pulse" />
+                        <span className="text-[10px] font-medium text-emerald-300">Silenciar</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
