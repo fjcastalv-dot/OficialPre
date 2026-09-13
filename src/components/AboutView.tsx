@@ -1,4 +1,5 @@
-import { Shield, Sparkles, Trophy, Lightbulb, Users, BarChart3, CheckCircle2, ArrowRight } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { Shield, Sparkles, Trophy, Lightbulb, Users, BarChart3, CheckCircle2, ArrowRight, Volume2, VolumeX } from 'lucide-react';
 import { ActiveTab } from '../types';
 // @ts-ignore
 import regeneratedHeroImg from '../assets/images/a_prueba_de_sudor.jpg';
@@ -20,6 +21,20 @@ interface AboutViewProps {
 }
 
 export default function AboutView({ setActiveTab }: AboutViewProps) {
+  const [isTrayVideoMuted, setIsTrayVideoMuted] = useState(true);
+  const trayVideoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleTrayVideoMute = () => {
+    if (trayVideoRef.current) {
+      const nextMuted = !trayVideoRef.current.muted;
+      trayVideoRef.current.muted = nextMuted;
+      setIsTrayVideoMuted(nextMuted);
+      if (!nextMuted) {
+        trayVideoRef.current.play().catch(() => {});
+      }
+    }
+  };
+
   const pillars = [
     {
       num: '01',
@@ -142,52 +157,41 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
             </p>
           </div>
 
-          {/* Right: Asymmetric Photo Grid */}
-          <div className="lg:col-span-7 grid grid-cols-12 gap-4">
-            <div className="col-span-8 bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-sm">
-              <img
-                src={trayImg1 || BORDADO_URL}
-                alt="Detalle de Costura"
-                className="w-full h-64 sm:h-80 object-cover rounded-xl transition-opacity duration-300"
-                loading="lazy"
-                decoding="async"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  if (e.currentTarget.src !== BORDADO_URL) {
-                    e.currentTarget.src = BORDADO_URL;
-                  }
-                }}
+          {/* Right: Video Container */}
+          <div className="lg:col-span-7 flex justify-center lg:justify-end">
+            <div 
+              className="relative w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl group"
+              style={{ maxWidth: '380px', aspectRatio: '9 / 16' }}
+            >
+              <video
+                ref={trayVideoRef}
+                src="./videos/precision_puntada_instagram.mp4"
+                autoPlay
+                loop
+                muted={isTrayVideoMuted}
+                playsInline
+                className="w-full h-full object-cover"
               />
-            </div>
-            <div className="col-span-4 self-center bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-sm">
-              <img
-                src={trayImg2 || CAPACIDAD_INDUSTRIAL_URL}
-                alt="Uniformes Ejecutivos"
-                className="w-full h-40 sm:h-48 object-cover rounded-xl transition-opacity duration-300"
-                loading="lazy"
-                decoding="async"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  if (e.currentTarget.src !== CAPACIDAD_INDUSTRIAL_URL) {
-                    e.currentTarget.src = CAPACIDAD_INDUSTRIAL_URL;
-                  }
-                }}
-              />
-            </div>
-            <div className="col-span-12 bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-sm">
-              <img
-                src={trayImg3 || TELAS_URL}
-                alt="Chef Plating Uniform"
-                className="w-full h-44 sm:h-52 object-cover rounded-xl transition-opacity duration-300"
-                loading="lazy"
-                decoding="async"
-                referrerPolicy="no-referrer"
-                onError={(e) => {
-                  if (e.currentTarget.src !== TELAS_URL) {
-                    e.currentTarget.src = TELAS_URL;
-                  }
-                }}
-              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-transparent to-transparent pointer-events-none" />
+              <button
+                onClick={toggleTrayVideoMute}
+                type="button"
+                aria-label={isTrayVideoMuted ? "Activar sonido" : "Silenciar video"}
+                title={isTrayVideoMuted ? "Activar sonido" : "Silenciar video"}
+                className="absolute bottom-4 right-4 z-10 flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 text-white text-xs font-semibold backdrop-blur-md transition-all shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
+              >
+                {isTrayVideoMuted ? (
+                  <>
+                    <VolumeX className="h-4 w-4 text-orange-400" />
+                    <span className="text-[11px] font-sans font-medium text-slate-200">Activar sonido</span>
+                  </>
+                ) : (
+                  <>
+                    <Volume2 className="h-4 w-4 text-emerald-400 animate-pulse" />
+                    <span className="text-[11px] font-sans font-medium text-emerald-300">Silenciar</span>
+                  </>
+                )}
+              </button>
             </div>
           </div>
         </div>
