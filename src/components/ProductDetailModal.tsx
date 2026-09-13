@@ -246,28 +246,24 @@ export default function ProductDetailModal({
                       <p className="text-xs text-slate-400 mt-2 max-w-xs leading-relaxed">
                         Estamos preparando la sesión de fotografía oficial para este modelo. Puedes consultar especificaciones técnicas y agregar a cotización normalmente.
                       </p>
-                      <div className="mt-4 px-3 py-1 rounded bg-slate-800/60 border border-slate-700/60 text-[10px] font-mono text-orange-400 font-semibold">
-                        CÓDIGO: {product.code}
-                      </div>
                     </div>
                   )}
 
                   {/* Badges */}
-                  <div className="absolute top-4 left-4 flex flex-col gap-2">
-                    <span className="bg-slate-950/90 border border-slate-800 text-white text-[9px] font-mono tracking-widest px-2.5 py-1 rounded shadow">
-                      MOD: {product.code}
-                    </span>
-                    {product.isNew && (
-                      <span className="bg-orange-600 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded shadow-lg self-start">
-                        NUEVO
-                      </span>
-                    )}
-                    {product.isBestSeller && (
-                      <span className="bg-amber-500 text-slate-950 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded shadow-lg self-start">
-                        BEST SELLER
-                      </span>
-                    )}
-                  </div>
+                  {(product.isNew || product.isBestSeller) && (
+                    <div className="absolute top-4 left-4 flex flex-col gap-2">
+                      {product.isNew && (
+                        <span className="bg-orange-600 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded shadow-lg self-start">
+                          NUEVO
+                        </span>
+                      )}
+                      {product.isBestSeller && (
+                        <span className="bg-amber-500 text-slate-950 text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded shadow-lg self-start">
+                          BEST SELLER
+                        </span>
+                      )}
+                    </div>
+                  )}
 
                   {/* Navigation Arrows for Multiple Images */}
                   {hasMultipleImages && (

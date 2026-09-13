@@ -178,7 +178,7 @@ export default function App() {
     let desc = 'Uniformes de alto rendimiento en Cancún y la Riviera Maya. Confección certificada, bordados y sublimados de alta definición.';
 
     if (selectedProduct) {
-      title = `${selectedProduct.name} (${selectedProduct.code}) | Uniformes PRE Cancún`;
+      title = `${selectedProduct.name} | Uniformes PRE Cancún`;
       desc = selectedProduct.description;
     } else if (activeTab === 'inicio') {
       title = 'Uniformes PRE | Uniformes de Alto Rendimiento en Cancún y Riviera Maya';
