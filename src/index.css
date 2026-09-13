@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Hanken+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bebas Neue", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Dynamically mapped slate variables */
+  --color-slate-950: var(--bg-slate-950);
+  --color-slate-900: var(--bg-slate-900);
+  --color-slate-850: var(--bg-slate-850);
+  --color-slate-800: var(--bg-slate-800);
+  --color-slate-700: var(--bg-slate-700);
+  --color-slate-600: var(--bg-slate-600);
+  --color-slate-500: var(--bg-slate-500);
+  --color-slate-400: var(--bg-slate-400);
+  --color-slate-300: var(--bg-slate-300);
+  --color-slate-200: var(--bg-slate-200);
+  --color-slate-100: var(--bg-slate-100);
+  --color-slate-50: var(--bg-slate-50);
+
+  /* Brand Colors */
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-orange: var(--brand-orange);
+}
+
+:root {
+  --bg-slate-950: #010414; /* Deep, luxury dark navy background */
+  --bg-slate-900: #0a0f24; /* Rich navy slate for primary surfaces and cards */
+  --bg-slate-850: #111836; /* Inner sections and input fields */
+  --bg-slate-800: #1e295d; /* Dark borders */
+  --bg-slate-700: #2a3875; /* Active elements & highlight borders */
+  --bg-slate-600: #4c5ba3; /* Supportive details */
+  --bg-slate-500: #8d99d6; /* Muted label text */
+  --bg-slate-400: #a6b2ed; /* Body copy text */
+  --bg-slate-300: #cbd1ff; /* Secondary headings */
+  --bg-slate-200: #e5e8ff; /* Nav links and interactive text */
+  --bg-slate-100: #f4f5ff; /* Primary headers and text */
+  --bg-slate-50: #ffffff;  /* High contrast white accents */
+
+  --brand-navy: #00086B;
+  --brand-orange: #F26D03;
+}
+
+.light {
+  --bg-slate-950: #fcf9f8; /* Elegant performance light background (Warm Off-white) */
+  --bg-slate-900: #ffffff; /* Primary section & card surface background */
+  --bg-slate-850: #f5f5f5; /* Light grey input and inner block background */
+  --bg-slate-800: #e5e2e1; /* Subtle borders and lines (surface-variant) */
+  --bg-slate-700: #c6c5d3; /* Secondary dividers (outline-variant) */
+  --bg-slate-600: #767683; /* Outlines and disabled states */
+  --bg-slate-500: #454651; /* Muted descriptor text (on-surface-variant) */
+  --bg-slate-400: #1c1b1b; /* Highly readable body copy (on-surface) */
+  --bg-slate-300: #00086B; /* Bold primary brand Deep Navy (primary) */
+  --bg-slate-200: #00011b; /* High-density Dark Navy (on-primary) */
+  --bg-slate-100: #00011b; /* Strong typography contrast color */
+  --bg-slate-50: #00011b;  /* Pure brand high contrast elements */
+
+  --brand-navy: #00086B;
+  --brand-orange: #F26D03;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-slate-950);
+  color: var(--bg-slate-100);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-display);
+}
+
+.font-verdana {
+  font-family: Verdana, Geneva, sans-serif !important;
+}
+
+/* Ensure inputs, textareas and selects are highly legible in light mode */
+.light input, .light textarea, .light select {
+  color: var(--bg-slate-50) !important;
+  background-color: var(--bg-slate-900) !important;
+  border-color: var(--bg-slate-700) !important;
+}
+
+.light input::placeholder, .light textarea::placeholder {
+  color: var(--bg-slate-500) !important;
+}
+
+.light input:focus, .light textarea:focus, .light select:focus {
+  border-color: #00086B !important;
+  box-shadow: 0 0 0 2px rgba(0, 8, 107, 0.1) !important;
+}
+
+/* Comprehensive light-mode text-white and hover-white overrides */
+.light .text-white:not(.bg-orange-600):not(.bg-orange-600 *):not(.bg-orange-500):not(.bg-orange-500 *):not(.bg-emerald-600):not(.bg-emerald-600 *):not(.bg-emerald-500):not(.bg-emerald-500 *):not(.bg-green-600):not(.bg-green-600 *):not(.bg-green-500):not(.bg-green-500 *):not(.bg-amber-600):not(.bg-amber-600 *):not(.bg-amber-500):not(.bg-amber-500 *):not(.bg-red-600):not(.bg-red-600 *):not(.bg-brand-orange):not(.bg-brand-orange *):not(.bg-brand-navy):not(.bg-brand-navy *) {
+  color: var(--bg-slate-50) !important;
+}
+
+.light .hover\:text-white:hover:not(.bg-orange-600):not(.bg-orange-600 *):not(.bg-orange-500):not(.bg-orange-500 *):not(.bg-emerald-600):not(.bg-emerald-600 *):not(.bg-emerald-500):not(.bg-emerald-500 *):not(.bg-green-600):not(.bg-green-600 *):not(.bg-green-500):not(.bg-green-500 *):not(.bg-amber-600):not(.bg-amber-600 *):not(.bg-amber-500):not(.bg-amber-500 *):not(.bg-red-600):not(.bg-red-600 *):not(.bg-brand-orange):not(.bg-brand-orange *):not(.bg-brand-navy):not(.bg-brand-navy *) {
+  color: var(--bg-slate-300) !important; /* Brand deep navy blue */
+}
+
+/* Ensure that any white text inside slate-based backgrounds or bordered elements adapts correctly */
+.light .bg-slate-950 .text-white,
+.light .bg-slate-950.text-white,
+.light .bg-slate-900 .text-white,
+.light .bg-slate-900.text-white,
+.light .bg-slate-850 .text-white,
+.light .bg-slate-850.text-white,
+.light .bg-slate-800 .text-white,
+.light .bg-slate-800.text-white,
+.light .bg-slate-700 .text-white,
+.light .bg-slate-700.text-white,
+.light .border-slate-700.text-white,
+.light .border-slate-800.text-white {
+  color: var(--bg-slate-50) !important;
+}
+
+/* Ensure text-white and icons inside deep brand backgrounds (like bg-brand-navy or bg-brand-orange) stay white in light mode */
+.light .bg-brand-navy .text-white,
+.light .bg-brand-navy.text-white,
+.light .bg-brand-navy .text-white *,
+.light .bg-brand-orange .text-white,
+.light .bg-brand-orange.text-white,
+.light .bg-brand-orange .text-white *,
+.light .bg-orange-600 .text-white,
+.light .bg-orange-600.text-white,
+.light .bg-orange-600 .text-white * {
+  color: #ffffff !important;
+}
+
+.light .bg-slate-950 .hover\:text-white:hover,
+.light .bg-slate-900 .hover\:text-white:hover,
+.light .bg-slate-850 .hover\:text-white:hover,
+.light .bg-slate-800 .hover\:text-white:hover,
+.light .bg-slate-700 .hover\:text-white:hover,
+.light .border-slate-700 .hover\:text-white:hover,
+.light .border-slate-800 .hover\:text-white:hover {
+  color: var(--bg-slate-300) !important; /* Brand deep navy blue */
+}
+
+/* Ensure hover:text-white stays white or orange on active brand buttons */
+.light .bg-brand-navy .hover\:text-white:hover,
+.light .bg-brand-navy.hover\:text-white:hover,
+.light .bg-brand-orange .hover\:text-white:hover,
+.light .bg-brand-orange.hover\:text-white:hover {
+  color: #ffffff !important;
+}
+
+/* Retain high-contrast white text inside filled colored banners, badges, and buttons */
+.light .bg-orange-600,
+.light .bg-orange-600 *,
+.light .bg-orange-500,
+.light .bg-orange-500 *,
+.light .bg-emerald-600,
+.light .bg-emerald-600 *,
+.light .bg-emerald-500,
+.light .bg-emerald-500 *,
+.light .bg-green-600,
+.light .bg-green-600 *,
+.light .bg-amber-500,
+.light .bg-amber-500 *,
+.light .bg-amber-600,
+.light .bg-amber-600 *,
+.light .bg-red-600,
+.light .bg-red-600 *,
+.light button.bg-orange-600,
+.light button.bg-orange-700,
+.light button.bg-emerald-600,
+.light button.bg-emerald-700,
+.light .bg-brand-navy,
+.light .bg-brand-navy *,
+.light .bg-brand-orange,
+.light .bg-brand-orange * {
+  color: #ffffff !important;
+}
+
+/* Specific elements like active indicators or badge numbers */
+.light .absolute.bg-orange-600,
+.light .absolute.bg-orange-500,
+.light .absolute.bg-orange-600 *,
+.light .absolute.bg-orange-500 * {
+  color: #ffffff !important;
+}
+
+/* Smooth transitions for key interactive container elements */
+header, footer, button, input, textarea, select, a {
+  transition-property: background-color, border-color, color, fill, stroke, transform, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom fade-in and slide-in animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Scrollbar styling - adapting dynamically to current active theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-slate-950);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-slate-800);
+  border-radius: 4px;
+}
+/* Custom category horizontal scrollbar styling */
+.horizontal-category-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-orange) var(--bg-slate-850);
+}
+
+.horizontal-category-scrollbar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.horizontal-category-scrollbar::-webkit-scrollbar-track {
+  background: var(--bg-slate-850);
+  border-radius: 9999px;
+}
+
+.horizontal-category-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--brand-orange);
+  border-radius: 9999px;
+}
+
+.horizontal-category-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #ff8522;
+}
+
+/* =========================================================================
+   Legal Documents Modal Theme & Contrast Overrides (Fix white-on-white bug)
+   ========================================================================= */
+#legal-docs-modal .relative.w-full {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+#legal-docs-modal .bg-slate-950 {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+#legal-docs-modal .border-slate-800 {
+  border-color: #e2e8f0 !important;
+}
+
+#legal-docs-modal h3 {
+  color: #00086B !important;
+}
+
+#legal-docs-modal h4 {
+  color: #00086B !important;
+  font-weight: 700 !important;
+}
+
+#legal-docs-modal p,
+#legal-docs-modal li,
+#legal-docs-modal div.text-slate-300,
+#legal-docs-modal .text-slate-300 p,
+#legal-docs-modal .text-slate-300 li {
+  color: #334155 !important;
+}
+
+#legal-docs-modal strong {
+  color: #0f172a !important;
+}
+
+#legal-docs-modal a {
+  color: #ea580c !important;
+}
+
+#legal-docs-modal a:hover {
+  text-decoration: underline !important;
+}
+
+#legal-docs-modal button.border-orange-500,
+#legal-docs-modal button.border-orange-500 span {
+  color: #ea580c !important;
+  background-color: #ffffff !important;
+  border-bottom-color: #ea580c !important;
+}
+
+#legal-docs-modal button:not(.border-orange-500):not(.bg-orange-600):not(.bg-orange-500),
+#legal-docs-modal button:not(.border-orange-500):not(.bg-orange-600):not(.bg-orange-500) span {
+  color: #334155 !important;
+  background-color: transparent !important;
+}
+
+#legal-docs-modal button:not(.border-orange-500):not(.bg-orange-600):not(.bg-orange-500):hover,
+#legal-docs-modal button:not(.border-orange-500):not(.bg-orange-600):not(.bg-orange-500):hover span {
+  color: #0f172a !important;
+  background-color: #f1f5f9 !important;
+}
+
+#legal-docs-modal .legal-modal-close-btn,
+#legal-docs-modal .legal-modal-close-btn svg,
+#legal-docs-modal button[aria-label="Cerrar modal"],
+#legal-docs-modal button[aria-label="Cerrar modal"] svg {
+  color: #1e293b !important;
+  stroke: #1e293b !important;
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+#legal-docs-modal .legal-modal-close-btn:hover,
+#legal-docs-modal button[aria-label="Cerrar modal"]:hover {
+  color: #000000 !important;
+  background-color: #e2e8f0 !important;
+}
+
+#legal-docs-modal button.bg-orange-600,
+#legal-docs-modal button.bg-orange-600 span {
+  background-color: #ea580c !important;
+  color: #ffffff !important;
+}
+
+#legal-docs-modal button.bg-orange-600:hover {
+  background-color: #c2410c !important;
+}
+
+/* Legal Modal Dimensions & Fixed Header Scrolling */
+#legal-docs-modal .legal-modal-card {
+  max-height: calc(100vh - 48px) !important;
+  height: 85vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+#legal-docs-modal .legal-modal-header {
+  flex-shrink: 0 !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 20 !important;
+  background-color: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+#legal-docs-modal .legal-modal-body {
+  flex: 1 1 0% !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  background-color: #ffffff !important;
+}
+
+#legal-docs-modal .legal-modal-footer {
+  flex-shrink: 0 !important;
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 20 !important;
+  background-color: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
