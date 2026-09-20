@@ -90,6 +90,32 @@ export const PRODUCTS: Product[] = [
       { name: 'Turquesa', hex: '#06b6d4', code: '317', image: poloTurquesa },
       { name: 'Verde Limón', hex: '#84cc16', code: '327', image: poloLimon }
     ],
+    damaColors: [
+      {
+        name: 'Negra',
+        hex: '#000000',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789930623/POLO_MC_NEGRADAMA.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789930623/POLO_MC_NEGRADAMA.png']
+      },
+      {
+        name: 'Azul Marino',
+        hex: '#1e3a8a',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789930624/POLO_MARINO_DAMA_1.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789930624/POLO_MARINO_DAMA_1.png']
+      },
+      {
+        name: 'Gris Oxford',
+        hex: '#374151',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789930625/POLO_NEGRA_DAMA.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789930625/POLO_NEGRA_DAMA.png']
+      },
+      {
+        name: 'Blanca',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789930628/POLOBLANCAD.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789930628/POLOBLANCAD.png']
+      }
+    ],
     priceTiers: {
       '1-12': 240.00,
       '13-50': 230.00,

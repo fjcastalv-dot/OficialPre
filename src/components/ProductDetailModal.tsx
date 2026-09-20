@@ -471,7 +471,7 @@ export default function ProductDetailModal({
                             >
                               {selectedColor === col.name && (
                                 <Check className={`h-4 w-4 ${
-                                  col.name.toLowerCase().includes('blanco') ? 'text-slate-950' : 'text-white'
+                                  col.name.toLowerCase().includes('blanc') ? 'text-slate-950' : 'text-white'
                                 }`} />
                               )}
                             </span>
@@ -514,8 +514,15 @@ export default function ProductDetailModal({
                         setSelectedCorte('Caballero');
                         setGalleryIndex(0);
                         if (product.colors && product.colors.length > 0) {
-                          const match = product.colors.find(c => c.name.toLowerCase() === selectedColor.toLowerCase());
-                          if (!match) setSelectedColor(product.colors[0].name);
+                          const match = product.colors.find(c => 
+                            c.name.toLowerCase() === selectedColor.toLowerCase() ||
+                            (c.name.toLowerCase().startsWith('negr') && selectedColor.toLowerCase().startsWith('negr')) ||
+                            (c.name.toLowerCase().startsWith('blanc') && selectedColor.toLowerCase().startsWith('blanc')) ||
+                            (c.name.toLowerCase().includes('carbón') && selectedColor.toLowerCase().includes('oxford')) ||
+                            (c.name.toLowerCase().includes('gris') && selectedColor.toLowerCase().includes('gris'))
+                          );
+                          if (match) setSelectedColor(match.name);
+                          else setSelectedColor(product.colors[0].name);
                         }
                       }}
                       className={`relative z-10 w-1/2 h-full flex items-center justify-center text-[11px] font-bold uppercase tracking-wider transition-colors duration-300 cursor-pointer ${
@@ -531,8 +538,14 @@ export default function ProductDetailModal({
                         setSelectedCorte('Dama');
                         setGalleryIndex(0);
                         if (product.damaColors && product.damaColors.length > 0) {
-                          const match = product.damaColors.find(c => c.name.toLowerCase() === selectedColor.toLowerCase());
-                          if (!match) setSelectedColor(product.damaColors[0].name);
+                          const match = product.damaColors.find(c => 
+                            c.name.toLowerCase() === selectedColor.toLowerCase() ||
+                            (c.name.toLowerCase().startsWith('negr') && selectedColor.toLowerCase().startsWith('negr')) ||
+                            (c.name.toLowerCase().startsWith('blanc') && selectedColor.toLowerCase().startsWith('blanc')) ||
+                            (c.name.toLowerCase().includes('oxford') && (selectedColor.toLowerCase().includes('carbón') || selectedColor.toLowerCase().includes('carbon') || selectedColor.toLowerCase().includes('gris')))
+                          );
+                          if (match) setSelectedColor(match.name);
+                          else setSelectedColor(product.damaColors[0].name);
                         }
                       }}
                       className={`relative z-10 w-1/2 h-full flex items-center justify-center text-[11px] font-bold uppercase tracking-wider transition-colors duration-300 cursor-pointer ${
