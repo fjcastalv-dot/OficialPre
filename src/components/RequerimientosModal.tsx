@@ -55,8 +55,16 @@ export default function RequerimientosModal({
 
       {/* Main Modal Card */}
       <div
-        className="relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col z-10 text-slate-100 max-h-[92vh]"
-        style={{ display: 'flex', flexDirection: 'column' }}
+        id="requerimientos-modal-card"
+        className="relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col z-10 text-slate-100"
+        style={{
+          maxHeight: 'calc(100vh - 32px)',
+          maxHeight: 'calc(100dvh - 32px)',
+          height: '90vh',
+          height: '90dvh',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
       >
         {/* Modal Top Header */}
         <div className="sticky top-0 z-20 bg-slate-950/95 backdrop-blur-md border-b border-slate-800 p-4 sm:p-5 flex items-center justify-between shrink-0">
@@ -110,7 +118,16 @@ export default function RequerimientosModal({
         </div>
 
         {/* Scrollable Content Body */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-8 custom-scrollbar">
+        <div
+          id="requerimientos-modal-body"
+          className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-8 custom-scrollbar"
+          style={{
+            minHeight: 0,
+            flex: '1 1 0%',
+            overflowY: 'auto',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
           {activeTab === 'bordado' && (
             <div className="space-y-8 animate-fade-in">
               {/* Introduction Banner */}

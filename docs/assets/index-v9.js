@@ -577,11 +577,11 @@ React keys must be passed directly to JSX without using spread:
     "https://uniformespre.com/wp-content/uploads/2024/02/sublimado3.png"
   ];
 
-  return r.jsxDEV("div",{className:"fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-black/80 backdrop-blur-md animate-fade-in",id:"requerimientos-modal",children:[
+  return r.jsxDEV("div",{className:"fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/80 backdrop-blur-md animate-fade-in",id:"requerimientos-modal",style:{overflowY:"auto"},children:[
     r.jsxDEV("div",{className:"absolute inset-0 cursor-pointer",onClick:t},void 0,!1,{},void 0),
-    r.jsxDEV("div",{className:"relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col z-10 text-slate-100 max-h-[92vh]",style:{display:"flex",flexDirection:"column"},children:[
+    r.jsxDEV("div",{id:"requerimientos-modal-card",className:"relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col z-10 text-slate-100",style:{maxHeight:"calc(100vh - 32px)",height:"90vh",display:"flex",flexDirection:"column",overflow:"hidden"},children:[
       /* Top Header */
-      r.jsxDEV("div",{className:"sticky top-0 z-20 bg-slate-950/95 backdrop-blur-md border-b border-slate-800 p-4 sm:p-5 flex items-center justify-between shrink-0",children:[
+      r.jsxDEV("div",{className:"sticky top-0 z-20 bg-slate-950/95 backdrop-blur-md border-b border-slate-800 p-4 sm:p-5 flex items-center justify-between shrink-0",style:{flexShrink:0},children:[
         r.jsxDEV("div",{children:[
           r.jsxDEV("span",{className:"inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold tracking-widest uppercase bg-orange-500/10 text-orange-400 border border-orange-500/20",children:"ESPECIFICACIONES TECNICAS"},void 0,!1,{},void 0),
           r.jsxDEV("h2",{className:"font-display text-2xl sm:text-3xl text-white tracking-wider mt-1",children:"Requerimientos de Personalizacion"},void 0,!1,{},void 0)
@@ -590,7 +590,7 @@ React keys must be passed directly to JSX without using spread:
       ]},void 0,!0,{},void 0),
 
       /* Tab Switcher */
-      r.jsxDEV("div",{className:"bg-slate-950/60 px-4 sm:px-6 pt-3 pb-2 border-b border-slate-800/80 flex items-center gap-3 shrink-0",children:[
+      r.jsxDEV("div",{className:"bg-slate-950/60 px-4 sm:px-6 pt-3 pb-2 border-b border-slate-800/80 flex items-center gap-3 shrink-0",style:{flexShrink:0},children:[
         r.jsxDEV("button",{onClick:()=>setTab("bordado"),type:"button",className:"flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-wider uppercase transition-all cursor-pointer border "+(tab==="bordado"?"bg-orange-500 text-white border-orange-400 shadow-lg shadow-orange-500/20":"bg-slate-800/60 text-slate-400 border-slate-700 hover:bg-slate-800 hover:text-slate-200"),children:[
           r.jsxDEV("svg",{className:"w-4 h-4",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"})},void 0,!1,{},void 0),
           r.jsxDEV("span",{children:"Bordado Industrial"},void 0,!1,{},void 0)
@@ -602,7 +602,7 @@ React keys must be passed directly to JSX without using spread:
       ]},void 0,!0,{},void 0),
 
       /* Scrollable Body */
-      r.jsxDEV("div",{className:"flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-8 custom-scrollbar",children:[
+      r.jsxDEV("div",{id:"requerimientos-modal-body",className:"flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-8 custom-scrollbar",style:{minHeight:0,flex:"1 1 0%",overflowY:"auto",WebkitOverflowScrolling:"touch"},children:[
         tab==="bordado" ? r.jsxDEV("div",{className:"space-y-8 animate-fade-in",children:[
           /* Banner */
           r.jsxDEV("div",{className:"bg-gradient-to-r from-orange-500/10 via-slate-800/50 to-slate-900 border border-orange-500/20 rounded-xl p-5 sm:p-6",children:[
