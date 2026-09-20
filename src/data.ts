@@ -681,10 +681,10 @@ export const PRODUCTS: Product[] = [
     name: 'Filipinas de Cocina M/C Gabardina',
     price: 390.00,
     category: 'restaurante',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
     gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789932047/Filipina-para-chef-repelente-manga-corta-blanca-atras.png'
+      'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932047/Filipina-para-chef-repelente-manga-corta-blanca-atras.png'
     ],
     rating: 4.8,
     description: 'Filipina manga corta de chef con doble abotonadura y 2 bolsillos para hombre. Corte clásico, cuello mao y confección resistente que brinda confort, frescura y una apariencia profesional impecable.',
@@ -701,19 +701,19 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Blanco',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789932047/Filipina-para-chef-repelente-manga-corta-blanca-atras.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932047/Filipina-para-chef-repelente-manga-corta-blanca-atras.png'
         ]
       },
       {
         name: 'Negro',
         hex: '#000000',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789932319/Dise%C3%B1o_sin_t%C3%ADtulo_2.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/ar_1:1,c_pad,b_white/v1789932319/Dise%C3%B1o_sin_t%C3%ADtulo_2.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789932319/Dise%C3%B1o_sin_t%C3%ADtulo_2.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789932321/Filipina-para-chef-repelente-manga-corta-negro-atras.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/ar_1:1,c_pad,b_white/v1789932319/Dise%C3%B1o_sin_t%C3%ADtulo_2.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/ar_1:1,c_pad,b_white/v1789932321/Filipina-para-chef-repelente-manga-corta-negro-atras.png'
         ]
       }
     ],
@@ -771,7 +771,11 @@ export const PRODUCTS: Product[] = [
     name: 'Filipinas de Cocina M/L Brooklyn',
     price: 580.00,
     category: 'restaurante',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789934110/FILIPINA_BLANCA_1.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789934110/FILIPINA_BLANCA_1.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789934111/085A7376.jpg'
+    ],
     rating: 4.9,
     description: 'Filipina de chef con tecnología de repelencia a líquidos y aceite vegetal, ligera, versátil, resistente, transpirable y de fácil cuidado. Las gotas se deslizan sin absorberse y la grasa no se adhiere.',
     composition: '65% Poliéster 35% Algodón',
@@ -784,43 +788,28 @@ export const PRODUCTS: Product[] = [
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Negro con Vivos Grises', hex: '#1f2937' },
-      { name: 'Blanco con Vivos Negros', hex: '#f3f4f6' }
+      {
+        name: 'Blanco',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789934110/FILIPINA_BLANCA_1.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789934110/FILIPINA_BLANCA_1.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789934111/085A7376.jpg'
+        ]
+      },
+      {
+        name: 'Negro',
+        hex: '#000000',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789934108/filipina_3_1.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789934108/filipina_3_1.png'
+        ]
+      }
     ],
     priceTiers: {
       '1-12': 580.00,
       '13-50': 550.00,
       '51+': 520.00
-    }
-  },
-
-  // 15. FILIPINAS DE COCINA M/C BROOKLYN
-  {
-    id: 'filipina-cocina-mc-brooklyn',
-    code: 'FI002MC-B',
-    name: 'Filipinas de Cocina M/C Brooklyn',
-    price: 560.00,
-    category: 'restaurante',
-    image: '',
-    rating: 4.9,
-    description: 'Filipina manga corta de chef con doble abotonadura y 2 bolsillos. Corte clásico, cuello mao y tejido repelente a fluidos para chefs que buscan confort sin perder estética.',
-    composition: '60% Algodón 40% Poliéster',
-    features: [
-          'Corte clásico',
-          'Cuello mao',
-          'Doble abotonadura',
-          '1 bolsillo en el pecho',
-          '1 bolsillo en la manga'
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: [
-      { name: 'Negro con Vivos', hex: '#111827' },
-      { name: 'Blanco con Vivos', hex: '#ffffff' }
-    ],
-    priceTiers: {
-      '1-12': 560.00,
-      '13-50': 540.00,
-      '51+': 510.00
     }
   },
 
@@ -883,36 +872,6 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 18. PANTALON PIJAMA UNISEX SUPREMO
-  {
-    id: 'pantalon-pijama-unisex-supremo',
-    code: 'PU001S',
-    name: 'Pantalón Pijama Unisex Supremo',
-    price: 360.00,
-    category: 'restaurante',
-    image: '',
-    rating: 4.8,
-    description: 'Pantalón holgado estilo pijama unisex en tela Supremo. Cintura elástica con jareta para un ajuste personalizado y máxima comodidad para chefs, cocineros y personal clínico.',
-    composition: 'Tela Supremo Suave y Resistente',
-    features: [
-      'Cintura completa elástica con cordón de ajuste interno',
-      'Bolsas laterales profundas y bolsa trasera',
-      'Corte amplio que facilita el movimiento constante',
-      'Secado rápido y mínima absorción de olores'
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: [
-      { name: 'Negro', hex: '#000000' },
-      { name: 'Blanco', hex: '#ffffff' },
-      { name: 'Pata de Gallo / Cuadros', hex: '#4b5563' },
-      { name: 'Azul Marino', hex: '#1e3a8a' }
-    ],
-    priceTiers: {
-      '1-12': 360.00,
-      '13-50': 350.00,
-      '51+': 340.00
-    }
-  },
 
   // 19. PANTALON CARGO EN GAB.
   {
