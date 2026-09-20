@@ -729,7 +729,7 @@ export const PRODUCTS: Product[] = [
     id: 'filipina-cocina-ml-gab',
     code: 'FI001ML-G',
     name: 'Filipinas de Cocina 3/4 Gabardina',
-    price: 410.00,
+    price: 390.00,
     category: 'restaurante',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
     gallery: [
@@ -758,9 +758,9 @@ export const PRODUCTS: Product[] = [
       }
     ],
     priceTiers: {
-      '1-12': 410.00,
-      '13-50': 405.00,
-      '51+': 395.00
+      '1-12': 390.00,
+      '13-50': 380.00,
+      '51+': 370.00
     }
   },
 
