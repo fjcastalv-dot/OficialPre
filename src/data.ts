@@ -1313,19 +1313,44 @@ export const PRODUCTS: Product[] = [
     name: 'Batas Médicas M/L',
     price: 390.00,
     category: 'medico',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789873613/bata_frente.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789873613/bata_frente.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789931258/espalda.png'
+    ],
     rating: 4.8,
     description: 'Bata clínica y de laboratorio manga larga para médicos, farmacéuticos y estudiantes. Corte profesional de longitud óptima, solapa clásica, botonadura frontal y tres bolsas de carga reforzadas.',
     composition: 'Gabardina Médica 65% Poliéster / 35% Algodón',
     features: [
+      'Corte Dama o Caballero',
       'Manga larga con dobladillo amplio',
       'Tres bolsillos exteriores (uno de pecho, dos laterales amplios)',
       'Aberturas laterales para acceso a bolsas del pantalón',
       'Tratamiento antimanchas y blanqueado durable'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    hasCorteSelection: true,
     colors: [
-      { name: 'Blanco Médico', hex: '#ffffff' }
+      {
+        name: 'Blanco Médico',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789873613/bata_frente.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789873613/bata_frente.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789931258/espalda.png'
+        ]
+      }
+    ],
+    damaColors: [
+      {
+        name: 'Blanco Médico',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789935741/PERFIL_BATA.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789935741/PERFIL_BATA.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789931364/ESPALDA_DAMA.png'
+        ]
+      }
     ],
     priceTiers: {
       '1-12': 390.00,
@@ -1341,7 +1366,11 @@ export const PRODUCTS: Product[] = [
     name: 'Calzado Clínico Mod. 363 Blanco',
     price: 882.00,
     category: 'medico',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO363_1.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO363_1.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO_363_1.png'
+    ],
     rating: 4.9,
     description: 'Calzado clínico profesional Modelo 363 en color blanco. Estructura ergonómica con soporte de arco plantar, horma ancha para evitar puntos de presión y suela antiderrapante en suelos de hospital.',
     composition: 'Piel genuina suave tratada / Suela de poliuretano inyectado',
@@ -1353,7 +1382,15 @@ export const PRODUCTS: Product[] = [
     ],
     sizes: ['22 MX', '23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX'],
     colors: [
-      { name: 'Blanco Clínico', hex: '#ffffff' }
+      {
+        name: 'Blanco Clínico',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO363_1.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO363_1.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO_363_1.png'
+        ]
+      }
     ],
     priceTiers: {
       '1-12': 882.00,
@@ -1362,14 +1399,17 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 32. CALZADO CLINICO MOD. 920 BLANCO
+  // 32. CALZADO CLINICO MOD. 920
   {
     id: 'calzado-clinico-mod-920-blanco',
     code: 'MOD-920-B',
-    name: 'Calzado Clínico Mod. 920 Blanco',
+    name: 'Calzado Clínico Mod. 920',
     price: 1025.00,
     category: 'medico',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789944948/MODEL363_2.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789944948/MODEL363_2.png'
+    ],
     rating: 4.9,
     description: 'Calzado médico de confort superior Modelo 920 en color blanco. Amortiguación de alto impacto en talón, piel suave flor entera y diseño sin cordones de ajuste elástico lateral.',
     composition: '100% Piel Flor Entera Blanca / Suela Antifatiga',
@@ -1381,7 +1421,14 @@ export const PRODUCTS: Product[] = [
     ],
     sizes: ['23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX', '30 MX'],
     colors: [
-      { name: 'Blanco Clínico', hex: '#ffffff' }
+      {
+        name: 'Blanco Clínico',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789944948/MODEL363_2.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789944948/MODEL363_2.png'
+        ]
+      }
     ],
     priceTiers: {
       '1-12': 1025.00,
@@ -1390,42 +1437,18 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 33. CALZADO CLINICO MOD. 920 CAFÉ
-  {
-    id: 'calzado-clinico-mod-920-cafe',
-    code: 'MOD-920-C',
-    name: 'Calzado Clínico Mod. 920 Café',
-    price: 1025.00,
-    category: 'medico',
-    image: '',
-    rating: 4.9,
-    description: 'Calzado médico de confort Modelo 920 en color café. Ideal para consultorios, directivos de salud y personal administrativo que busca confort ortopédico con elegancia formal.',
-    composition: '100% Piel Genuina Vacuna Café / Suela Antifatiga',
-    features: [
-      'Acabado en piel café elegante y duradera',
-      'Suela antideslizante con absorción de impacto en talón',
-      'Ajuste con elásticos laterales',
-      'Plantilla anatómica de máximo confort'
-    ],
-    sizes: ['24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX', '30 MX'],
-    colors: [
-      { name: 'Café Ejecutivo', hex: '#78350f' }
-    ],
-    priceTiers: {
-      '1-12': 1025.00,
-      '13-50': 975.00,
-      '51+': 925.00
-    }
-  },
-
-  // 34. CALZADO CLINICO MOD. 1042 BLANCO
+  // 33. CALZADO CLINICO MOD. 1042
   {
     id: 'calzado-clinico-mod-1042-blanco',
     code: 'MOD-1042-B',
-    name: 'Calzado Clínico Mod. 1042 Blanco',
+    name: 'Calzado Clínico Mod. 1042',
     price: 1025.00,
     category: 'medico',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789945039/MOD1042_1.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789945039/MOD1042_1.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789945037/MODELO1042_1.png'
+    ],
     rating: 4.9,
     description: 'Calzado ortopédico clínico Modelo 1042 en color blanco. Máxima amortiguación, suela de doble densidad y diseño cerrado con perforaciones laterales respirables para control térmico.',
     composition: 'Piel Selecta Tratada / Suela Dieléctrica Antiderrapante',
@@ -1437,7 +1460,15 @@ export const PRODUCTS: Product[] = [
     ],
     sizes: ['22 MX', '23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX'],
     colors: [
-      { name: 'Blanco Hospitalario', hex: '#ffffff' }
+      {
+        name: 'Blanco Hospitalario',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789945039/MOD1042_1.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789945039/MOD1042_1.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789945037/MODELO1042_1.png'
+        ]
+      }
     ],
     priceTiers: {
       '1-12': 1025.00,
@@ -1487,37 +1518,6 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 36. RASH MANGA LARGA EN LICRA CON SUB.
-  {
-    id: 'rash-manga-larga-licra-sublimado',
-    code: 'RS002L-SUB',
-    name: 'Rash Manga Larga en Licra con Sublimado',
-    price: 510.00,
-    category: 'hoteleria',
-    image: '',
-    rating: 4.9,
-    description: 'Mantente protegido y cómodo con nuestras rash de Guardavidas manga larga con sublimado de alta definición. Protector contra los rayos UV con estampado duradero y colores muy vivos.',
-    composition: 'Licra Náutica 100% Poliéster',
-    features: [
-          'Manga larga',
-          'Cuello redondo',
-          'Protector contra los rayos UV',
-          'Sublimado de alta definición resistente al cloro y salitre'
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    colors: [
-      {
-        name: 'Rojo Sublimado Oficial',
-        hex: '#dc2626'
-      },
-      { name: 'Amarillo / Negro Rescate', hex: '#eab308' }
-    ],
-    priceTiers: {
-      '1-12': 510.00,
-      '13-50': 490.00,
-      '51+': 470.00
-    }
-  },
 
   // 37. BERMUDA GUARDAVIDAS
   {
