@@ -1227,10 +1227,15 @@ export const PRODUCTS: Product[] = [
     name: 'Pijama Médica con Strech',
     price: 820.00,
     category: 'medico',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789872405/pijama_azul_rey.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789872405/pijama_azul_rey.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789872413/verde_jade.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789872436/PIJAMA_EN_COLOR_NEGRA.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789872535/azul_marino_1.png'
+    ],
     rating: 4.9,
-    description: 'Conjunto quirúrgico de filipina y pantalón clínico con elasticidad 4-way stretch. Repele fluidos, no se arruga y otorga completa libertad de movimiento para médicos, enfermeros y odontólogos.',
-    composition: '93% Poliéster / 7% Spandex (Tejido Antifluidos Stretch)',
+    description: 'Conjunto quirúrgico de filipina y pantalón clínico con elasticidad, otorga completa libertad de movimiento para médicos, enfermeros y odontólogos.',
     features: [
       'Elasticidad en 4 direcciones que acompaña cada movimiento',
       'Tecnología antifluidos y repelencia a microgotas',
@@ -1238,12 +1243,58 @@ export const PRODUCTS: Product[] = [
       'Filipina con cuello en V ergonómico y bolsa de pecho con portacredencial'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    hasCorteSelection: true,
     colors: [
-      { name: 'Azul Quirúrgico', hex: '#0284c7' },
-      { name: 'Verde Médico', hex: '#059669' },
-      { name: 'Gris Carbón', hex: '#374151' },
-      { name: 'Azul Marino', hex: '#1e3a8a' },
-      { name: 'Vino Clínico', hex: '#881337' }
+      {
+        name: 'Azul Rey',
+        hex: '#1d4ed8',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789872405/pijama_azul_rey.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789872405/pijama_azul_rey.png']
+      },
+      {
+        name: 'Verde Jade',
+        hex: '#059669',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789872413/verde_jade.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789872413/verde_jade.png']
+      },
+      {
+        name: 'Negro',
+        hex: '#18181b',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789872436/PIJAMA_EN_COLOR_NEGRA.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789872436/PIJAMA_EN_COLOR_NEGRA.png']
+      },
+      {
+        name: 'Azul Marino',
+        hex: '#1e3a8a',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789872535/azul_marino_1.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789872535/azul_marino_1.png']
+      }
+    ],
+    damaColors: [
+      {
+        name: 'Azul Rey',
+        hex: '#1d4ed8',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789872779/azul_rey_dama.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789872779/azul_rey_dama.png']
+      },
+      {
+        name: 'Azul Marino',
+        hex: '#1e3a8a',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789872772/PIJAMA_DAMA_AZUL_MARINO.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789872772/PIJAMA_DAMA_AZUL_MARINO.png']
+      },
+      {
+        name: 'Rosa',
+        hex: '#ec4899',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789872786/pijama_rosa.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789872786/pijama_rosa.png']
+      },
+      {
+        name: 'Verde Jade',
+        hex: '#059669',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789872793/verde_jade_dama.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789872793/verde_jade_dama.png']
+      }
     ],
     priceTiers: {
       '1-12': 820.00,
