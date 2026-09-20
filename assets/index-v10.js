@@ -534,8 +534,24 @@ React keys must be passed directly to JSX without using spread:
   $.useEffect(()=>{if(e){setTab(n);setZoomImg(null);}},[e,n]);
   $.useEffect(()=>{
     const h=(k)=>{if(k.key==="Escape"){if(zoomImg)setZoomImg(null);else t();}};
-    if(e){window.addEventListener("keydown",h);document.body.style.overflow="hidden";}
-    return ()=>{window.removeEventListener("keydown",h);document.body.style.overflow="unset";};
+    if(e){
+      window.addEventListener("keydown",h);
+      document.body.classList.add("modal-open");
+      document.documentElement.classList.add("modal-open");
+      document.body.style.overflow="hidden";
+      document.documentElement.style.overflow="hidden";
+      document.body.style.overscrollBehavior="none";
+      document.documentElement.style.overscrollBehavior="none";
+    }
+    return ()=>{
+      window.removeEventListener("keydown",h);
+      document.body.classList.remove("modal-open");
+      document.documentElement.classList.remove("modal-open");
+      document.body.style.overflow="";
+      document.documentElement.style.overflow="";
+      document.body.style.overscrollBehavior="";
+      document.documentElement.style.overscrollBehavior="";
+    };
   },[e,t,zoomImg]);
   if(!e)return null;
 
@@ -577,197 +593,632 @@ React keys must be passed directly to JSX without using spread:
     "https://uniformespre.com/wp-content/uploads/2024/02/sublimado3.png"
   ];
 
-  return r.jsxDEV("div",{className:"fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/80 backdrop-blur-md animate-fade-in",id:"requerimientos-modal",style:{overflowY:"auto"},children:[
-    r.jsxDEV("div",{className:"absolute inset-0 cursor-pointer",onClick:t},void 0,!1,{},void 0),
-    r.jsxDEV("div",{id:"requerimientos-modal-card",className:"relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col z-10 text-slate-100",style:{maxHeight:"calc(100vh - 32px)",height:"90vh",display:"flex",flexDirection:"column",overflow:"hidden"},children:[
-      /* Top Header */
-      r.jsxDEV("div",{className:"sticky top-0 z-20 bg-slate-950/95 backdrop-blur-md border-b border-slate-800 p-4 sm:p-5 flex items-center justify-between shrink-0",style:{flexShrink:0},children:[
-        r.jsxDEV("div",{children:[
-          r.jsxDEV("span",{className:"inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold tracking-widest uppercase bg-orange-500/10 text-orange-400 border border-orange-500/20",children:"ESPECIFICACIONES TECNICAS"},void 0,!1,{},void 0),
-          r.jsxDEV("h2",{className:"font-display text-2xl sm:text-3xl text-white tracking-wider mt-1",children:"Requerimientos de Personalizacion"},void 0,!1,{},void 0)
-        ]},void 0,!0,{},void 0),
-        r.jsxDEV("button",{onClick:t,className:"p-2 rounded-full bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors cursor-pointer border border-slate-700","aria-label":"Cerrar ventana",children:r.jsxDEV("svg",{className:"w-5 h-5",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M6 18L18 6M6 6l12 12"})},void 0,!1,{},void 0)},void 0,!0,{},void 0)
-      ]},void 0,!0,{},void 0),
+  const modalJsx = r.jsxDEV("div",{
+    id:"requerimientos-modal",
+    onWheel:ev=>ev.stopPropagation(),
+    onTouchMove:ev=>ev.stopPropagation(),
+    style:{
+      position:"fixed",
+      top:0,
+      left:0,
+      right:0,
+      bottom:0,
+      width:"100vw",
+      height:"100vh",
+      height:"100dvh",
+      backgroundColor:"rgba(0,0,0,0.85)",
+      backdropFilter:"blur(8px)",
+      WebkitBackdropFilter:"blur(8px)",
+      zIndex:99999,
+      display:"flex",
+      alignItems:"center",
+      justifyContent:"center",
+      padding:"16px",
+      boxSizing:"border-box",
+      overscrollBehavior:"contain"
+    },
+    children:[
+      r.jsxDEV("div",{
+        style:{position:"absolute",top:0,left:0,right:0,bottom:0,cursor:"pointer"},
+        onClick:t
+      },void 0,!1,{},void 0),
 
-      /* Tab Switcher */
-      r.jsxDEV("div",{className:"bg-slate-950/60 px-4 sm:px-6 pt-3 pb-2 border-b border-slate-800/80 flex items-center gap-3 shrink-0",style:{flexShrink:0},children:[
-        r.jsxDEV("button",{onClick:()=>setTab("bordado"),type:"button",className:"flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-wider uppercase transition-all cursor-pointer border "+(tab==="bordado"?"bg-orange-500 text-white border-orange-400 shadow-lg shadow-orange-500/20":"bg-slate-800/60 text-slate-400 border-slate-700 hover:bg-slate-800 hover:text-slate-200"),children:[
-          r.jsxDEV("svg",{className:"w-4 h-4",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"})},void 0,!1,{},void 0),
-          r.jsxDEV("span",{children:"Bordado Industrial"},void 0,!1,{},void 0)
-        ]},void 0,!0,{},void 0),
-        r.jsxDEV("button",{onClick:()=>setTab("sublimado"),type:"button",className:"flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 rounded-xl font-bold text-xs sm:text-sm tracking-wider uppercase transition-all cursor-pointer border "+(tab==="sublimado"?"bg-orange-500 text-white border-orange-400 shadow-lg shadow-orange-500/20":"bg-slate-800/60 text-slate-400 border-slate-700 hover:bg-slate-800 hover:text-slate-200"),children:[
-          r.jsxDEV("svg",{className:"w-4 h-4",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"})},void 0,!1,{},void 0),
-          r.jsxDEV("span",{children:"Sublimado Full Print"},void 0,!1,{},void 0)
-        ]},void 0,!0,{},void 0)
-      ]},void 0,!0,{},void 0),
+      r.jsxDEV("div",{
+        id:"requerimientos-modal-card",
+        onClick:ev=>ev.stopPropagation(),
+        onWheel:ev=>ev.stopPropagation(),
+        style:{
+          position:"relative",
+          width:"100%",
+          maxWidth:"920px",
+          backgroundColor:"#0f172a",
+          border:"1px solid #334155",
+          borderRadius:"16px",
+          boxShadow:"0 25px 50px -12px rgba(0,0,0,0.8)",
+          overflow:"hidden",
+          display:"flex",
+          flexDirection:"column",
+          maxHeight:"calc(100vh - 32px)",
+          height:"88vh",
+          zIndex:10,
+          color:"#f8fafc",
+          overscrollBehavior:"contain"
+        },
+        children:[
+          r.jsxDEV("button",{
+            onClick:t,
+            type:"button",
+            "aria-label":"Cerrar ventana emergente",
+            className:"modal-close-x-btn",
+            style:{
+              position:"absolute",
+              top:"14px",
+              right:"14px",
+              zIndex:60,
+              width:"38px",
+              height:"38px",
+              borderRadius:"50%",
+              backgroundColor:"#1e293b",
+              color:"#ffffff",
+              border:"1.5px solid #475569",
+              display:"flex",
+              alignItems:"center",
+              justifyContent:"center",
+              cursor:"pointer",
+              boxShadow:"0 4px 14px rgba(0,0,0,0.5)"
+            },
+            children:r.jsxDEV("svg",{
+              style:{width:"20px",height:"20px"},
+              fill:"none",
+              stroke:"currentColor",
+              viewBox:"0 0 24 24",
+              children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2.5,d:"M6 18L18 6M6 6l12 12"})
+            },void 0,!1,{},void 0)
+          },void 0,!0,{},void 0),
 
-      /* Scrollable Body */
-      r.jsxDEV("div",{id:"requerimientos-modal-body",className:"flex-1 overflow-y-auto p-4 sm:p-6 md:p-8 space-y-8 custom-scrollbar",style:{minHeight:0,flex:"1 1 0%",overflowY:"auto",WebkitOverflowScrolling:"touch"},children:[
-        tab==="bordado" ? r.jsxDEV("div",{className:"space-y-8 animate-fade-in",children:[
-          /* Banner */
-          r.jsxDEV("div",{className:"bg-gradient-to-r from-orange-500/10 via-slate-800/50 to-slate-900 border border-orange-500/20 rounded-xl p-5 sm:p-6",children:[
-            r.jsxDEV("span",{className:"text-[11px] font-bold text-orange-400 uppercase tracking-widest",children:"ALTA DEFINICION COMPUTARIZADA"},void 0,!1,{},void 0),
-            r.jsxDEV("h3",{className:"font-display text-2xl sm:text-3xl text-white tracking-wide mt-1",children:"REQUERIMIENTOS PARA BORDADOS"},void 0,!1,{},void 0),
-            r.jsxDEV("p",{className:"text-sm text-slate-300 mt-2 leading-relaxed font-sans",children:["Personaliza el uniforme de tu ",r.jsxDEV("span",{className:"text-orange-400 font-bold",children:"Marca, Negocio, Hotel, Restaurante o Inmobiliaria"},void 0,!1,{},void 0)," con puntada de maxima densidad, hilos de alta resistencia y calibracion milimetrica."]},void 0,!0,{},void 0)
-          ]},void 0,!0,{},void 0),
-
-          /* Video */
-          r.jsxDEV("div",{className:"bg-slate-950/80 rounded-2xl p-4 sm:p-6 border border-slate-800 space-y-3",children:[
-            r.jsxDEV("div",{className:"flex items-center gap-2 text-white",children:[
-              r.jsxDEV("svg",{className:"w-5 h-5 text-orange-500",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"})},void 0,!1,{},void 0),
-              r.jsxDEV("h4",{className:"font-display text-lg tracking-wider",children:"Video de Demostracion: Bordado en Proceso"},void 0,!1,{},void 0)
-            ]},void 0,!0,{},void 0),
-            r.jsxDEV("p",{className:"text-xs text-slate-400",children:"Conoce nuestra tecnologia computarizada de bordado industrial multicabezal operando en taller."},void 0,!1,{},void 0),
-            r.jsxDEV("div",{className:"relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800 bg-slate-950 shadow-inner",children:r.jsxDEV("iframe",{src:"https://www.youtube-nocookie.com/embed/KVtucXUntoY?rel=0",title:"Bordados Uniformes PRE",className:"w-full h-full",allow:"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",allowFullScreen:!0,loading:"lazy"},void 0,!1,{},void 0)},void 0,!1,{},void 0)
-          ]},void 0,!0,{},void 0),
-
-          /* Medidas */
-          r.jsxDEV("div",{className:"space-y-4",children:[
-            r.jsxDEV("div",{className:"flex items-center gap-2 border-b border-slate-800 pb-2",children:[
-              r.jsxDEV("svg",{className:"w-5 h-5 text-orange-500",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M4 6h16M4 12h16M4 18h16"})},void 0,!1,{},void 0),
-              r.jsxDEV("h4",{className:"font-display text-xl text-white tracking-wider",children:"Medidas para el Bordado"},void 0,!1,{},void 0)
-            ]},void 0,!0,{},void 0),
-            r.jsxDEV("div",{className:"grid grid-cols-1 md:grid-cols-3 gap-4",children:bordadoMedidas.map((m,i)=>r.jsxDEV("div",{className:"bg-slate-800/50 rounded-xl p-4 border border-slate-700/60",children:[
-              r.jsxDEV("span",{className:"text-xs font-semibold text-orange-400 uppercase tracking-wider",children:m.title},void 0,!1,{},void 0),
-              r.jsxDEV("p",{className:"text-xl font-bold text-white mt-1",children:m.val},void 0,!1,{},void 0),
-              r.jsxDEV("p",{className:"text-xs text-slate-400 mt-1",children:m.desc},void 0,!1,{},void 0)
-            ]},i,!0,{},void 0))},void 0,!0,{},void 0),
-            r.jsxDEV("div",{className:"grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2",children:bordadoDiagramas.map((d,i)=>r.jsxDEV("div",{onClick:()=>setZoomImg(d.url),className:"group relative bg-slate-950 rounded-xl overflow-hidden border border-slate-800 hover:border-orange-500/50 transition-all cursor-pointer p-4 flex flex-col items-center",children:[
-              r.jsxDEV("span",{className:"text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-2",children:d.title},void 0,!1,{},void 0),
-              r.jsxDEV("div",{className:"relative w-full h-48 sm:h-56 flex items-center justify-center bg-slate-900/60 rounded-lg overflow-hidden",children:[
-                r.jsxDEV("img",{src:d.url,alt:d.title,className:"max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300",loading:"lazy"},void 0,!1,{},void 0),
-                r.jsxDEV("div",{className:"absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center",children:r.jsxDEV("span",{className:"px-3 py-1.5 rounded-lg bg-orange-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg",children:"Ampliar imagen"},void 0,!1,{},void 0)},void 0,!1,{},void 0)
-              ]},void 0,!0,{},void 0)
-            ]},i,!0,{},void 0))},void 0,!0,{},void 0)
-          ]},void 0,!0,{},void 0),
-
-          /* Requisitos & Avisos */
-          r.jsxDEV("div",{className:"grid grid-cols-1 md:grid-cols-2 gap-6",children:[
-            r.jsxDEV("div",{className:"bg-slate-800/40 rounded-2xl p-5 sm:p-6 border border-slate-800 space-y-4",children:[
-              r.jsxDEV("h4",{className:"font-display text-lg tracking-wider text-white",children:"Requisitos de la Imagen"},void 0,!1,{},void 0),
-              r.jsxDEV("ul",{className:"space-y-3 text-xs sm:text-sm text-slate-300",children:[
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-emerald-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"Se necesita una imagen de buena o media calidad para digitalizar y ponchar el logo."]},void 0,!0,{},void 0),
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-emerald-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"Formatos aceptados: PNG, JPG, TIF, EPS, PDF (o vectores en AI/CDR)."]},void 0,!0,{},void 0)
-              ]},void 0,!0,{},void 0)
-            ]},void 0,!0,{},void 0),
-            r.jsxDEV("div",{className:"bg-slate-800/40 rounded-2xl p-5 sm:p-6 border border-slate-800 space-y-4",children:[
-              r.jsxDEV("h4",{className:"font-display text-lg tracking-wider text-white",children:"Condiciones y Muestras"},void 0,!1,{},void 0),
-              r.jsxDEV("ul",{className:"space-y-3 text-xs sm:text-sm text-slate-300",children:[
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-orange-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"Pedido minimo: A partir de 12 piezas se bordara si eres cliente nuevo."]},void 0,!0,{},void 0),
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-orange-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"El diseÃ±ador(a) adaptara las proporciones a las medidas de prenda si es necesario."]},void 0,!0,{},void 0),
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-orange-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"Se enviaran fotos de muestras del bordado para autorizacion antes del tiraje final."]},void 0,!0,{},void 0)
-              ]},void 0,!0,{},void 0)
+          r.jsxDEV("div",{
+            style:{
+              position:"sticky",
+              top:0,
+              zIndex:20,
+              backgroundColor:"rgba(2, 6, 23, 0.96)",
+              borderBottom:"1px solid #1e293b",
+              padding:"16px 64px 16px 20px",
+              display:"flex",
+              alignItems:"center",
+              justifyContent:"space-between",
+              flexShrink:0
+            },
+            children:r.jsxDEV("div",{children:[
+              r.jsxDEV("span",{
+                style:{
+                  display:"inline-flex",
+                  alignItems:"center",
+                  padding:"2px 8px",
+                  borderRadius:"4px",
+                  fontSize:"10px",
+                  fontWeight:700,
+                  letterSpacing:"0.1em",
+                  textTransform:"uppercase",
+                  backgroundColor:"rgba(249, 115, 22, 0.1)",
+                  color:"#fb923c",
+                  border:"1px solid rgba(249, 115, 22, 0.2)"
+                },
+                children:"ESPECIFICACIONES TECNICAS"
+              },void 0,!1,{},void 0),
+              r.jsxDEV("h2",{
+                className:"font-display",
+                style:{fontSize:"22px",color:"#ffffff",letterSpacing:"0.04em",marginTop:"4px",marginRight:"8px"},
+                children:"Requerimientos de Personalizacion"
+              },void 0,!1,{},void 0)
             ]},void 0,!0,{},void 0)
-          ]},void 0,!0,{},void 0),
+          },void 0,!0,{},void 0),
 
-          /* Galeria */
-          r.jsxDEV("div",{className:"space-y-4",children:[
-            r.jsxDEV("div",{className:"flex items-center justify-between border-b border-slate-800 pb-2",children:[
-              r.jsxDEV("h4",{className:"font-display text-xl text-white tracking-wider",children:"Marcas con su Bordado Corporativo"},void 0,!1,{},void 0),
-              r.jsxDEV("span",{className:"text-xs text-slate-400",children:"Haz clic para ampliar"},void 0,!1,{},void 0)
-            ]},void 0,!0,{},void 0),
-            r.jsxDEV("div",{className:"grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3",children:bordadoGaleria.map((u,i)=>r.jsxDEV("div",{onClick:()=>setZoomImg(u),className:"group relative aspect-square bg-slate-950 rounded-xl overflow-hidden border border-slate-800 hover:border-orange-500 cursor-pointer transition-all",children:[
-              r.jsxDEV("img",{src:u,alt:"Bordado "+(i+1),className:"w-full h-full object-cover group-hover:scale-110 transition-transform duration-300",loading:"lazy"},void 0,!1,{},void 0),
-              r.jsxDEV("div",{className:"absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center",children:r.jsxDEV("span",{className:"text-white text-xs font-bold",children:"ðŸ”"},void 0,!1,{},void 0)},void 0,!1,{},void 0)
-            ]},i,!0,{},void 0))},void 0,!0,{},void 0)
-          ]},void 0,!0,{},void 0)
-        ]},void 0,!0,{},void 0) :
+          r.jsxDEV("div",{
+            style:{
+              backgroundColor:"rgba(2, 6, 23, 0.7)",
+              padding:"12px 20px",
+              borderBottom:"1px solid #1e293b",
+              display:"flex",
+              alignItems:"center",
+              gap:"12px",
+              flexShrink:0
+            },
+            children:[
+              r.jsxDEV("button",{
+                onClick:()=>setTab("bordado"),
+                type:"button",
+                style:{
+                  flex:1,
+                  display:"flex",
+                  alignItems:"center",
+                  justifyContent:"center",
+                  gap:"8px",
+                  padding:"10px 18px",
+                  borderRadius:"12px",
+                  fontWeight:700,
+                  fontSize:"13px",
+                  letterSpacing:"0.05em",
+                  textTransform:"uppercase",
+                  cursor:"pointer",
+                  border:"1px solid",
+                  backgroundColor:tab==="bordado"?"#f97316":"rgba(30, 41, 59, 0.6)",
+                  borderColor:tab==="bordado"?"#fb923c":"#334155",
+                  color:tab==="bordado"?"#ffffff":"#94a3b8",
+                  boxShadow:tab==="bordado"?"0 4px 12px rgba(249, 115, 22, 0.3)":"none"
+                },
+                children:[
+                  r.jsxDEV("svg",{style:{width:"16px",height:"16px"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"})},void 0,!1,{},void 0),
+                  r.jsxDEV("span",{children:"Bordado Industrial"},void 0,!1,{},void 0)
+                ]
+              },void 0,!0,{},void 0),
+              r.jsxDEV("button",{
+                onClick:()=>setTab("sublimado"),
+                type:"button",
+                style:{
+                  flex:1,
+                  display:"flex",
+                  alignItems:"center",
+                  justifyContent:"center",
+                  gap:"8px",
+                  padding:"10px 18px",
+                  borderRadius:"12px",
+                  fontWeight:700,
+                  fontSize:"13px",
+                  letterSpacing:"0.05em",
+                  textTransform:"uppercase",
+                  cursor:"pointer",
+                  border:"1px solid",
+                  backgroundColor:tab==="sublimado"?"#f97316":"rgba(30, 41, 59, 0.6)",
+                  borderColor:tab==="sublimado"?"#fb923c":"#334155",
+                  color:tab==="sublimado"?"#ffffff":"#94a3b8",
+                  boxShadow:tab==="sublimado"?"0 4px 12px rgba(249, 115, 22, 0.3)":"none"
+                },
+                children:[
+                  r.jsxDEV("svg",{style:{width:"16px",height:"16px"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"})},void 0,!1,{},void 0),
+                  r.jsxDEV("span",{children:"Sublimado Full Print"},void 0,!1,{},void 0)
+                ]
+              },void 0,!0,{},void 0)
+            ]
+          },void 0,!0,{},void 0),
 
-        /* SUBLIMADO TAB */
-        r.jsxDEV("div",{className:"space-y-8 animate-fade-in",children:[
-          /* Banner */
-          r.jsxDEV("div",{className:"bg-gradient-to-r from-orange-500/10 via-slate-800/50 to-slate-900 border border-orange-500/20 rounded-xl p-5 sm:p-6",children:[
-            r.jsxDEV("span",{className:"text-[11px] font-bold text-orange-400 uppercase tracking-widest",children:"TRANSFERENCIA TERMICA INDELEBLE"},void 0,!1,{},void 0),
-            r.jsxDEV("h3",{className:"font-display text-2xl sm:text-3xl text-white tracking-wide mt-1",children:"REQUERIMIENTOS PARA SUBLIMADOS"},void 0,!1,{},void 0),
-            r.jsxDEV("p",{className:"text-sm text-slate-300 mt-2 leading-relaxed font-sans",children:["Destaca tu ",r.jsxDEV("span",{className:"text-orange-400 font-bold",children:"Marca, Negocio, Hotel, Restaurante o Inmobiliaria"},void 0,!1,{},void 0)," con sublimacion full-print de colores vivos que nunca se despintan ni se agrietan."]},void 0,!0,{},void 0)
-          ]},void 0,!0,{},void 0),
+          r.jsxDEV("div",{
+            id:"requerimientos-modal-body",
+            onWheel:ev=>ev.stopPropagation(),
+            style:{
+              flex:"1 1 0%",
+              minHeight:0,
+              overflowY:"auto",
+              padding:"24px",
+              overscrollBehavior:"contain",
+              WebkitOverflowScrolling:"touch"
+            },
+            children:[
+              tab==="bordado" ? r.jsxDEV("div",{style:{display:"flex",flexDirection:"column",gap:"28px"},children:[
+                r.jsxDEV("div",{
+                  style:{
+                    backgroundColor:"rgba(249, 115, 22, 0.08)",
+                    border:"1px solid rgba(249, 115, 22, 0.25)",
+                    borderRadius:"14px",
+                    padding:"20px"
+                  },
+                  children:[
+                    r.jsxDEV("span",{style:{fontSize:"11px",fontWeight:700,color:"#fb923c",letterSpacing:"0.1em",textTransform:"uppercase"},children:"ALTA DEFINICION COMPUTARIZADA"},void 0,!1,{},void 0),
+                    r.jsxDEV("h3",{className:"font-display",style:{fontSize:"22px",color:"#ffffff",marginTop:"4px"},children:"REQUERIMIENTOS PARA BORDADOS"},void 0,!1,{},void 0),
+                    r.jsxDEV("p",{style:{fontSize:"14px",color:"#cbd5e1",marginTop:"8px",lineHeight:1.6},children:[
+                      "Personaliza el uniforme de tu ",
+                      r.jsxDEV("span",{style:{color:"#fb923c",fontWeight:700},children:"Marca, Negocio, Hotel, Restaurante o Inmobiliaria"},void 0,!1,{},void 0),
+                      " con puntada de maxima densidad, hilos de alta resistencia y calibracion milimetrica."
+                    ]},void 0,!0,{},void 0)
+                  ]
+                },void 0,!0,{},void 0),
 
-          /* Video */
-          r.jsxDEV("div",{className:"bg-slate-950/80 rounded-2xl p-4 sm:p-6 border border-slate-800 space-y-3",children:[
-            r.jsxDEV("div",{className:"flex items-center gap-2 text-white",children:[
-              r.jsxDEV("svg",{className:"w-5 h-5 text-orange-500",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"})},void 0,!1,{},void 0),
-              r.jsxDEV("h4",{className:"font-display text-lg tracking-wider",children:"Video de Demostracion: Sublimado Full-Print"},void 0,!1,{},void 0)
-            ]},void 0,!0,{},void 0),
-            r.jsxDEV("p",{className:"text-xs text-slate-400",children:"Mira la transferencia termica de alta resolucion y fijacion indeleble sobre telas poliester."},void 0,!1,{},void 0),
-            r.jsxDEV("div",{className:"relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800 bg-slate-950 shadow-inner",children:r.jsxDEV("iframe",{src:"https://www.youtube-nocookie.com/embed/l5RnGg9u7NA?rel=0",title:"Sublimados Uniformes PRE",className:"w-full h-full",allow:"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",allowFullScreen:!0,loading:"lazy"},void 0,!1,{},void 0)},void 0,!1,{},void 0)
-          ]},void 0,!0,{},void 0),
+                r.jsxDEV("div",{
+                  style:{
+                    backgroundColor:"rgba(2, 6, 23, 0.8)",
+                    borderRadius:"16px",
+                    padding:"18px",
+                    border:"1px solid #1e293b",
+                    display:"flex",
+                    flexDirection:"column",
+                    gap:"12px"
+                  },
+                  children:[
+                    r.jsxDEV("div",{style:{display:"flex",alignItems:"center",gap:"8px",color:"#ffffff"},children:[
+                      r.jsxDEV("svg",{style:{width:"20px",height:"20px",color:"#f97316"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"})},void 0,!1,{},void 0),
+                      r.jsxDEV("h4",{className:"font-display",style:{fontSize:"18px",letterSpacing:"0.04em"},children:"Video de Demostracion: Bordado en Proceso"},void 0,!1,{},void 0)
+                    ]},void 0,!0,{},void 0),
+                    r.jsxDEV("p",{style:{fontSize:"12px",color:"#94a3b8"},children:"Conoce nuestra tecnologia computarizada de bordado industrial multicabezal operando en taller."},void 0,!1,{},void 0),
+                    r.jsxDEV("div",{
+                      style:{position:"relative",width:"100%",aspectRatio:"16/9",borderRadius:"12px",overflow:"hidden",border:"1px solid #1e293b",backgroundColor:"#020617"},
+                      children:r.jsxDEV("iframe",{src:"https://www.youtube-nocookie.com/embed/KVtucXUntoY?rel=0",title:"Bordados Uniformes PRE",style:{width:"100%",height:"100%",border:0},allow:"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",allowFullScreen:!0,loading:"lazy"},void 0,!1,{},void 0)
+                    },void 0,!1,{},void 0)
+                  ]
+                },void 0,!0,{},void 0),
 
-          /* Medidas */
-          r.jsxDEV("div",{className:"space-y-4",children:[
-            r.jsxDEV("div",{className:"flex items-center gap-2 border-b border-slate-800 pb-2",children:[
-              r.jsxDEV("svg",{className:"w-5 h-5 text-orange-500",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M4 6h16M4 12h16M4 18h16"})},void 0,!1,{},void 0),
-              r.jsxDEV("h4",{className:"font-display text-xl text-white tracking-wider",children:"Medidas para el DiseÃ±o Full Print"},void 0,!1,{},void 0)
-            ]},void 0,!0,{},void 0),
-            r.jsxDEV("div",{className:"grid grid-cols-1 md:grid-cols-2 gap-4",children:sublimadoMedidas.map((m,i)=>r.jsxDEV("div",{className:"bg-slate-800/50 rounded-xl p-4 border border-slate-700/60",children:[
-              r.jsxDEV("span",{className:"text-xs font-semibold text-orange-400 uppercase tracking-wider",children:m.title},void 0,!1,{},void 0),
-              r.jsxDEV("p",{className:"text-xl font-bold text-white mt-1",children:m.val},void 0,!1,{},void 0),
-              r.jsxDEV("p",{className:"text-xs text-slate-400 mt-1",children:m.desc},void 0,!1,{},void 0)
-            ]},i,!0,{},void 0))},void 0,!0,{},void 0),
-            r.jsxDEV("div",{className:"grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2",children:sublimadoDiagramas.map((d,i)=>r.jsxDEV("div",{onClick:()=>setZoomImg(d.url),className:"group relative bg-slate-950 rounded-xl overflow-hidden border border-slate-800 hover:border-orange-500/50 transition-all cursor-pointer p-4 flex flex-col items-center",children:[
-              r.jsxDEV("span",{className:"text-[11px] font-bold text-slate-300 uppercase tracking-wider mb-2",children:d.title},void 0,!1,{},void 0),
-              r.jsxDEV("div",{className:"relative w-full h-44 flex items-center justify-center bg-slate-900/60 rounded-lg overflow-hidden",children:[
-                r.jsxDEV("img",{src:d.url,alt:d.title,className:"max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300",loading:"lazy"},void 0,!1,{},void 0),
-                r.jsxDEV("div",{className:"absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center",children:r.jsxDEV("span",{className:"px-2.5 py-1 rounded bg-orange-500 text-white font-bold text-[11px] shadow-lg",children:"Ampliar"},void 0,!1,{},void 0)},void 0,!1,{},void 0)
-              ]},void 0,!0,{},void 0)
-            ]},i,!0,{},void 0))},void 0,!0,{},void 0)
-          ]},void 0,!0,{},void 0),
+                r.jsxDEV("div",{
+                  style:{display:"flex",flexDirection:"column",gap:"16px"},
+                  children:[
+                    r.jsxDEV("div",{style:{display:"flex",alignItems:"center",gap:"8px",borderBottom:"1px solid #1e293b",paddingBottom:"8px"},children:[
+                      r.jsxDEV("svg",{style:{width:"20px",height:"20px",color:"#f97316"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M4 6h16M4 12h16M4 18h16"})},void 0,!1,{},void 0),
+                      r.jsxDEV("h4",{className:"font-display",style:{fontSize:"20px",color:"#ffffff",letterSpacing:"0.04em"},children:"Medidas para el Bordado"},void 0,!1,{},void 0)
+                    ]},void 0,!0,{},void 0),
+                    r.jsxDEV("div",{
+                      className:"grid grid-cols-1 md:grid-cols-3 gap-4",
+                      children:bordadoMedidas.map((m,i)=>r.jsxDEV("div",{
+                        key:i,
+                        style:{backgroundColor:"rgba(30, 41, 59, 0.5)",borderRadius:"12px",padding:"16px",border:"1px solid #334155"},
+                        children:[
+                          r.jsxDEV("span",{style:{fontSize:"11px",fontWeight:600,color:"#fb923c",textTransform:"uppercase",letterSpacing:"0.05em"},children:m.title},void 0,!1,{},void 0),
+                          r.jsxDEV("p",{style:{fontSize:"20px",fontWeight:700,color:"#ffffff",marginTop:"4px"},children:m.val},void 0,!1,{},void 0),
+                          r.jsxDEV("p",{style:{fontSize:"12px",color:"#94a3b8",marginTop:"4px"},children:m.desc},void 0,!1,{},void 0)
+                        ]
+                      },i,!0,{},void 0))
+                    },void 0,!0,{},void 0),
+                    r.jsxDEV("div",{
+                      className:"grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2",
+                      children:bordadoDiagramas.map((d,i)=>r.jsxDEV("div",{
+                        key:i,
+                        onClick:()=>setZoomImg(d.url),
+                        style:{backgroundColor:"#020617",borderRadius:"12px",overflow:"hidden",border:"1px solid #1e293b",cursor:"pointer",padding:"16px",display:"flex",flexDirection:"column",alignItems:"center"},
+                        children:[
+                          r.jsxDEV("span",{style:{fontSize:"11px",fontWeight:700,color:"#cbd5e1",textTransform:"uppercase",letterSpacing:"0.05em",marginBottom:"8px"},children:d.title},void 0,!1,{},void 0),
+                          r.jsxDEV("div",{
+                            style:{position:"relative",width:"100%",height:"220px",display:"flex",alignItems:"center",justifyContent:"center",backgroundColor:"rgba(15, 23, 42, 0.6)",borderRadius:"8px",overflow:"hidden"},
+                            children:[
+                              r.jsxDEV("img",{src:d.url,alt:d.title,style:{maxHeight:"100%",maxWidth:"100%",objectFit:"contain"},loading:"lazy"},void 0,!1,{},void 0),
+                              r.jsxDEV("div",{
+                                className:"absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center",
+                                children:r.jsxDEV("span",{style:{padding:"6px 12px",borderRadius:"8px",backgroundColor:"#f97316",color:"#ffffff",fontWeight:700,fontSize:"12px"},children:"Ampliar imagen"},void 0,!1,{},void 0)
+                              },void 0,!1,{},void 0)
+                            ]
+                          },void 0,!0,{},void 0)
+                        ]
+                      },i,!0,{},void 0))
+                    },void 0,!0,{},void 0)
+                  ]
+                },void 0,!0,{},void 0),
 
-          /* Requisitos & Telas */
-          r.jsxDEV("div",{className:"grid grid-cols-1 md:grid-cols-2 gap-6",children:[
-            r.jsxDEV("div",{className:"bg-slate-800/40 rounded-2xl p-5 sm:p-6 border border-slate-800 space-y-4",children:[
-              r.jsxDEV("h4",{className:"font-display text-lg tracking-wider text-white",children:"Requisitos de la Imagen o DiseÃ±o"},void 0,!1,{},void 0),
-              r.jsxDEV("ul",{className:"space-y-3 text-xs sm:text-sm text-slate-300",children:[
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-emerald-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"Se necesita una imagen de muy buena calidad o vectores trazados."]},void 0,!0,{},void 0),
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-emerald-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"Formatos aceptados: PNG, JPG, TIF, EPS, PDF, CDR, AI."]},void 0,!0,{},void 0),
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-emerald-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"Especificar si el archivo viene en modo CMYK o RGB."]},void 0,!0,{},void 0)
-              ]},void 0,!0,{},void 0)
-            ]},void 0,!0,{},void 0),
-            r.jsxDEV("div",{className:"bg-slate-800/40 rounded-2xl p-5 sm:p-6 border border-slate-800 space-y-4",children:[
-              r.jsxDEV("h4",{className:"font-display text-lg tracking-wider text-white",children:"Telas y Minimos de Produccion"},void 0,!1,{},void 0),
-              r.jsxDEV("ul",{className:"space-y-3 text-xs sm:text-sm text-slate-300",children:[
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-orange-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"Composicion textil: Solo en telas que sean 100% Poliester."]},void 0,!0,{},void 0),
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-orange-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"Tela full print en rollo: Lo minimo son 5 metros."]},void 0,!0,{},void 0),
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-orange-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"Por uniforme confeccionado: El pedido minimo son 12 piezas."]},void 0,!0,{},void 0),
-                r.jsxDEV("li",{className:"flex items-start gap-2.5",children:[r.jsxDEV("span",{className:"text-orange-400 font-bold",children:"â€¢"},void 0,!1,{},void 0),"Se enviaran muestras previas para validacion del cliente."]},void 0,!0,{},void 0)
-              ]},void 0,!0,{},void 0)
-            ]},void 0,!0,{},void 0)
-          ]},void 0,!0,{},void 0),
+                r.jsxDEV("div",{
+                  className:"grid grid-cols-1 md:grid-cols-2 gap-6",
+                  children:[
+                    r.jsxDEV("div",{
+                      style:{backgroundColor:"rgba(30, 41, 59, 0.4)",borderRadius:"16px",padding:"20px",border:"1px solid #1e293b",display:"flex",flexDirection:"column",gap:"14px"},
+                      children:[
+                        r.jsxDEV("h4",{className:"font-display",style:{fontSize:"18px",letterSpacing:"0.04em",color:"#ffffff"},children:"Requisitos de la Imagen"},void 0,!1,{},void 0),
+                        r.jsxDEV("ul",{style:{display:"flex",flexDirection:"column",gap:"10px",fontSize:"13px",color:"#cbd5e1"},children:[
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Resolucion minima recomendada: 300 DPI."})
+                          ]},void 0,!0,{},void 0),
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Formato preferido: Vector (AI, EPS, PDF) o imagen de alta resolucion (PNG con fondo transparente, JPG limpio)."})
+                          ]},void 0,!0,{},void 0),
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Sin degradados complejos: el bordado se conforma por hilos solidos."})
+                          ]},void 0,!0,{},void 0)
+                        ]},void 0,!0,{},void 0)
+                      ]
+                    },void 0,!0,{},void 0),
+                    r.jsxDEV("div",{
+                      style:{backgroundColor:"rgba(30, 41, 59, 0.4)",borderRadius:"16px",padding:"20px",border:"1px solid #1e293b",display:"flex",flexDirection:"column",gap:"14px"},
+                      children:[
+                        r.jsxDEV("h4",{className:"font-display",style:{fontSize:"18px",letterSpacing:"0.04em",color:"#ffffff"},children:"Avisos Importantes"},void 0,!1,{},void 0),
+                        r.jsxDEV("ul",{style:{display:"flex",flexDirection:"column",gap:"10px",fontSize:"13px",color:"#cbd5e1"},children:[
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Digitalizacion (Ponchado): se realiza una sola vez y queda archivada para tus siguientes pedidos."})
+                          ]},void 0,!0,{},void 0),
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Tiraje minimo sugerido: a partir de 12 prendas para optimizar costo de produccion."})
+                          ]},void 0,!0,{},void 0),
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Muestra previa: enviamos fotografia o prueba fisica para tu aprobacion final antes de maquilar."})
+                          ]},void 0,!0,{},void 0)
+                        ]},void 0,!0,{},void 0)
+                      ]
+                    },void 0,!0,{},void 0)
+                  ]
+                },void 0,!0,{},void 0),
 
-          /* Galeria */
-          r.jsxDEV("div",{className:"space-y-4",children:[
-            r.jsxDEV("div",{className:"flex items-center justify-between border-b border-slate-800 pb-2",children:[
-              r.jsxDEV("h4",{className:"font-display text-xl text-white tracking-wider",children:"Marcas con Sublimados de Alta Definicion"},void 0,!1,{},void 0),
-              r.jsxDEV("span",{className:"text-xs text-slate-400",children:"Haz clic para ampliar"},void 0,!1,{},void 0)
-            ]},void 0,!0,{},void 0),
-            r.jsxDEV("div",{className:"grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3",children:sublimadoGaleria.map((u,i)=>r.jsxDEV("div",{onClick:()=>setZoomImg(u),className:"group relative aspect-square bg-slate-950 rounded-xl overflow-hidden border border-slate-800 hover:border-orange-500 cursor-pointer transition-all",children:[
-              r.jsxDEV("img",{src:u,alt:"Sublimado "+(i+1),className:"w-full h-full object-cover group-hover:scale-110 transition-transform duration-300",loading:"lazy"},void 0,!1,{},void 0),
-              r.jsxDEV("div",{className:"absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center",children:r.jsxDEV("span",{className:"text-white text-xs font-bold",children:"ðŸ”"},void 0,!1,{},void 0)},void 0,!1,{},void 0)
-            ]},i,!0,{},void 0))},void 0,!0,{},void 0)
-          ]},void 0,!0,{},void 0)
-        ]},void 0,!0,{},void 0),
+                r.jsxDEV("div",{
+                  style:{display:"flex",flexDirection:"column",gap:"14px"},
+                  children:[
+                    r.jsxDEV("div",{style:{display:"flex",alignItems:"center",justifyContent:"space-between",borderBottom:"1px solid #1e293b",paddingBottom:"8px"},children:[
+                      r.jsxDEV("h4",{className:"font-display",style:{fontSize:"20px",color:"#ffffff",letterSpacing:"0.04em"},children:"GalerÃ­a de Trabajos Realizados"},void 0,!1,{},void 0),
+                      r.jsxDEV("span",{style:{fontSize:"12px",color:"#94a3b8"},children:"Haz clic en cualquier foto para ampliar"},void 0,!1,{},void 0)
+                    ]},void 0,!0,{},void 0),
+                    r.jsxDEV("div",{
+                      className:"grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3",
+                      children:bordadoGaleria.map((img,i)=>r.jsxDEV("div",{
+                        key:i,
+                        onClick:()=>setZoomImg(img),
+                        style:{position:"relative",aspectRatio:"1/1",borderRadius:"12px",overflow:"hidden",cursor:"pointer",backgroundColor:"#020617",border:"1px solid #334155"},
+                        children:[
+                          r.jsxDEV("img",{src:img,alt:"Bordado muestra "+(i+1),style:{width:"100%",height:"100%",objectFit:"cover"},loading:"lazy"},void 0,!1,{},void 0),
+                          r.jsxDEV("div",{className:"absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center",children:r.jsxDEV("span",{style:{color:"#ffffff",fontSize:"11px",fontWeight:700,backgroundColor:"rgba(0,0,0,0.6)",padding:"4px 8px",borderRadius:"6px"},children:"Ampliar"},void 0,!1,{},void 0)},void 0,!1,{},void 0)
+                        ]
+                      },i,!0,{},void 0))
+                    },void 0,!0,{},void 0)
+                  ]
+                },void 0,!0,{},void 0)
+              ]},void 0,!0,{},void 0) :
 
-        /* WhatsApp Direct Assistance */
-        r.jsxDEV("div",{className:"bg-slate-950 border border-slate-800 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-4",children:[
-          r.jsxDEV("div",{className:"space-y-1 text-center sm:text-left",children:[
-            r.jsxDEV("h5",{className:"font-display text-lg text-white tracking-wide",children:"Deseas enviar tus archivos para validacion o cotizar tu pedido?"},void 0,!1,{},void 0),
-            r.jsxDEV("p",{className:"text-xs text-slate-400",children:"Nuestros diseÃ±adores revisan tu logotipo en minutos sin compromiso."},void 0,!1,{},void 0)
-          ]},void 0,!0,{},void 0),
-          r.jsxDEV("a",{href:"https://wa.me/529983470490?text="+encodeURIComponent(tab==="bordado"?"Hola, me gustaria cotizar uniformes con bordado personalizado y validar mi logotipo.":"Hola, me gustaria cotizar uniformes con sublimado full print y enviar mi diseÃ±o para revision."),target:"_blank",rel:"noopener noreferrer",className:"px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider flex items-center gap-2 transition-all shadow-lg shadow-emerald-900/30 whitespace-nowrap cursor-pointer",children:[
-            r.jsxDEV("svg",{className:"w-4 h-4",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"})},void 0,!1,{},void 0),
-            r.jsxDEV("span",{children:"Consultar en WhatsApp"},void 0,!1,{},void 0)
-          ]},void 0,!0,{},void 0)
-        ]},void 0,!0,{},void 0)
-      ]},void 0,!0,{},void 0)
-    ]},void 0,!0,{},void 0),
+              r.jsxDEV("div",{style:{display:"flex",flexDirection:"column",gap:"28px"},children:[
+                r.jsxDEV("div",{
+                  style:{
+                    backgroundColor:"rgba(249, 115, 22, 0.08)",
+                    border:"1px solid rgba(249, 115, 22, 0.25)",
+                    borderRadius:"14px",
+                    padding:"20px"
+                  },
+                  children:[
+                    r.jsxDEV("span",{style:{fontSize:"11px",fontWeight:700,color:"#fb923c",letterSpacing:"0.1em",textTransform:"uppercase"},children:"IMPRESION TEXTIL POR TRANSFERENCIA TERMICA"},void 0,!1,{},void 0),
+                    r.jsxDEV("h3",{className:"font-display",style:{fontSize:"22px",color:"#ffffff",marginTop:"4px"},children:"REQUERIMIENTOS PARA SUBLIMADO"},void 0,!1,{},void 0),
+                    r.jsxDEV("p",{style:{fontSize:"14px",color:"#cbd5e1",marginTop:"8px",lineHeight:1.6},children:[
+                      "Impresion de alta fidelidad para prendas de poliester, licras deportivas, playeras tecnicas y manteleria publicitaria sin limites de color ni tacto."
+                    ]},void 0,!1,{},void 0)
+                  ]
+                },void 0,!0,{},void 0),
 
-    /* Lightbox modal */
-    zoomImg ? r.jsxDEV("div",{className:"fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fade-in",onClick:()=>setZoomImg(null),children:[
-      r.jsxDEV("div",{className:"relative max-w-3xl max-h-[85vh] p-2 bg-slate-900 rounded-2xl border border-slate-700 shadow-2xl flex flex-col items-center",onClick:e=>e.stopPropagation(),children:[
-        r.jsxDEV("button",{onClick:()=>setZoomImg(null),className:"absolute top-4 right-4 z-10 p-2 rounded-full bg-slate-950/80 hover:bg-slate-800 text-white transition-all cursor-pointer border border-slate-700",children:r.jsxDEV("svg",{className:"w-5 h-5",fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M6 18L18 6M6 6l12 12"})},void 0,!1,{},void 0)},void 0,!0,{},void 0),
-        r.jsxDEV("img",{src:zoomImg,alt:"Vista ampliada",className:"max-h-[80vh] max-w-full object-contain rounded-xl"},void 0,!1,{},void 0)
-      ]},void 0,!0,{},void 0)
-    ]},void 0,!0,{},void 0) : null
-  ]},void 0,!0,{},void 0);
+                r.jsxDEV("div",{
+                  style:{
+                    backgroundColor:"rgba(2, 6, 23, 0.8)",
+                    borderRadius:"16px",
+                    padding:"18px",
+                    border:"1px solid #1e293b",
+                    display:"flex",
+                    flexDirection:"column",
+                    gap:"12px"
+                  },
+                  children:[
+                    r.jsxDEV("div",{style:{display:"flex",alignItems:"center",gap:"8px",color:"#ffffff"},children:[
+                      r.jsxDEV("svg",{style:{width:"20px",height:"20px",color:"#f97316"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"})},void 0,!1,{},void 0),
+                      r.jsxDEV("h4",{className:"font-display",style:{fontSize:"18px",letterSpacing:"0.04em"},children:"Video Demostrativo: Proceso de Sublimacion"},void 0,!1,{},void 0)
+                    ]},void 0,!0,{},void 0),
+                    r.jsxDEV("p",{style:{fontSize:"12px",color:"#94a3b8"},children:"Observa como la tinta se funde quimicamente con la fibra textil a alta temperatura garantizando durabilidad de por vida."},void 0,!1,{},void 0),
+                    r.jsxDEV("div",{
+                      style:{position:"relative",width:"100%",aspectRatio:"16/9",borderRadius:"12px",overflow:"hidden",border:"1px solid #1e293b",backgroundColor:"#020617"},
+                      children:r.jsxDEV("iframe",{src:"https://www.youtube-nocookie.com/embed/9wG5V-B6n-s?rel=0",title:"Sublimado Uniformes PRE",style:{width:"100%",height:"100%",border:0},allow:"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",allowFullScreen:!0,loading:"lazy"},void 0,!1,{},void 0)
+                    },void 0,!1,{},void 0)
+                  ]
+                },void 0,!0,{},void 0),
+
+                r.jsxDEV("div",{
+                  style:{display:"flex",flexDirection:"column",gap:"16px"},
+                  children:[
+                    r.jsxDEV("div",{style:{display:"flex",alignItems:"center",gap:"8px",borderBottom:"1px solid #1e293b",paddingBottom:"8px"},children:[
+                      r.jsxDEV("svg",{style:{width:"20px",height:"20px",color:"#f97316"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M4 6h16M4 12h16M4 18h16"})},void 0,!1,{},void 0),
+                      r.jsxDEV("h4",{className:"font-display",style:{fontSize:"20px",color:"#ffffff",letterSpacing:"0.04em"},children:"Medidas y Formato de Archivo"},void 0,!1,{},void 0)
+                    ]},void 0,!0,{},void 0),
+                    r.jsxDEV("div",{
+                      className:"grid grid-cols-1 sm:grid-cols-2 gap-4",
+                      children:sublimadoMedidas.map((m,i)=>r.jsxDEV("div",{
+                        key:i,
+                        style:{backgroundColor:"rgba(30, 41, 59, 0.5)",borderRadius:"12px",padding:"16px",border:"1px solid #334155"},
+                        children:[
+                          r.jsxDEV("span",{style:{fontSize:"11px",fontWeight:600,color:"#fb923c",textTransform:"uppercase",letterSpacing:"0.05em"},children:m.title},void 0,!1,{},void 0),
+                          r.jsxDEV("p",{style:{fontSize:"20px",fontWeight:700,color:"#ffffff",marginTop:"4px"},children:m.val},void 0,!1,{},void 0),
+                          r.jsxDEV("p",{style:{fontSize:"12px",color:"#94a3b8",marginTop:"4px"},children:m.desc},void 0,!1,{},void 0)
+                        ]
+                      },i,!0,{},void 0))
+                    },void 0,!0,{},void 0),
+                    r.jsxDEV("div",{
+                      className:"grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2",
+                      children:sublimadoDiagramas.map((d,i)=>r.jsxDEV("div",{
+                        key:i,
+                        onClick:()=>setZoomImg(d.url),
+                        style:{backgroundColor:"#020617",borderRadius:"12px",overflow:"hidden",border:"1px solid #1e293b",cursor:"pointer",padding:"16px",display:"flex",flexDirection:"column",alignItems:"center"},
+                        children:[
+                          r.jsxDEV("span",{style:{fontSize:"11px",fontWeight:700,color:"#cbd5e1",textTransform:"uppercase",letterSpacing:"0.05em",marginBottom:"8px"},children:d.title},void 0,!1,{},void 0),
+                          r.jsxDEV("div",{
+                            style:{position:"relative",width:"100%",height:"180px",display:"flex",alignItems:"center",justifyContent:"center",backgroundColor:"rgba(15, 23, 42, 0.6)",borderRadius:"8px",overflow:"hidden"},
+                            children:[
+                              r.jsxDEV("img",{src:d.url,alt:d.title,style:{maxHeight:"100%",maxWidth:"100%",objectFit:"contain"},loading:"lazy"},void 0,!1,{},void 0),
+                              r.jsxDEV("div",{
+                                className:"absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center",
+                                children:r.jsxDEV("span",{style:{padding:"6px 12px",borderRadius:"8px",backgroundColor:"#f97316",color:"#ffffff",fontWeight:700,fontSize:"12px"},children:"Ampliar imagen"},void 0,!1,{},void 0)
+                              },void 0,!1,{},void 0)
+                            ]
+                          },void 0,!0,{},void 0)
+                        ]
+                      },i,!0,{},void 0))
+                    },void 0,!0,{},void 0)
+                  ]
+                },void 0,!0,{},void 0),
+
+                r.jsxDEV("div",{
+                  className:"grid grid-cols-1 md:grid-cols-2 gap-6",
+                  children:[
+                    r.jsxDEV("div",{
+                      style:{backgroundColor:"rgba(30, 41, 59, 0.4)",borderRadius:"16px",padding:"20px",border:"1px solid #1e293b",display:"flex",flexDirection:"column",gap:"14px"},
+                      children:[
+                        r.jsxDEV("h4",{className:"font-display",style:{fontSize:"18px",letterSpacing:"0.04em",color:"#ffffff"},children:"Preparacion de Archivos"},void 0,!1,{},void 0),
+                        r.jsxDEV("ul",{style:{display:"flex",flexDirection:"column",gap:"10px",fontSize:"13px",color:"#cbd5e1"},children:[
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Perfil de color: CMYK (FOGRA39 o US Web Coated) para evitar variaciones de tono."})
+                          ]},void 0,!0,{},void 0),
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Formato: TIFF, PDF o PSD en capas, tamano real al 100% y 300 DPI."})
+                          ]},void 0,!0,{},void 0),
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Sangrado / Margen de costura: incluir 1.5 cm perimetral para cortes."})
+                          ]},void 0,!0,{},void 0)
+                        ]},void 0,!0,{},void 0)
+                      ]
+                    },void 0,!0,{},void 0),
+                    r.jsxDEV("div",{
+                      style:{backgroundColor:"rgba(30, 41, 59, 0.4)",borderRadius:"16px",padding:"20px",border:"1px solid #1e293b",display:"flex",flexDirection:"column",gap:"14px"},
+                      children:[
+                        r.jsxDEV("h4",{className:"font-display",style:{fontSize:"18px",letterSpacing:"0.04em",color:"#ffffff"},children:"Telas y Aplicaciones"},void 0,!1,{},void 0),
+                        r.jsxDEV("ul",{style:{display:"flex",flexDirection:"column",gap:"10px",fontSize:"13px",color:"#cbd5e1"},children:[
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Compatibilidad: Exclusivo para poliester 100% o mezclas con minimo 70% poliester."})
+                          ]},void 0,!0,{},void 0),
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Ideal para: Jerseys deportivos, lycras rash guard, playeras dry-fit, banderas y manteleria."})
+                          ]},void 0,!0,{},void 0),
+                          r.jsxDEV("li",{style:{display:"flex",gap:"8px",alignItems:"flex-start"},children:[
+                            r.jsxDEV("span",{style:{color:"#f97316",fontWeight:700},children:"*"},void 0,!1,{},void 0),
+                            r.jsxDEV("span",{children:"Ventaja: Cero tacto, transpirabilidad total, no se cuartea ni se decolora con las lavadas."})
+                          ]},void 0,!0,{},void 0)
+                        ]},void 0,!0,{},void 0)
+                      ]
+                    },void 0,!0,{},void 0)
+                  ]
+                },void 0,!0,{},void 0),
+
+                r.jsxDEV("div",{
+                  style:{display:"flex",flexDirection:"column",gap:"14px"},
+                  children:[
+                    r.jsxDEV("div",{style:{display:"flex",alignItems:"center",justifyContent:"space-between",borderBottom:"1px solid #1e293b",paddingBottom:"8px"},children:[
+                      r.jsxDEV("h4",{className:"font-display",style:{fontSize:"20px",color:"#ffffff",letterSpacing:"0.04em"},children:"Marcas con Sublimados de Alta DefiniciÃ³n"},void 0,!1,{},void 0),
+                      r.jsxDEV("span",{style:{fontSize:"12px",color:"#94a3b8"},children:"Haz clic en cualquier imagen para ampliar"},void 0,!1,{},void 0)
+                    ]},void 0,!0,{},void 0),
+                    r.jsxDEV("div",{
+                      className:"grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3",
+                      children:sublimadoGaleria.map((img,i)=>r.jsxDEV("div",{
+                        key:i,
+                        onClick:()=>setZoomImg(img),
+                        style:{position:"relative",aspectRatio:"1/1",borderRadius:"12px",overflow:"hidden",cursor:"pointer",backgroundColor:"#020617",border:"1px solid #334155"},
+                        children:[
+                          r.jsxDEV("img",{src:img,alt:"Sublimado muestra "+(i+1),style:{width:"100%",height:"100%",objectFit:"cover"},loading:"lazy"},void 0,!1,{},void 0),
+                          r.jsxDEV("div",{className:"absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center",children:r.jsxDEV("span",{style:{color:"#ffffff",fontSize:"11px",fontWeight:700,backgroundColor:"rgba(0,0,0,0.6)",padding:"4px 8px",borderRadius:"6px"},children:"Ampliar"},void 0,!1,{},void 0)},void 0,!1,{},void 0)
+                        ]
+                      },i,!0,{},void 0))
+                    },void 0,!0,{},void 0)
+                  ]
+                },void 0,!0,{},void 0)
+              ]},void 0,!0,{},void 0),
+
+              r.jsxDEV("div",{
+                style:{
+                  backgroundColor:"#020617",
+                  border:"1px solid #1e293b",
+                  borderRadius:"16px",
+                  padding:"20px",
+                  display:"flex",
+                  flexDirection:"row",
+                  flexWrap:"wrap",
+                  alignItems:"center",
+                  justifyContent:"space-between",
+                  gap:"16px",
+                  marginTop:"24px"
+                },
+                children:[
+                  r.jsxDEV("div",{
+                    style:{flex:1,minWidth:"240px"},
+                    children:[
+                      r.jsxDEV("h5",{className:"font-display",style:{fontSize:"18px",color:"#ffffff",letterSpacing:"0.03em"},children:"Â¿Deseas enviar tus archivos para validacion o cotizar tu pedido?"},void 0,!1,{},void 0),
+                      r.jsxDEV("p",{style:{fontSize:"12px",color:"#94a3b8",marginTop:"4px"},children:"Nuestros diseÃ±adores revisan tu logotipo en minutos sin compromiso."},void 0,!1,{},void 0)
+                    ]
+                  },void 0,!0,{},void 0),
+                  r.jsxDEV("a",{
+                    href:"https://wa.me/529983470490?text="+encodeURIComponent(tab==="bordado"?"Hola, me gustaria cotizar uniformes con bordado personalizado y validar mi logotipo.":"Hola, me gustaria cotizar uniformes con sublimado full print y enviar mi diseÃ±o para revision."),
+                    target:"_blank",
+                    rel:"noopener noreferrer",
+                    style:{
+                      padding:"12px 20px",
+                      borderRadius:"12px",
+                      backgroundColor:"#059669",
+                      color:"#ffffff",
+                      fontWeight:700,
+                      fontSize:"12px",
+                      textTransform:"uppercase",
+                      letterSpacing:"0.05em",
+                      display:"inline-flex",
+                      alignItems:"center",
+                      gap:"8px",
+                      boxShadow:"0 10px 15px -3px rgba(5, 150, 105, 0.3)",
+                      whiteSpace:"nowrap",
+                      textDecoration:"none",
+                      cursor:"pointer"
+                    },
+                    children:[
+                      r.jsxDEV("svg",{style:{width:"16px",height:"16px"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"})},void 0,!1,{},void 0),
+                      r.jsxDEV("span",{children:"Consultar en WhatsApp"},void 0,!1,{},void 0)
+                    ]
+                  },void 0,!0,{},void 0)
+                ]
+              },void 0,!0,{},void 0)
+            ]
+          },void 0,!0,{},void 0)
+        ]
+      },void 0,!0,{},void 0),
+
+      zoomImg ? r.jsxDEV("div",{
+        onClick:()=>setZoomImg(null),
+        onWheel:ev=>ev.stopPropagation(),
+        style:{
+          position:"fixed",
+          top:0,
+          left:0,
+          right:0,
+          bottom:0,
+          zIndex:100000,
+          display:"flex",
+          alignItems:"center",
+          justifyContent:"center",
+          padding:"16px",
+          backgroundColor:"rgba(0, 0, 0, 0.92)",
+          backdropFilter:"blur(8px)",
+          cursor:"pointer"
+        },
+        children:r.jsxDEV("div",{
+          onClick:ev=>ev.stopPropagation(),
+          style:{
+            position:"relative",
+            maxWidth:"800px",
+            maxHeight:"85vh",
+            padding:"8px",
+            backgroundColor:"#0f172a",
+            borderRadius:"16px",
+            border:"1px solid #334155",
+            boxShadow:"0 25px 50px -12px rgba(0, 0, 0, 0.8)",
+            display:"flex",
+            flexDirection:"column",
+            alignItems:"center"
+          },
+          children:[
+            r.jsxDEV("button",{
+              onClick:()=>setZoomImg(null),
+              type:"button",
+              "aria-label":"Cerrar vista previa",
+              style:{
+                position:"absolute",
+                top:"14px",
+                right:"14px",
+                zIndex:10,
+                width:"36px",
+                height:"36px",
+                borderRadius:"50%",
+                backgroundColor:"rgba(2, 6, 23, 0.85)",
+                color:"#ffffff",
+                border:"1px solid #334155",
+                display:"flex",
+                alignItems:"center",
+                justifyContent:"center",
+                cursor:"pointer"
+              },
+              children:r.jsxDEV("svg",{style:{width:"20px",height:"20px"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2.5,d:"M6 18L18 6M6 6l12 12"})},void 0,!1,{},void 0)
+            },void 0,!0,{},void 0),
+            r.jsxDEV("img",{src:zoomImg,alt:"Vista ampliada",style:{maxHeight:"80vh",maxWidth:"100%",objectFit:"contain",borderRadius:"12px"}},void 0,!1,{},void 0)
+          ]
+        },void 0,!0,{},void 0)
+      },void 0,!1,{},void 0) : null
+    ]
+  },void 0,!0,{},void 0);
+
+  return typeof document !== "undefined" && typeof ea !== "undefined" && ea.createPortal ? ea.createPortal(modalJsx, document.body) : modalJsx;
 }
 
 function L8({setActiveTab:o,onViewProduct:s,favorites:c,onToggleFavorite:u,onAddToCart:p,setFilterCategory:h,theme:f}){const[reqModalOpen,setReqModalOpen]=$.useState(!1),[reqTab,setReqTab]=$.useState("bordado"),[hotelMuted,setHotelMuted]=$.useState(!0),hotelVideoRef=$.useRef(null);const toggleHotelMute=()=>{if(hotelVideoRef.current){const nextMuted=!hotelVideoRef.current.muted;hotelVideoRef.current.muted=nextMuted;setHotelMuted(nextMuted);if(!nextMuted){hotelVideoRef.current.play().catch(()=>{});}}};const b=mS.filter(y=>y.isBestSeller).slice(0,3),D=[{id:"restaurante",name:"Restaurante",icon:Cj,color:"from-amber-600/30 to-amber-950/40"},{id:"hoteleria",name:"Hotelería",icon:vw,color:"from-emerald-600/30 to-emerald-950/40"},{id:"medico",name:"Médico",icon:Nj,color:"from-cyan-600/30 to-cyan-950/40"},{id:"ejecutivo",name:"Ejecutivo",icon:bT,color:"from-blue-600/30 to-blue-950/40"},{id:"industrial",name:"Industria",icon:hj,color:"from-red-600/30 to-red-950/40"}],w=y=>{h(y),o("catalogo")};return r.jsxDEV("div",{className:"space-y-14 sm:space-y-16 pb-16 animate-fade-in",id:"home-view",children:[r.jsxDEV("section",{className:"relative bg-slate-900 overflow-hidden min-h-[calc(100vh-190px)] min-h-[calc(100dvh-190px)] flex items-center",children:[r.jsxDEV("div",{className:"absolute inset-0 z-0",children:[r.jsxDEV("img",{src:z8,alt:"Tejido A Prueba de Sudor",className:"w-full h-full object-cover object-left md:object-center opacity-95 transition-opacity duration-300",loading:"eager",decoding:"async",referrerPolicy:"no-referrer",onError:y=>{y.currentTarget.src!==rw&&(y.currentTarget.src=rw)}},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:65,columnNumber:11},this),r.jsxDEV("div",{className:"absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-white/30"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:79,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:64,columnNumber:9},this),r.jsxDEV("div",{className:"relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-left",children:[r.jsxDEV("h1",{className:"font-display text-6xl sm:text-7xl md:text-8xl tracking-wider text-[#0a1128] leading-none",children:["A PRUEBA. ",r.jsxDEV("br",{},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:85,columnNumber:23},this),r.jsxDEV("span",{className:"text-orange-600",children:"DE MANCHAS."},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:86,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:84,columnNumber:11},this),r.jsxDEV("p",{className:"mt-5 max-w-lg text-sm sm:text-base text-[#0f2452] font-medium font-sans leading-relaxed",children:"Filipina con tecnología de repelencia a líquidos y aceite vegetal, ligera, versátil, resistente, transpirable y de fácil cuidado."},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:89,columnNumber:11},this),r.jsxDEV("div",{className:"mt-8 flex flex-wrap items-center gap-4",children:[r.jsxDEV("button",{onClick:()=>{const f=mS.find(v=>v.id==="filipina-gabardina-antifluido")||mS.find(v=>v.id==="filipina-cocina-ml-brooklyn")||mS.find(v=>v.category==="restaurante");h("restaurante"),o("catalogo"),f&&s(f)},className:"py-3.5 px-8 rounded bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-lg shadow-orange-600/25 flex items-center gap-2",id:"hero-buy-btn",children:["Comprar",r.jsxDEV(xs,{className:"h-4 w-4"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:102,columnNumber:32},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:94,columnNumber:13},this),r.jsxDEV("button",{onClick:()=>{h("restaurante"),o("catalogo")},className:"py-3.5 px-8 rounded border border-slate-300 bg-slate-100/80 hover:bg-white text-slate-800 font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shadow-sm",id:"hero-learn-btn",children:"Ver Catálogo"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:104,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:93,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:83,columnNumber:9},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:62,columnNumber:7},this),r.jsxDEV("section",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",children:[r.jsxDEV("div",{className:"text-center space-y-3 mb-10",children:[r.jsxDEV("h2",{className:"font-display text-5xl sm:text-6xl md:text-7xl text-white tracking-wider",children:"COMPRA POR CATEGORÍAS"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:120,columnNumber:11},this),r.jsxDEV("p",{className:"text-sm sm:text-base text-slate-400 max-w-xl mx-auto leading-relaxed",children:"Todo lo que tu empresa necesita para vestir a su equipo, en un solo lugar."},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:123,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:119,columnNumber:9},this),r.jsxDEV("div",{className:"flex flex-wrap items-center justify-center gap-4 sm:gap-5 max-w-6xl mx-auto",id:"categories-grid",children:D.map(y=>{const N=y.icon,v=f==="light";return r.jsxDEV("button",{onClick:()=>w(y.id),className:v?"w-[calc(50%-0.625rem)] sm:w-44 md:w-48 lg:w-44 xl:w-52 py-8 px-4 rounded-2xl bg-brand-navy hover:bg-[#000547] border border-brand-navy/80 hover:border-brand-orange text-white transition-all text-center flex flex-col items-center justify-between gap-5 cursor-pointer group shadow-xl hover:shadow-2xl hover:-translate-y-1.5 duration-300 min-h-[220px]":"w-[calc(50%-0.625rem)] sm:w-44 md:w-48 lg:w-44 xl:w-52 py-8 px-4 rounded-2xl bg-slate-900/90 hover:bg-slate-850 border border-slate-800 hover:border-orange-500/60 text-slate-200 hover:text-white transition-all text-center flex flex-col items-center justify-between gap-5 cursor-pointer group shadow-lg hover:shadow-orange-500/10 hover:-translate-y-1.5 duration-300 min-h-[220px]",id:`cat-card-${y.id}`,children:[r.jsxDEV("div",{className:v?"w-18 h-18 sm:w-20 sm:h-20 rounded-2xl bg-brand-orange text-white flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-orange-500/30":"w-18 h-18 sm:w-20 sm:h-20 rounded-2xl bg-slate-950 text-orange-500 border border-orange-500/30 flex items-center justify-center group-hover:scale-110 transition-transform shadow-inner group-hover:border-orange-500/60",children:r.jsxDEV(N,{className:"h-9 w-9 sm:h-10 sm:w-10 stroke-[2.2]"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:150,columnNumber:19},this)},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:143,columnNumber:17},this),r.jsxDEV("div",{className:"w-full",children:r.jsxDEV("span",{className:"font-display text-2xl sm:text-3xl text-white tracking-wider uppercase block",children:y.name},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:154,columnNumber:19},this)},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:153,columnNumber:17},this)]},y.id,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:133,columnNumber:15},this)})},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:128,columnNumber:9},this),r.jsxDEV("p",{className:"text-center text-xs uppercase tracking-[0.2em] font-semibold text-slate-400 mt-6 mb-8",id:"categories-hint",children:"Seleccione una categoría"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:163,columnNumber:9},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:118,columnNumber:7},this),r.jsxDEV("section",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 pt-8 sm:pt-12",children:[r.jsxDEV("div",{className:"text-center space-y-2",children:[r.jsxDEV("h2",{className:"font-display text-4xl sm:text-5xl text-white tracking-wider",children:"NUESTROS SERVICIOS ESPECIALIZADOS"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:173,columnNumber:11},this),r.jsxDEV("p",{className:"text-xs text-slate-400 max-w-md mx-auto",children:"Soluciones textiles a la medida de tu empresa."},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:176,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:172,columnNumber:9},this),r.jsxDEV("div",{className:"grid grid-cols-1 lg:grid-cols-12 gap-6",children:[r.jsxDEV("div",{className:"lg:col-span-7 bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-all flex flex-col md:flex-row h-full",children:[r.jsxDEV("div",{className:"md:w-1/2 relative h-48 md:h-auto min-h-[220px] bg-slate-950",children:[r.jsxDEV("img",{src:Sm,alt:"Bordados de Alta Definición",className:"w-full h-full object-cover",loading:"lazy",decoding:"async",referrerPolicy:"no-referrer",onError:y=>{y.currentTarget.src!==rw&&(y.currentTarget.src=rw)}},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:185,columnNumber:15},this),r.jsxDEV("div",{className:"absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-slate-900 via-transparent to-transparent"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:198,columnNumber:15},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:184,columnNumber:13},this),r.jsxDEV("div",{className:"md:w-1/2 p-6 sm:p-8 flex flex-col justify-between space-y-6",children:[r.jsxDEV("div",{children:[r.jsxDEV("span",{className:"text-[10px] text-orange-500 uppercase tracking-widest font-bold",children:"Personalización"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:202,columnNumber:17},this),r.jsxDEV("h3",{className:"font-display text-3xl text-white tracking-wider mt-2",children:"Bordados & Sublimados de Alta Definición"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:203,columnNumber:17},this),r.jsxDEV("p",{className:"text-xs text-slate-400 mt-2 font-sans leading-relaxed",children:"Personalizamos cada prenda con tecnología computarizada para lograr acabados precisos, colores definidos y una imagen corporativa impecable."},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:206,columnNumber:17},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:201,columnNumber:15},this),r.jsxDEV("button",{onClick:()=>{setReqTab("bordado"),setReqModalOpen(!0)},className:"py-2.5 px-5 rounded border border-slate-700 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider self-start transition-all cursor-pointer flex items-center gap-1.5",children:["Conoce los requerimientos ",r.jsxDEV(xs,{className:"h-3.5 w-3.5 text-orange-500"},void 0,!1,{},void 0)]},void 0,!0,{},void 0)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:200,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:183,columnNumber:11},this),r.jsxDEV("div",{className:"lg:col-span-5 bg-slate-900 rounded-2xl p-6 sm:p-8 border border-slate-800 hover:border-slate-700 transition-all relative overflow-hidden flex flex-col justify-between space-y-6 h-full",children:[r.jsxDEV("img",{src:hS,alt:"Asesoría de Diseño Textil",className:"absolute inset-0 w-full h-full object-cover opacity-20",loading:"lazy",decoding:"async",referrerPolicy:"no-referrer",onError:y=>{y.currentTarget.src!==Cm&&(y.currentTarget.src=Cm)}},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:224,columnNumber:13},this),r.jsxDEV("div",{className:"absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:237,columnNumber:13},this),r.jsxDEV("div",{className:"relative z-10 space-y-4",children:[r.jsxDEV("div",{className:"h-12 w-12 rounded-full bg-slate-950/80 flex items-center justify-center text-orange-500 text-xl font-bold"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:240,columnNumber:15},this),r.jsxDEV("h3",{className:"font-display text-3xl text-white tracking-wider",children:"ASESORÍA EN CAMBIOS DE IMAGEN CORPORATIVA"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:242,columnNumber:15},this),r.jsxDEV("p",{className:"text-xs text-slate-300 font-sans leading-relaxed",children:"Diseñamos el uniforme ideal para tu empresa. Escuchamos lo que tu empresa necesita y te acompañamos para encontrar la mejor solución. Te recomendamos materiales, colores, cortes y diseños que se adapten a tu marca, operación y equipo, combinando identidad, funcionalidad y comodidad."},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:245,columnNumber:15},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:239,columnNumber:13},this),r.jsxDEV("button",{onClick:()=>o("contacto"),className:"relative z-10 py-2.5 px-5 rounded bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase tracking-wider self-start transition-all cursor-pointer flex items-center gap-1.5",children:["Cotizar asesoría gratis ",r.jsxDEV(xs,{className:"h-3.5 w-3.5 text-orange-500"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:253,columnNumber:39},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:249,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:223,columnNumber:11},this),r.jsxDEV("div",{className:"lg:col-span-12 bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden hover:border-slate-700 transition-all flex flex-col md:flex-row h-full",style:{gridColumn:"1 / -1"},children:[r.jsxDEV("div",{className:"md:w-1/2 p-6 sm:p-8 flex flex-col justify-between space-y-6",children:[r.jsxDEV("div",{className:"space-y-4",children:[r.jsxDEV("span",{className:"text-[10px] text-orange-500 uppercase tracking-widest font-bold",children:"Línea Hotelera"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:261,columnNumber:17},this),r.jsxDEV("h3",{className:"font-display text-3xl text-white tracking-wider",children:"TEXTILES QUE VISTEN TUS ESPACIOS"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:262,columnNumber:17},this),r.jsxDEV("p",{className:"text-xs text-slate-400 font-sans leading-relaxed",children:"Creamos manteles, fundas, cojines y otros textiles personalizados para hoteles, restaurantes, eventos y empresas. Te acompañamos en la selección de materiales, colores y acabados."},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:265,columnNumber:17},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:260,columnNumber:15},this),r.jsxDEV("button",{onClick:()=>o("contacto"),className:"py-2.5 px-5 rounded border border-slate-800 hover:bg-slate-900 text-white font-bold text-xs uppercase tracking-wider self-start transition-colors cursor-pointer",children:"Cotizar Mantelería"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:280,columnNumber:15},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:259,columnNumber:13},this),r.jsxDEV("div",{className:"md:w-1/2 relative min-h-[260px] md:min-h-[300px] bg-slate-950 overflow-hidden group",children:[r.jsxDEV("video",{ref:hotelVideoRef,src:"./videos/linea_hotelera_tienda.mp4",autoPlay:!0,loop:!0,muted:hotelMuted,playsInline:!0,className:"absolute inset-0 w-full h-full object-cover"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:288,columnNumber:15},this),r.jsxDEV("div",{className:"absolute inset-0 bg-gradient-to-t md:bg-gradient-to-l from-slate-950/60 via-transparent to-transparent pointer-events-none"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:301,columnNumber:15},this),r.jsxDEV("button",{onClick:toggleHotelMute,type:"button","aria-label":hotelMuted?"Activar sonido":"Silenciar video",title:hotelMuted?"Activar sonido":"Silenciar video",className:"absolute bottom-3 right-3 z-10 flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 text-white text-xs font-semibold backdrop-blur-md transition-all shadow-lg hover:scale-105 active:scale-95 cursor-pointer",children:[hotelMuted?r.jsxDEV("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",className:"h-4 w-4 text-orange-400",children:[r.jsxDEV("polygon",{points:"11 5 6 9 2 9 2 15 6 15 11 19 11 5"},void 0,!1,{},this),r.jsxDEV("line",{x1:"22",x2:"16",y1:"9",y2:"15"},void 0,!1,{},this),r.jsxDEV("line",{x1:"16",x2:"22",y1:"9",y2:"15"},void 0,!1,{},this)]},void 0,!0,{},this):r.jsxDEV("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",className:"h-4 w-4 text-emerald-400 animate-pulse",children:[r.jsxDEV("polygon",{points:"11 5 6 9 2 9 2 15 6 15 11 19 11 5"},void 0,!1,{},this),r.jsxDEV("path",{d:"M15.54 8.46a5 5 0 0 1 0 7.07"},void 0,!1,{},this),r.jsxDEV("path",{d:"M19.07 4.93a10 10 0 0 1 0 14.14"},void 0,!1,{},this)]},void 0,!0,{},this),r.jsxDEV("span",{className:"text-[11px] font-sans font-medium "+(hotelMuted?"text-slate-200":"text-emerald-300"),children:hotelMuted?"Activar sonido":"Silenciar"},void 0,!1,{},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:305,columnNumber:15},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:287,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:258,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:181,columnNumber:9},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:171,columnNumber:7},this),r.jsxDEV("section",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10",children:[r.jsxDEV("div",{className:"flex flex-col sm:flex-row sm:items-end justify-between gap-4",children:[r.jsxDEV("div",{className:"space-y-2",children:[r.jsxDEV("h2",{className:"font-display text-4xl sm:text-5xl text-white tracking-wider",children:"NUESTROS BEST SELLERS"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:342,columnNumber:13},this),r.jsxDEV("p",{className:"text-xs text-slate-400 max-w-md",children:"Los favoritos de nuestros clientes."},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:345,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:341,columnNumber:11},this),r.jsxDEV("button",{onClick:()=>{h("todos"),o("catalogo")},className:"py-2.5 px-6 rounded bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-orange-500/40 text-slate-300 hover:text-white font-bold text-xs uppercase tracking-wider transition-all cursor-pointer shrink-0 flex items-center gap-1.5",children:["Ver todos los productos ",r.jsxDEV(xs,{className:"h-3.5 w-3.5 text-orange-500"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:356,columnNumber:37},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:349,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:340,columnNumber:9},this),r.jsxDEV("div",{className:"grid grid-cols-1 md:grid-cols-3 gap-8",children:b.map(y=>{const N=c.some(v=>v.id===y.id);return r.jsxDEV("div",{className:"bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-slate-700 transition-all flex flex-col group relative",children:[r.jsxDEV("div",{onClick:()=>s(y),className:"relative aspect-square overflow-hidden bg-slate-950 flex items-center justify-center cursor-pointer",children:[y.image?r.jsxDEV("img",{src:y.image,alt:y.name,className:"w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300",referrerPolicy:"no-referrer",loading:"lazy",onError:v=>{y.image&&v.currentTarget.src!==y.image&&(v.currentTarget.src=y.image)}},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:374,columnNumber:21},this):r.jsxDEV("div",{className:"w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-slate-900 to-slate-950 p-6 text-center border border-slate-800/80",children:[r.jsxDEV("div",{className:"w-12 h-12 rounded-2xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-slate-400 mb-2.5 shadow-inner group-hover:border-orange-500/50 group-hover:text-orange-400 transition-colors",children:r.jsxDEV(Rc,{className:"w-6 h-6 stroke-[1.5]"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:389,columnNumber:25},this)},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:388,columnNumber:23},this),r.jsxDEV("span",{className:"text-xs font-semibold text-slate-300 tracking-wide font-sans",children:"Sin fotografía"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:391,columnNumber:23},this),r.jsxDEV("span",{className:"text-[10px] text-slate-500 mt-0.5",children:"Disponible próximamente"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:394,columnNumber:23},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:387,columnNumber:21},this),r.jsxDEV("div",{className:"absolute top-4 right-4 flex flex-col gap-2",children:r.jsxDEV("button",{onClick:v=>{v.stopPropagation(),u(y)},className:`p-2 rounded-full border shadow focus:outline-none cursor-pointer transition-colors z-10 ${N?"bg-orange-950/80 border-orange-500/50 text-orange-500":"bg-slate-950/80 border-slate-800 text-slate-300 hover:text-white"}`,"aria-label":"Guardar favorito",children:r.jsxDEV(_c,{className:`h-4.5 w-4.5 ${N?"fill-orange-500":""}`},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:411,columnNumber:23},this)},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:399,columnNumber:21},this)},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:398,columnNumber:19},this),r.jsxDEV("span",{className:"absolute bottom-4 left-4 bg-orange-600 text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded shadow",children:"Best Seller"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:415,columnNumber:19},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:369,columnNumber:17},this),r.jsxDEV("div",{className:"p-5 flex-1 flex flex-col justify-between space-y-4",children:[r.jsxDEV("div",{className:"space-y-1.5",children:[r.jsxDEV("div",{className:"flex items-center justify-between",children:r.jsxDEV("span",{className:"text-[10px] uppercase font-bold tracking-widest text-orange-500",children:Ac(y.category)},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:424,columnNumber:23},this)},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:423,columnNumber:21},this),r.jsxDEV("h3",{onClick:()=>s(y),className:"font-bold text-white text-base truncate group-hover:text-orange-500 transition-colors cursor-pointer",style:{fontFamily:"Verdana, sans-serif"},children:y.name},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:428,columnNumber:21},this),r.jsxDEV("p",{className:"text-xs text-slate-400 line-clamp-2 leading-relaxed",children:y.description},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:435,columnNumber:21},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:422,columnNumber:19},this),r.jsxDEV("div",{className:"flex items-center justify-between border-t border-slate-800/80 pt-4 mt-auto",children:[r.jsxDEV("div",{className:"flex flex-col text-left",children:[r.jsxDEV("span",{className:"text-[9px] text-slate-500 font-mono",children:"Desde:"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:442,columnNumber:23},this),r.jsxDEV("span",{className:"font-mono text-base font-bold text-white",children:["$",y.priceTiers?(y.priceTiers["51+"]??y.priceTiers["300+"]??y.price).toFixed(2):y.price.toFixed(2)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:443,columnNumber:23},this),r.jsxDEV("span",{className:"text-[8px] text-slate-400 uppercase tracking-wider",children:"Mayoreo Neto"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:446,columnNumber:23},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:441,columnNumber:21},this),r.jsxDEV("button",{onClick:()=>s(y),className:"py-1.5 px-4 rounded bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer",children:"COTIZAR"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:448,columnNumber:21},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:440,columnNumber:19},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:421,columnNumber:17},this)]},y.id,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:364,columnNumber:15},this)})},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:360,columnNumber:9},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:339,columnNumber:7},this),r.jsxDEV("section",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",children:r.jsxDEV("div",{className:"bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 rounded-2xl overflow-hidden relative p-8 sm:p-12 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl",children:[r.jsxDEV("div",{className:"absolute top-0 right-0 h-64 w-64 bg-orange-600/5 rounded-full blur-3xl pointer-events-none"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:468,columnNumber:11},this),r.jsxDEV("div",{className:"space-y-4 text-left max-w-xl",children:[r.jsxDEV("h2",{className:"font-display text-4xl sm:text-5xl md:text-6xl text-white tracking-wide leading-none",children:["¿LISTO PARA VESTIR ",r.jsxDEV("br",{},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:472,columnNumber:34},this),"A TU EQUIPO?"]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:471,columnNumber:13},this),r.jsxDEV("p",{className:"text-xs sm:text-sm text-slate-300 font-sans leading-relaxed",children:[r.jsxDEV("span",{className:"block font-semibold text-white mb-1",children:"Hablemos de lo que tu empresa necesita."},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:474,columnNumber:15},this),"Solicita nuestro catálogo digital y descubre las soluciones que tenemos para tu industria. Si estás en nuestra zona de atención, también podemos coordinar una visita de un ejecutivo con muestras de telas, opciones de personalización y propuestas para tu equipo."]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:474,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:470,columnNumber:11},this),r.jsxDEV("div",{className:"flex flex-col sm:flex-row gap-4 shrink-0 w-full sm:w-auto",children:[r.jsxDEV("a",{href:"https://wa.me/529989370850?text=Hola%20Uniformes%20PRE%2C%20me%20gustar%C3%ADa%20solicitar%20su%20cat%C3%A1logo%20digital%20y%20conocer%20las%20opciones%20para%20mi%20empresa.",target:"_blank",rel:"noopener noreferrer",className:"py-4 px-8 rounded bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-widest transition-colors cursor-pointer shadow-lg shadow-orange-950/40 text-center inline-block",children:"SOLICITAR CATÁLOGO"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:480,columnNumber:13},this),r.jsxDEV("a",{href:"https://wa.me/529989370850?text=Hola%20Uniformes%20PRE%2C%20me%20gustar%C3%ADa%20hablar%20con%20un%20ejecutivo%20para%20coordinar%20una%20visita%20con%20muestras%20y%20asesor%C3%ADa%20para%20mi%20equipo.",target:"_blank",rel:"noopener noreferrer",className:"py-4 px-8 rounded border border-slate-700 hover:bg-slate-800 hover:border-slate-500 text-white font-bold text-xs uppercase tracking-widest transition-all cursor-pointer text-center inline-block",children:"HABLAR CON UN EJECUTIVO"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:486,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:479,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:466,columnNumber:9},this)},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:465,columnNumber:7},this),r.jsxDEV("section",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10",children:[r.jsxDEV("div",{className:"text-center space-y-2",children:[r.jsxDEV("h2",{className:"font-display text-4xl sm:text-5xl text-white tracking-wider",children:"LO QUE OPINAN NUESTROS CLIENTES"},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:504,columnNumber:11},this),r.jsxDEV("p",{className:"text-xs text-slate-400 max-w-md mx-auto",children:"La confianza de los líderes de la industria turística y restaurantera nos respalda."},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:507,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:503,columnNumber:9},this),r.jsxDEV("div",{className:"grid grid-cols-1 md:grid-cols-3 gap-6",children:_8.map(y=>r.jsxDEV("div",{className:"bg-slate-900 border border-slate-800 rounded-xl p-6 sm:p-8 flex flex-col justify-between space-y-6",children:[r.jsxDEV("div",{className:"space-y-4",children:[r.jsxDEV("div",{className:"flex space-x-1 text-amber-500",children:Array.from({length:y.rating}).map((N,v)=>r.jsxDEV(yw,{className:"h-4.5 w-4.5 fill-amber-500"},v,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:522,columnNumber:21},this))},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:520,columnNumber:17},this),r.jsxDEV("p",{className:"text-xs text-slate-300 italic leading-relaxed",children:['"',y.text,'"']},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:525,columnNumber:17},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:518,columnNumber:15},this),r.jsxDEV("div",{className:"border-t border-slate-800/80 pt-4 flex items-center gap-3",children:[r.jsxDEV("div",{className:"h-10 w-10 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center font-bold text-slate-300",children:y.name[0]},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:531,columnNumber:17},this),r.jsxDEV("div",{children:[r.jsxDEV("h4",{className:"font-bold text-xs text-white",style:{fontFamily:"Verdana, sans-serif"},children:y.name},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:535,columnNumber:19},this),r.jsxDEV("p",{className:"text-[10px] text-slate-400 mt-0.5",children:y.role},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:536,columnNumber:19},this),r.jsxDEV("p",{className:"text-[9px] text-orange-500 uppercase tracking-widest font-semibold",children:y.company},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:537,columnNumber:19},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:534,columnNumber:17},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:530,columnNumber:15},this)]},y.id,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:514,columnNumber:13},this))},void 0,!1,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:512,columnNumber:9},this)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:502,columnNumber:7},this),r.jsxDEV(RequerimientosModal,{isOpen:reqModalOpen,onClose:()=>setReqModalOpen(!1),initialTab:reqTab},void 0,!1,{},void 0)]},void 0,!0,{fileName:"/app/applet/src/components/HomeView.tsx",lineNumber:58,columnNumber:5},this)}const k8=""+new URL("UNIFROMES-02-CwuoVdSt.png",import.meta.url).href,bS=o=>(o||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim(),fi=o=>bS(o).split(/[^a-z0-9]+/i).filter(Boolean);const MANTELERIA_GALLERY=["https://res.cloudinary.com/boofzznx/image/upload/v1788720647/0048CCCE-EF54-406B-AD2B-162BE105F7A9.webp","https://res.cloudinary.com/boofzznx/image/upload/v1788720646/9088CA42-2C82-4179-B6DC-355DA269424C.webp","https://res.cloudinary.com/boofzznx/image/upload/v1788720644/1B5FB400-D0E5-4502-A55A-63FEDD690564.webp","https://res.cloudinary.com/boofzznx/image/upload/v1788720644/60A36711-A9D7-4BA0-A0B9-169A28D125A7.jpg","https://res.cloudinary.com/boofzznx/image/upload/v1788720644/4138040D-7CDF-4936-BA5D-7143191084AA.jpg"],TAPICERIA_GALLERY=["https://res.cloudinary.com/boofzznx/image/upload/v1788721011/7f2b53bf-df3c-46b3-b034-bea9e9a5f203_2.jpg","https://res.cloudinary.com/boofzznx/image/upload/v1788721010/d70f50c6-0f90-4e97-9f4a-ccc7ada8ef1a.jpg","https://res.cloudinary.com/boofzznx/image/upload/v1788721008/7779532a-bcfd-4a3f-bdd0-1e546e12b58e_2.jpg","https://res.cloudinary.com/boofzznx/image/upload/v1788721007/49fc6694-83dd-4995-b2e2-9cd3a97832c3_2.jpg","https://res.cloudinary.com/boofzznx/image/upload/v1788721005/8be50ee2-b3f0-4f0f-848f-2f4755c93f10_2.jpg","https://res.cloudinary.com/boofzznx/image/upload/v1788721003/1d8b51eb-050b-4b00-9d14-2266bda1018d.jpg"];function U8({onViewProduct:o,favorites:s,onToggleFavorite:c,onAddToCart:u,filterCategory:p,setFilterCategory:h}){const[f,b]=$.useState(""),[LB,setLB]=$.useState(null),[D,w]=$.useState(1),[y,N]=$.useState(null),[v,V]=$.useState(""),[_,q]=$.useState(!1),L=$.useRef(null),G=Q=>{if(L.current){const Y=Q==="left"?-240:240;L.current.scrollBy({left:Y,behavior:"smooth"})}},J=6;$.useEffect(()=>{w(1)},[p,f]);const W=$.useMemo(()=>{const Q=f.trim(),Y=fi(Q);return mS.filter(ie=>{if(!(p==="todos"||(p==="top-ventas"?!!(ie.image&&ie.image.trim()!==""):ie.category===p)))return!1;if(Y.length===0)return!0;const z=fi(ie.name),de=bS(ie.code),k=fi(Ac(ie.category)),Z=(ie.colors||[]).flatMap(te=>fi(te.name)),B=fi(ie.composition||""),I=fi(ie.description||""),se=(ie.features||[]).flatMap(te=>fi(te));return Y.every(te=>!!(de.includes(te)||k.some(S=>S===te||te.length>=4&&S.startsWith(te))||z.some(S=>S===te||te.length>=3&&(S.startsWith(te)||te.startsWith(S)))||Z.some(S=>S===te||te.length>=4&&S.startsWith(te))||B.some(S=>S===te)||I.some(S=>S===te)||se.some(S=>S===te)))}).sort((ie1,ie2)=>{if(p==="restaurante"){const R={"filipina-gabardina-antifluido":1,"filipina-cocina-mc-gab":2,"filipina-cocina-ml-gab":3,"filipina-cocina-ml-brooklyn":4,"mandiles-de-peto":5,"mandiles-largos":6,"mandil-corto":7,"gorros-de-cocina":8,"zapatos-alina":9,"zapatos-pegaso":10,"zapatos-cocina-big-apple":11,"cazadora-manga-corta":12,"cazadora-manga-larga":13};return(R[ie1.id]||999)-(R[ie2.id]||999)}return(ie2.image&&ie2.image.trim()!==""?1:0)-(ie1.image&&ie1.image.trim()!==""?1:0)})},[f,p]),K=Math.ceil(W.length/J)||1,ue=(D-1)*J,Se=W.slice(ue,ue+J),be=Q=>{if(Q.hasCorteSelection){o(Q);return}const Y=Q.id.includes("zapato")?void 0:"M";u(Q,1,Y),N(Q.id),setTimeout(()=>{N(null)},1200)},ee=Q=>{Q.preventDefault(),v&&(q(!0),setTimeout(()=>{q(!1),V("")},3e3))};return r.jsxDEV("div",{className:"space-y-12 pb-16 animate-fade-in",id:"catalog-view",children:[r.jsxDEV("section",{className:"relative bg-slate-950 py-16 px-4 sm:px-6 lg:px-8 text-center overflow-hidden",children:[r.jsxDEV("div",{className:"absolute inset-0 pointer-events-none z-0",children:[r.jsxDEV("img",{src:k8,alt:"Fondo UNIFORMES PRE",className:"w-full h-full object-cover object-center opacity-50",referrerPolicy:"no-referrer"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:160,columnNumber:11},this),r.jsxDEV("div",{className:"absolute inset-0 bg-slate-950/30"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:166,columnNumber:11},this),r.jsxDEV("div",{className:"absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/20 to-slate-950"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:167,columnNumber:11},this),r.jsxDEV("div",{className:"absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-slate-950 to-transparent"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:168,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:159,columnNumber:9},this),r.jsxDEV("div",{className:"relative z-10 max-w-4xl mx-auto space-y-4",children:[r.jsxDEV("h1",{className:"font-display text-5xl sm:text-6xl text-white tracking-wider",children:"NUESTRO CATÁLOGO"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:172,columnNumber:11},this),r.jsxDEV("p",{className:"text-xs sm:text-sm text-black font-sans max-w-2xl mx-auto leading-relaxed",children:"Uniformes que se adaptan a cada industria. Diseñamos y confeccionamos uniformes para empresas de todo México, combinando funcionalidad, imagen y calidad en cada prenda. Desde hotelería y gastronomía hasta corporativos, industria, retail y servicios."},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:175,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:171,columnNumber:9},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:157,columnNumber:7},this),r.jsxDEV("section",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6",children:[r.jsxDEV("div",{className:"flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-slate-900 p-4 rounded-xl border border-slate-800 shadow-sm",children:[r.jsxDEV("div",{className:"relative flex-1 min-w-0 flex items-center gap-1.5 sm:gap-2",children:[r.jsxDEV("button",{type:"button",onClick:()=>G("left"),className:"p-1.5 sm:p-2 rounded-full bg-slate-950/80 hover:bg-orange-600 text-slate-400 hover:text-white border border-slate-800 hover:border-orange-500 transition-all cursor-pointer shrink-0 shadow-sm","aria-label":"Desplazar categorías a la izquierda",title:"Desplazar a la izquierda",children:r.jsxDEV(mw,{className:"h-4 w-4"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:196,columnNumber:15},this)},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:189,columnNumber:13},this),r.jsxDEV("div",{ref:L,className:"flex items-center gap-2 overflow-x-auto horizontal-category-scrollbar py-2 px-1 scroll-smooth w-full",id:"category-chips",children:R8.map(Q=>r.jsxDEV("button",{onClick:()=>h(Q.id),className:`px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer whitespace-nowrap shrink-0 ${p===Q.id?"bg-orange-600 text-white shadow-md shadow-orange-600/30 ring-1 ring-orange-400/50 scale-[1.02]":"bg-slate-850 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800/80 hover:border-slate-700"}`,id:`chip-${Q.id}`,children:Q.name},Q.id,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:206,columnNumber:17},this))},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:200,columnNumber:13},this),r.jsxDEV("button",{type:"button",onClick:()=>G("right"),className:"p-1.5 sm:p-2 rounded-full bg-slate-950/80 hover:bg-orange-600 text-slate-400 hover:text-white border border-slate-800 hover:border-orange-500 transition-all cursor-pointer shrink-0 shadow-sm","aria-label":"Desplazar categorías a la derecha",title:"Desplazar a la derecha",children:r.jsxDEV(pw,{className:"h-4 w-4"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:229,columnNumber:15},this)},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:222,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:187,columnNumber:11},this),r.jsxDEV("div",{className:"relative w-full lg:w-72 shrink-0",children:[r.jsxDEV("input",{type:"text",value:f,onChange:Q=>b(Q.target.value),placeholder:"Buscar polo, chef, bota...",className:"w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2.5 pl-10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 transition-colors",id:"catalog-search-input"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:235,columnNumber:13},this),r.jsxDEV(uj,{className:"absolute left-3.5 top-3 h-4 w-4 text-slate-500"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:243,columnNumber:13},this),f&&r.jsxDEV("button",{onClick:()=>b(""),className:"absolute right-3.5 top-3 text-xs text-slate-400 hover:text-white font-medium",children:"Limpiar"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:245,columnNumber:15},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:234,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:185,columnNumber:9},this),f.trim()&&W.length>0&&r.jsxDEV("div",{className:"flex flex-wrap items-center justify-between gap-2 bg-slate-900/80 border border-slate-800 px-4 py-2.5 rounded-lg text-xs",children:[r.jsxDEV("p",{className:"text-slate-300",children:["Mostrando ",r.jsxDEV("strong",{className:"text-orange-400 font-bold",children:W.length},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:259,columnNumber:25},this)," ",W.length===1?"producto encontrado":"productos encontrados"," para ",r.jsxDEV("span",{className:"text-white font-semibold",children:['"',f,'"']},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:259,columnNumber:193},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:258,columnNumber:13},this),r.jsxDEV("button",{onClick:()=>{b(""),h("todos")},className:"text-orange-400 hover:text-orange-300 font-medium inline-flex items-center gap-1.5 cursor-pointer transition-colors",children:[r.jsxDEV(BE,{className:"h-3 w-3"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:268,columnNumber:15},this)," Limpiar búsqueda"]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:261,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:257,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:184,columnNumber:7},this),r.jsxDEV("section",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",children:p==="manteleria"?r.jsxDEV("div",{className:"space-y-8 animate-fade-in",id:"gallery-manteleria",children:[r.jsxDEV("div",{className:"text-center space-y-3 max-w-3xl mx-auto",children:[r.jsxDEV("div",{className:"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-600/10 border border-orange-500/30 text-orange-400 text-xs font-bold uppercase tracking-widest",children:[r.jsxDEV(vw,{className:"h-3.5 w-3.5"},void 0,!1,{},this),r.jsxDEV("span",{children:"Trabajos Especiales de Mantelería"},void 0,!1,{},this)]},void 0,!0,{},this),r.jsxDEV("h2",{className:"font-display text-3xl sm:text-4xl md:text-5xl text-white tracking-wider leading-tight",children:"Cotice su mantelería personalizada, contamos con diversos modelos y telas a su disposición"},void 0,!1,{},this),r.jsxDEV("p",{className:"text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto leading-relaxed font-sans",children:"Confección de manteles, caminos de mesa, servilletas y cubresillas para hoteles, restaurantes y eventos exclusivos en Cancún y la Riviera Maya."},void 0,!1,{},this),r.jsxDEV("div",{className:"pt-2",children:r.jsxDEV("a",{href:"https://wa.me/529989370850?text="+encodeURIComponent("Hola, me gustaría cotizar mantelería personalizada con Uniformes PRE Cancún."),target:"_blank",rel:"noopener noreferrer",className:"inline-flex items-center gap-2 py-3 px-6 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-orange-600/30 cursor-pointer",children:[r.jsxDEV("span",{children:"Cotizar Mantelería por WhatsApp"},void 0,!1,{},this),r.jsxDEV(xs,{className:"h-4 w-4"},void 0,!1,{},this)]},void 0,!0,{},this)},void 0,!1,{},this)]},void 0,!0,{},this),r.jsxDEV("div",{className:"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4",children:MANTELERIA_GALLERY.map((imgUrl,idx)=>r.jsxDEV("div",{onClick:()=>setLB(imgUrl),className:"group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all shadow-md cursor-pointer",children:[r.jsxDEV("img",{src:imgUrl,alt:"Mantelería "+(idx+1),className:"w-full h-full object-cover group-hover:scale-105 transition-transform duration-300",loading:"lazy"},void 0,!1,{},this),r.jsxDEV("div",{className:"absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4",children:r.jsxDEV("span",{className:"text-xs font-bold text-white uppercase tracking-wider",children:"Ver foto ampliada →"},void 0,!1,{},this)},void 0,!1,{},this)]},idx,!0,{},this))},void 0,!1,{},this)]},void 0,!0,{},this):p==="tapiceria"?r.jsxDEV("div",{className:"space-y-8 animate-fade-in",id:"gallery-tapiceria",children:[r.jsxDEV("div",{className:"text-center space-y-3 max-w-3xl mx-auto",children:[r.jsxDEV("div",{className:"inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-600/10 border border-orange-500/30 text-orange-400 text-xs font-bold uppercase tracking-widest",children:[r.jsxDEV(vw,{className:"h-3.5 w-3.5"},void 0,!1,{},this),r.jsxDEV("span",{children:"Servicio Profesional de Tapicería"},void 0,!1,{},this)]},void 0,!0,{},this),r.jsxDEV("h2",{className:"font-display text-3xl sm:text-4xl md:text-5xl text-white tracking-wider leading-tight",children:"Conoce nuestro trabajo de tapicería"},void 0,!1,{},this),r.jsxDEV("p",{className:"text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto leading-relaxed font-sans",children:"Retapizamos y restauramos tus muebles, renovamos y transformamos mobiliario para hoteles, restaurantes, oficinas y espacios comerciales, utilizando materiales de alta resistencia y acabados adaptados a cada proyecto."},void 0,!1,{},this),r.jsxDEV("div",{className:"pt-2",children:r.jsxDEV("a",{href:"https://wa.me/529989370850?text="+encodeURIComponent("Hola, me gustaría cotizar un trabajo de tapicería con Uniformes PRE Cancún."),target:"_blank",rel:"noopener noreferrer",className:"inline-flex items-center gap-2 py-3 px-6 rounded-xl bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-orange-600/30 cursor-pointer",children:[r.jsxDEV("span",{children:"Cotizar Tapicería por WhatsApp"},void 0,!1,{},this),r.jsxDEV(xs,{className:"h-4 w-4"},void 0,!1,{},this)]},void 0,!0,{},this)},void 0,!1,{},this)]},void 0,!0,{},this),r.jsxDEV("div",{className:"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4",children:TAPICERIA_GALLERY.map((imgUrl,idx)=>r.jsxDEV("div",{onClick:()=>setLB(imgUrl),className:"group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all shadow-md cursor-pointer",children:[r.jsxDEV("img",{src:imgUrl,alt:"Tapicería "+(idx+1),className:"w-full h-full object-cover group-hover:scale-105 transition-transform duration-300",loading:"lazy"},void 0,!1,{},this),r.jsxDEV("div",{className:"absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4",children:r.jsxDEV("span",{className:"text-xs font-bold text-white uppercase tracking-wider",children:"Ver foto ampliada →"},void 0,!1,{},this)},void 0,!1,{},this)]},idx,!0,{},this))},void 0,!1,{},this)]},void 0,!0,{},this):W.length===0?r.jsxDEV("div",{className:"text-center py-16 px-6 bg-slate-900/90 rounded-2xl border border-slate-800 max-w-2xl mx-auto space-y-6 shadow-xl animate-fade-in",id:"no-products-notice",children:[r.jsxDEV("div",{className:"w-16 h-16 rounded-full bg-slate-800/90 border border-slate-700/80 flex items-center justify-center mx-auto text-orange-500 shadow-inner",children:r.jsxDEV(mj,{className:"h-8 w-8"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:281,columnNumber:15},this)},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:280,columnNumber:13},this),r.jsxDEV("div",{className:"space-y-2",children:[r.jsxDEV("span",{className:"inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 border border-amber-500/25 text-amber-400 text-[11px] font-bold uppercase tracking-wider rounded-full",children:[r.jsxDEV(DT,{className:"h-3.5 w-3.5"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:286,columnNumber:17},this),"Sin coincidencias en catálogo"]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:285,columnNumber:15},this),r.jsxDEV("h3",{className:"font-bold text-white text-xl sm:text-2xl tracking-tight [font-family:Verdana,Geneva,sans-serif]",style:{fontFamily:"Verdana, Geneva, Tahoma, sans-serif"},children:f.trim()?`No se tiene ningún producto con el nombre "${f}"`:"No se encontraron productos en esta categoría"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:289,columnNumber:15},this),r.jsxDEV("p",{className:"text-xs sm:text-sm text-slate-400 max-w-md mx-auto leading-relaxed",children:f.trim()?"No disponemos de uniformes, calzado o prendas que coincidan con este término. Revisa la búsqueda o prueba con una de las opciones sugeridas:":"Prueba seleccionando otra categoría o limpiando los filtros para ver la colección completa."},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:297,columnNumber:15},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:284,columnNumber:13},this),f.trim()&&r.jsxDEV("div",{className:"space-y-2 pt-1",children:[r.jsxDEV("p",{className:"text-[11px] uppercase tracking-wider text-slate-500 font-semibold",children:"Búsquedas recomendadas:"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:307,columnNumber:17},this),r.jsxDEV("div",{className:"flex flex-wrap items-center justify-center gap-2 max-w-lg mx-auto",children:[{label:"🩺 Pijamas Médicas",term:"pijama medica",cat:"medico"},{label:"👟 Zapatos Médicos",term:"zapatos",cat:"medico"},{label:"👨‍🍳 Filipinas Chef",term:"chef",cat:"restaurante"},{label:"👕 Playeras Polo",term:"polo",cat:"todos"},{label:"🛡️ Botas Industriales",term:"bota",cat:"industrial"},{label:"🧵 Mantelería",term:"mantel",cat:"manteleria"}].map(Q=>r.jsxDEV("button",{onClick:()=>{b(Q.term),h(Q.cat)},className:"px-3 py-1.5 bg-slate-800 hover:bg-orange-600/20 text-slate-300 hover:text-orange-400 border border-slate-700 hover:border-orange-500/40 rounded-full text-xs font-medium transition-all cursor-pointer",children:Q.label},Q.label,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:319,columnNumber:21},this))},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:310,columnNumber:17},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:306,columnNumber:15},this),r.jsxDEV("div",{className:"pt-2",children:r.jsxDEV("button",{onClick:()=>{b(""),h("todos")},className:"inline-flex items-center gap-2 py-2.5 px-6 rounded-lg bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-lg shadow-orange-600/25 hover:shadow-orange-600/40 cursor-pointer",children:[r.jsxDEV(BE,{className:"h-3.5 w-3.5"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:342,columnNumber:17},this),"Ver todo el catálogo"]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:335,columnNumber:15},this)},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:334,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:279,columnNumber:11},this):r.jsxDEV("div",{className:"space-y-6",children:[p==="top-ventas"&&r.jsxDEV("div",{className:"p-4 sm:p-5 bg-gradient-to-r from-orange-950/40 via-slate-900 to-slate-900 border border-orange-500/30 rounded-2xl flex items-center gap-4 animate-fade-in",children:[r.jsxDEV("div",{className:"p-3 bg-orange-600 text-white rounded-xl shadow-lg shadow-orange-600/30",children:r.jsxDEV(vw,{className:"h-6 w-6"},void 0,!1,{},this)},void 0,!1,{},this),r.jsxDEV("div",{children:[r.jsxDEV("span",{className:"text-[10px] uppercase font-bold tracking-widest text-orange-400",children:"Modelos Destacados"},void 0,!1,{},this),r.jsxDEV("h2",{className:"font-display text-2xl sm:text-3xl text-white tracking-wide",children:"SECCIÓN TOP VENTAS"},void 0,!1,{},this),r.jsxDEV("p",{className:"text-xs text-slate-300",children:"Colección de uniformes y prendas con catálogo fotográfico oficial disponible."},void 0,!1,{},this)]},void 0,!0,{},this)]},void 0,!0,{},this),p==="todos"&&!f.trim()&&r.jsxDEV("div",{className:"p-4 sm:p-5 bg-gradient-to-r from-orange-950/30 via-slate-900 to-slate-900 border border-orange-500/25 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4",children:[r.jsxDEV("div",{className:"flex items-center gap-3",children:[r.jsxDEV("div",{className:"p-2.5 bg-orange-600/20 text-orange-400 border border-orange-500/30 rounded-xl",children:r.jsxDEV(vw,{className:"h-5 w-5"},void 0,!1,{},this)},void 0,!1,{},this),r.jsxDEV("div",{children:[r.jsxDEV("span",{className:"text-[10px] uppercase font-bold tracking-widest text-orange-400",children:"Colección Más Solicitada"},void 0,!1,{},this),r.jsxDEV("h3",{className:"font-display text-lg sm:text-xl text-white tracking-wide",children:"SECCIÓN TOP VENTAS"},void 0,!1,{},this),r.jsxDEV("p",{className:"text-xs text-slate-300",children:"Explora todos los modelos más vendidos con catálogo fotográfico completo."},void 0,!1,{},this)]},void 0,!0,{},this)]},void 0,!0,{},this),r.jsxDEV("button",{type:"button",onClick:()=>h("top-ventas"),className:"px-5 py-2.5 bg-orange-600 hover:bg-orange-500 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md shadow-orange-600/20 cursor-pointer shrink-0",children:"Ver Top Ventas →"},void 0,!1,{},this)]},void 0,!0,{},this),r.jsxDEV("div",{className:"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8",id:"product-catalog-grid",children:Se.map(Q=>{const Y=s.some(oe=>oe.id===Q.id),ie=y===Q.id;return r.jsxDEV("div",{className:"bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-slate-750 transition-all flex flex-col group relative",children:[r.jsxDEV("div",{onClick:()=>o(Q),className:"relative aspect-square overflow-hidden bg-slate-950 flex items-center justify-center cursor-pointer",children:[Q.image?r.jsxDEV("img",{src:Q.image,alt:Q.name,className:"w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300",referrerPolicy:"no-referrer",loading:"lazy",onError:oe=>{Q.image&&oe.currentTarget.src!==Q.image&&(oe.currentTarget.src=Q.image)}},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:364,columnNumber:23},this):r.jsxDEV("div",{className:"w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-slate-900 to-slate-950 p-6 text-center border border-slate-800/80",children:[r.jsxDEV("div",{className:"w-12 h-12 rounded-2xl bg-slate-800/80 border border-slate-700/60 flex items-center justify-center text-slate-400 mb-2.5 shadow-inner group-hover:border-orange-500/50 group-hover:text-orange-400 transition-colors",children:r.jsxDEV(Rc,{className:"w-6 h-6 stroke-[1.5]"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:379,columnNumber:27},this)},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:378,columnNumber:25},this),r.jsxDEV("span",{className:"text-xs font-semibold text-slate-300 tracking-wide font-sans",children:"Sin fotografía"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:381,columnNumber:25},this),r.jsxDEV("span",{className:"text-[10px] text-slate-500 mt-0.5 max-w-[130px] leading-tight",children:"Disponible próximamente"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:384,columnNumber:25},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:377,columnNumber:23},this),r.jsxDEV("div",{className:"absolute top-4 left-4 flex flex-col gap-1.5",children:[Q.isNew&&r.jsxDEV("span",{className:"bg-orange-600 text-white text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded shadow",children:"Nuevo"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:393,columnNumber:25},this),Q.isBestSeller&&r.jsxDEV("span",{className:"bg-amber-500 text-slate-950 text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded shadow",children:"Top Ventas"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:398,columnNumber:25},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:391,columnNumber:21},this),r.jsxDEV("button",{onClick:oe=>{oe.stopPropagation(),c(Q)},className:`absolute top-4 right-4 p-2 rounded-full border shadow focus:outline-none transition-colors cursor-pointer z-10 ${Y?"bg-orange-950/80 border-orange-500/50 text-orange-500":"bg-slate-950/80 border-slate-800 text-slate-300 hover:text-white"}`,"aria-label":"Agregar a favoritos",children:r.jsxDEV(_c,{className:`h-4.5 w-4.5 ${Y?"fill-orange-500":""}`},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:417,columnNumber:23},this)},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:405,columnNumber:21},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:359,columnNumber:19},this),r.jsxDEV("div",{className:"p-5 flex-1 flex flex-col justify-between space-y-4",children:[r.jsxDEV("div",{className:"space-y-1.5",children:[r.jsxDEV("div",{className:"flex items-center justify-between",children:r.jsxDEV("span",{className:"text-[10px] uppercase font-bold tracking-widest text-orange-500",children:Ac(Q.category)},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:425,columnNumber:25},this)},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:424,columnNumber:23},this),r.jsxDEV("h3",{onClick:()=>o(Q),className:"font-bold text-white text-base truncate group-hover:text-orange-500 transition-colors cursor-pointer",style:{fontFamily:"Verdana, sans-serif"},children:Q.name},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:429,columnNumber:23},this),r.jsxDEV("p",{className:"text-xs text-slate-400 line-clamp-2 leading-relaxed",children:Q.description},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:436,columnNumber:23},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:423,columnNumber:21},this),r.jsxDEV("div",{className:"space-y-1 pt-1",children:Q.features.slice(0,2).map((oe,z)=>r.jsxDEV("span",{className:"block text-[10px] text-slate-500",children:["✓ ",oe]},z,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:444,columnNumber:25},this))},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:442,columnNumber:21},this),r.jsxDEV("div",{className:"flex items-center justify-between border-t border-slate-800/80 pt-4 mt-auto",children:[r.jsxDEV("div",{className:"flex flex-col text-left",children:[r.jsxDEV("span",{className:"text-[9px] text-slate-500 font-mono",children:"Desde:"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:453,columnNumber:25},this),r.jsxDEV("span",{className:"font-mono text-base font-bold text-white",children:["$",Q.priceTiers?(Q.priceTiers["51+"]??Q.priceTiers["300+"]??Q.price).toFixed(2):Q.price.toFixed(2)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:454,columnNumber:25},this),r.jsxDEV("span",{className:"text-[8px] text-slate-400 uppercase tracking-wider",children:"Mayoreo Neto"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:457,columnNumber:25},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:452,columnNumber:23},this),r.jsxDEV("div",{className:"flex gap-2",children:[r.jsxDEV("button",{onClick:()=>o(Q),className:"py-2 px-3 rounded border border-slate-700 hover:bg-slate-800 text-slate-300 font-semibold text-xs transition-colors cursor-pointer",children:"Ficha"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:461,columnNumber:25},this),r.jsxDEV("button",{onClick:()=>be(Q),disabled:ie,className:`py-2 px-4 rounded font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer ${ie?"bg-emerald-600 text-white":"bg-orange-600 hover:bg-orange-700 text-white"}`,children:ie?"✓ LISTO":"COTIZAR"},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:467,columnNumber:25},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:460,columnNumber:23},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:451,columnNumber:21},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:422,columnNumber:19},this)]},Q.id,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:354,columnNumber:17},this)})},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:348,columnNumber:11},this)]},void 0,!0,{},this)},void 0,!1,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:277,columnNumber:7},this),W.length>0&&r.jsxDEV("section",{className:"flex items-center justify-center gap-2 sm:gap-4 max-w-7xl mx-auto px-4",id:"pagination",children:[r.jsxDEV("button",{onClick:()=>w(1),disabled:D===1,className:"p-2 min-w-[36px] rounded bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-white disabled:opacity-30 disabled:pointer-events-none cursor-pointer text-center font-bold","aria-label":"Ir al inicio del catálogo",title:"Ir a la primera página",children:"«"},void 0,!1,{},this),r.jsxDEV("button",{onClick:()=>w(Math.max(1,D-1)),disabled:D===1,className:"p-2 min-w-[36px] rounded bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-white disabled:opacity-30 disabled:pointer-events-none cursor-pointer text-center","aria-label":"Página anterior",title:"Página anterior",children:"←"},void 0,!1,{},this),r.jsxDEV("span",{className:"text-xs text-slate-400 font-mono px-1",children:["Página ",r.jsxDEV("strong",{className:"text-white font-bold",children:D},void 0,!1,{},this)," de ",K]},void 0,!0,{},this),r.jsxDEV("button",{onClick:()=>w(Math.min(K,D+1)),disabled:D===K,className:"p-2 min-w-[36px] rounded bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-white disabled:opacity-30 disabled:pointer-events-none cursor-pointer text-center","aria-label":"Página siguiente",title:"Página siguiente",children:"→"},void 0,!1,{},this),r.jsxDEV("button",{onClick:()=>w(K),disabled:D===K,className:"p-2 min-w-[36px] rounded bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-white disabled:opacity-30 disabled:pointer-events-none cursor-pointer text-center font-bold","aria-label":"Ir al final del catálogo",title:"Ir a la última página",children:"»"},void 0,!1,{},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:492,columnNumber:9},this),LB&&r.jsxDEV("div",{className:"fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fade-in",onClick:()=>setLB(null),children:[r.jsxDEV("button",{onClick:()=>setLB(null),className:"absolute top-4 right-4 p-2 rounded-full bg-slate-900/80 text-white hover:bg-orange-600 transition-colors cursor-pointer border border-slate-700 z-10",children:r.jsxDEV(yi,{className:"h-6 w-6"},void 0,!1,{},this)},void 0,!0,{},this),r.jsxDEV("div",{className:"relative max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl border border-slate-800 shadow-2xl",onClick:e=>e.stopPropagation(),children:r.jsxDEV("img",{src:LB,alt:"Trabajo de confección PRE",className:"w-full h-full max-h-[85vh] object-contain rounded-2xl"},void 0,!1,{},this)},void 0,!1,{},this)]},void 0,!0,{},this)]},void 0,!0,{fileName:"/app/applet/src/components/CatalogView.tsx",lineNumber:153,columnNumber:5},this)}const B8="https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787073291/ilya-lix-4l5fsRjJqLM-unsplash.jpg",P8="https://res.cloudinary.com/boofzznx/image/upload/v1788572851/UNIFROMES-29_3.png";function H8({setActiveTab:o}){const[trayVideoMuted,setTrayVideoMuted]=$.useState(!0),[trayPlaying,setTrayPlaying]=$.useState(!0),[trayCurrentTime,setTrayCurrentTime]=$.useState(0),[trayDuration,setTrayDuration]=$.useState(0),trayVideoRef=$.useRef(null);const toggleTrayMute=()=>{if(trayVideoRef.current){const nextMuted=!trayVideoRef.current.muted;trayVideoRef.current.muted=nextMuted;setTrayVideoMuted(nextMuted);if(!nextMuted){trayVideoRef.current.play().catch(()=>{});}}};const toggleTrayPlay=()=>{if(trayVideoRef.current){if(trayVideoRef.current.paused){trayVideoRef.current.play();setTrayPlaying(!0);}else{trayVideoRef.current.pause();setTrayPlaying(!1);}}};const skipTrayTime=secs=>{if(trayVideoRef.current){const t=Math.max(0,Math.min(trayVideoRef.current.duration||0,trayVideoRef.current.currentTime+secs));trayVideoRef.current.currentTime=t;setTrayCurrentTime(t);}};const handleProgressBarClick=e=>{if(trayVideoRef.current&&trayVideoRef.current.duration){const rect=e.currentTarget.getBoundingClientRect(),pos=Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width)),t=pos*trayVideoRef.current.duration;trayVideoRef.current.currentTime=t;setTrayCurrentTime(t);}};const formatVideoTime=secs=>{const m=Math.floor(secs/60),s=Math.floor(secs%60);return m+":"+(s<10?"0":"")+s;};const s=[{num:"01",title:"Calidad Técnica",badges:["Anti-mancha","Transpirable","Secado Rápido","Resistencia UV"],description:"Seleccionamos hilos y composiciones de fibras técnicas que repelen líquidos, reducen manchas de grasa corporales y maximizan la evaporación del vapor del sudor."},{num:"02",title:"Asesoría 360°",badges:["Muestras físicas","Logística integrada","Asignación de Ejecutivo"],description:"Le acompañamos en cada paso de este importante proceso con escucha activa y servicio."},{num:"03",title:"Diseño Vanguardista",badges:["Ergonomía","Cortes modernos","Durabilidad extrema"],description:"Nuestros patrones respetan los movimientos operativos del personal de cocina, camaristas o ingenieros de campo, combinando confort con una silueta estilizada."}],c=[{value:"13+",label:"Años de historia"},{value:"100k+",label:"Prendas confeccionadas"},{value:"100+",label:"Clientes corporativos"},{value:"100%",label:"Compromiso con nuestros clientes"}];return r.jsxDEV("div",{className:"space-y-20 pb-16 animate-fade-in",id:"about-view",children:[r.jsxDEV("section",{className:"relative bg-slate-950 overflow-hidden min-h-[460px] sm:min-h-[500px] flex items-center border-b border-slate-800/60",children:[r.jsxDEV("div",{className:"absolute inset-0 z-0",children:[r.jsxDEV("img",{src:B8,alt:"Fábrica y Equipo de Uniformes PRE",className:"w-full h-full object-cover object-center opacity-85 transition-opacity duration-300",loading:"eager",decoding:"async",referrerPolicy:"no-referrer"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:62,columnNumber:11},this),r.jsxDEV("div",{className:"absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-950/45 to-transparent"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:70,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:61,columnNumber:9},this),r.jsxDEV("div",{className:"relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 text-left",children:[r.jsxDEV("span",{className:"text-orange-500 text-xs font-semibold tracking-widest uppercase block mb-4",children:"NUESTRA HISTORIA"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:74,columnNumber:11},this),r.jsxDEV("h1",{className:"font-display text-5xl sm:text-6xl md:text-7xl tracking-wider text-white leading-none",children:["13 AÑOS CREANDO UNIFORMES ",r.jsxDEV("br",{},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:78,columnNumber:31},this),r.jsxDEV("span",{className:"text-orange-500",children:"QUE REPRESENTAN GRANDES EMPRESAS"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:79,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:77,columnNumber:11},this),r.jsxDEV("p",{className:"mt-4 max-w-xl text-xs sm:text-sm text-slate-300 leading-relaxed font-sans",children:"Durante más de 13 años, en Uniformes PRE hemos diseñado y fabricado soluciones textiles para empresas de diferentes industrias y necesidades."},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:81,columnNumber:11},this),r.jsxDEV("div",{className:"mt-6 flex gap-4",children:[r.jsxDEV("a",{href:"https://maps.google.com/?q=Uniformes+PRE+Cancun+Soriana+Lopez+Portillo",target:"_blank",rel:"noopener noreferrer",className:"py-3 px-6 rounded bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer shadow-lg shadow-orange-600/20 inline-flex items-center justify-center",children:"Nuestro punto de venta"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:85,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:84,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:73,columnNumber:9},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:59,columnNumber:7},this),r.jsxDEV("section",{className:"bg-slate-900 border-y border-slate-800/80 py-8 px-4 sm:px-6 lg:px-8",children:r.jsxDEV("div",{className:"max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 text-center",children:c.map((u,p)=>r.jsxDEV("div",{className:"space-y-1",children:[r.jsxDEV("span",{className:"font-display text-4xl sm:text-5xl text-orange-500 tracking-wider block",children:u.value},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:111,columnNumber:15},this),r.jsxDEV("span",{className:"text-[10px] sm:text-xs uppercase tracking-widest text-slate-400 font-semibold",children:u.label},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:114,columnNumber:15},this)]},p,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:110,columnNumber:13},this))},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:108,columnNumber:9},this)},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:107,columnNumber:7},this),r.jsxDEV("section",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",id:"trayectoria-section",children:r.jsxDEV("div",{className:"max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center",children:[r.jsxDEV("div",{className:"lg:col-span-5 space-y-6 text-left",children:[r.jsxDEV("span",{className:"text-[10px] text-orange-500 uppercase tracking-widest font-bold",children:"Hecho en México"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:129,columnNumber:13},this),r.jsxDEV("h2",{className:"font-display text-4xl sm:text-5xl text-white tracking-wide leading-none",children:["PRECISIÓN EN ",r.jsxDEV("br",{},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:131,columnNumber:28},this),"CADA PUNTADA"]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:130,columnNumber:13},this),r.jsxDEV("p",{className:"text-xs sm:text-sm text-slate-300 leading-relaxed font-sans",children:"Nuestra experiencia comenzó en el Caribe Mexicano, trabajando de cerca con sectores como hotelería, gastronomía, industria, educación y corporativo, y hoy nos permite desarrollar uniformes para clientes en diferentes regiones de México."},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:133,columnNumber:13},this),r.jsxDEV("p",{className:"text-xs sm:text-sm text-slate-300 leading-relaxed font-sans",children:"Diseño, fabricación y experiencia para vestir equipos que representan grandes marcas."},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:134,columnNumber:13},this),r.jsxDEV("p",{className:"text-xs sm:text-sm text-slate-400 leading-relaxed font-sans",children:["Contáctanos y con gusto te ayudaremos a elegir la mejor opción para tu negocio:"," ",r.jsxDEV("a",{href:"https://wa.me/529989370850",target:"_blank",rel:"noopener noreferrer",className:"text-orange-500 hover:text-orange-400 font-semibold underline underline-offset-4 transition-colors",children:"WhatsApp +52 9989370850"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:138,columnNumber:15},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:136,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:128,columnNumber:11},this),r.jsxDEV("div",{className:"lg:col-span-7 flex justify-center lg:justify-start",children:r.jsxDEV("div",{style:{maxWidth:"380px",aspectRatio:"9 / 16"},className:"relative w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl group select-none",children:[r.jsxDEV("video",{ref:trayVideoRef,src:"./videos/precision_puntada_instagram.mp4",autoPlay:!0,loop:!0,muted:trayVideoMuted,playsInline:!0,onClick:toggleTrayPlay,onTimeUpdate:()=>{trayVideoRef.current&&setTrayCurrentTime(trayVideoRef.current.currentTime)},onLoadedMetadata:()=>{trayVideoRef.current&&setTrayDuration(trayVideoRef.current.duration)},onPlay:()=>setTrayPlaying(!0),onPause:()=>setTrayPlaying(!1),className:"w-full h-full object-cover cursor-pointer"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:152,columnNumber:15},this),!trayPlaying&&r.jsxDEV("button",{onClick:toggleTrayPlay,type:"button","aria-label":"Reproducir video",className:"absolute inset-0 m-auto h-16 w-16 rounded-full bg-slate-900/85 hover:bg-slate-900 border border-white/30 text-white flex items-center justify-center backdrop-blur-md shadow-2xl transition-transform active:scale-90 cursor-pointer z-10",children:r.jsxDEV("svg",{className:"h-8 w-8 translate-x-0.5 fill-current",viewBox:"0 0 24 24",children:r.jsxDEV("polygon",{points:"6 3 20 12 6 21 6 3"},void 0,!1,{},this)},void 0,!1,{},this)},void 0,!1,{},this),r.jsxDEV("div",{className:"absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-slate-950/90 via-slate-950/60 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:153,columnNumber:15},this),r.jsxDEV("div",{className:"absolute inset-x-0 bottom-0 p-3 space-y-2 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300",children:[r.jsxDEV("div",{className:"w-full h-2 bg-white/25 hover:h-3 rounded-full cursor-pointer relative transition-all group/bar flex items-center",onClick:handleProgressBarClick,title:"Avanzar / retroceder en la barra",children:r.jsxDEV("div",{className:"h-full bg-orange-500 rounded-full relative",style:{width:`${(trayCurrentTime/(trayDuration||1))*100}%`},children:r.jsxDEV("div",{className:"absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-md scale-0 group-hover/bar:scale-100 transition-transform"},void 0,!1,{},this)},void 0,!1,{},this)},void 0,!1,{},this),r.jsxDEV("div",{className:"flex items-center justify-between text-white text-xs",children:[r.jsxDEV("div",{className:"flex items-center space-x-1.5",children:[r.jsxDEV("button",{onClick:toggleTrayPlay,type:"button","aria-label":trayPlaying?"Pausar":"Reproducir",title:trayPlaying?"Pausar":"Reproducir",className:"p-1.5 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 transition-all cursor-pointer",children:trayPlaying?r.jsxDEV("svg",{className:"h-3.5 w-3.5 fill-current",viewBox:"0 0 24 24",children:[r.jsxDEV("rect",{x:"6",y:"4",width:"4",height:"16"},void 0,!1,{},this),r.jsxDEV("rect",{x:"14",y:"4",width:"4",height:"16"},void 0,!1,{},this)]},void 0,!0,{},this):r.jsxDEV("svg",{className:"h-3.5 w-3.5 fill-current translate-x-0.5",viewBox:"0 0 24 24",children:r.jsxDEV("polygon",{points:"5 3 19 12 5 21 5 3"},void 0,!1,{},this)},void 0,!1,{},this)},void 0,!1,{},this),r.jsxDEV("button",{onClick:()=>skipTrayTime(-5),type:"button","aria-label":"Retroceder 5 segundos",title:"Retroceder 5s",className:"px-1.5 py-1 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 transition-all cursor-pointer flex items-center gap-0.5 text-[10px] font-bold",children:[r.jsxDEV("svg",{className:"h-3 w-3",viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:"2.5",strokeLinecap:"round",strokeLinejoin:"round",children:[r.jsxDEV("polyline",{points:"11 17 6 12 11 7"},void 0,!1,{},this),r.jsxDEV("polyline",{points:"18 17 13 12 18 7"},void 0,!1,{},this)]},void 0,!0,{},this),r.jsxDEV("span",{children:"-5s"},void 0,!1,{},this)]},void 0,!0,{},this),r.jsxDEV("button",{onClick:()=>skipTrayTime(5),type:"button","aria-label":"Avanzar 5 segundos",title:"Avanzar 5s",className:"px-1.5 py-1 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 transition-all cursor-pointer flex items-center gap-0.5 text-[10px] font-bold",children:[r.jsxDEV("span",{children:"+5s"},void 0,!1,{},this),r.jsxDEV("svg",{className:"h-3 w-3",viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:"2.5",strokeLinecap:"round",strokeLinejoin:"round",children:[r.jsxDEV("polyline",{points:"13 17 18 12 13 7"},void 0,!1,{},this),r.jsxDEV("polyline",{points:"6 17 11 12 6 7"},void 0,!1,{},this)]},void 0,!0,{},this)]},void 0,!0,{},this),r.jsxDEV("span",{className:"text-[10px] text-slate-300 font-mono tracking-tight pl-1",children:[formatVideoTime(trayCurrentTime)," / ",formatVideoTime(trayDuration)]},void 0,!0,{},this)]},void 0,!0,{},this),r.jsxDEV("button",{onClick:toggleTrayMute,type:"button","aria-label":trayVideoMuted?"Activar sonido":"Silenciar video",title:trayVideoMuted?"Activar sonido":"Silenciar video",className:"flex items-center space-x-1 px-2.5 py-1 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 text-xs font-semibold backdrop-blur-md transition-all cursor-pointer",children:[trayVideoMuted?r.jsxDEV("svg",{className:"h-3 w-3 text-orange-400",viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",children:[r.jsxDEV("polygon",{points:"11 5 6 9 2 9 2 15 6 15 11 19 11 5"},void 0,!1,{},this),r.jsxDEV("line",{x1:"22",x2:"16",y1:"9",y2:"15"},void 0,!1,{},this),r.jsxDEV("line",{x1:"16",x2:"22",y1:"9",y2:"15"},void 0,!1,{},this)]},void 0,!0,{},this):r.jsxDEV("svg",{className:"h-3 w-3 text-emerald-400 animate-pulse",viewBox:"0 0 24 24",fill:"none",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round",children:[r.jsxDEV("polygon",{points:"11 5 6 9 2 9 2 15 6 15 11 19 11 5"},void 0,!1,{},this),r.jsxDEV("path",{d:"M15.54 8.46a5 5 0 0 1 0 7.07"},void 0,!1,{},this),r.jsxDEV("path",{d:"M19.07 4.93a10 10 0 0 1 0 14.14"},void 0,!1,{},this)]},void 0,!0,{},this),r.jsxDEV("span",{className:"text-[10px] font-medium "+(trayVideoMuted?"text-slate-200":"text-emerald-300"),children:trayVideoMuted?"Activar sonido":"Silenciar"},void 0,!1,{},this)]},void 0,!0,{},this)]},void 0,!0,{},this)]},void 0,!0,{},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:151,columnNumber:13},this)},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:150,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:126,columnNumber:9},this)},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:125,columnNumber:7},this),r.jsxDEV("section",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10",children:[r.jsxDEV("div",{className:"text-center space-y-2",children:r.jsxDEV("h2",{className:"font-display text-4xl sm:text-5xl text-white tracking-wider",children:"Los pilares Pre uniformes"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:211,columnNumber:11},this)},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:210,columnNumber:9},this),r.jsxDEV("div",{className:"grid grid-cols-1 lg:grid-cols-3 gap-8",children:s.map(u=>r.jsxDEV("div",{className:"bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between space-y-6 text-left hover:border-orange-500/30 transition-colors group",children:[r.jsxDEV("div",{className:"space-y-4",children:[r.jsxDEV("span",{className:"font-mono text-4xl text-orange-500/35 font-bold group-hover:text-orange-500/90 transition-colors",children:u.num},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:223,columnNumber:17},this),r.jsxDEV("h3",{className:"font-display text-2xl text-white tracking-wide",children:u.title},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:226,columnNumber:17},this),r.jsxDEV("p",{className:"text-xs text-slate-400 leading-relaxed font-sans",children:u.description},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:229,columnNumber:17},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:222,columnNumber:15},this),r.jsxDEV("div",{className:"flex flex-wrap gap-2 border-t border-slate-800/80 pt-4",children:u.badges.map((p,h)=>r.jsxDEV("span",{className:"text-[9px] font-semibold bg-slate-950 border border-slate-800/60 text-slate-400 px-2 py-1 rounded",children:p},h,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:237,columnNumber:19},this))},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:235,columnNumber:15},this)]},u.num,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:218,columnNumber:13},this))},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:216,columnNumber:9},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:209,columnNumber:7},this),r.jsxDEV("section",{className:"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",children:r.jsxDEV("div",{className:"bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col lg:flex-row h-full shadow-sm",children:[r.jsxDEV("div",{className:"lg:w-1/2 relative min-h-[300px] h-64 lg:h-auto bg-slate-950",children:[r.jsxDEV("img",{src:P8,alt:"Ejecutivos y Uniformes Corporativos",className:"absolute inset-0 w-full h-full object-cover object-center",loading:"lazy",decoding:"async",referrerPolicy:"no-referrer"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:257,columnNumber:13},this),r.jsxDEV("div",{className:"absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-slate-900/80 via-slate-900/20 to-transparent"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:265,columnNumber:13},this),r.jsxDEV("div",{className:"absolute bottom-6 left-6 z-10 bg-orange-600 text-white font-display text-2xl tracking-wider py-2 px-5 rounded uppercase shadow-lg",children:"Vistiendo el éxito"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:266,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:256,columnNumber:11},this),r.jsxDEV("div",{className:"lg:w-1/2 p-8 sm:p-12 flex flex-col justify-between space-y-8 text-left",children:[r.jsxDEV("div",{className:"space-y-4",children:[r.jsxDEV("span",{className:"text-[10px] text-orange-500 uppercase tracking-widest font-bold",children:"Proyección Corporativa"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:274,columnNumber:15},this),r.jsxDEV("h2",{className:"font-display text-4xl sm:text-5xl text-white tracking-wide leading-none",children:"TU EQUIPO TAMBIÉN ES PARTE DE TU MARCA"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:275,columnNumber:15},this),r.jsxDEV("p",{className:"text-xs text-slate-300 leading-relaxed font-sans",children:"El uniforme es uno de los primeros elementos que tus clientes perciben. Diseñamos prendas que combinan identidad, funcionalidad y comodidad para que cada integrante de tu equipo proyecte la esencia y el profesionalismo de tu empresa."},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:278,columnNumber:15},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:273,columnNumber:13},this),r.jsxDEV("div",{className:"flex flex-col sm:flex-row gap-4 pt-4 border-t border-slate-800",children:[r.jsxDEV("button",{onClick:()=>o("contacto"),className:"py-3 px-6 rounded bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer text-center shadow-lg shadow-orange-600/20",children:"TRANSFORMA LA IMAGEN DE TU EQUIPO"},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:284,columnNumber:15},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:283,columnNumber:13},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:272,columnNumber:11},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:254,columnNumber:9},this)},void 0,!1,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:253,columnNumber:7},this)]},void 0,!0,{fileName:"/app/applet/src/components/AboutView.tsx",lineNumber:55,columnNumber:5},this)}function q8({theme:o}){const[s,c]=$.useState({name:"",email:"",phone:"",company:"",message:""}),[u,p]=$.useState(!1),[h,f]=$.useState(!1),b=w=>{w.preventDefault(),f(!0),setTimeout(()=>{const y=`*NUEVA SOLICITUD DE CONTACTO - WEB UNIFORMES PRE*

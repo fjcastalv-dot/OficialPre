@@ -14,6 +14,7 @@ import WhatsAppWidget from './components/WhatsAppWidget';
 import ScrollToTop from './components/ScrollToTop';
 import CookieBanner from './components/CookieBanner';
 import LegalDocsModal from './components/LegalDocsModal';
+import RequerimientosModal from './components/RequerimientosModal';
 import { ActiveTab, CartItem, Product } from './types';
 import { PRODUCTS } from './data';
 import { trackPageView, trackEvent } from './analytics';
@@ -30,6 +31,8 @@ export default function App() {
   const [isClubModalOpen, setIsClubModalOpen] = useState(false);
   const [isLegalModalOpen, setIsLegalModalOpen] = useState(false);
   const [legalModalTab, setLegalModalTab] = useState<'privacy' | 'returns'>('privacy');
+  const [isRequirementsModalOpen, setIsRequirementsModalOpen] = useState(false);
+  const [requirementsTab, setRequirementsTab] = useState<'bordado' | 'sublimado'>('bordado');
   const [filterCategory, setFilterCategory] = useState<string>('todos');
 
   // Enforce light theme across the site
@@ -378,6 +381,10 @@ export default function App() {
               navigateToTab('catalogo', cat);
             }}
             theme={theme}
+            onOpenRequirements={(tab = 'bordado') => {
+              setRequirementsTab(tab);
+              setIsRequirementsModalOpen(true);
+            }}
           />
         )}
 
@@ -449,6 +456,13 @@ export default function App() {
         isOpen={isLegalModalOpen}
         onClose={() => setIsLegalModalOpen(false)}
         initialTab={legalModalTab}
+      />
+
+      {/* Requirements Modal (Bordado & Sublimado) */}
+      <RequerimientosModal
+        isOpen={isRequirementsModalOpen}
+        onClose={() => setIsRequirementsModalOpen(false)}
+        initialTab={requirementsTab}
       />
 
       {/* Product Detail Modal */}

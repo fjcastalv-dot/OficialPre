@@ -30,6 +30,7 @@ interface HomeViewProps {
   onAddToCart: (product: Product, quantity: number, size?: string) => void;
   setFilterCategory: (category: string) => void;
   theme?: 'light' | 'dark';
+  onOpenRequirements?: (tab?: 'bordado' | 'sublimado') => void;
 }
 
 export default function HomeView({
@@ -40,6 +41,7 @@ export default function HomeView({
   onAddToCart,
   setFilterCategory,
   theme,
+  onOpenRequirements,
 }: HomeViewProps) {
   const [isHotelVideoMuted, setIsHotelVideoMuted] = useState(true);
   const [isRequirementsModalOpen, setIsRequirementsModalOpen] = useState(false);
@@ -259,8 +261,12 @@ export default function HomeView({
               </div>
               <button
                 onClick={() => {
-                  setRequirementsTab('bordado');
-                  setIsRequirementsModalOpen(true);
+                  if (onOpenRequirements) {
+                    onOpenRequirements('bordado');
+                  } else {
+                    setRequirementsTab('bordado');
+                    setIsRequirementsModalOpen(true);
+                  }
                 }}
                 className="py-2.5 px-5 rounded border border-slate-700 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider self-start transition-all cursor-pointer flex items-center gap-1.5"
               >
@@ -612,12 +618,14 @@ export default function HomeView({
         </div>
       </section>
 
-      {/* Floating Modal for Bordados and Sublimados Requirements */}
-      <RequerimientosModal
-        isOpen={isRequirementsModalOpen}
-        onClose={() => setIsRequirementsModalOpen(false)}
-        initialTab={requirementsTab}
-      />
+      {/* Floating Modal for Bordados and Sublimados Requirements (Fallback if not mounted at App root) */}
+      {!onOpenRequirements && (
+        <RequerimientosModal
+          isOpen={isRequirementsModalOpen}
+          onClose={() => setIsRequirementsModalOpen(false)}
+          initialTab={requirementsTab}
+        />
+      )}
     </div>
   );
 }
