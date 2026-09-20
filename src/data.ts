@@ -681,10 +681,10 @@ export const PRODUCTS: Product[] = [
     name: 'Filipinas de Cocina M/C Gabardina',
     price: 390.00,
     category: 'restaurante',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
     gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788571990/Dise%C3%B1o_Sin_T%C3%ADtulo_-_13.png'
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789932047/Filipina-para-chef-repelente-manga-corta-blanca-atras.png'
     ],
     rating: 4.8,
     description: 'Filipina manga corta de chef con doble abotonadura y 2 bolsillos para hombre. Corte clásico, cuello mao y confección resistente que brinda confort, frescura y una apariencia profesional impecable.',
@@ -701,10 +701,19 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Blanco',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788571990/Dise%C3%B1o_Sin_T%C3%ADtulo_-_13.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789932047/Filipina-para-chef-repelente-manga-corta-blanca-atras.png'
+        ]
+      },
+      {
+        name: 'Negro',
+        hex: '#000000',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789932319/Dise%C3%B1o_sin_t%C3%ADtulo_2.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789932319/Dise%C3%B1o_sin_t%C3%ADtulo_2.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789932321/Filipina-para-chef-repelente-manga-corta-negro-atras.png'
         ]
       }
     ],
