@@ -20,6 +20,7 @@ import { BORDADO_URL } from '../../imaganes/Imagenes inicio/Bordado';
 import { TELAS_URL } from '../../imaganes/Imagenes inicio/Telas';
 import { MANTELERIA_URL } from '../../imaganes/Imagenes inicio/Manteleria';
 import { CAPACIDAD_INDUSTRIAL_URL } from '../../imaganes/Imagenes inicio/Capacidad industrial';
+import RequerimientosModal from './RequerimientosModal';
 
 interface HomeViewProps {
   setActiveTab: (tab: ActiveTab) => void;
@@ -41,6 +42,8 @@ export default function HomeView({
   theme,
 }: HomeViewProps) {
   const [isHotelVideoMuted, setIsHotelVideoMuted] = useState(true);
+  const [isRequirementsModalOpen, setIsRequirementsModalOpen] = useState(false);
+  const [requirementsTab, setRequirementsTab] = useState<'bordado' | 'sublimado'>('bordado');
   const hotelVideoRef = useRef<HTMLVideoElement>(null);
 
   const toggleHotelVideoMute = () => {
@@ -256,12 +259,12 @@ export default function HomeView({
               </div>
               <button
                 onClick={() => {
-                  setFilterCategory('todos');
-                  setActiveTab('catalogo');
+                  setRequirementsTab('bordado');
+                  setIsRequirementsModalOpen(true);
                 }}
                 className="py-2.5 px-5 rounded border border-slate-700 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider self-start transition-all cursor-pointer flex items-center gap-1.5"
               >
-                Explorar Catálogo <ArrowRight className="h-3.5 w-3.5 text-orange-500" />
+                Conoce los requerimientos <ArrowRight className="h-3.5 w-3.5 text-orange-500" />
               </button>
             </div>
           </div>
@@ -608,6 +611,13 @@ export default function HomeView({
           ))}
         </div>
       </section>
+
+      {/* Floating Modal for Bordados and Sublimados Requirements */}
+      <RequerimientosModal
+        isOpen={isRequirementsModalOpen}
+        onClose={() => setIsRequirementsModalOpen(false)}
+        initialTab={requirementsTab}
+      />
     </div>
   );
 }
