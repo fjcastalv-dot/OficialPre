@@ -724,14 +724,18 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 14. FILIPINAS DE COCINA M/L GAB.
+  // 14. FILIPINAS DE COCINA 3/4 GAB.
   {
     id: 'filipina-cocina-ml-gab',
     code: 'FI001ML-G',
-    name: 'Filipinas de Cocina M/L Gabardina',
+    name: 'Filipinas de Cocina 3/4 Gabardina',
     price: 410.00,
     category: 'restaurante',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1788571990/Dise%C3%B1o_Sin_T%C3%ADtulo_-_13.png'
+    ],
     rating: 4.9,
     description: 'Filipina de chef con doble abotonadura. Una apariencia profesional e impecable, confort, frescura y estilo en cada movimiento. Con tecnología de repelencia a líquidos y aceite vegetal, resistente para uso intensivo y lavadas constantes.',
     composition: '65% Poliéster 35% Algodón (150 g/m²)',
@@ -745,7 +749,12 @@ export const PRODUCTS: Product[] = [
     colors: [
       {
         name: 'Blanco',
-        hex: '#ffffff'
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1788571990/Dise%C3%B1o_Sin_T%C3%ADtulo_-_13.png'
+        ]
       }
     ],
     priceTiers: {
