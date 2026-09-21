@@ -1,11 +1,80 @@
 import React, { useState, useEffect } from 'react';
-import { X, Ruler, FileText, CheckCircle2, Sparkles, Layers, Video, MessageSquare, ZoomIn, Info } from 'lucide-react';
+import { X, Ruler, FileText, CheckCircle2, Sparkles, Layers, Video, MessageSquare, ZoomIn, Info, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface RequerimientosModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialTab?: 'bordado' | 'sublimado';
 }
+
+const BORDADO_MEDIDAS = [
+  {
+    title: 'Pecho',
+    val: '8 cm base',
+    desc: 'Medida estándar recomendada para colocación en pecho izquierdo o centrado.'
+  },
+  {
+    title: 'Mangas o Gorras',
+    val: '6 cm base',
+    desc: 'Dimensión óptima para laterales de manga, viseras o frentes de gorra.'
+  },
+  {
+    title: 'Letras Pequeñas',
+    val: '0.6 cm mínimo',
+    desc: 'Altura mínima requerida por letra para asegurar nitidez y legibilidad del hilo.'
+  }
+];
+
+const BORDADO_DIAGRAMAS = [
+  'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-1.png',
+  'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho.png'
+];
+
+const BORDADO_GALERIA = [
+  'https://uniformespre.com/wp-content/uploads/2024/07/1-6.png',
+  'https://uniformespre.com/wp-content/uploads/2024/07/2-5.png',
+  'https://uniformespre.com/wp-content/uploads/2024/07/3-6.png',
+  'https://uniformespre.com/wp-content/uploads/2024/07/4-3.png',
+  'https://uniformespre.com/wp-content/uploads/2024/07/5-1.png'
+];
+
+const SUBLIMADO_MEDIDAS = [
+  {
+    title: 'Ancho Máximo',
+    val: '150 cm',
+    desc: 'Área máxima de ancho de impresión textil por rollo continuo.'
+  },
+  {
+    title: 'Largo Mínimo',
+    val: '500 cm (5 m)',
+    desc: 'Longitud mínima requerida para tiraje de tela en rollo full print.'
+  }
+];
+
+const SUBLIMADO_DIAGRAMAS = [
+  {
+    url: 'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-5-1.png',
+    title: 'Área Full Print'
+  },
+  {
+    url: 'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-7.png',
+    title: 'Distribución y Patrón'
+  },
+  {
+    url: 'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-6.png',
+    title: 'Detalle de Cortes'
+  }
+];
+
+const SUBLIMADO_GALERIA = [
+  'https://uniformespre.com/wp-content/uploads/2024/02/15f6a6eba4021348509334dc9141c8c3.jpg',
+  'https://uniformespre.com/wp-content/uploads/2024/02/sublimado4.png',
+  'https://uniformespre.com/wp-content/uploads/2024/02/images.jpg',
+  'https://uniformespre.com/wp-content/uploads/2024/02/images-3.jpg',
+  'https://uniformespre.com/wp-content/uploads/2024/02/TelaSublimado.jpg',
+  'https://uniformespre.com/wp-content/uploads/2024/02/estampados-textiles-serigrafia-sublimacion-vinilos-transfer-17359-MLA20135700007_072014-F.jpg',
+  'https://uniformespre.com/wp-content/uploads/2024/02/images-1.jpg'
+];
 
 export default function RequerimientosModal({
   isOpen,
@@ -14,11 +83,15 @@ export default function RequerimientosModal({
 }: RequerimientosModalProps) {
   const [activeTab, setActiveTab] = useState<'bordado' | 'sublimado'>(initialTab);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const [bordadoIndex, setBordadoIndex] = useState(0);
+  const [sublimadoIndex, setSublimadoIndex] = useState(0);
 
   useEffect(() => {
     if (isOpen) {
       setActiveTab(initialTab);
       setPreviewImage(null);
+      setBordadoIndex(0);
+      setSublimadoIndex(0);
     }
   }, [isOpen, initialTab]);
 
@@ -26,10 +99,16 @@ export default function RequerimientosModal({
   useEffect(() => {
     if (isOpen) {
       const origOverflow = document.body.style.overflow;
+      const origDocOverflow = document.documentElement.style.overflow;
       const origOverscroll = document.body.style.overscrollBehavior;
+      const origDocOverscroll = document.documentElement.style.overscrollBehavior;
+
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overscrollBehavior = 'none';
+      document.documentElement.style.overscrollBehavior = 'none';
       document.body.classList.add('modal-open');
+      document.documentElement.classList.add('modal-open');
 
       const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === 'Escape') {
@@ -45,12 +124,33 @@ export default function RequerimientosModal({
 
       return () => {
         document.body.style.overflow = origOverflow;
+        document.documentElement.style.overflow = origDocOverflow;
         document.body.style.overscrollBehavior = origOverscroll;
+        document.documentElement.style.overscrollBehavior = origDocOverscroll;
         document.body.classList.remove('modal-open');
+        document.documentElement.classList.remove('modal-open');
         window.removeEventListener('keydown', handleKeyDown);
       };
     }
   }, [isOpen, onClose, previewImage]);
+
+  // Auto carousel: Bordado dimensions images rotate every 5s
+  useEffect(() => {
+    if (!isOpen || activeTab !== 'bordado') return;
+    const timer = setInterval(() => {
+      setBordadoIndex((prev) => (prev + 1) % BORDADO_DIAGRAMAS.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isOpen, activeTab]);
+
+  // Auto carousel: Sublimado diagrams rotate every 4s
+  useEffect(() => {
+    if (!isOpen || activeTab !== 'sublimado') return;
+    const timer = setInterval(() => {
+      setSublimadoIndex((prev) => (prev + 1) % SUBLIMADO_DIAGRAMAS.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [isOpen, activeTab]);
 
   if (!isOpen) return null;
 
@@ -66,9 +166,9 @@ export default function RequerimientosModal({
       className="animate-fade-in"
       onClick={handleBackdropClick}
       onWheel={(e) => e.stopPropagation()}
+      onTouchMove={(e) => e.stopPropagation()}
       style={{
         position: 'fixed',
-        inset: 0,
         top: 0,
         left: 0,
         right: 0,
@@ -76,73 +176,87 @@ export default function RequerimientosModal({
         width: '100vw',
         height: '100vh',
         height: '100dvh',
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
+        backgroundColor: 'rgba(0, 0, 0, 0.65)',
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
-        zIndex: 9999,
+        zIndex: 99999,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         padding: '16px',
-        overscrollBehavior: 'contain'
+        margin: 0,
+        overscrollBehavior: 'contain',
+        boxSizing: 'border-box'
       }}
     >
-      {/* Main Modal Card */}
+      {/* Backdrop click layer */}
+      <div
+        className="absolute inset-0 cursor-pointer"
+        onClick={onClose}
+        style={{ position: 'absolute', inset: 0, cursor: 'pointer' }}
+      />
+
+      {/* Modal Main Card (Light Theme: White background) */}
       <div
         id="requerimientos-modal-card"
         onClick={(e) => e.stopPropagation()}
         onWheel={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
+        className="relative w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden flex flex-col z-10"
         style={{
           position: 'relative',
           width: '100%',
-          maxWidth: '896px',
+          maxWidth: '920px',
           maxHeight: 'calc(100vh - 32px)',
           maxHeight: 'calc(100dvh - 32px)',
           height: '88vh',
           height: '88dvh',
-          backgroundColor: '#0f172a',
-          color: '#f8fafc',
-          border: '1px solid #334155',
+          backgroundColor: '#ffffff',
+          color: '#0f172a',
           borderRadius: '16px',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.75)',
+          border: '1px solid #e2e8f0',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.05)',
+          overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          overflow: 'hidden',
+          zIndex: 10,
           overscrollBehavior: 'contain'
         }}
       >
-        {/* Top-right prominent Close Button (X) */}
+        {/* Prominent Floating Close Button (top-right X) */}
         <button
           onClick={onClose}
           type="button"
-          aria-label="Cerrar pestaña emergente"
-          title="Cerrar (Esc)"
+          aria-label="Cerrar ventana emergente"
+          className="modal-close-x-btn"
           style={{
             position: 'absolute',
-            top: '16px',
-            right: '16px',
-            zIndex: 50,
+            top: '14px',
+            right: '14px',
+            zIndex: 60,
             width: '38px',
             height: '38px',
             borderRadius: '50%',
-            backgroundColor: '#1e293b',
-            border: '1px solid #475569',
-            color: '#ffffff',
+            backgroundColor: '#f1f5f9',
+            color: '#334155',
+            border: '1.5px solid #cbd5e1',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3)',
-            transition: 'all 0.2s'
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            transition: 'all 0.2s ease'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = '#ef4444';
-            e.currentTarget.style.borderColor = '#ef4444';
+            e.currentTarget.style.borderColor = '#f87171';
+            e.currentTarget.style.color = '#ffffff';
             e.currentTarget.style.transform = 'scale(1.08)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#1e293b';
-            e.currentTarget.style.borderColor = '#475569';
+            e.currentTarget.style.backgroundColor = '#f1f5f9';
+            e.currentTarget.style.borderColor = '#cbd5e1';
+            e.currentTarget.style.color = '#334155';
             e.currentTarget.style.transform = 'scale(1)';
           }}
         >
@@ -151,14 +265,14 @@ export default function RequerimientosModal({
 
         {/* Modal Header */}
         <div
+          className="sticky top-0 z-20 shrink-0"
           style={{
             position: 'sticky',
             top: 0,
             zIndex: 20,
-            backgroundColor: '#020617',
-            borderBottom: '1px solid #1e293b',
-            padding: '16px 24px',
-            paddingRight: '64px',
+            backgroundColor: '#ffffff',
+            borderBottom: '1px solid #e2e8f0',
+            padding: '16px 64px 16px 20px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -166,33 +280,31 @@ export default function RequerimientosModal({
           }}
         >
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  padding: '2px 8px',
-                  borderRadius: '4px',
-                  fontSize: '10px',
-                  fontWeight: 700,
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  backgroundColor: 'rgba(249, 115, 22, 0.15)',
-                  color: '#fb923c',
-                  border: '1px solid rgba(249, 115, 22, 0.3)'
-                }}
-              >
-                ESPECIFICACIONES TÉCNICAS
-              </span>
-            </div>
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                padding: '3px 8px',
+                borderRadius: '4px',
+                fontSize: '10px',
+                fontWeight: 700,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                backgroundColor: '#fff7ed',
+                color: '#ea580c',
+                border: '1px solid #fed7aa'
+              }}
+            >
+              ESPECIFICACIONES TÉCNICAS
+            </span>
             <h2
               className="font-display"
               style={{
-                fontSize: '24px',
-                color: '#ffffff',
-                letterSpacing: '0.05em',
+                fontSize: '22px',
+                color: '#0f172a',
+                letterSpacing: '0.03em',
                 marginTop: '4px',
-                marginRight: '16px'
+                fontWeight: 800
               }}
             >
               Requerimientos de Personalización
@@ -200,12 +312,12 @@ export default function RequerimientosModal({
           </div>
         </div>
 
-        {/* Tab Switcher */}
+        {/* Tab Switcher (Bordado vs Sublimado) */}
         <div
           style={{
-            backgroundColor: '#020617',
-            padding: '12px 24px',
-            borderBottom: '1px solid #1e293b',
+            backgroundColor: '#f8fafc',
+            padding: '12px 20px',
+            borderBottom: '1px solid #e2e8f0',
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
@@ -217,23 +329,23 @@ export default function RequerimientosModal({
             type="button"
             style={{
               flex: 1,
-              maxWidth: '240px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '8px',
-              padding: '10px 18px',
+              padding: '11px 18px',
               borderRadius: '12px',
               fontWeight: 700,
               fontSize: '13px',
               letterSpacing: '0.05em',
               textTransform: 'uppercase',
-              transition: 'all 0.2s',
               cursor: 'pointer',
-              border: activeTab === 'bordado' ? '1px solid #fb923c' : '1px solid #334155',
-              backgroundColor: activeTab === 'bordado' ? '#f97316' : '#1e293b',
-              color: activeTab === 'bordado' ? '#ffffff' : '#94a3b8',
-              boxShadow: activeTab === 'bordado' ? '0 10px 15px -3px rgba(249, 115, 22, 0.3)' : 'none'
+              border: '1px solid',
+              backgroundColor: activeTab === 'bordado' ? '#f97316' : '#ffffff',
+              borderColor: activeTab === 'bordado' ? '#ea580c' : '#e2e8f0',
+              color: activeTab === 'bordado' ? '#ffffff' : '#64748b',
+              boxShadow: activeTab === 'bordado' ? '0 4px 12px rgba(249, 115, 22, 0.25)' : 'none',
+              transition: 'all 0.2s ease'
             }}
           >
             <Sparkles style={{ width: '16px', height: '16px' }} />
@@ -245,23 +357,23 @@ export default function RequerimientosModal({
             type="button"
             style={{
               flex: 1,
-              maxWidth: '240px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               gap: '8px',
-              padding: '10px 18px',
+              padding: '11px 18px',
               borderRadius: '12px',
               fontWeight: 700,
               fontSize: '13px',
               letterSpacing: '0.05em',
               textTransform: 'uppercase',
-              transition: 'all 0.2s',
               cursor: 'pointer',
-              border: activeTab === 'sublimado' ? '1px solid #fb923c' : '1px solid #334155',
-              backgroundColor: activeTab === 'sublimado' ? '#f97316' : '#1e293b',
-              color: activeTab === 'sublimado' ? '#ffffff' : '#94a3b8',
-              boxShadow: activeTab === 'sublimado' ? '0 10px 15px -3px rgba(249, 115, 22, 0.3)' : 'none'
+              border: '1px solid',
+              backgroundColor: activeTab === 'sublimado' ? '#f97316' : '#ffffff',
+              borderColor: activeTab === 'sublimado' ? '#ea580c' : '#e2e8f0',
+              color: activeTab === 'sublimado' ? '#ffffff' : '#64748b',
+              boxShadow: activeTab === 'sublimado' ? '0 4px 12px rgba(249, 115, 22, 0.25)' : 'none',
+              transition: 'all 0.2s ease'
             }}
           >
             <Layers style={{ width: '16px', height: '16px' }} />
@@ -269,68 +381,81 @@ export default function RequerimientosModal({
           </button>
         </div>
 
-        {/* Scrollable Content Body */}
+        {/* Scrollable Modal Content */}
         <div
           id="requerimientos-modal-body"
-          className="custom-scrollbar"
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
           style={{
             flex: '1 1 0%',
             minHeight: 0,
             overflowY: 'auto',
+            padding: '24px',
+            backgroundColor: '#ffffff',
             overscrollBehavior: 'contain',
-            WebkitOverflowScrolling: 'touch',
-            padding: '24px'
+            WebkitOverflowScrolling: 'touch'
           }}
         >
-          {activeTab === 'bordado' && (
-            <div className="space-y-8 animate-fade-in">
-              {/* Introduction Banner */}
+          {/* TAB 1: BORDADO INDUSTRIAL */}
+          {activeTab === 'bordado' ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+              {/* Highlight Banner */}
               <div
                 style={{
-                  backgroundColor: '#1e293b',
-                  border: '1px solid rgba(249, 115, 22, 0.25)',
-                  borderRadius: '12px',
+                  backgroundColor: '#fff7ed',
+                  border: '1px solid #ffedd5',
+                  borderRadius: '14px',
                   padding: '20px'
                 }}
               >
-                <span style={{ fontSize: '11px', fontWeight: 700, color: '#fb923c', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                <span style={{ fontSize: '11px', fontWeight: 700, color: '#ea580c', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                   ALTA DEFINICIÓN COMPUTARIZADA
                 </span>
-                <h3 className="font-display" style={{ fontSize: '24px', color: '#ffffff', marginTop: '4px', letterSpacing: '0.03em' }}>
+                <h3 className="font-display" style={{ fontSize: '22px', color: '#0f172a', marginTop: '4px', fontWeight: 800 }}>
                   REQUERIMIENTOS PARA BORDADOS
                 </h3>
-                <p style={{ fontSize: '14px', color: '#cbd5e1', marginTop: '8px', lineHeight: '1.6' }}>
-                  Personaliza el uniforme de tu <strong style={{ color: '#fb923c' }}>Marca, Negocio, Hotel, Restaurante o Inmobiliaria</strong> con puntada de máxima densidad, hilos de alta resistencia y calibración milimétrica.
+                <p style={{ fontSize: '14px', color: '#475569', marginTop: '8px', lineHeight: 1.6 }}>
+                  Personaliza el uniforme de tu{' '}
+                  <strong style={{ color: '#ea580c' }}>Marca, Negocio, Hotel, Restaurante o Inmobiliaria</strong> con puntada de máxima densidad, hilos de alta resistencia y calibración milimétrica.
                 </p>
               </div>
 
               {/* Video Section */}
               <div
                 style={{
-                  backgroundColor: '#020617',
+                  backgroundColor: '#f8fafc',
                   borderRadius: '16px',
-                  padding: '20px',
-                  border: '1px solid #1e293b'
+                  padding: '18px',
+                  border: '1px solid #e2e8f0',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
                 }}
-                className="space-y-3"
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ffffff' }}>
-                  <Video style={{ width: '20px', height: '20px', color: '#f97316' }} />
-                  <h4 className="font-display" style={{ fontSize: '18px', letterSpacing: '0.05em' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0f172a' }}>
+                  <Video style={{ width: '20px', height: '20px', color: '#ea580c' }} />
+                  <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.02em' }}>
                     Video de Demostración: Bordado en Proceso
                   </h4>
                 </div>
-                <p style={{ fontSize: '12px', color: '#94a3b8' }}>
-                  Conoce nuestra tecnología computarizada de bordado industrial multicabezal operando en taller Cancún.
+                <p style={{ fontSize: '12px', color: '#64748b' }}>
+                  Conoce nuestra tecnología computarizada de bordado industrial multicabezal operando en taller.
                 </p>
                 <div
-                  className="relative w-full aspect-video rounded-xl overflow-hidden shadow-inner"
-                  style={{ backgroundColor: '#000000', border: '1px solid #1e293b' }}
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: '16/9',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    border: '1px solid #cbd5e1',
+                    backgroundColor: '#000000'
+                  }}
                 >
                   <iframe
                     src="https://www.youtube-nocookie.com/embed/KVtucXUntoY?rel=0"
-                    title="Video demostrativo de Bordados Uniformes PRE"
-                    className="w-full h-full"
+                    title="Bordados Uniformes PRE"
+                    style={{ width: '100%', height: '100%', border: 0 }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     loading="lazy"
@@ -338,162 +463,284 @@ export default function RequerimientosModal({
                 </div>
               </div>
 
-              {/* Section 1: Medidas */}
-              <div className="space-y-4">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid #1e293b', paddingBottom: '8px' }}>
-                  <Ruler style={{ width: '20px', height: '20px', color: '#f97316' }} />
-                  <h4 className="font-display" style={{ fontSize: '20px', color: '#ffffff', letterSpacing: '0.05em' }}>
+              {/* Section: Medidas & Carrusel de Dimensiones */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
+                  <Ruler style={{ width: '20px', height: '20px', color: '#ea580c' }} />
+                  <h4 className="font-display" style={{ fontSize: '20px', color: '#0f172a', fontWeight: 800 }}>
                     Medidas para el Bordado
                   </h4>
                 </div>
 
+                {/* 3 Medidas Metric Boxes */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div style={{ backgroundColor: '#1e293b', borderRadius: '12px', padding: '16px', border: '1px solid #334155' }}>
-                    <span style={{ fontSize: '12px', fontWeight: 600, color: '#fb923c', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Pecho</span>
-                    <p style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>8 cm base</p>
-                    <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '4px' }}>
-                      Medida estándar recomendada para colocación en pecho izquierdo o centrado.
-                    </p>
-                  </div>
-
-                  <div style={{ backgroundColor: '#1e293b', borderRadius: '12px', padding: '16px', border: '1px solid #334155' }}>
-                    <span style={{ fontSize: '12px', fontWeight: 600, color: '#fb923c', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Mangas o Gorras</span>
-                    <p style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>6 cm base</p>
-                    <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '4px' }}>
-                      Dimensión óptima para laterales de manga, viseras o frentes de gorra.
-                    </p>
-                  </div>
-
-                  <div style={{ backgroundColor: '#1e293b', borderRadius: '12px', padding: '16px', border: '1px solid #334155' }}>
-                    <span style={{ fontSize: '12px', fontWeight: 600, color: '#fb923c', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Letras Pequeñas</span>
-                    <p style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>0.6 cm mínimo</p>
-                    <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '4px' }}>
-                      Altura mínima requerida por letra para asegurar nitidez y legibilidad del hilo.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Diagrams */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                  <div
-                    onClick={() => setPreviewImage('https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-1.png')}
-                    className="group relative rounded-xl overflow-hidden transition-all cursor-pointer p-4 flex flex-col items-center"
-                    style={{ backgroundColor: '#020617', border: '1px solid #334155' }}
-                  >
-                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#cbd5e1', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>
-                      Guía Visual de Medidas: Pecho
-                    </span>
-                    <div className="relative w-full h-48 sm:h-56 flex items-center justify-center rounded-lg overflow-hidden" style={{ backgroundColor: '#0f172a' }}>
-                      <img
-                        src="https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-1.png"
-                        alt="Medidas de bordado en pecho"
-                        className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span style={{ padding: '6px 12px', borderRadius: '8px', backgroundColor: '#f97316', color: '#ffffff', fontWeight: 700, fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <ZoomIn style={{ width: '14px', height: '14px' }} /> Ampliar imagen
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    onClick={() => setPreviewImage('https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho.png')}
-                    className="group relative rounded-xl overflow-hidden transition-all cursor-pointer p-4 flex flex-col items-center"
-                    style={{ backgroundColor: '#020617', border: '1px solid #334155' }}
-                  >
-                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#cbd5e1', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>
-                      Proporciones y Posicionamiento
-                    </span>
-                    <div className="relative w-full h-48 sm:h-56 flex items-center justify-center rounded-lg overflow-hidden" style={{ backgroundColor: '#0f172a' }}>
-                      <img
-                        src="https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho.png"
-                        alt="Posición estándar de bordado"
-                        className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span style={{ padding: '6px 12px', borderRadius: '8px', backgroundColor: '#f97316', color: '#ffffff', fontWeight: 700, fontSize: '12px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <ZoomIn style={{ width: '14px', height: '14px' }} /> Ampliar imagen
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Section 2: Requisitos de la imagen & Avisos */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Formatos */}
-                <div style={{ backgroundColor: '#1e293b', borderRadius: '16px', padding: '20px', border: '1px solid #334155' }} className="space-y-4">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ffffff' }}>
-                    <FileText style={{ width: '20px', height: '20px', color: '#f97316' }} />
-                    <h4 className="font-display" style={{ fontSize: '18px', letterSpacing: '0.05em' }}>Requisitos de la Imagen</h4>
-                  </div>
-                  <ul className="space-y-3" style={{ fontSize: '13px', color: '#cbd5e1' }}>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#34d399', flexShrink: 0, marginTop: '2px' }} />
-                      <span>Se necesita una imagen de <strong>buena o media calidad</strong> para digitalizar y ponchar el logo.</span>
-                    </li>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#34d399', flexShrink: 0, marginTop: '2px' }} />
-                      <span>Formatos de archivo aceptados: <strong>PNG, JPG, TIF, EPS, PDF</strong> (o vectores en AI/CDR).</span>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Avisos */}
-                <div style={{ backgroundColor: '#1e293b', borderRadius: '16px', padding: '20px', border: '1px solid #334155' }} className="space-y-4">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ffffff' }}>
-                    <Info style={{ width: '20px', height: '20px', color: '#f97316' }} />
-                    <h4 className="font-display" style={{ fontSize: '18px', letterSpacing: '0.05em' }}>Condiciones y Muestras</h4>
-                  </div>
-                  <ul className="space-y-3" style={{ fontSize: '13px', color: '#cbd5e1' }}>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#fb923c', flexShrink: 0, marginTop: '2px' }} />
-                      <span><strong>Pedido mínimo:</strong> A partir de <strong>12 piezas</strong> se bordará si eres cliente nuevo.</span>
-                    </li>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#fb923c', flexShrink: 0, marginTop: '2px' }} />
-                      <span>El diseñador(a) adaptará las proporciones a las medidas de prenda si es necesario.</span>
-                    </li>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#fb923c', flexShrink: 0, marginTop: '2px' }} />
-                      <span>Se enviarán <strong>fotos de muestras</strong> del bordado al cliente para autorización previa antes del tiraje final.</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Section 3: Galería de Trabajos Realizados */}
-              <div className="space-y-4">
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #1e293b', paddingBottom: '8px' }}>
-                  <h4 className="font-display" style={{ fontSize: '20px', color: '#ffffff', letterSpacing: '0.05em' }}>
-                    Marcas con su Bordado Corporativo
-                  </h4>
-                  <span style={{ fontSize: '12px', color: '#94a3b8' }}>Haz clic en cualquier imagen para ampliar</span>
-                </div>
-
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-                  {[
-                    'https://uniformespre.com/wp-content/uploads/2024/07/1-6.png',
-                    'https://uniformespre.com/wp-content/uploads/2024/07/2-5.png',
-                    'https://uniformespre.com/wp-content/uploads/2024/07/3-6.png',
-                    'https://uniformespre.com/wp-content/uploads/2024/07/4-3.png',
-                    'https://uniformespre.com/wp-content/uploads/2024/07/5-1.png'
-                  ].map((imgUrl, idx) => (
+                  {BORDADO_MEDIDAS.map((m, i) => (
                     <div
-                      key={idx}
-                      onClick={() => setPreviewImage(imgUrl)}
-                      className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer transition-all"
-                      style={{ backgroundColor: '#020617', border: '1px solid #334155' }}
+                      key={i}
+                      style={{
+                        backgroundColor: '#f8fafc',
+                        borderRadius: '12px',
+                        padding: '16px',
+                        border: '1px solid #e2e8f0'
+                      }}
+                    >
+                      <span style={{ fontSize: '11px', fontWeight: 700, color: '#ea580c', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        {m.title}
+                      </span>
+                      <p style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', marginTop: '4px' }}>
+                        {m.val}
+                      </p>
+                      <p style={{ fontSize: '12px', color: '#64748b', marginTop: '4px', lineHeight: 1.5 }}>
+                        {m.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Carrusel automático de dimensiones (1 sola foto visible, alterna cada 5s, sin título) */}
+                <div
+                  style={{
+                    backgroundColor: '#f8fafc',
+                    borderRadius: '16px',
+                    border: '1px solid #e2e8f0',
+                    padding: '20px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '14px'
+                  }}
+                >
+                  <div
+                    onClick={() => setPreviewImage(BORDADO_DIAGRAMAS[bordadoIndex])}
+                    className="group"
+                    style={{
+                      position: 'relative',
+                      width: '100%',
+                      maxWidth: '520px',
+                      height: '260px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: '#ffffff',
+                      borderRadius: '12px',
+                      border: '1px solid #e2e8f0',
+                      cursor: 'pointer',
+                      overflow: 'hidden',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
+                    }}
+                  >
+                    <img
+                      src={BORDADO_DIAGRAMAS[bordadoIndex]}
+                      alt={`Medida de bordado ${bordadoIndex + 1}`}
+                      style={{ maxHeight: '92%', maxWidth: '92%', objectFit: 'contain', transition: 'all 0.4s ease' }}
+                      loading="lazy"
+                    />
+
+                    {/* Prev / Next controls */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setBordadoIndex((prev) => (prev - 1 + BORDADO_DIAGRAMAS.length) % BORDADO_DIAGRAMAS.length);
+                      }}
+                      style={{
+                        position: 'absolute',
+                        left: '12px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        backgroundColor: '#ffffff',
+                        border: '1px solid #cbd5e1',
+                        color: '#0f172a',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)'
+                      }}
+                    >
+                      <ChevronLeft style={{ width: '18px', height: '18px' }} />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setBordadoIndex((prev) => (prev + 1) % BORDADO_DIAGRAMAS.length);
+                      }}
+                      style={{
+                        position: 'absolute',
+                        right: '12px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        backgroundColor: '#ffffff',
+                        border: '1px solid #cbd5e1',
+                        color: '#0f172a',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)'
+                      }}
+                    >
+                      <ChevronRight style={{ width: '18px', height: '18px' }} />
+                    </button>
+
+                    <div
+                      className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none"
+                    >
+                      <span
+                        style={{
+                          padding: '6px 14px',
+                          borderRadius: '8px',
+                          backgroundColor: '#ea580c',
+                          color: '#ffffff',
+                          fontWeight: 700,
+                          fontSize: '12px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px'
+                        }}
+                      >
+                        <ZoomIn style={{ width: '14px', height: '14px' }} />
+                        Ampliar imagen
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Indicator Dots */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    {BORDADO_DIAGRAMAS.map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setBordadoIndex(idx)}
+                        aria-label={`Ver imagen ${idx + 1}`}
+                        style={{
+                          height: '8px',
+                          width: bordadoIndex === idx ? '24px' : '8px',
+                          borderRadius: '4px',
+                          backgroundColor: bordadoIndex === idx ? '#ea580c' : '#cbd5e1',
+                          border: 'none',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease'
+                        }}
+                      />
+                    ))}
+                    <span style={{ fontSize: '11px', color: '#94a3b8', marginLeft: '6px' }}>
+                      (Cambio automático cada 5s)
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Requirements & Notices Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div
+                  style={{
+                    backgroundColor: '#f8fafc',
+                    borderRadius: '16px',
+                    padding: '20px',
+                    border: '1px solid #e2e8f0',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '14px'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <FileText style={{ width: '18px', height: '18px', color: '#ea580c' }} />
+                    <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
+                      Requisitos de la Imagen
+                    </h4>
+                  </div>
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#334155' }}>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
+                      <span><strong>Resolución mínima:</strong> 300 DPI recomendada.</span>
+                    </li>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
+                      <span><strong>Formatos preferidos:</strong> Vectoriales (AI, EPS, PDF) o mapas de bits en alta calidad (PNG fondo transparente, JPG nítido).</span>
+                    </li>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
+                      <span><strong>Sin degradados complejos:</strong> Los bordados emplean hilos continuos en colores sólidos.</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div
+                  style={{
+                    backgroundColor: '#f8fafc',
+                    borderRadius: '16px',
+                    padding: '20px',
+                    border: '1px solid #e2e8f0',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '14px'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Info style={{ width: '18px', height: '18px', color: '#ea580c' }} />
+                    <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
+                      Avisos Importantes
+                    </h4>
+                  </div>
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#334155' }}>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
+                      <span><strong>Digitalización (Ponchado):</strong> Se realiza una sola vez y queda archivada para tus siguientes pedidos.</span>
+                    </li>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
+                      <span><strong>Tiraje mínimo:</strong> A partir de 12 piezas para optimizar costo por prenda.</span>
+                    </li>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
+                      <span><strong>Muestra previa:</strong> Enviamos fotografía de bordado real para tu visto bueno antes de maquilar.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Galería Bordados */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
+                  <h4 className="font-display" style={{ fontSize: '20px', color: '#0f172a', fontWeight: 800 }}>
+                    Galería de Trabajos Realizados
+                  </h4>
+                  <span style={{ fontSize: '12px', color: '#64748b' }}>Haz clic en cualquier foto para ampliar</span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                  {BORDADO_GALERIA.map((img, i) => (
+                    <div
+                      key={i}
+                      onClick={() => setPreviewImage(img)}
+                      className="group"
+                      style={{
+                        position: 'relative',
+                        aspectRatio: '1/1',
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        cursor: 'pointer',
+                        backgroundColor: '#f8fafc',
+                        border: '1px solid #e2e8f0',
+                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.04)'
+                      }}
                     >
                       <img
-                        src={imgUrl}
-                        alt={`Muestra de bordado ${idx + 1}`}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        src={img}
+                        alt={`Bordado muestra ${i + 1}`}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.parentElement!.style.display = 'none';
+                        }}
                       />
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <ZoomIn style={{ width: '20px', height: '20px', color: '#ffffff' }} />
@@ -503,57 +750,65 @@ export default function RequerimientosModal({
                 </div>
               </div>
             </div>
-          )}
-
-          {activeTab === 'sublimado' && (
-            <div className="space-y-8 animate-fade-in">
-              {/* Introduction Banner */}
+          ) : (
+            /* TAB 2: SUBLIMADO FULL PRINT */
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+              {/* Highlight Banner */}
               <div
                 style={{
-                  backgroundColor: '#1e293b',
-                  border: '1px solid rgba(249, 115, 22, 0.25)',
-                  borderRadius: '12px',
+                  backgroundColor: '#fff7ed',
+                  border: '1px solid #ffedd5',
+                  borderRadius: '14px',
                   padding: '20px'
                 }}
               >
-                <span style={{ fontSize: '11px', fontWeight: 700, color: '#fb923c', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                  TRANSFERENCIA TÉRMICA INDELEBLE
+                <span style={{ fontSize: '11px', fontWeight: 700, color: '#ea580c', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                  IMPRESIÓN TEXTIL POR TRANSFERENCIA TÉRMICA
                 </span>
-                <h3 className="font-display" style={{ fontSize: '24px', color: '#ffffff', marginTop: '4px', letterSpacing: '0.03em' }}>
-                  REQUERIMIENTOS PARA SUBLIMADOS
+                <h3 className="font-display" style={{ fontSize: '22px', color: '#0f172a', marginTop: '4px', fontWeight: 800 }}>
+                  REQUERIMIENTOS PARA SUBLIMADO
                 </h3>
-                <p style={{ fontSize: '14px', color: '#cbd5e1', marginTop: '8px', lineHeight: '1.6' }}>
-                  Destaca tu <strong style={{ color: '#fb923c' }}>Marca, Negocio, Hotel, Restaurante o Inmobiliaria</strong> con sublimación full-print de colores vivos que nunca se despintan ni se agrietan.
+                <p style={{ fontSize: '14px', color: '#475569', marginTop: '8px', lineHeight: 1.6 }}>
+                  Impresión de alta fidelidad para prendas de poliéster, licras deportivas, playeras técnicas y mantelería publicitaria sin límites de color ni tacto.
                 </p>
               </div>
 
               {/* Video Section */}
               <div
                 style={{
-                  backgroundColor: '#020617',
+                  backgroundColor: '#f8fafc',
                   borderRadius: '16px',
-                  padding: '20px',
-                  border: '1px solid #1e293b'
+                  padding: '18px',
+                  border: '1px solid #e2e8f0',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
                 }}
-                className="space-y-3"
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ffffff' }}>
-                  <Video style={{ width: '20px', height: '20px', color: '#f97316' }} />
-                  <h4 className="font-display" style={{ fontSize: '18px', letterSpacing: '0.05em' }}>
-                    Video de Demostración: Sublimado Full-Print
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0f172a' }}>
+                  <Video style={{ width: '20px', height: '20px', color: '#ea580c' }} />
+                  <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.02em' }}>
+                    Video Demostrativo: Proceso de Sublimación
                   </h4>
                 </div>
-                <p style={{ fontSize: '12px', color: '#94a3b8' }}>
-                  Mira la transferencia de calor y calandrado de alta definición aplicada sobre telas deportivas y hoteleras.
+                <p style={{ fontSize: '12px', color: '#64748b' }}>
+                  Observa cómo la tinta se funde químicamente con la fibra textil a alta temperatura garantizando durabilidad de por vida.
                 </p>
                 <div
-                  className="relative w-full aspect-video rounded-xl overflow-hidden shadow-inner"
-                  style={{ backgroundColor: '#000000', border: '1px solid #1e293b' }}
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: '16/9',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    border: '1px solid #cbd5e1',
+                    backgroundColor: '#000000'
+                  }}
                 >
                   <iframe
-                    src="https://www.youtube-nocookie.com/embed/l5RnGg9u7NA?rel=0"
-                    title="Video demostrativo de Sublimados Uniformes PRE"
-                    className="w-full h-full"
+                    src="https://www.youtube-nocookie.com/embed/9wG5V-B6n-s?rel=0"
+                    title="Sublimado Uniformes PRE"
+                    style={{ width: '100%', height: '100%', border: 0 }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     loading="lazy"
@@ -561,168 +816,296 @@ export default function RequerimientosModal({
                 </div>
               </div>
 
-              {/* Section 1: Medidas */}
-              <div className="space-y-4">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid #1e293b', paddingBottom: '8px' }}>
-                  <Ruler style={{ width: '20px', height: '20px', color: '#f97316' }} />
-                  <h4 className="font-display" style={{ fontSize: '20px', color: '#ffffff', letterSpacing: '0.05em' }}>
-                    Medidas para el Diseño Full Print
+              {/* Section: Medidas & Carrusel de Diagramas (Cambio cada 4s) */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
+                  <Ruler style={{ width: '20px', height: '20px', color: '#ea580c' }} />
+                  <h4 className="font-display" style={{ fontSize: '20px', color: '#0f172a', fontWeight: 800 }}>
+                    Medidas y Formato de Archivo
                   </h4>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div style={{ backgroundColor: '#1e293b', borderRadius: '12px', padding: '16px', border: '1px solid #334155' }}>
-                    <span style={{ fontSize: '12px', fontWeight: 600, color: '#fb923c', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Ancho Máximo</span>
-                    <p style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>150 cm</p>
-                    <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '4px' }}>
-                      Área máxima de ancho de impresión textil por rollo continuo.
-                    </p>
-                  </div>
-
-                  <div style={{ backgroundColor: '#1e293b', borderRadius: '12px', padding: '16px', border: '1px solid #334155' }}>
-                    <span style={{ fontSize: '12px', fontWeight: 600, color: '#fb923c', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Largo Mínimo</span>
-                    <p style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginTop: '4px' }}>500 cm (5 metros)</p>
-                    <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '4px' }}>
-                      Longitud mínima requerida para tiraje de tela en rollo full print.
-                    </p>
-                  </div>
-                </div>
-
-                {/* Diagrams */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                  {[
-                    {
-                      url: 'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-5-1.png',
-                      title: 'Área Full Print'
-                    },
-                    {
-                      url: 'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-7.png',
-                      title: 'Distribución y Patrón'
-                    },
-                    {
-                      url: 'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-6.png',
-                      title: 'Detalle de Cortes'
-                    }
-                  ].map((diag, idx) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {SUBLIMADO_MEDIDAS.map((m, i) => (
                     <div
-                      key={idx}
-                      onClick={() => setPreviewImage(diag.url)}
-                      className="group relative rounded-xl overflow-hidden transition-all cursor-pointer p-4 flex flex-col items-center"
-                      style={{ backgroundColor: '#020617', border: '1px solid #334155' }}
+                      key={i}
+                      style={{
+                        backgroundColor: '#f8fafc',
+                        borderRadius: '12px',
+                        padding: '16px',
+                        border: '1px solid #e2e8f0'
+                      }}
                     >
-                      <span style={{ fontSize: '11px', fontWeight: 700, color: '#cbd5e1', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '8px' }}>
-                        {diag.title}
+                      <span style={{ fontSize: '11px', fontWeight: 700, color: '#ea580c', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        {m.title}
                       </span>
-                      <div className="relative w-full h-44 flex items-center justify-center rounded-lg overflow-hidden" style={{ backgroundColor: '#0f172a' }}>
-                        <img
-                          src={diag.url}
-                          alt={diag.title}
-                          className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                          <span style={{ padding: '6px 12px', borderRadius: '8px', backgroundColor: '#f97316', color: '#ffffff', fontWeight: 700, fontSize: '11px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                            <ZoomIn style={{ width: '12px', height: '12px' }} /> Ampliar
-                          </span>
-                        </div>
-                      </div>
+                      <p style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', marginTop: '4px' }}>
+                        {m.val}
+                      </p>
+                      <p style={{ fontSize: '12px', color: '#64748b', marginTop: '4px', lineHeight: 1.5 }}>
+                        {m.desc}
+                      </p>
                     </div>
                   ))}
                 </div>
+
+                {/* Carrusel automático de diagramas de sublimado (Cambia cada 4s) */}
+                <div
+                  style={{
+                    backgroundColor: '#f8fafc',
+                    borderRadius: '16px',
+                    border: '1px solid #e2e8f0',
+                    padding: '20px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '14px'
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: '13px',
+                      fontWeight: 800,
+                      color: '#ea580c',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    {SUBLIMADO_DIAGRAMAS[sublimadoIndex].title}
+                  </span>
+
+                  <div
+                    onClick={() => setPreviewImage(SUBLIMADO_DIAGRAMAS[sublimadoIndex].url)}
+                    className="group"
+                    style={{
+                      position: 'relative',
+                      width: '100%',
+                      maxWidth: '520px',
+                      height: '260px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor: '#ffffff',
+                      borderRadius: '12px',
+                      border: '1px solid #e2e8f0',
+                      cursor: 'pointer',
+                      overflow: 'hidden',
+                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
+                    }}
+                  >
+                    <img
+                      src={SUBLIMADO_DIAGRAMAS[sublimadoIndex].url}
+                      alt={SUBLIMADO_DIAGRAMAS[sublimadoIndex].title}
+                      style={{ maxHeight: '92%', maxWidth: '92%', objectFit: 'contain', transition: 'all 0.4s ease' }}
+                      loading="lazy"
+                    />
+
+                    {/* Prev / Next buttons */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSublimadoIndex((prev) => (prev - 1 + SUBLIMADO_DIAGRAMAS.length) % SUBLIMADO_DIAGRAMAS.length);
+                      }}
+                      style={{
+                        position: 'absolute',
+                        left: '12px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        backgroundColor: '#ffffff',
+                        border: '1px solid #cbd5e1',
+                        color: '#0f172a',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)'
+                      }}
+                    >
+                      <ChevronLeft style={{ width: '18px', height: '18px' }} />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSublimadoIndex((prev) => (prev + 1) % SUBLIMADO_DIAGRAMAS.length);
+                      }}
+                      style={{
+                        position: 'absolute',
+                        right: '12px',
+                        top: '50%',
+                        transform: 'translateY(-50%)',
+                        width: '32px',
+                        height: '32px',
+                        borderRadius: '50%',
+                        backgroundColor: '#ffffff',
+                        border: '1px solid #cbd5e1',
+                        color: '#0f172a',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)'
+                      }}
+                    >
+                      <ChevronRight style={{ width: '18px', height: '18px' }} />
+                    </button>
+
+                    <div
+                      className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none"
+                    >
+                      <span
+                        style={{
+                          padding: '6px 14px',
+                          borderRadius: '8px',
+                          backgroundColor: '#ea580c',
+                          color: '#ffffff',
+                          fontWeight: 700,
+                          fontSize: '12px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px'
+                        }}
+                      >
+                        <ZoomIn style={{ width: '14px', height: '14px' }} />
+                        Ampliar imagen
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Indicator Dots */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    {SUBLIMADO_DIAGRAMAS.map((_, idx) => (
+                      <button
+                        key={idx}
+                        type="button"
+                        onClick={() => setSublimadoIndex(idx)}
+                        aria-label={`Ver diagrama ${idx + 1}`}
+                        style={{
+                          height: '8px',
+                          width: sublimadoIndex === idx ? '24px' : '8px',
+                          borderRadius: '4px',
+                          backgroundColor: sublimadoIndex === idx ? '#ea580c' : '#cbd5e1',
+                          border: 'none',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease'
+                        }}
+                      />
+                    ))}
+                    <span style={{ fontSize: '11px', color: '#94a3b8', marginLeft: '6px' }}>
+                      (Cambio automático cada 4s)
+                    </span>
+                  </div>
+                </div>
               </div>
 
-              {/* Section 2: Requisitos de Diseño & Condiciones */}
+              {/* Requirements & Applications Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Requisitos del Diseño */}
-                <div style={{ backgroundColor: '#1e293b', borderRadius: '16px', padding: '20px', border: '1px solid #334155' }} className="space-y-4">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ffffff' }}>
-                    <FileText style={{ width: '20px', height: '20px', color: '#f97316' }} />
-                    <h4 className="font-display" style={{ fontSize: '18px', letterSpacing: '0.05em' }}>Requisitos de la Imagen o Diseño</h4>
+                <div
+                  style={{
+                    backgroundColor: '#f8fafc',
+                    borderRadius: '16px',
+                    padding: '20px',
+                    border: '1px solid #e2e8f0',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '14px'
+                  }}
+                >
+                  <div style={{ display: 'center', alignItems: 'center', gap: '8px' }}>
+                    <FileText style={{ width: '18px', height: '18px', color: '#ea580c' }} />
+                    <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
+                      Preparación de Archivos
+                    </h4>
                   </div>
-                  <ul className="space-y-3" style={{ fontSize: '13px', color: '#cbd5e1' }}>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#34d399', flexShrink: 0, marginTop: '2px' }} />
-                      <span>Se necesita una imagen de <strong>muy buena calidad</strong> o archivos en <strong>vectores</strong>.</span>
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#334155' }}>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
+                      <span><strong>Perfil de color:</strong> CMYK (FOGRA39 o US Web Coated) para tonos exactos.</span>
                     </li>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#34d399', flexShrink: 0, marginTop: '2px' }} />
-                      <span>Formatos de imagen aceptados: <strong>PNG, JPG, TIF, EPS, PDF</strong>.</span>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
+                      <span><strong>Formato:</strong> TIFF, PDF o PSD en capas, tamaño real al 100% y 300 DPI.</span>
                     </li>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#34d399', flexShrink: 0, marginTop: '2px' }} />
-                      <span>Formatos de diseño vectorial: <strong>CDR, AI, PDF, PNG, EPS, JPG</strong>.</span>
-                    </li>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#34d399', flexShrink: 0, marginTop: '2px' }} />
-                      <span>Si tienes un diseño preparado, por favor especificar si está en modo <strong>CMYK</strong> o <strong>RGB</strong>.</span>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
+                      <span><strong>Sangrado / Margen:</strong> Incluir 1.5 cm perimetral para compensar cortes y costuras.</span>
                     </li>
                   </ul>
                 </div>
 
-                {/* Condiciones */}
-                <div style={{ backgroundColor: '#1e293b', borderRadius: '16px', padding: '20px', border: '1px solid #334155' }} className="space-y-4">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ffffff' }}>
-                    <Info style={{ width: '20px', height: '20px', color: '#f97316' }} />
-                    <h4 className="font-display" style={{ fontSize: '18px', letterSpacing: '0.05em' }}>Telas y Mínimos de Producción</h4>
+                <div
+                  style={{
+                    backgroundColor: '#f8fafc',
+                    borderRadius: '16px',
+                    padding: '20px',
+                    border: '1px solid #e2e8f0',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '14px'
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Info style={{ width: '18px', height: '18px', color: '#ea580c' }} />
+                    <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
+                      Telas y Aplicaciones
+                    </h4>
                   </div>
-                  <ul className="space-y-3" style={{ fontSize: '13px', color: '#cbd5e1' }}>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#fb923c', flexShrink: 0, marginTop: '2px' }} />
-                      <span><strong>Composición textil:</strong> Solo en telas que sean <strong>100% Poliéster</strong>.</span>
+                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#334155' }}>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
+                      <span><strong>Compatibilidad:</strong> Exclusivo para poliéster 100% o mezclas con mínimo 70% poliéster.</span>
                     </li>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#fb923c', flexShrink: 0, marginTop: '2px' }} />
-                      <span><strong>Tela en rollo:</strong> Para tela full print lo mínimo son <strong>5 metros</strong>.</span>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
+                      <span><strong>Ideal para:</strong> Jerseys deportivos, lycras rash guard, playeras dry-fit, banderas y mantelería.</span>
                     </li>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#fb923c', flexShrink: 0, marginTop: '2px' }} />
-                      <span><strong>Prendas confeccionadas:</strong> Para diseño por uniforme, el pedido mínimo son <strong>12 piezas</strong>.</span>
-                    </li>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#fb923c', flexShrink: 0, marginTop: '2px' }} />
-                      <span>El diseñador(a) ajustará el diseño a las medidas de prenda requeridas.</span>
-                    </li>
-                    <li style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#fb923c', flexShrink: 0, marginTop: '2px' }} />
-                      <span>Se enviarán fotos de <strong>muestras del sublimado</strong> para validación del cliente antes del tiraje completo.</span>
+                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
+                      <span><strong>Ventaja única:</strong> Cero tacto sobre la fibra, transpirabilidad total y sin cuartearse al lavado.</span>
                     </li>
                   </ul>
                 </div>
               </div>
 
-              {/* Section 3: Galería de Sublimados Realizados */}
-              <div className="space-y-4">
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #1e293b', paddingBottom: '8px' }}>
-                  <h4 className="font-display" style={{ fontSize: '20px', color: '#ffffff', letterSpacing: '0.05em' }}>
+              {/* Galería de Sublimados Realizados (Sólo fotos válidas, sin fotos negras) */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
+                  <h4 className="font-display" style={{ fontSize: '20px', color: '#0f172a', fontWeight: 800 }}>
                     Marcas con Sublimados de Alta Definición
                   </h4>
-                  <span style={{ fontSize: '12px', color: '#94a3b8' }}>Haz clic en cualquier imagen para ampliar</span>
+                  <span style={{ fontSize: '12px', color: '#64748b' }}>Haz clic en cualquier imagen para ampliar</span>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-                  {[
-                    'https://uniformespre.com/wp-content/uploads/2024/02/15f6a6eba4021348509334dc9141c8c3.jpg',
-                    'https://uniformespre.com/wp-content/uploads/2024/02/sublimado4.png',
-                    'https://uniformespre.com/wp-content/uploads/2024/02/images.jpg',
-                    'https://uniformespre.com/wp-content/uploads/2024/02/images-3.jpg',
-                    'https://uniformespre.com/wp-content/uploads/2024/02/TelaSublimado.jpg',
-                    'https://uniformespre.com/wp-content/uploads/2024/02/estampados-textiles-serigrafia-sublimacion-vinilos-transfer-17359-MLA20135700007_072014-F.jpg',
-                    'https://uniformespre.com/wp-content/uploads/2024/02/images-1.jpg',
-                    'https://uniformespre.com/wp-content/uploads/2024/02/sublimado2.png',
-                    'https://uniformespre.com/wp-content/uploads/2024/02/sublimado1.png',
-                    'https://uniformespre.com/wp-content/uploads/2024/02/sublimado3.png'
-                  ].map((imgUrl, idx) => (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                  {SUBLIMADO_GALERIA.map((imgUrl, idx) => (
                     <div
                       key={idx}
                       onClick={() => setPreviewImage(imgUrl)}
-                      className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer transition-all"
-                      style={{ backgroundColor: '#020617', border: '1px solid #334155' }}
+                      className="group"
+                      style={{
+                        position: 'relative',
+                        aspectRatio: '1/1',
+                        borderRadius: '12px',
+                        overflow: 'hidden',
+                        cursor: 'pointer',
+                        backgroundColor: '#f8fafc',
+                        border: '1px solid #e2e8f0',
+                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.04)'
+                      }}
                     >
                       <img
                         src={imgUrl}
-                        alt={`Muestra de sublimado ${idx + 1}`}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        alt={`Sublimado muestra ${idx + 1}`}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                         loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.parentElement!.style.display = 'none';
+                        }}
                       />
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                         <ZoomIn style={{ width: '20px', height: '20px', color: '#ffffff' }} />
@@ -737,8 +1120,8 @@ export default function RequerimientosModal({
           {/* WhatsApp Direct Help Banner */}
           <div
             style={{
-              backgroundColor: '#020617',
-              border: '1px solid #1e293b',
+              backgroundColor: '#f8fafc',
+              border: '1px solid #e2e8f0',
               borderRadius: '16px',
               padding: '20px',
               display: 'flex',
@@ -746,14 +1129,15 @@ export default function RequerimientosModal({
               flexWrap: 'wrap',
               alignItems: 'center',
               justifyContent: 'space-between',
-              gap: '16px'
+              gap: '16px',
+              marginTop: '28px'
             }}
           >
             <div style={{ flex: 1, minWidth: '240px' }}>
-              <h5 className="font-display" style={{ fontSize: '18px', color: '#ffffff', letterSpacing: '0.03em' }}>
+              <h5 className="font-display" style={{ fontSize: '18px', color: '#0f172a', fontWeight: 800 }}>
                 ¿Deseas enviar tus archivos para validación o cotizar tu pedido?
               </h5>
-              <p style={{ fontSize: '12px', color: '#94a3b8', marginTop: '4px' }}>
+              <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>
                 Nuestros diseñadores revisan tu logotipo en minutos sin compromiso.
               </p>
             </div>
@@ -766,7 +1150,7 @@ export default function RequerimientosModal({
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                padding: '12px 20px',
+                padding: '12px 22px',
                 borderRadius: '12px',
                 backgroundColor: '#059669',
                 color: '#ffffff',
@@ -777,7 +1161,7 @@ export default function RequerimientosModal({
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                boxShadow: '0 10px 15px -3px rgba(5, 150, 105, 0.3)',
+                boxShadow: '0 4px 12px rgba(5, 150, 105, 0.25)',
                 whiteSpace: 'nowrap',
                 textDecoration: 'none',
                 cursor: 'pointer'
@@ -794,10 +1178,12 @@ export default function RequerimientosModal({
       {previewImage && (
         <div
           onClick={() => setPreviewImage(null)}
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
           style={{
             position: 'fixed',
             inset: 0,
-            zIndex: 10000,
+            zIndex: 100000,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -811,13 +1197,13 @@ export default function RequerimientosModal({
             onClick={(e) => e.stopPropagation()}
             style={{
               position: 'relative',
-              maxWidth: '768px',
-              maxHeight: '85vh',
-              padding: '8px',
-              backgroundColor: '#0f172a',
+              maxWidth: '820px',
+              maxHeight: '88vh',
+              padding: '10px',
+              backgroundColor: '#ffffff',
               borderRadius: '16px',
-              border: '1px solid #334155',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)',
+              border: '1px solid #e2e8f0',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center'
@@ -832,20 +1218,25 @@ export default function RequerimientosModal({
                 top: '16px',
                 right: '16px',
                 zIndex: 10,
-                padding: '8px',
+                width: '36px',
+                height: '36px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(2, 6, 23, 0.85)',
-                color: '#ffffff',
-                border: '1px solid #334155',
-                cursor: 'pointer'
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                color: '#0f172a',
+                border: '1px solid #cbd5e1',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
               }}
             >
-              <X style={{ width: '20px', height: '20px' }} />
+              <X style={{ width: '20px', height: '20px' }} strokeWidth={2.5} />
             </button>
             <img
               src={previewImage}
               alt="Vista ampliada"
-              style={{ maxHeight: '80vh', maxWidth: '100%', objectFit: 'contain', borderRadius: '12px' }}
+              style={{ maxHeight: '80vh', maxWidth: '100%', objectFit: 'contain', borderRadius: '10px' }}
             />
           </div>
         </div>
