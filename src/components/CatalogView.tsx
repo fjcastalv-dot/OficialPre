@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { createPortal } from 'react-dom';
 import { Search, Star, Heart, RefreshCcw, ArrowRight, Check, ChevronLeft, ChevronRight, SearchX, AlertCircle, Sparkles, CameraOff, X } from 'lucide-react';
 import { Product } from '../types';
 import { PRODUCTS, CATEGORIES, getCategoryName, MANTELERIA_GALLERY, TAPICERIA_GALLERY } from '../data';
@@ -63,7 +62,6 @@ export default function CatalogView({
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [addedProductId, setAddedProductId] = useState<string | null>(null);
-  const [selectedLightboxImage, setSelectedLightboxImage] = useState<string | null>(null);
   const categoryScrollRef = useRef<HTMLDivElement>(null);
 
   const scrollCategories = (direction: 'left' | 'right') => {
@@ -390,8 +388,7 @@ export default function CatalogView({
               {TAPICERIA_GALLERY.map((imgUrl, idx) => (
                 <div
                   key={idx}
-                  onClick={() => setSelectedLightboxImage(imgUrl)}
-                  className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all shadow-md cursor-pointer"
+                  className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 hover:border-orange-500 hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-300 shadow-md"
                 >
                   <img
                     src={imgUrl}
@@ -399,9 +396,6 @@ export default function CatalogView({
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                    <span className="text-xs font-bold text-white uppercase tracking-wider">Ver foto ampliada →</span>
-                  </div>
                 </div>
               ))}
             </div>
@@ -698,97 +692,6 @@ export default function CatalogView({
             »
           </button>
         </section>
-      )}
-
-      {/* Lightbox Modal for Gallery Photos (Tapicería) */}
-      {selectedLightboxImage && typeof document !== 'undefined' && createPortal(
-        <div
-          id="tapiceria-lightbox-modal"
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            width: '100vw',
-            height: '100vh',
-            height: '100dvh',
-            backgroundColor: 'rgba(0, 0, 0, 0.88)',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-            zIndex: 99999,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '16px',
-            margin: 0,
-            boxSizing: 'border-box'
-          }}
-          onClick={() => setSelectedLightboxImage(null)}
-          onWheel={(e) => e.stopPropagation()}
-          onTouchMove={(e) => e.stopPropagation()}
-        >
-          {/* Botón X destacado en la esquina superior derecha */}
-          <button
-            onClick={() => setSelectedLightboxImage(null)}
-            type="button"
-            style={{
-              position: 'absolute',
-              top: '16px',
-              right: '16px',
-              zIndex: 100000,
-              width: '44px',
-              height: '44px',
-              borderRadius: '50%',
-              backgroundColor: '#ef4444',
-              color: '#ffffff',
-              border: '2px solid #ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              cursor: 'pointer',
-              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
-              transition: 'all 0.2s ease'
-            }}
-            aria-label="Cerrar foto ampliada"
-          >
-            <X style={{ width: '24px', height: '24px' }} strokeWidth={2.5} />
-          </button>
-
-          {/* Contenedor y Foto Centrada sin necesidad de scrolear hacia arriba */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              position: 'relative',
-              maxWidth: '92vw',
-              maxHeight: '88vh',
-              maxHeight: '88dvh',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: '16px',
-              overflow: 'hidden',
-              backgroundColor: '#000000',
-              border: '1px solid rgba(255, 255, 255, 0.2)',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)'
-            }}
-          >
-            <img
-              src={selectedLightboxImage}
-              alt="Trabajo de tapicería PRE ampliado"
-              style={{
-                maxWidth: '92vw',
-                maxHeight: '86vh',
-                maxHeight: '86dvh',
-                width: 'auto',
-                height: 'auto',
-                objectFit: 'contain',
-                display: 'block'
-              }}
-            />
-          </div>
-        </div>,
-        document.body
       )}
     </div>
   );

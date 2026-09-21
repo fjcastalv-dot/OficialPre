@@ -81,14 +81,19 @@ export const PRODUCTS: Product[] = [
     hasCorteSelection: true,
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Azul Marino', hex: '#1e3a8a', code: '343', image: poloMarino },
+      { name: 'Bandera', hex: '#0e6914' },
       { name: 'Blanco', hex: '#ffffff', code: '332', image: poloBlanco },
-      { name: 'Negro', hex: '#000000', code: '339', image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729918/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_3.png' },
-      { name: 'Naranja', hex: '#f97316', code: '312', image: poloNaranja },
-      { name: 'Gris Carbón', hex: '#374151', code: '338', image: poloCarbon },
+      { name: 'Botella', hex: '#072a10' },
+      { name: 'Canario', hex: '#eab308' },
+      { name: 'Gris', hex: '#6b7280', code: '338', image: poloCarbon },
+      { name: 'Guinda', hex: '#58111a' },
+      { name: 'Mango', hex: '#ea990c' },
+      { name: 'Marino', hex: '#111827', code: '343', image: poloMarino },
+      { name: 'Naranja', hex: '#ea580c', code: '312', image: poloNaranja },
+      { name: 'Oxford', hex: '#374151', code: '338', image: poloCarbon },
+      { name: 'Rey', hex: '#1d4ed8' },
       { name: 'Rojo', hex: '#b91c1c', code: '322', image: poloRojo },
-      { name: 'Turquesa', hex: '#06b6d4', code: '317', image: poloTurquesa },
-      { name: 'Verde Limón', hex: '#84cc16', code: '327', image: poloLimon }
+      { name: 'Verde Agua', hex: '#17b5c2', code: '317', image: poloTurquesa }
     ],
     damaColors: [
       {
@@ -148,23 +153,7 @@ export const PRODUCTS: Product[] = [
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      {
-        name: 'Negro',
-        hex: '#000000',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729614/MC_NEGRA1.png',
-        gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729614/MC_NEGRA1.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729610/MC_NEGRA.png'
-        ]
-      },
-      {
-        name: 'Azul Marino',
-        hex: '#1e3a8a',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729606/azul_marino.png',
-        gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729606/azul_marino.png'
-        ]
-      },
+      { name: 'Bandera', hex: '#0e6914' },
       {
         name: 'Blanco',
         hex: '#ffffff',
@@ -172,7 +161,33 @@ export const PRODUCTS: Product[] = [
         gallery: [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729621/MC_BLANCA.png'
         ]
-      }
+      },
+      { name: 'Botella', hex: '#072a10' },
+      { name: 'Canario', hex: '#eab308' },
+      { name: 'Gris', hex: '#6b7280' },
+      { name: 'Guinda', hex: '#58111a' },
+      { name: 'Mango', hex: '#ea990c' },
+      {
+        name: 'Marino',
+        hex: '#111827',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729606/azul_marino.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729606/azul_marino.png'
+        ]
+      },
+      { name: 'Naranja', hex: '#ea580c' },
+      {
+        name: 'Oxford',
+        hex: '#374151',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729614/MC_NEGRA1.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729614/MC_NEGRA1.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729610/MC_NEGRA.png'
+        ]
+      },
+      { name: 'Rey', hex: '#1d4ed8' },
+      { name: 'Rojo', hex: '#b91c1c' },
+      { name: 'Verde Agua', hex: '#17b5c2' }
     ],
     priceTiers: {
       '1-12': 190.00,
@@ -214,26 +229,7 @@ export const PRODUCTS: Product[] = [
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      {
-        name: 'Azul Fuerte',
-        hex: '#1e3a8a',
-        code: '343',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430967/3.png',
-        gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430967/3.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430963/8.png'
-        ]
-      },
-      {
-        name: 'Azul Claro',
-        hex: '#7dd3fc',
-        code: '317',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430960/1.png',
-        gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430960/1.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430961/5.png'
-        ]
-      },
+      { name: 'Bandera', hex: '#0e6914' },
       {
         name: 'Blanco',
         hex: '#ffffff',
@@ -244,9 +240,11 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430956/6.png'
         ]
       },
+      { name: 'Botella', hex: '#072a10' },
+      { name: 'Canario', hex: '#eab308' },
       {
         name: 'Gris',
-        hex: '#9ca3af',
+        hex: '#6b7280',
         code: '338',
         image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788581147/Dise%C3%B1o_Sin_T%C3%ADtulo_-_4.png',
         gallery: [
@@ -254,13 +252,47 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430958/7.png'
         ]
       },
+      { name: 'Guinda', hex: '#58111a' },
+      { name: 'Mango', hex: '#ea990c' },
       {
-        name: 'Negro',
-        hex: '#000000',
+        name: 'Marino',
+        hex: '#111827',
+        code: '343',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430967/3.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430967/3.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430963/8.png'
+        ]
+      },
+      { name: 'Naranja', hex: '#ea580c' },
+      {
+        name: 'Oxford',
+        hex: '#374151',
         code: '339',
         image: 'https://res.cloudinary.com/boofzznx/image/upload/v1788735769/ML_NEGRO_1.png',
         gallery: [
           'https://res.cloudinary.com/boofzznx/image/upload/v1788735769/ML_NEGRO_1.png'
+        ]
+      },
+      {
+        name: 'Rey',
+        hex: '#1d4ed8',
+        code: '343',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430967/3.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430967/3.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430963/8.png'
+        ]
+      },
+      { name: 'Rojo', hex: '#b91c1c' },
+      {
+        name: 'Verde Agua',
+        hex: '#17b5c2',
+        code: '317',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430960/1.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430960/1.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430961/5.png'
         ]
       }
     ],

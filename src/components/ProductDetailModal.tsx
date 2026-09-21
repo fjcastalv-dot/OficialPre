@@ -193,15 +193,15 @@ export default function ProductDetailModal({
               // 3. Polo Dry-Fit specific assets
               if (product.id.startsWith('polo-dryfit')) {
                 const name = selectedColor.toLowerCase();
-                if (name.includes('negro')) return ['https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729918/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_3.png'];
                 if (name.includes('blanco')) return [poloBlanco];
-                if (name.includes('carbón') || name.includes('carbon')) return [poloCarbon];
-                if (name.includes('limón') || name.includes('limon')) return [poloLimon];
+                if (name.includes('oxford') || name.includes('carbón') || name.includes('carbon') || name.includes('negro')) return [poloCarbon];
+                if (name.includes('gris')) return [poloCarbon];
                 if (name.includes('marino')) return [poloMarino];
                 if (name.includes('naranja')) return [poloNaranja];
                 if (name.includes('rojo')) return [poloRojo];
-                if (name.includes('turquesa')) return [poloTurquesa];
-                return [modalImageOverride];
+                if (name.includes('verde agua') || name.includes('turquesa')) return [poloTurquesa];
+                if (colorObj?.image) return [colorObj.image];
+                return [product.image || modalImageOverride];
               }
 
               if (colorObj?.image) {
@@ -471,7 +471,7 @@ export default function ProductDetailModal({
                             >
                               {selectedColor === col.name && (
                                 <Check className={`h-4 w-4 ${
-                                  col.name.toLowerCase().includes('blanc') ? 'text-slate-950' : 'text-white'
+                                  col.name.toLowerCase().includes('blanc') || col.name.toLowerCase().includes('canario') ? 'text-slate-950' : 'text-white'
                                 }`} />
                               )}
                             </span>
