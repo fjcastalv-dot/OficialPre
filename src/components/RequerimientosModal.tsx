@@ -131,23 +131,29 @@ export default function RequerimientosModal({
     }
   }, [isOpen, onClose, previewImage]);
 
-  // Auto carrusel Bordado: cambia cada 5s
+  // Auto carrusel Bordado: cambia cada 3s
   useEffect(() => {
     if (!isOpen || activeTab !== 'bordado') return;
     const timer = setInterval(() => {
       setBordadoIndex((prev) => (prev + 1) % BORDADO_DIAGRAMAS.length);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(timer);
   }, [isOpen, activeTab]);
 
-  // Auto carrusel Sublimado: cambia cada 4s
+  // Auto carrusel Sublimado: cambia cada 3s
   useEffect(() => {
     if (!isOpen || activeTab !== 'sublimado') return;
     const timer = setInterval(() => {
       setSublimadoIndex((prev) => (prev + 1) % SUBLIMADO_DIAGRAMAS.length);
-    }, 4000);
+    }, 3000);
     return () => clearInterval(timer);
   }, [isOpen, activeTab]);
+
+  // Reset scroll al cambiar de pestaña para que cada una inicie desde arriba
+  useEffect(() => {
+    const el = document.getElementById('requerimientos-modal-body');
+    if (el) el.scrollTop = 0;
+  }, [activeTab]);
 
   if (!isOpen) return null;
 
@@ -605,13 +611,15 @@ export default function RequerimientosModal({
                     backgroundColor: '#000000'
                   }}
                 >
-                  <iframe
-                    src="https://www.youtube-nocookie.com/embed/KVtucXUntoY?rel=0"
+                  <video
+                    src="https://res.cloudinary.com/boofzznx/video/upload/v1789950866/videoplayback.mp4"
                     title="Bordados Uniformes PRE"
-                    style={{ width: '100%', height: '100%', border: 0 }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
+                    muted
+                    autoPlay
+                    loop
+                    playsInline
+                    controls
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </div>
               </div>
@@ -879,13 +887,15 @@ export default function RequerimientosModal({
                     backgroundColor: '#000000'
                   }}
                 >
-                  <iframe
-                    src="https://www.youtube-nocookie.com/embed/9wG5V-B6n-s?rel=0"
+                  <video
+                    src="https://res.cloudinary.com/boofzznx/video/upload/v1789950877/videoplayback_1.mp4"
                     title="Sublimado Uniformes PRE"
-                    style={{ width: '100%', height: '100%', border: 0 }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
+                    muted
+                    autoPlay
+                    loop
+                    playsInline
+                    controls
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </div>
               </div>

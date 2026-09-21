@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { Search, Star, Heart, RefreshCcw, ArrowRight, Check, ChevronLeft, ChevronRight, SearchX, AlertCircle, Sparkles, CameraOff, X } from 'lucide-react';
 import { Product } from '../types';
 import { PRODUCTS, CATEGORIES, getCategoryName, MANTELERIA_GALLERY, TAPICERIA_GALLERY } from '../data';
@@ -78,6 +79,24 @@ export default function CatalogView({
   useEffect(() => {
     setCurrentPage(1);
   }, [filterCategory, searchQuery]);
+
+  // Bloquear scroll y escuchar Escape cuando la foto esté ampliada (Tapicería)
+  useEffect(() => {
+    if (selectedLightboxImage) {
+      const origOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          setSelectedLightboxImage(null);
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = origOverflow;
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [selectedLightboxImage]);
 
   // High-precision search filter algorithm
   const filteredProducts = useMemo(() => {
@@ -329,18 +348,14 @@ export default function CatalogView({
               {MANTELERIA_GALLERY.map((imgUrl, idx) => (
                 <div
                   key={idx}
-                  onClick={() => setSelectedLightboxImage(imgUrl)}
-                  className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 hover:border-orange-500 transition-all shadow-md cursor-pointer"
+                  className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-md cursor-default"
                 >
                   <img
                     src={imgUrl}
                     alt={`Mantelería Personalizada ${idx + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                    <span className="text-xs font-bold text-white uppercase tracking-wider">Ver foto ampliada →</span>
-                  </div>
                 </div>
               ))}
             </div>
@@ -685,30 +700,95 @@ export default function CatalogView({
         </section>
       )}
 
-      {/* Lightbox Modal for Gallery Photos */}
-      {selectedLightboxImage && (
+      {/* Lightbox Modal for Gallery Photos (Tapicería) */}
+      {selectedLightboxImage && typeof document !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-fade-in"
+          id="tapiceria-lightbox-modal"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100vw',
+            height: '100vh',
+            height: '100dvh',
+            backgroundColor: 'rgba(0, 0, 0, 0.88)',
+            backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '16px',
+            margin: 0,
+            boxSizing: 'border-box'
+          }}
           onClick={() => setSelectedLightboxImage(null)}
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
         >
+          {/* Botón X destacado en la esquina superior derecha */}
           <button
             onClick={() => setSelectedLightboxImage(null)}
-            className="absolute top-4 right-4 p-2 rounded-full bg-slate-900/80 text-white hover:bg-orange-600 transition-colors cursor-pointer border border-slate-700 z-10"
-            aria-label="Cerrar imagen"
+            type="button"
+            style={{
+              position: 'absolute',
+              top: '16px',
+              right: '16px',
+              zIndex: 100000,
+              width: '44px',
+              height: '44px',
+              borderRadius: '50%',
+              backgroundColor: '#ef4444',
+              color: '#ffffff',
+              border: '2px solid #ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
+              transition: 'all 0.2s ease'
+            }}
+            aria-label="Cerrar foto ampliada"
           >
-            <X className="h-6 w-6" />
+            <X style={{ width: '24px', height: '24px' }} strokeWidth={2.5} />
           </button>
+
+          {/* Contenedor y Foto Centrada sin necesidad de scrolear hacia arriba */}
           <div
-            className="relative max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl border border-slate-800 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'relative',
+              maxWidth: '92vw',
+              maxHeight: '88vh',
+              maxHeight: '88dvh',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              backgroundColor: '#000000',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.8)'
+            }}
           >
             <img
               src={selectedLightboxImage}
-              alt="Trabajo de confección PRE"
-              className="w-full h-full max-h-[85vh] object-contain rounded-2xl"
+              alt="Trabajo de tapicería PRE ampliado"
+              style={{
+                maxWidth: '92vw',
+                maxHeight: '86vh',
+                maxHeight: '86dvh',
+                width: 'auto',
+                height: 'auto',
+                objectFit: 'contain',
+                display: 'block'
+              }}
             />
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
