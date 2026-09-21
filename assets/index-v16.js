@@ -616,9 +616,9 @@ React keys must be passed directly to JSX without using spread:
   ];
 
   const sublimadoDiagramas=[
-    {url:"https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-5-1.png",title:"\u00C1rea Full Print"},
-    {url:"https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-7.png",title:"Distribuci\u00F3n y Patr\u00F3n"},
-    {url:"https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-6.png",title:"Detalle de Cortes"}
+    "https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-5-1.png",
+    "https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-7.png",
+    "https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-6.png"
   ];
 
   const sublimadoGaleria=[
@@ -922,8 +922,8 @@ React keys must be passed directly to JSX without using spread:
                           style:{
                             position:"relative",
                             width:"100%",
-                            maxWidth:"520px",
-                            height:"260px",
+                            maxWidth:"680px",
+                            height:"350px",
                             display:"flex",
                             alignItems:"center",
                             justifyContent:"center",
@@ -932,68 +932,16 @@ React keys must be passed directly to JSX without using spread:
                             border:"1px solid #e2e8f0",
                             cursor:"pointer",
                             overflow:"hidden",
+                            padding:"12px",
                             boxShadow:"0 2px 8px rgba(0,0,0,0.04)"
                           },
                           children:[
                             r.jsxDEV("img",{
                               src:bordadoDiagramas[bIdx],
                               alt:"Dimensi\u00F3n de bordado "+(bIdx+1),
-                              style:{maxHeight:"92%",maxWidth:"92%",objectFit:"contain",transition:"all 0.4s ease"},
+                              style:{maxHeight:"100%",maxWidth:"100%",objectFit:"contain",transition:"all 0.4s ease"},
                               loading:"lazy"
                             },void 0,!1,{},void 0),
-
-                            /* Botones Anterior / Siguiente */
-                            r.jsxDEV("button",{
-                              type:"button",
-                              onClick:ev=>{
-                                ev.stopPropagation();
-                                setBIdx(p=>(p-1+bordadoDiagramas.length)%bordadoDiagramas.length);
-                              },
-                              style:{
-                                position:"absolute",
-                                left:"12px",
-                                top:"50%",
-                                transform:"translateY(-50%)",
-                                width:"32px",
-                                height:"32px",
-                                borderRadius:"50%",
-                                backgroundColor:"#ffffff",
-                                border:"1px solid #cbd5e1",
-                                color:"#0f172a",
-                                display:"flex",
-                                alignItems:"center",
-                                justifyContent:"center",
-                                cursor:"pointer",
-                                boxShadow:"0 2px 6px rgba(0,0,0,0.15)"
-                              },
-                              children:r.jsxDEV("svg",{style:{width:"18px",height:"18px"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M15 19l-7-7 7-7"})},void 0,!1,{},void 0)
-                            },void 0,!0,{},void 0),
-
-                            r.jsxDEV("button",{
-                              type:"button",
-                              onClick:ev=>{
-                                ev.stopPropagation();
-                                setBIdx(p=>(p+1)%bordadoDiagramas.length);
-                              },
-                              style:{
-                                position:"absolute",
-                                right:"12px",
-                                top:"50%",
-                                transform:"translateY(-50%)",
-                                width:"32px",
-                                height:"32px",
-                                borderRadius:"50%",
-                                backgroundColor:"#ffffff",
-                                border:"1px solid #cbd5e1",
-                                color:"#0f172a",
-                                display:"flex",
-                                alignItems:"center",
-                                justifyContent:"center",
-                                cursor:"pointer",
-                                boxShadow:"0 2px 6px rgba(0,0,0,0.15)"
-                              },
-                              children:r.jsxDEV("svg",{style:{width:"18px",height:"18px"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M9 5l7 7-7 7"})},void 0,!1,{},void 0)
-                            },void 0,!0,{},void 0),
 
                             r.jsxDEV("div",{
                               className:"absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none",
@@ -1014,7 +962,7 @@ React keys must be passed directly to JSX without using spread:
 
                         /* Indicadores */
                         r.jsxDEV("div",{
-                          style:{display:"flex",alignItems:"center",gap:"8px"},
+                          style:{display:"flex",alignItems:"center",justifyContent:"center",gap:"8px",marginTop:"4px"},
                           children:[
                             bordadoDiagramas.map((_,idx)=>r.jsxDEV("button",{
                               key:idx,
@@ -1029,8 +977,7 @@ React keys must be passed directly to JSX without using spread:
                                 cursor:"pointer",
                                 transition:"all 0.3s ease"
                               }
-                            },idx,!1,{},void 0)),
-                            r.jsxDEV("span",{style:{fontSize:"11px",color:"#94a3b8",marginLeft:"6px"},children:"(Cambio autom\u00E1tico cada 5s)"},void 0,!1,{},void 0)
+                            },idx,!1,{},void 0))
                           ]
                         },void 0,!0,{},void 0)
                       ]
@@ -1207,25 +1154,14 @@ React keys must be passed directly to JSX without using spread:
                         gap:"12px"
                       },
                       children:[
-                        r.jsxDEV("span",{
-                          style:{
-                            fontSize:"13px",
-                            fontWeight:800,
-                            color:"#ea580c",
-                            textTransform:"uppercase",
-                            letterSpacing:"0.05em"
-                          },
-                          children:sublimadoDiagramas[sIdx].title
-                        },void 0,!1,{},void 0),
-
                         r.jsxDEV("div",{
-                          onClick:()=>setZoomImg(sublimadoDiagramas[sIdx].url),
+                          onClick:()=>setZoomImg(sublimadoDiagramas[sIdx]),
                           className:"group",
                           style:{
                             position:"relative",
                             width:"100%",
-                            maxWidth:"520px",
-                            height:"260px",
+                            maxWidth:"680px",
+                            height:"350px",
                             display:"flex",
                             alignItems:"center",
                             justifyContent:"center",
@@ -1234,68 +1170,16 @@ React keys must be passed directly to JSX without using spread:
                             border:"1px solid #e2e8f0",
                             cursor:"pointer",
                             overflow:"hidden",
+                            padding:"12px",
                             boxShadow:"0 2px 8px rgba(0,0,0,0.04)"
                           },
                           children:[
                             r.jsxDEV("img",{
-                              src:sublimadoDiagramas[sIdx].url,
-                              alt:sublimadoDiagramas[sIdx].title,
-                              style:{maxHeight:"92%",maxWidth:"92%",objectFit:"contain",transition:"all 0.4s ease"},
+                              src:sublimadoDiagramas[sIdx],
+                              alt:"Diagrama de sublimado "+(sIdx+1),
+                              style:{maxHeight:"100%",maxWidth:"100%",objectFit:"contain",transition:"all 0.4s ease"},
                               loading:"lazy"
                             },void 0,!1,{},void 0),
-
-                            /* Botones Anterior / Siguiente */
-                            r.jsxDEV("button",{
-                              type:"button",
-                              onClick:ev=>{
-                                ev.stopPropagation();
-                                setSIdx(p=>(p-1+sublimadoDiagramas.length)%sublimadoDiagramas.length);
-                              },
-                              style:{
-                                position:"absolute",
-                                left:"12px",
-                                top:"50%",
-                                transform:"translateY(-50%)",
-                                width:"32px",
-                                height:"32px",
-                                borderRadius:"50%",
-                                backgroundColor:"#ffffff",
-                                border:"1px solid #cbd5e1",
-                                color:"#0f172a",
-                                display:"flex",
-                                alignItems:"center",
-                                justifyContent:"center",
-                                cursor:"pointer",
-                                boxShadow:"0 2px 6px rgba(0,0,0,0.15)"
-                              },
-                              children:r.jsxDEV("svg",{style:{width:"18px",height:"18px"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M15 19l-7-7 7-7"})},void 0,!1,{},void 0)
-                            },void 0,!0,{},void 0),
-
-                            r.jsxDEV("button",{
-                              type:"button",
-                              onClick:ev=>{
-                                ev.stopPropagation();
-                                setSIdx(p=>(p+1)%sublimadoDiagramas.length);
-                              },
-                              style:{
-                                position:"absolute",
-                                right:"12px",
-                                top:"50%",
-                                transform:"translateY(-50%)",
-                                width:"32px",
-                                height:"32px",
-                                borderRadius:"50%",
-                                backgroundColor:"#ffffff",
-                                border:"1px solid #cbd5e1",
-                                color:"#0f172a",
-                                display:"flex",
-                                alignItems:"center",
-                                justifyContent:"center",
-                                cursor:"pointer",
-                                boxShadow:"0 2px 6px rgba(0,0,0,0.15)"
-                              },
-                              children:r.jsxDEV("svg",{style:{width:"18px",height:"18px"},fill:"none",stroke:"currentColor",viewBox:"0 0 24 24",children:r.jsxDEV("path",{strokeLinecap:"round",strokeLinejoin:"round",strokeWidth:2,d:"M9 5l7 7-7 7"})},void 0,!1,{},void 0)
-                            },void 0,!0,{},void 0),
 
                             r.jsxDEV("div",{
                               className:"absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none",
@@ -1316,7 +1200,7 @@ React keys must be passed directly to JSX without using spread:
 
                         /* Indicadores */
                         r.jsxDEV("div",{
-                          style:{display:"flex",alignItems:"center",gap:"8px"},
+                          style:{display:"flex",alignItems:"center",justifyContent:"center",gap:"8px",marginTop:"4px"},
                           children:[
                             sublimadoDiagramas.map((_,idx)=>r.jsxDEV("button",{
                               key:idx,
@@ -1331,8 +1215,7 @@ React keys must be passed directly to JSX without using spread:
                                 cursor:"pointer",
                                 transition:"all 0.3s ease"
                               }
-                            },idx,!1,{},void 0)),
-                            r.jsxDEV("span",{style:{fontSize:"11px",color:"#94a3b8",marginLeft:"6px"},children:"(Cambio autom\u00E1tico cada 4s)"},void 0,!1,{},void 0)
+                            },idx,!1,{},void 0))
                           ]
                         },void 0,!0,{},void 0)
                       ]

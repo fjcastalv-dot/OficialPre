@@ -58,18 +58,9 @@ const SUBLIMADO_AVISOS = [
 ];
 
 const SUBLIMADO_DIAGRAMAS = [
-  {
-    url: 'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-5-1.png',
-    title: 'Área Full Print'
-  },
-  {
-    url: 'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-7.png',
-    title: 'Distribución y Patrón'
-  },
-  {
-    url: 'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-6.png',
-    title: 'Detalle de Cortes'
-  }
+  'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-5-1.png',
+  'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-7.png',
+  'https://uniformespre.com/wp-content/uploads/2024/02/logo-pecho-6.png'
 ];
 
 const SUBLIMADO_GALERIA = [
@@ -463,8 +454,8 @@ export default function RequerimientosModal({
                     style={{
                       position: 'relative',
                       width: '100%',
-                      maxWidth: '520px',
-                      height: '260px',
+                      maxWidth: '680px',
+                      height: '350px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -473,70 +464,16 @@ export default function RequerimientosModal({
                       border: '1px solid #e2e8f0',
                       cursor: 'pointer',
                       overflow: 'hidden',
+                      padding: '12px',
                       boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
                     }}
                   >
                     <img
                       src={BORDADO_DIAGRAMAS[bordadoIndex]}
                       alt={`Dimensión de bordado ${bordadoIndex + 1}`}
-                      style={{ maxHeight: '92%', maxWidth: '92%', objectFit: 'contain', transition: 'all 0.4s ease' }}
+                      style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', transition: 'all 0.4s ease' }}
                       loading="lazy"
                     />
-
-                    {/* Botones Anterior / Siguiente */}
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setBordadoIndex((prev) => (prev - 1 + BORDADO_DIAGRAMAS.length) % BORDADO_DIAGRAMAS.length);
-                      }}
-                      style={{
-                        position: 'absolute',
-                        left: '12px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '50%',
-                        backgroundColor: '#ffffff',
-                        border: '1px solid #cbd5e1',
-                        color: '#0f172a',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer',
-                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)'
-                      }}
-                    >
-                      <ChevronLeft style={{ width: '18px', height: '18px' }} />
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setBordadoIndex((prev) => (prev + 1) % BORDADO_DIAGRAMAS.length);
-                      }}
-                      style={{
-                        position: 'absolute',
-                        right: '12px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '50%',
-                        backgroundColor: '#ffffff',
-                        border: '1px solid #cbd5e1',
-                        color: '#0f172a',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer',
-                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)'
-                      }}
-                    >
-                      <ChevronRight style={{ width: '18px', height: '18px' }} />
-                    </button>
 
                     <div
                       className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none"
@@ -561,7 +498,7 @@ export default function RequerimientosModal({
                   </div>
 
                   {/* Indicadores */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '4px' }}>
                     {BORDADO_DIAGRAMAS.map((_, idx) => (
                       <button
                         key={idx}
@@ -579,9 +516,6 @@ export default function RequerimientosModal({
                         }}
                       />
                     ))}
-                    <span style={{ fontSize: '11px', color: '#94a3b8', marginLeft: '6px' }}>
-                      (Cambio automático cada 5s)
-                    </span>
                   </div>
                 </div>
               </div>
@@ -778,27 +712,24 @@ export default function RequerimientosModal({
                     alignItems: 'center',
                     gap: '12px'
                   }}
+                {/* Carrusel automático de diagramas de sublimado */}
+                <div
+                  style={{
+                    marginTop: '10px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '12px'
+                  }}
                 >
-                  <span
-                    style={{
-                      fontSize: '13px',
-                      fontWeight: 800,
-                      color: '#ea580c',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em'
-                    }}
-                  >
-                    {SUBLIMADO_DIAGRAMAS[sublimadoIndex].title}
-                  </span>
-
                   <div
-                    onClick={() => setPreviewImage(SUBLIMADO_DIAGRAMAS[sublimadoIndex].url)}
+                    onClick={() => setPreviewImage(SUBLIMADO_DIAGRAMAS[sublimadoIndex])}
                     className="group"
                     style={{
                       position: 'relative',
                       width: '100%',
-                      maxWidth: '520px',
-                      height: '260px',
+                      maxWidth: '680px',
+                      height: '350px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -807,70 +738,16 @@ export default function RequerimientosModal({
                       border: '1px solid #e2e8f0',
                       cursor: 'pointer',
                       overflow: 'hidden',
+                      padding: '12px',
                       boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
                     }}
                   >
                     <img
-                      src={SUBLIMADO_DIAGRAMAS[sublimadoIndex].url}
-                      alt={SUBLIMADO_DIAGRAMAS[sublimadoIndex].title}
-                      style={{ maxHeight: '92%', maxWidth: '92%', objectFit: 'contain', transition: 'all 0.4s ease' }}
+                      src={SUBLIMADO_DIAGRAMAS[sublimadoIndex]}
+                      alt={`Diagrama de sublimado ${sublimadoIndex + 1}`}
+                      style={{ maxHeight: '100%', maxWidth: '100%', objectFit: 'contain', transition: 'all 0.4s ease' }}
                       loading="lazy"
                     />
-
-                    {/* Botones Anterior / Siguiente */}
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSublimadoIndex((prev) => (prev - 1 + SUBLIMADO_DIAGRAMAS.length) % SUBLIMADO_DIAGRAMAS.length);
-                      }}
-                      style={{
-                        position: 'absolute',
-                        left: '12px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '50%',
-                        backgroundColor: '#ffffff',
-                        border: '1px solid #cbd5e1',
-                        color: '#0f172a',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer',
-                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)'
-                      }}
-                    >
-                      <ChevronLeft style={{ width: '18px', height: '18px' }} />
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSublimadoIndex((prev) => (prev + 1) % SUBLIMADO_DIAGRAMAS.length);
-                      }}
-                      style={{
-                        position: 'absolute',
-                        right: '12px',
-                        top: '50%',
-                        transform: 'translateY(-50%)',
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '50%',
-                        backgroundColor: '#ffffff',
-                        border: '1px solid #cbd5e1',
-                        color: '#0f172a',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer',
-                        boxShadow: '0 2px 6px rgba(0, 0, 0, 0.15)'
-                      }}
-                    >
-                      <ChevronRight style={{ width: '18px', height: '18px' }} />
-                    </button>
 
                     <div
                       className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none"
@@ -895,7 +772,7 @@ export default function RequerimientosModal({
                   </div>
 
                   {/* Indicadores */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginTop: '4px' }}>
                     {SUBLIMADO_DIAGRAMAS.map((_, idx) => (
                       <button
                         key={idx}
@@ -913,9 +790,6 @@ export default function RequerimientosModal({
                         }}
                       />
                     ))}
-                    <span style={{ fontSize: '11px', color: '#94a3b8', marginLeft: '6px' }}>
-                      (Cambio automático cada 4s)
-                    </span>
                   </div>
                 </div>
               </div>
