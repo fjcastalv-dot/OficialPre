@@ -81,19 +81,19 @@ export const PRODUCTS: Product[] = [
     hasCorteSelection: true,
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Bandera', hex: '#0e6914' },
       { name: 'Blanco', hex: '#ffffff', code: '332', image: poloBlanco },
-      { name: 'Botella', hex: '#072a10' },
-      { name: 'Canario', hex: '#eab308' },
       { name: 'Gris', hex: '#6b7280', code: '338', image: poloCarbon },
-      { name: 'Guinda', hex: '#58111a' },
-      { name: 'Mango', hex: '#ea990c' },
       { name: 'Marino', hex: '#111827', code: '343', image: poloMarino },
       { name: 'Naranja', hex: '#ea580c', code: '312', image: poloNaranja },
       { name: 'Oxford', hex: '#374151', code: '338', image: poloCarbon },
-      { name: 'Rey', hex: '#1d4ed8' },
       { name: 'Rojo', hex: '#b91c1c', code: '322', image: poloRojo },
-      { name: 'Verde Agua', hex: '#17b5c2', code: '317', image: poloTurquesa }
+      { name: 'Verde Agua', hex: '#17b5c2', code: '317', image: poloTurquesa },
+      { name: 'Bandera', hex: '#0e6914' },
+      { name: 'Botella', hex: '#072a10' },
+      { name: 'Canario', hex: '#eab308' },
+      { name: 'Guinda', hex: '#58111a' },
+      { name: 'Mango', hex: '#ea990c' },
+      { name: 'Rey', hex: '#1d4ed8' }
     ],
     damaColors: [
       {
@@ -153,7 +153,6 @@ export const PRODUCTS: Product[] = [
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Bandera', hex: '#0e6914' },
       {
         name: 'Blanco',
         hex: '#ffffff',
@@ -162,11 +161,6 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729621/MC_BLANCA.png'
         ]
       },
-      { name: 'Botella', hex: '#072a10' },
-      { name: 'Canario', hex: '#eab308' },
-      { name: 'Gris', hex: '#6b7280' },
-      { name: 'Guinda', hex: '#58111a' },
-      { name: 'Mango', hex: '#ea990c' },
       {
         name: 'Marino',
         hex: '#111827',
@@ -175,7 +169,6 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729606/azul_marino.png'
         ]
       },
-      { name: 'Naranja', hex: '#ea580c' },
       {
         name: 'Oxford',
         hex: '#374151',
@@ -185,6 +178,13 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729610/MC_NEGRA.png'
         ]
       },
+      { name: 'Bandera', hex: '#0e6914' },
+      { name: 'Botella', hex: '#072a10' },
+      { name: 'Canario', hex: '#eab308' },
+      { name: 'Gris', hex: '#6b7280' },
+      { name: 'Guinda', hex: '#58111a' },
+      { name: 'Mango', hex: '#ea990c' },
+      { name: 'Naranja', hex: '#ea580c' },
       { name: 'Rey', hex: '#1d4ed8' },
       { name: 'Rojo', hex: '#b91c1c' },
       { name: 'Verde Agua', hex: '#17b5c2' }
@@ -229,7 +229,6 @@ export const PRODUCTS: Product[] = [
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Bandera', hex: '#0e6914' },
       {
         name: 'Blanco',
         hex: '#ffffff',
@@ -240,8 +239,14 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430956/6.png'
         ]
       },
-      { name: 'Botella', hex: '#072a10' },
-      { name: 'Canario', hex: '#eab308' },
+      {
+        name: 'Canario',
+        hex: '#eab308',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789954500/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_4.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789954500/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_4.png'
+        ]
+      },
       {
         name: 'Gris',
         hex: '#6b7280',
@@ -252,8 +257,6 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430958/7.png'
         ]
       },
-      { name: 'Guinda', hex: '#58111a' },
-      { name: 'Mango', hex: '#ea990c' },
       {
         name: 'Marino',
         hex: '#111827',
@@ -264,7 +267,6 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430963/8.png'
         ]
       },
-      { name: 'Naranja', hex: '#ea580c' },
       {
         name: 'Oxford',
         hex: '#374151',
@@ -284,7 +286,14 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430963/8.png'
         ]
       },
-      { name: 'Rojo', hex: '#b91c1c' },
+      {
+        name: 'Rojo',
+        hex: '#b91c1c',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789954498/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_5.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789954498/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_5.png'
+        ]
+      },
       {
         name: 'Verde Agua',
         hex: '#17b5c2',
@@ -294,7 +303,12 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430960/1.png',
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430961/5.png'
         ]
-      }
+      },
+      { name: 'Bandera', hex: '#0e6914' },
+      { name: 'Botella', hex: '#072a10' },
+      { name: 'Guinda', hex: '#58111a' },
+      { name: 'Mango', hex: '#ea990c' },
+      { name: 'Naranja', hex: '#ea580c' }
     ],
     priceTiers: {
       '1-12': 210.00,
@@ -548,7 +562,7 @@ export const PRODUCTS: Product[] = [
     name: 'Blusa Manga Larga Oxford',
     price: 390.00,
     category: 'ejecutivo',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789955197/085A7541.jpg',
     rating: 4.8,
     description: 'Blusa cuello camisero formal manga larga, con un corte elegante y moderno, composición 65% Algodón 35% Poliéster, ofrece frescura, colores duraderos y una apariencia impecable que hará resaltar a tu equipo de trabajo con un estilo formal pero relajado.',
     composition: '65% Algodón 35% Poliéster',
@@ -560,9 +574,12 @@ export const PRODUCTS: Product[] = [
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Blanco', hex: '#ffffff' },
-      { name: 'Azul Cielo', hex: '#7dd3fc' },
-      { name: 'Rosa Pastel', hex: '#fbcfe8' }
+      {
+        name: 'Blanco',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789955197/085A7541.jpg'
+      },
+      { name: 'Azul Cielo', hex: '#7dd3fc' }
     ],
     priceTiers: {
       '1-12': 390.00,
@@ -1032,7 +1049,7 @@ export const PRODUCTS: Product[] = [
     name: 'Mandiles Largos',
     price: 250.00,
     category: 'restaurante',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789955203/Gemini_Generated_Image_kjfm74kjfm74kjfm.jpg',
     rating: 4.8,
     description: 'Mantenga una apariencia profesional e impecable con el exclusivo delantal de chef Premium. Suave, duradero y resistente a la decoloración manteniéndose vivo lavado tras lavado. Incluye tiras largas en la cintura y un bolsillo dividido para guardar todas sus pertenencias.',
     composition: '60% Algodón 40% Poliéster',
@@ -1043,11 +1060,7 @@ export const PRODUCTS: Product[] = [
           'Bolsillo dividido de 14.5\' x 9\''
     ],
     sizes: ['Unitalla'],
-    colors: [
-      { name: 'Negro', hex: '#000000' },
-      { name: 'Blanco', hex: '#ffffff' },
-      { name: 'Azul Marino', hex: '#1e3a8a' }
-    ],
+    colors: [],
     priceTiers: {
       '1-12': 250.00,
       '13-50': 230.00,
@@ -1588,7 +1601,7 @@ export const PRODUCTS: Product[] = [
     name: 'Short Guardavidas',
     price: 370.00,
     category: 'hoteleria',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789955218/Gemini_Generated_Image_8h7ema8h7ema8h7e.jpg',
     rating: 4.8,
     description: 'Short deportivo para salvavidas y monitores de alberca. Corte por encima de la rodilla para agilidad en nado y rescate inmediato con suspensorio interno de malla suave.',
     composition: '100% Poliéster Hidrófugo',
@@ -1599,11 +1612,7 @@ export const PRODUCTS: Product[] = [
       'Tejido ligero que no retiene peso en el agua'
     ],
     sizes: ['S', 'M', 'L', 'XL'],
-    colors: [
-      { name: 'Rojo Guardavidas', hex: '#dc2626' },
-      { name: 'Azul Marino', hex: '#1e3a8a' },
-      { name: 'Negro', hex: '#000000' }
-    ],
+    colors: [],
     priceTiers: {
       '1-12': 370.00,
       '13-50': 355.00,
@@ -1618,7 +1627,7 @@ export const PRODUCTS: Product[] = [
     name: 'Gorra de Gabardina',
     price: 130.00,
     category: 'industrial',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789955208/Dise%C3%B1o_sin_t%C3%ADtulo_4.png',
     rating: 4.8,
     description: 'Gorra clásica de 6 gajos confeccionada en gabardina 100% algodón. Visera de 6 cm de largo por 16 cm de ancho, alto de corona de 16 cm, circunferencia de 53 cm y ajustador con broche de hebilla.',
     composition: 'Gabardina 100% Algodón',
@@ -1630,13 +1639,7 @@ export const PRODUCTS: Product[] = [
           'Ajustador con broche de hebilla'
     ],
     sizes: ['Unitalla Ajustable'],
-    colors: [
-      { name: 'Negro', hex: '#000000' },
-      { name: 'Azul Marino', hex: '#1e3a8a' },
-      { name: 'Blanco', hex: '#ffffff' },
-      { name: 'Kaki', hex: '#d4b996' },
-      { name: 'Rojo', hex: '#b91c1c' }
-    ],
+    colors: [],
     priceTiers: {
       '1-12': 130.00,
       '13-50': 120.00,

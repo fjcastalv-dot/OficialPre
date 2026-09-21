@@ -61,7 +61,19 @@ export default function ProductDetailModal({
     if (isOpen && product) {
       setQuantity(1);
       setSelectedSize(product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'M');
-      setSelectedColor(product.colors && product.colors.length > 0 ? product.colors[0].name : '');
+      const initialColor = (() => {
+        const list = (product.colors || []);
+        if (list.length === 0) return '';
+        const withImg = list.find((c) => {
+          if (product.id.startsWith('polo-dryfit')) {
+            const n = c.name.toLowerCase();
+            return n.includes('blanco') || n.includes('oxford') || n.includes('carbón') || n.includes('carbon') || n.includes('gris') || n.includes('marino') || n.includes('naranja') || n.includes('rojo') || n.includes('verde agua') || n.includes('turquesa');
+          }
+          return !!c.image || (c.gallery && c.gallery.length > 0);
+        });
+        return withImg ? withImg.name : list[0].name;
+      })();
+      setSelectedColor(initialColor);
       setGalleryIndex(0);
       setSelectedCorte('Caballero');
       setSelectedManga('Manga Corta');
@@ -201,11 +213,16 @@ export default function ProductDetailModal({
                 if (name.includes('rojo')) return [poloRojo];
                 if (name.includes('verde agua') || name.includes('turquesa')) return [poloTurquesa];
                 if (colorObj?.image) return [colorObj.image];
-                return [product.image || modalImageOverride];
+                return [];
               }
 
               if (colorObj?.image) {
                 return [colorObj.image];
+              }
+
+              // If the product has colors configured, but this color has no photo:
+              if (product.colors && product.colors.length > 0) {
+                return [];
               }
 
               if (product.gallery && product.gallery.length > 0) {
@@ -215,7 +232,7 @@ export default function ProductDetailModal({
               return product.image ? [product.image] : [];
             })();
 
-            const currentDisplayImage = (activeGallery[galleryIndex] || activeGallery[0] || product.image || '').trim();
+            const currentDisplayImage = (activeGallery[galleryIndex] || activeGallery[0] || (product.colors && product.colors.length > 0 ? '' : product.image) || '').trim();
             const hasMultipleImages = activeGallery.length > 1;
 
             return (
@@ -236,16 +253,16 @@ export default function ProductDetailModal({
                       }}
                     />
                   ) : (
-                    <div className="w-full h-80 sm:h-96 md:h-[460px] flex flex-col items-center justify-center bg-gradient-to-b from-slate-900 to-slate-950 rounded-xl p-8 text-center border border-dashed border-slate-800">
-                      <div className="w-20 h-20 rounded-2xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-center text-slate-400 mb-4 shadow-lg">
-                        <CameraOff className="w-10 h-10 stroke-[1.5]" />
+                    <div className="w-full h-80 sm:h-96 md:h-[460px] flex flex-col items-center justify-center bg-white rounded-xl p-8 text-center border border-slate-200 shadow-sm">
+                      <div className="w-16 h-16 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 mb-3 shadow-inner">
+                        <CameraOff className="w-8 h-8 stroke-[1.5]" />
                       </div>
-                      <span className="text-base font-bold text-white tracking-wide">
-                        Apartado sin fotografía
+                      <span className="text-sm font-bold text-[#00086B] tracking-wide font-sans">
+                        Sin fotografía
                       </span>
-                      <p className="text-xs text-slate-400 mt-2 max-w-xs leading-relaxed">
-                        Estamos preparando la sesión de fotografía oficial para este modelo. Puedes consultar especificaciones técnicas y agregar a cotización normalmente.
-                      </p>
+                      <span className="text-xs text-slate-500 mt-1 max-w-[160px] leading-tight">
+                        Disponible próximamente
+                      </span>
                     </div>
                   )}
 
