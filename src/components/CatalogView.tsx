@@ -161,14 +161,17 @@ export default function CatalogView({
         return false;
       });
     }).sort((a, b) => {
+      const aHasImg = (a.image && a.image.trim() !== '') || (a.colors && a.colors.some((c) => c.image && c.image.trim() !== '')) || (a.gallery && a.gallery.length > 0) ? 1 : 0;
+      const bHasImg = (b.image && b.image.trim() !== '') || (b.colors && b.colors.some((c) => c.image && c.image.trim() !== '')) || (b.gallery && b.gallery.length > 0) ? 1 : 0;
+      if (aHasImg !== bHasImg) {
+        return bHasImg - aHasImg;
+      }
       if (filterCategory === 'restaurante') {
         const orderA = RESTAURANTE_PRIORITY_ORDER[a.id] ?? 999;
         const orderB = RESTAURANTE_PRIORITY_ORDER[b.id] ?? 999;
         return orderA - orderB;
       }
-      const aHasImg = a.image && a.image.trim() !== '' ? 1 : 0;
-      const bHasImg = b.image && b.image.trim() !== '' ? 1 : 0;
-      return bHasImg - aHasImg;
+      return 0;
     });
   }, [searchQuery, filterCategory]);
 
@@ -525,7 +528,11 @@ export default function CatalogView({
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                        className={`w-full h-full ${
+                          product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
+                            ? 'object-contain p-2.5'
+                            : 'object-cover object-top'
+                        } group-hover:scale-105 transition-transform duration-300`}
                         referrerPolicy="no-referrer"
                         loading="lazy"
                         onError={(e) => {

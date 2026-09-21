@@ -13,8 +13,16 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
   useEffect(() => {
     if (isOpen) {
       setActiveTab(initialTab);
+      const el = document.getElementById('legal-docs-modal-body');
+      if (el) el.scrollTop = 0;
     }
   }, [isOpen, initialTab]);
+
+  // Reset scroll al cambiar de pestaña para que cada una inicie desde arriba
+  useEffect(() => {
+    const el = document.getElementById('legal-docs-modal-body');
+    if (el) el.scrollTop = 0;
+  }, [activeTab]);
 
   if (!isOpen) return null;
 
@@ -98,6 +106,7 @@ export default function LegalDocsModal({ isOpen, onClose, initialTab }: LegalDoc
 
         {/* Scrollable Content Body - Independently scrolls while header remains fixed */}
         <div
+          id="legal-docs-modal-body"
           className="legal-modal-body flex-1 overflow-y-auto min-h-0 p-6 sm:p-8 space-y-6 font-sans text-sm leading-relaxed scrollbar-thin"
           style={{
             backgroundColor: '#ffffff',

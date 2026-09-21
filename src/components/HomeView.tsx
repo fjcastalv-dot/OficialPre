@@ -409,7 +409,11 @@ export default function HomeView({
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                      className={`w-full h-full ${
+                        product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
+                          ? 'object-contain p-2.5'
+                          : 'object-cover object-top'
+                      } group-hover:scale-105 transition-transform duration-300`}
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       onError={(e) => {

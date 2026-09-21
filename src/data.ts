@@ -562,7 +562,7 @@ export const PRODUCTS: Product[] = [
     name: 'Blusa Manga Larga Oxford',
     price: 390.00,
     category: 'ejecutivo',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789955197/085A7541.jpg',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789957587/Dise%C3%B1o_sin_t%C3%ADtulo_6.png',
     rating: 4.8,
     description: 'Blusa cuello camisero formal manga larga, con un corte elegante y moderno, composición 65% Algodón 35% Poliéster, ofrece frescura, colores duraderos y una apariencia impecable que hará resaltar a tu equipo de trabajo con un estilo formal pero relajado.',
     composition: '65% Algodón 35% Poliéster',
@@ -577,7 +577,7 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Blanco',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789955197/085A7541.jpg'
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789957587/Dise%C3%B1o_sin_t%C3%ADtulo_6.png'
       },
       { name: 'Azul Cielo', hex: '#7dd3fc' }
     ],
@@ -1564,35 +1564,6 @@ export const PRODUCTS: Product[] = [
   },
 
 
-  // 37. BERMUDA GUARDAVIDAS
-  {
-    id: 'bermuda-guardavidas',
-    code: 'BG001',
-    name: 'Bermuda Guardavidas',
-    price: 390.00,
-    category: 'hoteleria',
-    image: '',
-    rating: 4.8,
-    description: 'Bermuda técnica de rescate acuático y guardavidas en tela repelente de secado veloz. Cintura con jareta y elástico, bolsas laterales con drenaje de agua y rotulación de alta visibilidad.',
-    composition: '100% Microfibra Náutica Repelente al Agua',
-    features: [
-      'Secado ultra rápido con drenaje en bolsas',
-      'Cintura con cordón ajustable reforzado',
-      'Bolsillo cargo lateral con cierre o velcro de seguridad',
-      'Resistente a la fricción de la tabla de rescate y la arena'
-    ],
-    sizes: ['28', '30', '32', '34', '36', '38'],
-    colors: [
-      { name: 'Rojo Guardavidas', hex: '#dc2626' },
-      { name: 'Amarillo Seguridad', hex: '#eab308' },
-      { name: 'Azul Marino', hex: '#1e3a8a' }
-    ],
-    priceTiers: {
-      '1-12': 390.00,
-      '13-50': 370.00,
-      '51+': 350.00
-    }
-  },
 
   // 38. SHORT GUARDAVIDAS
   {

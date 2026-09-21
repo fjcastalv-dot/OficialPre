@@ -244,7 +244,11 @@ export default function ProductDetailModal({
                       key={currentDisplayImage}
                       src={currentDisplayImage}
                       alt={`${product.name} - ${selectedColor}`}
-                      className="w-full h-80 sm:h-96 md:h-[460px] object-cover object-top rounded-xl shadow-inner transition-all duration-300"
+                      className={`w-full h-80 sm:h-96 md:h-[460px] ${
+                        product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
+                          ? 'object-contain p-3'
+                          : 'object-cover object-top'
+                      } rounded-xl shadow-inner transition-all duration-300`}
                       referrerPolicy="no-referrer"
                       onError={(e) => {
                         if (product.image && e.currentTarget.src !== product.image) {
