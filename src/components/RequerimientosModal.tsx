@@ -8,21 +8,20 @@ interface RequerimientosModalProps {
 }
 
 const BORDADO_MEDIDAS = [
-  {
-    title: 'Pecho',
-    val: '8 cm base',
-    desc: 'Medida estándar recomendada para colocación en pecho izquierdo o centrado.'
-  },
-  {
-    title: 'Mangas o Gorras',
-    val: '6 cm base',
-    desc: 'Dimensión óptima para laterales de manga, viseras o frentes de gorra.'
-  },
-  {
-    title: 'Letras Pequeñas',
-    val: '0.6 cm mínimo',
-    desc: 'Altura mínima requerida por letra para asegurar nitidez y legibilidad del hilo.'
-  }
+  'Para el pecho: La base debe ser de 8 cm.',
+  'Para las mangas o gorras: La base debe ser de 6 cm.',
+  'Para letras pequeñas, la altura mínima debe ser de 0.6 cm.'
+];
+
+const BORDADO_REQUISITOS = [
+  'Se necesita una imagen de buena o media calidad para bordar el logo.',
+  'Formatos de imagen PNG,  JPG, TIF, EPS, PDF.'
+];
+
+const BORDADO_AVISOS = [
+  'A partir de 12 piezas se bordará si eres cliente nuevo.',
+  'El diseñador(a) ajustará al diseño a las medidas si es necesario.',
+  'Se enviarán fotos de muestras del bordado al cliente y  se realizarán ajustes de ser requeridos.'
 ];
 
 const BORDADO_DIAGRAMAS = [
@@ -39,16 +38,23 @@ const BORDADO_GALERIA = [
 ];
 
 const SUBLIMADO_MEDIDAS = [
-  {
-    title: 'Ancho Máximo',
-    val: '150 cm',
-    desc: 'Área máxima de ancho de impresión textil por rollo continuo.'
-  },
-  {
-    title: 'Largo Mínimo',
-    val: '500 cm (5 m)',
-    desc: 'Longitud mínima requerida para tiraje de tela en rollo full print.'
-  }
+  'Ancho máximo: 150 cm',
+  'Largo mínimo: 500 cm'
+];
+
+const SUBLIMADO_REQUISITOS = [
+  'Se necesita una imagen de muy buena calidad o vectores.',
+  'Formatos de imagen PNG, a JPG, TIF, EPS, PDF.',
+  'Si tienes un diseño, especificar si va en CMYK o RGB.',
+  'Formatos de diseño cdr, ai, PDF, PNG, EPS, JPG'
+];
+
+const SUBLIMADO_AVISOS = [
+  'Para tela full print lo minimo son 5 m.',
+  'Para diseño por uniforme, el pedido minimo son 12 piezas',
+  'Solo telas que sean 100% poliéster.',
+  'El diseñador(a) ajustará al diseño a las medidas si es necesario.',
+  'Se enviarán fotos de muestras del sublimado al cliente y  se realizarán ajustes de ser requeridos.'
 ];
 
 const SUBLIMADO_DIAGRAMAS = [
@@ -95,7 +101,7 @@ export default function RequerimientosModal({
     }
   }, [isOpen, initialTab]);
 
-  // Lock background scroll completely when modal is open
+  // Bloqueo de scroll de la página de fondo
   useEffect(() => {
     if (isOpen) {
       const origOverflow = document.body.style.overflow;
@@ -134,7 +140,7 @@ export default function RequerimientosModal({
     }
   }, [isOpen, onClose, previewImage]);
 
-  // Auto carousel: Bordado dimensions images rotate every 5s
+  // Auto carrusel Bordado: cambia cada 5s
   useEffect(() => {
     if (!isOpen || activeTab !== 'bordado') return;
     const timer = setInterval(() => {
@@ -143,7 +149,7 @@ export default function RequerimientosModal({
     return () => clearInterval(timer);
   }, [isOpen, activeTab]);
 
-  // Auto carousel: Sublimado diagrams rotate every 4s
+  // Auto carrusel Sublimado: cambia cada 4s
   useEffect(() => {
     if (!isOpen || activeTab !== 'sublimado') return;
     const timer = setInterval(() => {
@@ -189,14 +195,14 @@ export default function RequerimientosModal({
         boxSizing: 'border-box'
       }}
     >
-      {/* Backdrop click layer */}
+      {/* Fondo oscuro para cerrar */}
       <div
         className="absolute inset-0 cursor-pointer"
         onClick={onClose}
         style={{ position: 'absolute', inset: 0, cursor: 'pointer' }}
       />
 
-      {/* Modal Main Card (Light Theme: White background) */}
+      {/* Tarjeta Principal Blanca (Modo Claro) */}
       <div
         id="requerimientos-modal-card"
         onClick={(e) => e.stopPropagation()}
@@ -223,7 +229,7 @@ export default function RequerimientosModal({
           overscrollBehavior: 'contain'
         }}
       >
-        {/* Prominent Floating Close Button (top-right X) */}
+        {/* Botón Cerrar "X" Destacado en Esquina Superior Derecha */}
         <button
           onClick={onClose}
           type="button"
@@ -263,7 +269,7 @@ export default function RequerimientosModal({
           <X style={{ width: '20px', height: '20px' }} strokeWidth={2.5} />
         </button>
 
-        {/* Modal Header */}
+        {/* Encabezado Superior Blanco */}
         <div
           className="sticky top-0 z-20 shrink-0"
           style={{
@@ -312,7 +318,7 @@ export default function RequerimientosModal({
           </div>
         </div>
 
-        {/* Tab Switcher (Bordado vs Sublimado) */}
+        {/* Selector de Pestañas */}
         <div
           style={{
             backgroundColor: '#f8fafc',
@@ -381,7 +387,7 @@ export default function RequerimientosModal({
           </button>
         </div>
 
-        {/* Scrollable Modal Content */}
+        {/* Cuerpo Desplazable del Modal */}
         <div
           id="requerimientos-modal-body"
           onWheel={(e) => e.stopPropagation()}
@@ -396,118 +402,59 @@ export default function RequerimientosModal({
             WebkitOverflowScrolling: 'touch'
           }}
         >
-          {/* TAB 1: BORDADO INDUSTRIAL */}
+          {/* TAB 1: BORDADOS */}
           {activeTab === 'bordado' ? (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-              {/* Highlight Banner */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '26px' }}>
+              {/* Título Principal */}
               <div
                 style={{
                   backgroundColor: '#fff7ed',
                   border: '1px solid #ffedd5',
                   borderRadius: '14px',
-                  padding: '20px'
+                  padding: '18px 20px'
                 }}
               >
-                <span style={{ fontSize: '11px', fontWeight: 700, color: '#ea580c', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                  ALTA DEFINICIÓN COMPUTARIZADA
-                </span>
-                <h3 className="font-display" style={{ fontSize: '22px', color: '#0f172a', marginTop: '4px', fontWeight: 800 }}>
+                <h3 className="font-display" style={{ fontSize: '22px', color: '#0f172a', fontWeight: 800 }}>
                   REQUERIMIENTOS PARA BORDADOS
                 </h3>
-                <p style={{ fontSize: '14px', color: '#475569', marginTop: '8px', lineHeight: 1.6 }}>
-                  Personaliza el uniforme de tu{' '}
-                  <strong style={{ color: '#ea580c' }}>Marca, Negocio, Hotel, Restaurante o Inmobiliaria</strong> con puntada de máxima densidad, hilos de alta resistencia y calibración milimétrica.
-                </p>
               </div>
 
-              {/* Video Section */}
+              {/* Sección 1: Medidas para el bordado */}
               <div
                 style={{
                   backgroundColor: '#f8fafc',
                   borderRadius: '16px',
-                  padding: '18px',
+                  padding: '20px',
                   border: '1px solid #e2e8f0',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '12px'
+                  gap: '14px'
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0f172a' }}>
-                  <Video style={{ width: '20px', height: '20px', color: '#ea580c' }} />
-                  <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.02em' }}>
-                    Video de Demostración: Bordado en Proceso
-                  </h4>
-                </div>
-                <p style={{ fontSize: '12px', color: '#64748b' }}>
-                  Conoce nuestra tecnología computarizada de bordado industrial multicabezal operando en taller.
-                </p>
-                <div
-                  style={{
-                    position: 'relative',
-                    width: '100%',
-                    aspectRatio: '16/9',
-                    borderRadius: '12px',
-                    overflow: 'hidden',
-                    border: '1px solid #cbd5e1',
-                    backgroundColor: '#000000'
-                  }}
-                >
-                  <iframe
-                    src="https://www.youtube-nocookie.com/embed/KVtucXUntoY?rel=0"
-                    title="Bordados Uniformes PRE"
-                    style={{ width: '100%', height: '100%', border: 0 }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              {/* Section: Medidas & Carrusel de Dimensiones */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
                   <Ruler style={{ width: '20px', height: '20px', color: '#ea580c' }} />
-                  <h4 className="font-display" style={{ fontSize: '20px', color: '#0f172a', fontWeight: 800 }}>
-                    Medidas para el Bordado
+                  <h4 className="font-display" style={{ fontSize: '18px', color: '#0f172a', fontWeight: 800 }}>
+                    Medidas para el bordado
                   </h4>
                 </div>
 
-                {/* 3 Medidas Metric Boxes */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {BORDADO_MEDIDAS.map((m, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        backgroundColor: '#f8fafc',
-                        borderRadius: '12px',
-                        padding: '16px',
-                        border: '1px solid #e2e8f0'
-                      }}
-                    >
-                      <span style={{ fontSize: '11px', fontWeight: 700, color: '#ea580c', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                        {m.title}
-                      </span>
-                      <p style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', marginTop: '4px' }}>
-                        {m.val}
-                      </p>
-                      <p style={{ fontSize: '12px', color: '#64748b', marginTop: '4px', lineHeight: 1.5 }}>
-                        {m.desc}
-                      </p>
-                    </div>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', color: '#334155' }}>
+                  {BORDADO_MEDIDAS.map((item, idx) => (
+                    <li key={idx} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '3px' }} />
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
-                {/* Carrusel automático de dimensiones (1 sola foto visible, alterna cada 5s, sin título) */}
+                {/* Carrusel de 2 fotos de dimensiones (Sin títulos, cambia cada 5s) */}
                 <div
                   style={{
-                    backgroundColor: '#f8fafc',
-                    borderRadius: '16px',
-                    border: '1px solid #e2e8f0',
-                    padding: '20px',
+                    marginTop: '10px',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: '14px'
+                    gap: '12px'
                   }}
                 >
                   <div
@@ -531,12 +478,12 @@ export default function RequerimientosModal({
                   >
                     <img
                       src={BORDADO_DIAGRAMAS[bordadoIndex]}
-                      alt={`Medida de bordado ${bordadoIndex + 1}`}
+                      alt={`Dimensión de bordado ${bordadoIndex + 1}`}
                       style={{ maxHeight: '92%', maxWidth: '92%', objectFit: 'contain', transition: 'all 0.4s ease' }}
                       loading="lazy"
                     />
 
-                    {/* Prev / Next controls */}
+                    {/* Botones Anterior / Siguiente */}
                     <button
                       type="button"
                       onClick={(e) => {
@@ -613,7 +560,7 @@ export default function RequerimientosModal({
                     </div>
                   </div>
 
-                  {/* Indicator Dots */}
+                  {/* Indicadores */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     {BORDADO_DIAGRAMAS.map((_, idx) => (
                       <button
@@ -639,72 +586,99 @@ export default function RequerimientosModal({
                 </div>
               </div>
 
-              {/* Requirements & Notices Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div
-                  style={{
-                    backgroundColor: '#f8fafc',
-                    borderRadius: '16px',
-                    padding: '20px',
-                    border: '1px solid #e2e8f0',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '14px'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <FileText style={{ width: '18px', height: '18px', color: '#ea580c' }} />
-                    <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
-                      Requisitos de la Imagen
-                    </h4>
-                  </div>
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#334155' }}>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
-                      <span><strong>Resolución mínima:</strong> 300 DPI recomendada.</span>
-                    </li>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
-                      <span><strong>Formatos preferidos:</strong> Vectoriales (AI, EPS, PDF) o mapas de bits en alta calidad (PNG fondo transparente, JPG nítido).</span>
-                    </li>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
-                      <span><strong>Sin degradados complejos:</strong> Los bordados emplean hilos continuos en colores sólidos.</span>
-                    </li>
-                  </ul>
+              {/* Sección 2: Requisitos de la imagen */}
+              <div
+                style={{
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '16px',
+                  padding: '20px',
+                  border: '1px solid #e2e8f0',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
+                  <FileText style={{ width: '18px', height: '18px', color: '#ea580c' }} />
+                  <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
+                    Requisitos de la imagen
+                  </h4>
                 </div>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', color: '#334155' }}>
+                  {BORDADO_REQUISITOS.map((item, idx) => (
+                    <li key={idx} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '3px' }} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
+              {/* Sección 3: Avisos */}
+              <div
+                style={{
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '16px',
+                  padding: '20px',
+                  border: '1px solid #e2e8f0',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
+                  <Info style={{ width: '18px', height: '18px', color: '#ea580c' }} />
+                  <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
+                    Avisos
+                  </h4>
+                </div>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', color: '#334155' }}>
+                  {BORDADO_AVISOS.map((item, idx) => (
+                    <li key={idx} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Video de Demostración */}
+              <div
+                style={{
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '16px',
+                  padding: '18px',
+                  border: '1px solid #e2e8f0',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0f172a' }}>
+                  <Video style={{ width: '20px', height: '20px', color: '#ea580c' }} />
+                  <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.02em' }}>
+                    Video de Demostración: Bordado en Proceso
+                  </h4>
+                </div>
                 <div
                   style={{
-                    backgroundColor: '#f8fafc',
-                    borderRadius: '16px',
-                    padding: '20px',
-                    border: '1px solid #e2e8f0',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '14px'
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: '16/9',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    border: '1px solid #cbd5e1',
+                    backgroundColor: '#000000'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Info style={{ width: '18px', height: '18px', color: '#ea580c' }} />
-                    <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
-                      Avisos Importantes
-                    </h4>
-                  </div>
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#334155' }}>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
-                      <span><strong>Digitalización (Ponchado):</strong> Se realiza una sola vez y queda archivada para tus siguientes pedidos.</span>
-                    </li>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
-                      <span><strong>Tiraje mínimo:</strong> A partir de 12 piezas para optimizar costo por prenda.</span>
-                    </li>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
-                      <span><strong>Muestra previa:</strong> Enviamos fotografía de bordado real para tu visto bueno antes de maquilar.</span>
-                    </li>
-                  </ul>
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/KVtucXUntoY?rel=0"
+                    title="Bordados Uniformes PRE"
+                    style={{ width: '100%', height: '100%', border: 0 }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                  />
                 </div>
               </div>
 
@@ -751,115 +725,58 @@ export default function RequerimientosModal({
               </div>
             </div>
           ) : (
-            /* TAB 2: SUBLIMADO FULL PRINT */
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-              {/* Highlight Banner */}
+            /* TAB 2: SUBLIMADOS */
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '26px' }}>
+              {/* Título Principal */}
               <div
                 style={{
                   backgroundColor: '#fff7ed',
                   border: '1px solid #ffedd5',
                   borderRadius: '14px',
-                  padding: '20px'
+                  padding: '18px 20px'
                 }}
               >
-                <span style={{ fontSize: '11px', fontWeight: 700, color: '#ea580c', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-                  IMPRESIÓN TEXTIL POR TRANSFERENCIA TÉRMICA
-                </span>
-                <h3 className="font-display" style={{ fontSize: '22px', color: '#0f172a', marginTop: '4px', fontWeight: 800 }}>
-                  REQUERIMIENTOS PARA SUBLIMADO
+                <h3 className="font-display" style={{ fontSize: '22px', color: '#0f172a', fontWeight: 800 }}>
+                  REQUERIMIENTOS PARA SUBLIMADOS
                 </h3>
-                <p style={{ fontSize: '14px', color: '#475569', marginTop: '8px', lineHeight: 1.6 }}>
-                  Impresión de alta fidelidad para prendas de poliéster, licras deportivas, playeras técnicas y mantelería publicitaria sin límites de color ni tacto.
-                </p>
               </div>
 
-              {/* Video Section */}
+              {/* Sección 1: Medidas para el diseño full print */}
               <div
                 style={{
                   backgroundColor: '#f8fafc',
                   borderRadius: '16px',
-                  padding: '18px',
+                  padding: '20px',
                   border: '1px solid #e2e8f0',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '12px'
+                  gap: '14px'
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0f172a' }}>
-                  <Video style={{ width: '20px', height: '20px', color: '#ea580c' }} />
-                  <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.02em' }}>
-                    Video Demostrativo: Proceso de Sublimación
-                  </h4>
-                </div>
-                <p style={{ fontSize: '12px', color: '#64748b' }}>
-                  Observa cómo la tinta se funde químicamente con la fibra textil a alta temperatura garantizando durabilidad de por vida.
-                </p>
-                <div
-                  style={{
-                    position: 'relative',
-                    width: '100%',
-                    aspectRatio: '16/9',
-                    borderRadius: '12px',
-                    overflow: 'hidden',
-                    border: '1px solid #cbd5e1',
-                    backgroundColor: '#000000'
-                  }}
-                >
-                  <iframe
-                    src="https://www.youtube-nocookie.com/embed/9wG5V-B6n-s?rel=0"
-                    title="Sublimado Uniformes PRE"
-                    style={{ width: '100%', height: '100%', border: 0 }}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-
-              {/* Section: Medidas & Carrusel de Diagramas (Cambio cada 4s) */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
                   <Ruler style={{ width: '20px', height: '20px', color: '#ea580c' }} />
-                  <h4 className="font-display" style={{ fontSize: '20px', color: '#0f172a', fontWeight: 800 }}>
-                    Medidas y Formato de Archivo
+                  <h4 className="font-display" style={{ fontSize: '18px', color: '#0f172a', fontWeight: 800 }}>
+                    Medidas para el diseño full print
                   </h4>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {SUBLIMADO_MEDIDAS.map((m, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        backgroundColor: '#f8fafc',
-                        borderRadius: '12px',
-                        padding: '16px',
-                        border: '1px solid #e2e8f0'
-                      }}
-                    >
-                      <span style={{ fontSize: '11px', fontWeight: 700, color: '#ea580c', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                        {m.title}
-                      </span>
-                      <p style={{ fontSize: '20px', fontWeight: 800, color: '#0f172a', marginTop: '4px' }}>
-                        {m.val}
-                      </p>
-                      <p style={{ fontSize: '12px', color: '#64748b', marginTop: '4px', lineHeight: 1.5 }}>
-                        {m.desc}
-                      </p>
-                    </div>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', color: '#334155' }}>
+                  {SUBLIMADO_MEDIDAS.map((item, idx) => (
+                    <li key={idx} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '3px' }} />
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
 
                 {/* Carrusel automático de diagramas de sublimado (Cambia cada 4s) */}
                 <div
                   style={{
-                    backgroundColor: '#f8fafc',
-                    borderRadius: '16px',
-                    border: '1px solid #e2e8f0',
-                    padding: '20px',
+                    marginTop: '10px',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    gap: '14px'
+                    gap: '12px'
                   }}
                 >
                   <span
@@ -900,7 +817,7 @@ export default function RequerimientosModal({
                       loading="lazy"
                     />
 
-                    {/* Prev / Next buttons */}
+                    {/* Botones Anterior / Siguiente */}
                     <button
                       type="button"
                       onClick={(e) => {
@@ -977,7 +894,7 @@ export default function RequerimientosModal({
                     </div>
                   </div>
 
-                  {/* Indicator Dots */}
+                  {/* Indicadores */}
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     {SUBLIMADO_DIAGRAMAS.map((_, idx) => (
                       <button
@@ -1003,72 +920,99 @@ export default function RequerimientosModal({
                 </div>
               </div>
 
-              {/* Requirements & Applications Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div
-                  style={{
-                    backgroundColor: '#f8fafc',
-                    borderRadius: '16px',
-                    padding: '20px',
-                    border: '1px solid #e2e8f0',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '14px'
-                  }}
-                >
-                  <div style={{ display: 'center', alignItems: 'center', gap: '8px' }}>
-                    <FileText style={{ width: '18px', height: '18px', color: '#ea580c' }} />
-                    <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
-                      Preparación de Archivos
-                    </h4>
-                  </div>
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#334155' }}>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
-                      <span><strong>Perfil de color:</strong> CMYK (FOGRA39 o US Web Coated) para tonos exactos.</span>
-                    </li>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
-                      <span><strong>Formato:</strong> TIFF, PDF o PSD en capas, tamaño real al 100% y 300 DPI.</span>
-                    </li>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '2px' }} />
-                      <span><strong>Sangrado / Margen:</strong> Incluir 1.5 cm perimetral para compensar cortes y costuras.</span>
-                    </li>
-                  </ul>
+              {/* Sección 2: Requisitos de la imagen o diseño */}
+              <div
+                style={{
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '16px',
+                  padding: '20px',
+                  border: '1px solid #e2e8f0',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
+                  <FileText style={{ width: '18px', height: '18px', color: '#ea580c' }} />
+                  <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
+                    Requisitos de la imagen o diseño
+                  </h4>
                 </div>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', color: '#334155' }}>
+                  {SUBLIMADO_REQUISITOS.map((item, idx) => (
+                    <li key={idx} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <CheckCircle2 style={{ width: '16px', height: '16px', color: '#16a34a', flexShrink: 0, marginTop: '3px' }} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
+              {/* Sección 3: Avisos */}
+              <div
+                style={{
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '16px',
+                  padding: '20px',
+                  border: '1px solid #e2e8f0',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px' }}>
+                  <Info style={{ width: '18px', height: '18px', color: '#ea580c' }} />
+                  <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
+                    Avisos
+                  </h4>
+                </div>
+                <ul style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '14px', color: '#334155' }}>
+                  {SUBLIMADO_AVISOS.map((item, idx) => (
+                    <li key={idx} style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
+                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Video Sublimado */}
+              <div
+                style={{
+                  backgroundColor: '#f8fafc',
+                  borderRadius: '16px',
+                  padding: '18px',
+                  border: '1px solid #e2e8f0',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#0f172a' }}>
+                  <Video style={{ width: '20px', height: '20px', color: '#ea580c' }} />
+                  <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '0.02em' }}>
+                    Video Demostrativo: Proceso de Sublimación
+                  </h4>
+                </div>
                 <div
                   style={{
-                    backgroundColor: '#f8fafc',
-                    borderRadius: '16px',
-                    padding: '20px',
-                    border: '1px solid #e2e8f0',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '14px'
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: '16/9',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    border: '1px solid #cbd5e1',
+                    backgroundColor: '#000000'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <Info style={{ width: '18px', height: '18px', color: '#ea580c' }} />
-                    <h4 className="font-display" style={{ fontSize: '18px', fontWeight: 700, color: '#0f172a' }}>
-                      Telas y Aplicaciones
-                    </h4>
-                  </div>
-                  <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#334155' }}>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
-                      <span><strong>Compatibilidad:</strong> Exclusivo para poliéster 100% o mezclas con mínimo 70% poliéster.</span>
-                    </li>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
-                      <span><strong>Ideal para:</strong> Jerseys deportivos, lycras rash guard, playeras dry-fit, banderas y mantelería.</span>
-                    </li>
-                    <li style={{ display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-                      <span style={{ color: '#ea580c', fontWeight: 800 }}>•</span>
-                      <span><strong>Ventaja única:</strong> Cero tacto sobre la fibra, transpirabilidad total y sin cuartearse al lavado.</span>
-                    </li>
-                  </ul>
+                  <iframe
+                    src="https://www.youtube-nocookie.com/embed/9wG5V-B6n-s?rel=0"
+                    title="Sublimado Uniformes PRE"
+                    style={{ width: '100%', height: '100%', border: 0 }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    loading="lazy"
+                  />
                 </div>
               </div>
 
