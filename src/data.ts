@@ -59,11 +59,11 @@ export const TAPICERIA_GALLERY = [
 ];
 
 export const PRODUCTS: Product[] = [
-  // 1. PLAYERA POLO DRY-FIT CABALLERO / DAMA
+  // 1. PLAYERA POLO DRY-FIT DAMA / CABALLERO
   {
     id: 'polo-dryfit-caballero-dama',
     code: 'PL001',
-    name: 'Playera Polo Dry-Fit Caballero/Dama',
+    name: 'Playera Polo Dry-Fit Dama / Caballero',
     price: 240.00,
     category: 'hoteleria',
     image: poloMarino,
@@ -317,11 +317,11 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 5. CAZADORA M/C CAB.
+  // 5. CAZADORA M/C DAMA Y CAB.
   {
     id: 'cazadora-manga-corta',
     code: 'CZ001MC',
-    name: 'Cazadora Manga Corta Caballero',
+    name: 'Cazadora Manga Corta Dama y Caballero',
     price: 650.00,
     category: 'restaurante',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788194431/MARINOFRENTE.png',
@@ -422,11 +422,11 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 6. CAZADORA M/L, CAB.
+  // 6. CAZADORA M/L, DAMA Y CAB.
   {
     id: 'cazadora-manga-larga',
     code: 'CZ001ML',
-    name: 'Cazadora Manga Larga Caballero',
+    name: 'Cazadora Manga Larga Dama y Caballero',
     price: 750.00,
     category: 'restaurante',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789238159/cazadora_ML.png',
@@ -667,11 +667,11 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 12. FILIPINA GABARDINA ANTIFLUIDO (NUEVO)
+  // 12. FILIPINA GABARDINA ANTIFLUIDO MANGA 3/4
   {
     id: 'filipina-gabardina-antifluido',
     code: 'FI003-AF',
-    name: 'Filipina Gabardina Antifluido',
+    name: 'Filipina Gabardina Antifluido Manga 3/4',
     price: 490.00,
     category: 'restaurante',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789237290/UNIFROMES-chef_frente.png',
@@ -686,14 +686,13 @@ export const PRODUCTS: Product[] = [
     description: 'Filipina con tecnología de repelencia a líquidos y aceite vegetal, ligera, versátil, resistente, transpirable y de fácil cuidado. Con respiradero para alto rendimiento en cocina.',
     composition: '65% Poliéster 35% Algodón con tecnología antifluido y repelente a aceites',
     features: [
+      'Manga 3/4',
       'Repele el aceite vegetal y el agua',
       'Ligera, versátil y resistente',
       'Transpirable y fácil cuidado',
-      'Manga larga y manga corta disponible',
       'Con respiradero'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    hasMangaSelection: true,
     colors: [
       {
         name: 'Blanco',
@@ -723,11 +722,11 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 13. FILIPINAS DE COCINA M/C GAB.
+  // 13. FILIPINA GABARDINA ANTIFLUIDO MANGA CORTA
   {
     id: 'filipina-cocina-mc-gab',
     code: 'FI001MC-G',
-    name: 'Filipinas de Cocina M/C Gabardina',
+    name: 'Filipina Gabardina Antifluido Manga Corta',
     price: 390.00,
     category: 'restaurante',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
@@ -736,14 +735,14 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932047/Filipina-para-chef-repelente-manga-corta-blanca-atras.png'
     ],
     rating: 4.8,
-    description: 'Filipina manga corta de chef con doble abotonadura y 2 bolsillos para hombre. Corte clásico, cuello mao y confección resistente que brinda confort, frescura y una apariencia profesional impecable.',
-    composition: '60% Algodón 40% Poliéster',
+    description: 'Filipina manga corta con tecnología de repelencia a líquidos y aceite vegetal, ligera, versátil, resistente, transpirable y de fácil cuidado. Con respiradero para alto rendimiento en cocina.',
+    composition: '65% Poliéster 35% Algodón con tecnología antifluido y repelente a aceites',
     features: [
-          'Corte clásico',
-          'Cuello mao',
-          'Doble abotonadura',
-          '1 bolsillo en el pecho',
-          '1 bolsillo en la manga'
+      'Manga corta',
+      'Repele el aceite vegetal y el agua',
+      'Ligera, versátil y resistente',
+      'Transpirable y fácil cuidado',
+      'Con respiradero para alto rendimiento en cocina'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [

@@ -51,7 +51,7 @@ export default function ProductDetailModal({
   const [selectedSize, setSelectedSize] = useState('M');
   const [selectedColor, setSelectedColor] = useState('');
   const [galleryIndex, setGalleryIndex] = useState(0);
-  const [selectedCorte, setSelectedCorte] = useState('Caballero');
+  const [selectedCorte, setSelectedCorte] = useState('Dama');
   const [selectedManga, setSelectedManga] = useState<'Manga Corta' | 'Manga Larga'>('Manga Corta');
   const [hasChestEmbroidery, setHasChestEmbroidery] = useState(false);
   const [hasBackEmbroidery, setHasBackEmbroidery] = useState(false);
@@ -62,7 +62,9 @@ export default function ProductDetailModal({
       setQuantity(1);
       setSelectedSize(product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'M');
       const initialColor = (() => {
-        const list = (product.colors || []);
+        const list = (product.damaColors && product.damaColors.length > 0)
+          ? product.damaColors
+          : (product.colors || []);
         if (list.length === 0) return '';
         const withImg = list.find((c) => {
           if (product.id.startsWith('polo-dryfit')) {
@@ -75,7 +77,7 @@ export default function ProductDetailModal({
       })();
       setSelectedColor(initialColor);
       setGalleryIndex(0);
-      setSelectedCorte('Caballero');
+      setSelectedCorte('Dama');
       setSelectedManga('Manga Corta');
       setHasChestEmbroidery(false);
       setHasBackEmbroidery(false);
@@ -524,10 +526,33 @@ export default function ProductDetailModal({
                     <div 
                       className={`absolute inset-y-1 rounded-lg bg-orange-600 border border-orange-500 shadow-md transition-all duration-300 ease-[cubic-bezier(0.25,1,0.5,1)] ${
                         selectedCorte === 'Dama' 
-                          ? 'left-[calc(50%)] right-1' 
-                          : 'left-1 right-[calc(50%)]'
+                          ? 'left-1 right-[calc(50%)]' 
+                          : 'left-[calc(50%)] right-1'
                       }`}
                     />
+                    
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSelectedCorte('Dama');
+                        setGalleryIndex(0);
+                        if (product.damaColors && product.damaColors.length > 0) {
+                          const match = product.damaColors.find(c => 
+                            c.name.toLowerCase() === selectedColor.toLowerCase() ||
+                            (c.name.toLowerCase().startsWith('negr') && selectedColor.toLowerCase().startsWith('negr')) ||
+                            (c.name.toLowerCase().startsWith('blanc') && selectedColor.toLowerCase().startsWith('blanc')) ||
+                            (c.name.toLowerCase().includes('oxford') && (selectedColor.toLowerCase().includes('carbón') || selectedColor.toLowerCase().includes('carbon') || selectedColor.toLowerCase().includes('gris')))
+                          );
+                          if (match) setSelectedColor(match.name);
+                          else setSelectedColor(product.damaColors[0].name);
+                        }
+                      }}
+                      className={`relative z-10 w-1/2 h-full flex items-center justify-center text-[11px] font-bold uppercase tracking-wider transition-colors duration-300 cursor-pointer ${
+                        selectedCorte === 'Dama' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
+                      }`}
+                    >
+                      Dama
+                    </button>
                     
                     <button
                       type="button"
@@ -551,29 +576,6 @@ export default function ProductDetailModal({
                       }`}
                     >
                       Caballero
-                    </button>
-                    
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSelectedCorte('Dama');
-                        setGalleryIndex(0);
-                        if (product.damaColors && product.damaColors.length > 0) {
-                          const match = product.damaColors.find(c => 
-                            c.name.toLowerCase() === selectedColor.toLowerCase() ||
-                            (c.name.toLowerCase().startsWith('negr') && selectedColor.toLowerCase().startsWith('negr')) ||
-                            (c.name.toLowerCase().startsWith('blanc') && selectedColor.toLowerCase().startsWith('blanc')) ||
-                            (c.name.toLowerCase().includes('oxford') && (selectedColor.toLowerCase().includes('carbón') || selectedColor.toLowerCase().includes('carbon') || selectedColor.toLowerCase().includes('gris')))
-                          );
-                          if (match) setSelectedColor(match.name);
-                          else setSelectedColor(product.damaColors[0].name);
-                        }
-                      }}
-                      className={`relative z-10 w-1/2 h-full flex items-center justify-center text-[11px] font-bold uppercase tracking-wider transition-colors duration-300 cursor-pointer ${
-                        selectedCorte === 'Dama' ? 'text-white' : 'text-slate-400 hover:text-slate-200'
-                      }`}
-                    >
-                      Dama
                     </button>
                   </div>
                 </div>

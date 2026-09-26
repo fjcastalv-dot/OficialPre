@@ -114,8 +114,8 @@ export default function HomeView({
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="font-display text-6xl sm:text-7xl md:text-8xl tracking-wider text-[#0a1128] leading-none"
           >
-            A PRUEBA. <br />
-            <span className="text-orange-600">DE MANCHAS.</span>
+            REPELENCIA <br />
+            <span className="text-orange-600">AL AGUA.</span>
           </motion.h1>
 
           <motion.p
@@ -323,7 +323,7 @@ export default function HomeView({
                   TEXTILES QUE VISTEN TUS ESPACIOS
                 </h3>
                 <p className="text-xs text-slate-400 font-sans leading-relaxed">
-                  Creamos manteles, fundas, cojines y otros textiles personalizados para hoteles, restaurantes, eventos y empresas. Te acompañamos en la selección de materiales, colores y acabados.
+                  Fabricamos manteles, fundas, cojines y otros textiles personalizados para hoteles, restaurantes, eventos y empresas. Te acompañamos en la selección de materiales, colores y acabados.
                 </p>
               </div>
               <button

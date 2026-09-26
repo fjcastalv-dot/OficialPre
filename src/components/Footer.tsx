@@ -2,7 +2,7 @@ import { useState } from 'react';
 // @ts-ignore
 import brandLogo from '../assets/images/logo_pre.png';
 import { LOGO_PRE_URL } from '../../imaganes/Imagenes inicio/Logo';
-import { MapPin, Phone, Clock, Mail, Facebook, Instagram, Music } from 'lucide-react';
+import { MapPin, Phone, Clock, Mail, Facebook, Instagram, Music, Linkedin } from 'lucide-react';
 import { ActiveTab } from '../types';
 import LegalDocsModal from './LegalDocsModal';
 
@@ -109,7 +109,7 @@ export default function Footer({ setActiveTab, openClubModal }: FooterProps) {
             />
           </button>
           <p className="text-xs text-white/75 leading-relaxed">
-            Vistiendo al Caribe Mexicano con uniformes de alto rendimiento diseñados específicamente para aguantar la humedad, calor e intensa actividad de la Riviera Maya.
+            Vistiendo al Caribe Mexicano, con alcance nacional.
           </p>
           <div className="flex space-x-3 pt-2">
             <a
@@ -138,6 +138,15 @@ export default function Footer({ setActiveTab, openClubModal }: FooterProps) {
               aria-label="TikTok"
             >
               <Music className="h-4 w-4" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/uniformespre/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-full bg-white/10 hover:bg-orange-600 text-white/90 hover:text-white transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-4 w-4" />
             </a>
           </div>
         </div>
