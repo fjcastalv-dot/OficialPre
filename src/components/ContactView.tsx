@@ -129,7 +129,7 @@ export default function ContactView({ theme }: ContactViewProps) {
           <h1 className="font-display text-5xl sm:text-6xl text-white tracking-wider">
             HABLEMOS DE TU PROYECTO
           </h1>
-          <p className="text-xs sm:text-sm text-slate-400 font-sans max-w-xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-slate-400 font-medium font-sans max-w-xl mx-auto leading-relaxed">
             Somos la solución a tu alcance
           </p>
         </div>
@@ -146,7 +146,7 @@ export default function ContactView({ theme }: ContactViewProps) {
               <h2 className="font-display text-3xl text-white tracking-wide">
                 DÉJANOS TUS DATOS
               </h2>
-              <p className="text-xs text-slate-400 mt-1 font-sans">
+              <p className="text-sm sm:text-base text-slate-400 mt-1.5 font-sans">
                 Cuéntanos qué necesitas . Nosotros nos encargamos de contactarte.
               </p>
             </div>

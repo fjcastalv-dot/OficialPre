@@ -225,7 +225,7 @@ export default function HomeView({
           <h2 className="font-display text-4xl sm:text-5xl text-white tracking-wider">
             NUESTROS SERVICIOS ESPECIALIZADOS
           </h2>
-          <p className="text-xs text-slate-400 max-w-md mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-slate-400 font-medium font-sans max-w-xl mx-auto leading-relaxed">
             Soluciones textiles a la medida de tu empresa.
           </p>
         </div>
