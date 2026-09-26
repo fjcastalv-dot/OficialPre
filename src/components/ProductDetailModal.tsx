@@ -208,8 +208,8 @@ export default function ProductDetailModal({
               if (product.id.startsWith('polo-dryfit')) {
                 const name = selectedColor.toLowerCase();
                 if (name.includes('blanco')) return [poloBlanco];
-                if (name.includes('oxford') || name.includes('carbón') || name.includes('carbon') || name.includes('negro')) return [poloCarbon];
-                if (name.includes('gris')) return [poloCarbon];
+                if (name.includes('negro')) return ['https://res.cloudinary.com/boofzznx/image/upload/v1790452434/POLO_NEGRA_MC.png'];
+                if (name.includes('oxford') || name.includes('carbón') || name.includes('carbon') || name.includes('gris')) return [poloCarbon];
                 if (name.includes('marino')) return [poloMarino];
                 if (name.includes('naranja')) return [poloNaranja];
                 if (name.includes('rojo')) return [poloRojo];

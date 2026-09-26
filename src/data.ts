@@ -82,7 +82,13 @@ export const PRODUCTS: Product[] = [
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       { name: 'Blanco', hex: '#ffffff', code: '332', image: poloBlanco },
-      { name: 'Negro', hex: '#000000', code: '338', image: poloCarbon },
+      {
+        name: 'Negro',
+        hex: '#000000',
+        code: '338',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1790452434/POLO_NEGRA_MC.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1790452434/POLO_NEGRA_MC.png']
+      },
       { name: 'Marino', hex: '#0f172a', code: '343', image: poloMarino },
       { name: 'Francia', hex: '#1d4ed8', code: '317' },
       { name: 'Gris', hex: '#6b7280', code: '385', image: poloCarbon }
