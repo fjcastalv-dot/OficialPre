@@ -770,11 +770,11 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 14. FILIPINAS DE COCINA 3/4 GAB.
+  // 14. FILIPINA DRYFIT Y GABARDINA 1/3
   {
     id: 'filipina-cocina-ml-gab',
     code: 'FI001ML-G',
-    name: 'Filipinas de Cocina 3/4 Gabardina',
+    name: 'Filipina Dryfit y Gabardina 1/3',
     price: 390.00,
     category: 'restaurante',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
@@ -783,13 +783,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1788571990/Dise%C3%B1o_Sin_T%C3%ADtulo_-_13.png'
     ],
     rating: 4.9,
-    description: 'Filipina de chef con doble abotonadura. Una apariencia profesional e impecable, confort, frescura y estilo en cada movimiento. Con tecnología de repelencia a líquidos y aceite vegetal, resistente para uso intensivo y lavadas constantes.',
+    description: 'Filipina manga larga de chef con doble abotonadura y 2 bolsillos, Dryfit en espalda alta y gabardina en espalda baja.',
     composition: '65% Poliéster 35% Algodón (150 g/m²)',
     features: [
-          'Doble abotonadura',
-          'Tecnología repelente al agua y al aceite',
-          'Protección inteligente que no absorbe grasa',
-          'Fresco y transpirable para uso intensivo'
+      'Doble abotonadura y 2 bolsillos',
+      'Dryfit en espalda alta y gabardina en espalda baja',
+      'Tecnología repelente al agua y al aceite',
+      'Protección inteligente que no absorbe grasa'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
