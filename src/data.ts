@@ -82,18 +82,10 @@ export const PRODUCTS: Product[] = [
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       { name: 'Blanco', hex: '#ffffff', code: '332', image: poloBlanco },
-      { name: 'Gris', hex: '#6b7280', code: '338', image: poloCarbon },
-      { name: 'Marino', hex: '#111827', code: '343', image: poloMarino },
-      { name: 'Naranja', hex: '#ea580c', code: '312', image: poloNaranja },
-      { name: 'Oxford', hex: '#374151', code: '338', image: poloCarbon },
-      { name: 'Rojo', hex: '#b91c1c', code: '322', image: poloRojo },
-      { name: 'Verde Agua', hex: '#17b5c2', code: '317', image: poloTurquesa },
-      { name: 'Bandera', hex: '#0e6914' },
-      { name: 'Botella', hex: '#072a10' },
-      { name: 'Canario', hex: '#eab308' },
-      { name: 'Guinda', hex: '#58111a' },
-      { name: 'Mango', hex: '#ea990c' },
-      { name: 'Rey', hex: '#1d4ed8' }
+      { name: 'Negro', hex: '#000000', code: '338', image: poloCarbon },
+      { name: 'Marino', hex: '#0f172a', code: '343', image: poloMarino },
+      { name: 'Francia', hex: '#1d4ed8', code: '317' },
+      { name: 'Gris', hex: '#6b7280', code: '385', image: poloCarbon }
     ],
     damaColors: [
       {

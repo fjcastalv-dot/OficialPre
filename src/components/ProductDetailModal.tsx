@@ -69,7 +69,7 @@ export default function ProductDetailModal({
         const withImg = list.find((c) => {
           if (product.id.startsWith('polo-dryfit')) {
             const n = c.name.toLowerCase();
-            return n.includes('blanco') || n.includes('oxford') || n.includes('carbón') || n.includes('carbon') || n.includes('gris') || n.includes('marino') || n.includes('naranja') || n.includes('rojo') || n.includes('verde agua') || n.includes('turquesa');
+            return n.includes('blanco') || n.includes('negro') || n.includes('marino') || n.includes('gris') || n.includes('oxford') || n.includes('carbón') || n.includes('carbon') || n.includes('naranja') || n.includes('rojo') || n.includes('verde agua') || n.includes('turquesa');
           }
           return !!c.image || (c.gallery && c.gallery.length > 0);
         });
