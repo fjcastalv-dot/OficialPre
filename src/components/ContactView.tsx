@@ -127,10 +127,10 @@ export default function ContactView({ theme }: ContactViewProps) {
             UBICACIÓN Y ATENCIÓN DIRECTA
           </span>
           <h1 className="font-display text-5xl sm:text-6xl text-white tracking-wider">
-            PONTE EN CONTACTO
+            HABLEMOS DE TU PROYECTO
           </h1>
           <p className="text-xs sm:text-sm text-slate-400 font-sans max-w-xl mx-auto leading-relaxed">
-            Nuestros asesores textiles están listos para atenderle de forma inmediata. Solicite muestras, cotizaciones de mayoreo o visítenos en nuestra sucursal de Cancún.
+            Somos la solución a tu alcance
           </p>
         </div>
       </section>
@@ -144,10 +144,10 @@ export default function ContactView({ theme }: ContactViewProps) {
           <div className="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-6 text-left shadow-xl">
             <div>
               <h2 className="font-display text-3xl text-white tracking-wide">
-                SOLICITA UNA COTIZACIÓN RÁPIDA
+                DÉJANOS TUS DATOS
               </h2>
               <p className="text-xs text-slate-400 mt-1 font-sans">
-                Complete el formulario y reciba un presupuesto preliminar en menos de 2 horas.
+                Cuéntanos qué necesitas . Nosotros nos encargamos de contactarte.
               </p>
             </div>
 
@@ -308,7 +308,7 @@ export default function ContactView({ theme }: ContactViewProps) {
                 VENTAS CANCÚN
               </h3>
               <p className="text-xs text-orange-100 font-sans leading-relaxed">
-                ¿Necesita una respuesta express? Envíenos un mensaje directamente por WhatsApp. Nuestro bot y asesores le darán seguimiento instantáneo.
+                ¿Necesita una respuesta express? Envíenos un mensaje directamente por WhatsApp. Asesores le darán seguimiento instantáneo.
               </p>
               <a
                 href="https://api.whatsapp.com/send/?phone=529989370850&text&type=phone_number&app_absent=0"
