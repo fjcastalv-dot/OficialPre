@@ -364,8 +364,8 @@ export default function ContactView({ theme }: ContactViewProps) {
                   <Clock className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
                   <div>
                     <strong className="block text-white text-xs uppercase tracking-wide">Horarios de Atención:</strong>
-                    <p className="text-slate-400 mt-0.5">Lunes a Viernes: 9:00 AM - 6:00 PM</p>
-                    <p className="text-slate-400">Sábados: 9:00 AM - 2:00 PM</p>
+                    <p className="text-slate-400 mt-0.5">Lunes a Sábado: 10:00 AM - 6:00 PM</p>
+                    <p className="text-slate-400">Domingos: Cerrado</p>
                   </div>
                 </div>
 

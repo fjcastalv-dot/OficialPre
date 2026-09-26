@@ -75,8 +75,8 @@ export default function Footer({ setActiveTab, openClubModal }: FooterProps) {
             <div>
               <h4 className="font-semibold text-white text-sm uppercase tracking-wider">Horario de Servicio</h4>
               <p className="text-xs text-white/70 mt-1 leading-relaxed">
-                Lunes a Viernes: 9:00 AM - 6:00 PM <br />
-                Sábados: 9:00 AM - 2:00 PM
+                Lunes a Sábado: 10:00 AM - 6:00 PM <br />
+                Domingos: Cerrado
               </p>
             </div>
           </div>
