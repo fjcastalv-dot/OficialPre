@@ -51,7 +51,7 @@
         localStorage.setItem('pre_theme', 'light');
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-v32.js"></script>
+    <script type="module" crossorigin src="./assets/index-v33.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-BFTxg5Mz.css">
     <style>
       #tapiceria-lightbox-modal {
@@ -70,10 +70,24 @@
           grid-column: span 12 / span 12 !important;
         }
       }
-      body.modal-open, html.modal-open {
+                  body.modal-open, html.modal-open {
         overflow: hidden !important;
+        height: 100% !important;
+        max-height: 100% !important;
         overscroll-behavior: none !important;
         touch-action: none !important;
+      }
+      #product-detail-modal,
+      #requerimientos-modal,
+      #requerimientos-modal-card,
+      #requerimientos-modal-body,
+      #legal-docs-modal,
+      .legal-modal-card,
+      #club-pre-modal,
+      #quote-cart-drawer,
+      #favorites-drawer,
+      #tapiceria-lightbox-modal {
+        overscroll-behavior: contain !important;
       }
       #requerimientos-modal {
         position: fixed !important;
@@ -93,7 +107,6 @@
         justify-content: center !important;
         padding: 16px !important;
         margin: 0 !important;
-        overscroll-behavior: contain !important;
         box-sizing: border-box !important;
       }
       #requerimientos-modal-card {
@@ -104,7 +117,6 @@
         display: flex !important;
         flex-direction: column !important;
         overflow: hidden !important;
-        overscroll-behavior: contain !important;
         background-color: #ffffff !important;
         border: 1px solid #e2e8f0 !important;
         border-radius: 16px !important;
@@ -115,7 +127,6 @@
         flex: 1 1 0% !important;
         min-height: 0 !important;
         overflow-y: auto !important;
-        overscroll-behavior: contain !important;
         -webkit-overflow-scrolling: touch !important;
         background-color: #ffffff !important;
       }
@@ -143,7 +154,7 @@
         color: #ffffff !important;
         transform: scale(1.08) !important;
       }
-          /* MercadoLibre-style Zoom lens & popup window */
+      /* MercadoLibre-style Zoom lens & popup window */
       .zoom-lens-box {
         position: absolute !important;
         width: 140px !important;
@@ -175,13 +186,20 @@
         overflow: hidden !important;
         pointer-events: none !important;
       }
-      .zoom-popup-image {
+      .zoom-popup-image-container {
+        position: relative !important;
         width: 100% !important;
         height: 100% !important;
         flex: 1 1 0% !important;
         min-height: 340px !important;
-        background-color: #0f172a !important;
-        background-repeat: no-repeat !important;
+        overflow: hidden !important;
+        background-color: #020617 !important;
+      }
+      .zoom-popup-image {
+        width: 100% !important;
+        height: 100% !important;
+        display: block !important;
+        will-change: transform-origin !important;
       }
       /* WhatsApp Chat Widget */
       .whatsapp-chat-card {

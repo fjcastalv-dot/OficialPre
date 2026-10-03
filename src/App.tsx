@@ -42,6 +42,38 @@ export default function App() {
     localStorage.setItem('pre_theme', 'light');
   }, []);
 
+  // Lock background scroll when any modal or drawer is open
+  useEffect(() => {
+    const isAnyModalOpen = Boolean(
+      selectedProduct ||
+      isCartOpen ||
+      isFavoritesOpen ||
+      isClubModalOpen ||
+      isLegalModalOpen ||
+      isRequirementsModalOpen
+    );
+
+    if (isAnyModalOpen) {
+      document.body.classList.add('modal-open');
+      document.documentElement.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+      document.documentElement.classList.remove('modal-open');
+    }
+
+    return () => {
+      document.body.classList.remove('modal-open');
+      document.documentElement.classList.remove('modal-open');
+    };
+  }, [
+    selectedProduct,
+    isCartOpen,
+    isFavoritesOpen,
+    isClubModalOpen,
+    isLegalModalOpen,
+    isRequirementsModalOpen,
+  ]);
+
   // Load saved cart & favorites from localStorage
   useEffect(() => {
     const cachedCart = localStorage.getItem('pre_cart');

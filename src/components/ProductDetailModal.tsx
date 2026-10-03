@@ -100,6 +100,18 @@ export default function ProductDetailModal({
     }
   }, [isOpen, product]);
 
+  // Lock background scroll when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('modal-open');
+      document.documentElement.classList.add('modal-open');
+    }
+    return () => {
+      document.body.classList.remove('modal-open');
+      document.documentElement.classList.remove('modal-open');
+    };
+  }, [isOpen]);
+
   if (!isOpen || !product) return null;
 
   const isFavorite = favorites.some((fav) => fav.id === product.id);
@@ -289,10 +301,17 @@ export default function ProductDetailModal({
   const hasMultipleImages = activeGallery.length > 1;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" id="product-detail-modal">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      id="product-detail-modal"
+      style={{ overscrollBehavior: 'contain' }}
+    >
       <div className="absolute inset-0 cursor-pointer" onClick={onClose} />
 
-      <div className="relative w-full max-w-5xl bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 flex flex-col md:flex-row max-h-[95vh] md:max-h-[90vh] overflow-y-auto">
+      <div
+        className="relative w-full max-w-5xl bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 flex flex-col md:flex-row max-h-[95vh] md:max-h-[90vh] overflow-y-auto"
+        style={{ overscrollBehavior: 'contain' }}
+      >
         {/* Close Button */}
         <button
           onClick={onClose}
@@ -483,28 +502,41 @@ export default function ProductDetailModal({
               }}
             >
               <div
-                className="zoom-popup-image"
+                className="zoom-popup-image-container relative w-full flex-1 overflow-hidden"
                 style={{
                   width: '100%',
                   height: '100%',
                   flex: '1 1 0%',
                   minHeight: '340px',
-                  backgroundImage: `url("${currentDisplayImage}")`,
-                  backgroundRepeat: 'no-repeat',
-                  backgroundPosition: `${zoomPos.xPercent}% ${zoomPos.yPercent}%`,
-                  backgroundSize: '280% 280%',
-                  backgroundColor: '#0f172a',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  backgroundColor: '#020617',
                 }}
-              />
-              <div
-                className="bg-slate-950/95 border-t border-slate-800 px-4 py-2.5 flex items-center justify-between text-xs text-slate-300 shrink-0"
-                style={{ height: '48px', boxSizing: 'border-box' }}
               >
-                <span className="flex items-center gap-1.5 text-orange-400 font-bold tracking-wide">
-                  <Sparkles className="w-3.5 h-3.5 text-orange-400 animate-pulse" /> Vista de Detalle (Zoom 2.8x)
-                </span>
-                <span className="text-[11px] font-mono text-slate-400">
-                  {selectedColor || product.name}
+                <img
+                  src={currentDisplayImage}
+                  alt={`${product.name} - ${selectedColor}`}
+                  className={`zoom-popup-image w-full h-full ${
+                    product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
+                      ? 'object-contain p-3'
+                      : 'object-cover object-top'
+                  } pointer-events-none select-none`}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    transformOrigin: `${zoomPos.xPercent}% ${zoomPos.yPercent}%`,
+                    transform: 'scale(2.6)',
+                    willChange: 'transform-origin',
+                  }}
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div
+                className="bg-slate-950/95 border-t border-slate-800 px-4 py-2 flex items-center justify-center text-center text-xs text-slate-400 shrink-0"
+                style={{ height: '38px', boxSizing: 'border-box' }}
+              >
+                <span className="text-[11px] text-slate-300 font-sans">
+                  Desplaza el cursor sobre la foto para explorar detalles
                 </span>
               </div>
             </div>
