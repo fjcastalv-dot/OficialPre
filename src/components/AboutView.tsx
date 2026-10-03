@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { Shield, Sparkles, Trophy, Lightbulb, Users, BarChart3, CheckCircle2, ArrowRight, Volume2, VolumeX } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Shield, Sparkles, Trophy, Lightbulb, Users, BarChart3, CheckCircle2, ArrowRight, Volume2, VolumeX, ChevronRight, ChevronLeft, Instagram } from 'lucide-react';
 import { ActiveTab } from '../types';
 // @ts-ignore
 import regeneratedHeroImg from '../assets/images/a_prueba_de_sudor.jpg';
@@ -20,12 +20,58 @@ interface AboutViewProps {
   setActiveTab: (tab: ActiveTab) => void;
 }
 
+const REEL_VIDEOS = [
+  {
+    id: 1,
+    title: 'Precisión en cada puntada',
+    label: 'Hecho en México',
+    src: './videos/precision_puntada_instagram.mp4',
+    fallbackSrc: './videos/precision_puntada_instagram.mp4',
+    instagramUrl: 'https://www.instagram.com/uniformespre',
+  },
+  {
+    id: 2,
+    title: 'Confección y Calidad Textil',
+    label: 'Reel Oficial 2',
+    src: './videos/reel_2_instagram.mp4',
+    fallbackSrc: 'https://res.cloudinary.com/boofzznx/video/upload/v1791070214/8d6147aef81d8aa3bdc51c785d84d9d5.mp4',
+    instagramUrl: 'https://www.instagram.com/uniformespre',
+  },
+  {
+    id: 3,
+    title: 'Detalles y Rendimiento',
+    label: 'Reel Oficial 3',
+    src: './videos/reel_3_instagram.mp4',
+    fallbackSrc: 'https://res.cloudinary.com/boofzznx/video/upload/v1791070191/87dc9aa8eff1b1499e8ecef89597ed14.mp4',
+    instagramUrl: 'https://www.instagram.com/uniformespre',
+  },
+];
+
 export default function AboutView({ setActiveTab }: AboutViewProps) {
+  const [currentReelIndex, setCurrentReelIndex] = useState(0);
   const [isTrayVideoMuted, setIsTrayVideoMuted] = useState(true);
   const [isTrayPlaying, setIsTrayPlaying] = useState(true);
   const [trayCurrentTime, setTrayCurrentTime] = useState(0);
   const [trayDuration, setTrayDuration] = useState(0);
   const trayVideoRef = useRef<HTMLVideoElement>(null);
+
+  const handleNextReel = () => {
+    setCurrentReelIndex((prev) => (prev + 1) % REEL_VIDEOS.length);
+    setTrayCurrentTime(0);
+  };
+
+  const handlePrevReel = () => {
+    setCurrentReelIndex((prev) => (prev - 1 + REEL_VIDEOS.length) % REEL_VIDEOS.length);
+    setTrayCurrentTime(0);
+  };
+
+  useEffect(() => {
+    if (trayVideoRef.current) {
+      trayVideoRef.current.load();
+      trayVideoRef.current.play().catch(() => {});
+      setIsTrayPlaying(true);
+    }
+  }, [currentReelIndex]);
 
   const toggleTrayVideoMute = () => {
     if (trayVideoRef.current) {
@@ -202,9 +248,72 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
               className="relative w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl group select-none"
               style={{ maxWidth: '380px', aspectRatio: '9 / 16' }}
             >
+              {/* Top overlay: Instagram badge & reel indicator dots */}
+              <div className="absolute inset-x-0 top-0 p-3 flex items-center justify-between z-20 bg-gradient-to-b from-slate-950/80 via-slate-950/40 to-transparent">
+                <a
+                  href={REEL_VIDEOS[currentReelIndex].instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-900/85 hover:bg-slate-900 border border-white/20 text-white text-xs font-medium backdrop-blur-md transition-all group/ig"
+                  title="Ver en Instagram oficial"
+                >
+                  <Instagram className="h-3.5 w-3.5 text-pink-500 group-hover/ig:scale-110 transition-transform" />
+                  <span className="font-semibold text-white/90">@uniformespre</span>
+                </a>
+                
+                {/* Dots indicator + reel counter */}
+                <div className="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 border border-white/20 text-[11px] font-medium text-slate-300 backdrop-blur-md">
+                  <div className="flex items-center space-x-1 mr-1">
+                    {REEL_VIDEOS.map((reel, idx) => (
+                      <button
+                        key={reel.id}
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentReelIndex(idx);
+                        }}
+                        className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                          idx === currentReelIndex ? 'w-4 bg-orange-500' : 'w-1.5 bg-white/40 hover:bg-white/70'
+                        }`}
+                        title={`Ir a video ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+                  <span>{currentReelIndex + 1} / {REEL_VIDEOS.length}</span>
+                </div>
+              </div>
+
+              {/* Navigation Arrow Right (Siguiente Reel) */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNextReel();
+                }}
+                aria-label="Siguiente video de Instagram"
+                title="Siguiente video de Instagram"
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 h-11 w-11 rounded-full bg-slate-900/90 hover:bg-orange-600 border border-orange-500/50 text-white flex items-center justify-center shadow-xl backdrop-blur-md transition-all active:scale-90 hover:scale-110 cursor-pointer"
+              >
+                <ChevronRight className="h-6 w-6 stroke-[2.5]" />
+              </button>
+
+              {/* Navigation Arrow Left (Video Anterior) */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrevReel();
+                }}
+                aria-label="Video anterior de Instagram"
+                title="Video anterior de Instagram"
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 h-11 w-11 rounded-full bg-slate-900/90 hover:bg-orange-600 border border-orange-500/50 text-white flex items-center justify-center shadow-xl backdrop-blur-md transition-all active:scale-90 hover:scale-110 cursor-pointer"
+              >
+                <ChevronLeft className="h-6 w-6 stroke-[2.5]" />
+              </button>
+
               <video
                 ref={trayVideoRef}
-                src="./videos/precision_puntada_instagram.mp4"
+                key={REEL_VIDEOS[currentReelIndex].src}
                 autoPlay
                 loop
                 muted={isTrayVideoMuted}
@@ -223,7 +332,10 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
                 onPlay={() => setIsTrayPlaying(true)}
                 onPause={() => setIsTrayPlaying(false)}
                 className="w-full h-full object-cover cursor-pointer"
-              />
+              >
+                <source src={REEL_VIDEOS[currentReelIndex].src} type="video/mp4" />
+                <source src={REEL_VIDEOS[currentReelIndex].fallbackSrc} type="video/mp4" />
+              </video>
 
               {/* Big center play icon when paused */}
               {!isTrayPlaying && (
