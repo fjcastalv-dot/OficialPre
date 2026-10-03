@@ -51,7 +51,7 @@
         localStorage.setItem('pre_theme', 'light');
       })();
     </script>
-    <script type="module" crossorigin src="./assets/index-v31.js"></script>
+    <script type="module" crossorigin src="./assets/index-v32.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-BFTxg5Mz.css">
     <style>
       #tapiceria-lightbox-modal {
@@ -142,6 +142,59 @@
         border-color: #f87171 !important;
         color: #ffffff !important;
         transform: scale(1.08) !important;
+      }
+          /* MercadoLibre-style Zoom lens & popup window */
+      .zoom-lens-box {
+        position: absolute !important;
+        width: 140px !important;
+        height: 140px !important;
+        border: 2px solid #f97316 !important;
+        background-color: rgba(15, 23, 42, 0.35) !important;
+        backdrop-filter: blur(0.5px) !important;
+        -webkit-backdrop-filter: blur(0.5px) !important;
+        border-radius: 8px !important;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6) !important;
+        pointer-events: none !important;
+        z-index: 20 !important;
+      }
+      .zoom-popup-window {
+        position: absolute !important;
+        top: 12px !important;
+        bottom: 12px !important;
+        left: 12px !important;
+        right: 12px !important;
+        height: calc(100% - 24px) !important;
+        min-height: 380px !important;
+        z-index: 50 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        background-color: #020617 !important;
+        border: 2px solid #f97316 !important;
+        border-radius: 16px !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9) !important;
+        overflow: hidden !important;
+        pointer-events: none !important;
+      }
+      .zoom-popup-image {
+        width: 100% !important;
+        height: 100% !important;
+        flex: 1 1 0% !important;
+        min-height: 340px !important;
+        background-color: #0f172a !important;
+        background-repeat: no-repeat !important;
+      }
+      /* WhatsApp Chat Widget */
+      .whatsapp-chat-card {
+        height: 520px !important;
+        max-height: min(520px, calc(100vh - 80px)) !important;
+        max-height: min(520px, calc(100dvh - 80px)) !important;
+        display: flex !important;
+        flex-direction: column !important;
+      }
+      .whatsapp-chat-messages {
+        flex: 1 1 0% !important;
+        min-height: 0 !important;
+        overflow-y: auto !important;
       }
     </style>
   </head>

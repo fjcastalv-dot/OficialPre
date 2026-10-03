@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { X, Send, ExternalLink, MessageCircle } from 'lucide-react';
 
 export default function WhatsAppWidget() {
@@ -13,6 +13,11 @@ export default function WhatsAppWidget() {
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isTyping]);
 
   const faqList = [
     {
@@ -20,12 +25,12 @@ export default function WhatsAppWidget() {
       a: 'Estamos ubicados en SM 92, Manzana 57, 58, 59 Y 60, Dentro de la MEGA Soriana López Portillo, Local 7, Cancún, Q.R. ¡Ven a visitarnos para conocer nuestras telas físicamente!',
     },
     {
-      q: '¿Tienen compra mínima?',
-      a: 'Para prendas lisas no manejamos compra mínima. Para pedidos con bordado o personalización, la cantidad mínima es a partir de 6 piezas.',
+      q: '¿Hacen envíos a todo México?',
+      a: '¡Sí! Realizamos envíos seguros a cualquier parte de la República Mexicana a través de paqueterías líderes (Estafeta, FedEx, DHL, Tresguerras).',
     },
     {
-      q: '¿Hacen envíos a todo México?',
-      a: '¡Sí! Realizamos envíos a toda la República Mexicana por paquetería express, además de entregas locales programadas en Cancún y toda la Riviera Maya.',
+      q: '¿Tienen compra mínima?',
+      a: 'Para prendas lisas no manejamos compra mínima. Para pedidos con bordado o personalización, la cantidad mínima es a partir de 6 piezas.',
     },
     {
       q: '¿Tiempos de entrega y bordado?',
@@ -84,9 +89,17 @@ export default function WhatsAppWidget() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="w-80 sm:w-96 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[520px] animate-fade-in">
+        <div
+          className="whatsapp-chat-card w-80 sm:w-96 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl overflow-hidden flex flex-col animate-fade-in"
+          style={{
+            maxHeight: 'min(520px, calc(100vh - 80px))',
+            height: '520px',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
           {/* Header */}
-          <div className="bg-emerald-600 text-white p-4 flex items-center justify-between">
+          <div className="bg-emerald-600 text-white p-4 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-3">
               <div className="relative">
                 <div className="h-10 w-10 rounded-full bg-slate-800 border border-emerald-400 flex items-center justify-center text-lg">
@@ -108,7 +121,10 @@ export default function WhatsAppWidget() {
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-900 min-h-[200px] max-h-[260px]">
+          <div
+            className="whatsapp-chat-messages flex-1 overflow-y-auto p-4 space-y-3 bg-slate-900 min-h-0"
+            style={{ flex: '1 1 0%', minHeight: 0, overflowY: 'auto' }}
+          >
             {messages.map((msg, idx) => (
               <div
                 key={idx}
@@ -137,14 +153,18 @@ export default function WhatsAppWidget() {
                 <span className="animate-bounce [animation-delay:0.4s]">.</span>
               </div>
             )}
+            <div ref={messagesEndRef} />
           </div>
 
           {/* Preset Questions (FAQ list chips - non-truncated, clear buttons) */}
-          <div className="p-3 border-t border-slate-800 bg-slate-950/90 flex flex-col gap-2">
+          <div
+            className="p-3 border-t border-slate-800 bg-slate-950/90 flex flex-col gap-2 shrink-0"
+            style={{ maxHeight: '135px' }}
+          >
             <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
               Preguntas Rápidas:
             </span>
-            <div className="grid grid-cols-1 gap-1.5 max-h-36 overflow-y-auto pr-1">
+            <div className="grid grid-cols-1 gap-1.5 overflow-y-auto pr-1" style={{ maxHeight: '100px' }}>
               {faqList.map((faq, idx) => (
                 <button
                   key={idx}
@@ -159,7 +179,7 @@ export default function WhatsAppWidget() {
           </div>
 
           {/* Real WhatsApp Button - Solid green with white text */}
-          <div className="p-3 bg-slate-950 border-t border-slate-800/80">
+          <div className="p-3 bg-slate-950 border-t border-slate-800/80 shrink-0">
             <a
               href="https://wa.me/529989370850"
               target="_blank"

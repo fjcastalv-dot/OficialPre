@@ -104,23 +104,74 @@ export default function ProductDetailModal({
 
   const isFavorite = favorites.some((fav) => fav.id === product.id);
   const showSizeSelector = product.sizes && product.sizes.length > 0 && product.sizes[0] !== 'Unitalla';
-  const isShoe =
-    product.id.startsWith('zapatos-') ||
-    product.id.startsWith('bota-') ||
-    product.id.startsWith('tenis-') ||
-    product.code === 'ALINA' ||
-    product.code === 'PEGASO' ||
-    product.code.startsWith('BTC') ||
-    product.name.toLowerCase().includes('zapato') ||
-    product.name.toLowerCase().includes('bota') ||
-    product.name.toLowerCase().includes('calzado') ||
-    product.name.toLowerCase().includes('tenis');
+
+  const supportsEmbroidery = (() => {
+    if (!product) return false;
+    const id = product.id.toLowerCase();
+    const name = product.name.toLowerCase();
+
+    // Categorías sin bordado
+    if (product.category === 'manteleria' || product.category === 'tapiceria') return false;
+
+    // Calzado
+    if (
+      id.startsWith('zapatos-') ||
+      id.startsWith('bota-') ||
+      id.startsWith('tenis-') ||
+      id.startsWith('calzado-') ||
+      product.code === 'ALINA' ||
+      product.code === 'PEGASO' ||
+      product.code.startsWith('BTC') ||
+      name.includes('zapato') ||
+      name.includes('bota') ||
+      name.includes('calzado') ||
+      name.includes('tenis')
+    ) {
+      return false;
+    }
+
+    // Shorts, bermudas y pantalones
+    if (
+      id.includes('short') ||
+      name.includes('short') ||
+      id.includes('bermuda') ||
+      name.includes('bermuda') ||
+      id.includes('pantalon') ||
+      name.includes('pantalón') ||
+      name.includes('pantalon')
+    ) {
+      return false;
+    }
+
+    // Gorras, gorros de cocina y cofias
+    if (
+      id.includes('gorra') ||
+      name.includes('gorra') ||
+      id.includes('gorro') ||
+      name.includes('gorro') ||
+      name.includes('cofia')
+    ) {
+      return false;
+    }
+
+    // Mandiles de cintura (sin peto / pecho)
+    if (
+      id === 'mandiles-largos' ||
+      id === 'mandil-corto' ||
+      name.includes('mandiles largos') ||
+      name.includes('mandil corto')
+    ) {
+      return false;
+    }
+
+    return true;
+  })();
 
   // Dynamic calculations based on utility helpers
   const displayQuantity = Math.max(1, quantity);
   const unitPrice = getProductTierPrice(product, displayQuantity);
-  const chestEmbroideryPrice = !isShoe && hasChestEmbroidery ? getChestEmbroideryPrice(displayQuantity) : 0;
-  const backEmbroideryPrice = !isShoe && hasBackEmbroidery ? getBackEmbroideryPrice(displayQuantity) : 0;
+  const chestEmbroideryPrice = supportsEmbroidery && hasChestEmbroidery ? getChestEmbroideryPrice(displayQuantity) : 0;
+  const backEmbroideryPrice = supportsEmbroidery && hasBackEmbroidery ? getBackEmbroideryPrice(displayQuantity) : 0;
   const finalUnitPrice = unitPrice + chestEmbroideryPrice + backEmbroideryPrice;
   const totalPrice = finalUnitPrice * quantity;
 
@@ -131,8 +182,8 @@ export default function ProductDetailModal({
       finalQty,
       showSizeSelector ? selectedSize : (product.sizes?.[0] || 'Unitalla'),
       selectedColor || undefined,
-      !isShoe && hasChestEmbroidery,
-      !isShoe && hasBackEmbroidery,
+      supportsEmbroidery && hasChestEmbroidery,
+      supportsEmbroidery && hasBackEmbroidery,
       (product.hasCorteSelection || product.id === 'polo-dryfit-caballero-dama') ? selectedCorte : undefined,
       product.hasMangaSelection ? selectedManga : undefined
     );
@@ -284,13 +335,21 @@ export default function ProductDetailModal({
                       {/* MercadoLibre-style Zoom Lens */}
                       {isZooming && (
                         <div
-                          className="hidden md:block absolute pointer-events-none border-2 border-orange-500/90 bg-slate-900/35 backdrop-blur-[0.5px] shadow-2xl rounded-lg"
+                          className="zoom-lens-box hidden md:block"
                           style={{
+                            position: 'absolute',
                             left: `${zoomPos.lensX}px`,
                             top: `${zoomPos.lensY}px`,
                             width: '140px',
                             height: '140px',
-                            zIndex: 20
+                            border: '2px solid #f97316',
+                            backgroundColor: 'rgba(15, 23, 42, 0.35)',
+                            backdropFilter: 'blur(0.5px)',
+                            WebkitBackdropFilter: 'blur(0.5px)',
+                            borderRadius: '8px',
+                            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.6)',
+                            pointerEvents: 'none',
+                            zIndex: 20,
                           }}
                         />
                       )}
@@ -402,17 +461,45 @@ export default function ProductDetailModal({
         <div className="relative w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between text-slate-200">
           {/* MercadoLibre-style Zoom Window */}
           {isZooming && currentDisplayImage && (
-            <div className="hidden md:flex absolute inset-2 sm:inset-4 z-40 flex-col bg-slate-950 rounded-2xl border-2 border-orange-500/60 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.85)] overflow-hidden pointer-events-none animate-in fade-in duration-200">
+            <div
+              className="zoom-popup-window hidden md:flex"
+              style={{
+                position: 'absolute',
+                top: '12px',
+                bottom: '12px',
+                left: '12px',
+                right: '12px',
+                height: 'calc(100% - 24px)',
+                minHeight: '380px',
+                zIndex: 50,
+                display: 'flex',
+                flexDirection: 'column',
+                backgroundColor: '#020617',
+                border: '2px solid #f97316',
+                borderRadius: '16px',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.9)',
+                overflow: 'hidden',
+                pointerEvents: 'none',
+              }}
+            >
               <div
-                className="w-full flex-1"
+                className="zoom-popup-image"
                 style={{
+                  width: '100%',
+                  height: '100%',
+                  flex: '1 1 0%',
+                  minHeight: '340px',
                   backgroundImage: `url("${currentDisplayImage}")`,
                   backgroundRepeat: 'no-repeat',
                   backgroundPosition: `${zoomPos.xPercent}% ${zoomPos.yPercent}%`,
                   backgroundSize: '280% 280%',
+                  backgroundColor: '#0f172a',
                 }}
               />
-              <div className="bg-slate-950/95 border-t border-slate-800/80 px-4 py-2.5 flex items-center justify-between text-xs text-slate-300">
+              <div
+                className="bg-slate-950/95 border-t border-slate-800 px-4 py-2.5 flex items-center justify-between text-xs text-slate-300 shrink-0"
+                style={{ height: '48px', boxSizing: 'border-box' }}
+              >
                 <span className="flex items-center gap-1.5 text-orange-400 font-bold tracking-wide">
                   <Sparkles className="w-3.5 h-3.5 text-orange-400 animate-pulse" /> Vista de Detalle (Zoom 2.8x)
                 </span>
@@ -455,7 +542,7 @@ export default function ProductDetailModal({
                 <span className="text-[10px] uppercase tracking-wider text-slate-300 font-semibold">
                   TABLA DE PRECIOS OFICIALES
                 </span>
-                {(hasChestEmbroidery || hasBackEmbroidery) && (
+                {supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery) && (
                   <span className="text-[9px] text-orange-400 font-semibold">• INCLUYE BORDADO EN TABLA</span>
                 )}
               </div>
@@ -463,12 +550,12 @@ export default function ProductDetailModal({
               <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono">
                 <div className={`p-2 rounded border transition-colors ${quantity <= 12 ? 'bg-orange-950/30 border-orange-500 text-white shadow-sm' : 'bg-slate-900/40 border-slate-800/50 text-slate-400'}`}>
                   <span className="block text-[8px] uppercase tracking-wider text-slate-400 mb-1 font-sans font-semibold">
-                    {(hasChestEmbroidery || hasBackEmbroidery) ? '6 a 12 Pzas' : '1 a 12 Pzas'}
+                    {supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery) ? '6 a 12 Pzas' : '1 a 12 Pzas'}
                   </span>
                   <span className="font-semibold text-white">
-                    ${((product.priceTiers['1-12'] ?? product.priceTiers['1-6'] ?? product.price) + (!isShoe && hasChestEmbroidery ? 45 : 0) + (!isShoe && hasBackEmbroidery ? 80 : 0)).toFixed(2)}
+                    ${((product.priceTiers['1-12'] ?? product.priceTiers['1-6'] ?? product.price) + (supportsEmbroidery && hasChestEmbroidery ? 45 : 0) + (supportsEmbroidery && hasBackEmbroidery ? 80 : 0)).toFixed(2)}
                   </span>
-                  {(hasChestEmbroidery || hasBackEmbroidery) && (
+                  {supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery) && (
                     <span className="block text-[8px] text-slate-500 mt-0.5">
                       Base: ${(product.priceTiers['1-12'] ?? product.priceTiers['1-6'] ?? product.price).toFixed(2)}
                     </span>
@@ -477,9 +564,9 @@ export default function ProductDetailModal({
                 <div className={`p-2 rounded border transition-colors ${quantity >= 13 && quantity <= 50 ? 'bg-orange-950/30 border-orange-500 text-white shadow-sm' : 'bg-slate-900/40 border-slate-800/50 text-slate-400'}`}>
                   <span className="block text-[8px] uppercase tracking-wider text-slate-400 mb-1 font-sans font-semibold">13 a 50 Pzas</span>
                   <span className="font-semibold text-white">
-                    ${((product.priceTiers['13-50'] ?? product.priceTiers['12-99'] ?? product.price * 0.95) + (!isShoe && hasChestEmbroidery ? 38 : 0) + (!isShoe && hasBackEmbroidery ? 72 : 0)).toFixed(2)}
+                    ${((product.priceTiers['13-50'] ?? product.priceTiers['12-99'] ?? product.price * 0.95) + (supportsEmbroidery && hasChestEmbroidery ? 38 : 0) + (supportsEmbroidery && hasBackEmbroidery ? 72 : 0)).toFixed(2)}
                   </span>
-                  {(hasChestEmbroidery || hasBackEmbroidery) && (
+                  {supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery) && (
                     <span className="block text-[8px] text-slate-500 mt-0.5">
                       Base: ${(product.priceTiers['13-50'] ?? product.priceTiers['12-99'] ?? product.price * 0.95).toFixed(2)}
                     </span>
@@ -488,9 +575,9 @@ export default function ProductDetailModal({
                 <div className={`p-2 rounded border transition-colors ${quantity >= 51 ? 'bg-orange-950/30 border-orange-500 text-white shadow-sm' : 'bg-slate-900/40 border-slate-800/50 text-slate-400'}`}>
                   <span className="block text-[8px] uppercase tracking-wider text-slate-400 mb-1 font-sans font-semibold">51+ Pzas</span>
                   <span className="font-semibold text-emerald-400">
-                    ${((product.priceTiers['51+'] ?? product.priceTiers['300+'] ?? product.price * 0.9) + (!isShoe && hasChestEmbroidery ? 33 : 0) + (!isShoe && hasBackEmbroidery ? 65 : 0)).toFixed(2)}
+                    ${((product.priceTiers['51+'] ?? product.priceTiers['300+'] ?? product.price * 0.9) + (supportsEmbroidery && hasChestEmbroidery ? 33 : 0) + (supportsEmbroidery && hasBackEmbroidery ? 65 : 0)).toFixed(2)}
                   </span>
-                  {(hasChestEmbroidery || hasBackEmbroidery) && (
+                  {supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery) && (
                     <span className="block text-[8px] text-slate-500 mt-0.5">
                       Base: ${(product.priceTiers['51+'] ?? product.priceTiers['300+'] ?? product.price * 0.9).toFixed(2)}
                     </span>
@@ -499,11 +586,11 @@ export default function ProductDetailModal({
               </div>
               <div className="text-[9px] text-slate-400 flex items-center justify-between border-t border-slate-800/60 pt-2 font-sans">
                 <span>
-                  {hasChestEmbroidery || hasBackEmbroidery
+                  {supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery)
                     ? 'Precios netos con IVA y bordados incluidos.'
                     : 'Precios con IVA incluido.'}
                 </span>
-                {!isShoe && (
+                {supportsEmbroidery && (
                   <span className="text-orange-400 font-medium">
                     {hasChestEmbroidery || hasBackEmbroidery
                       ? `Bordados activos (mín. 6 pz): ${hasChestEmbroidery ? `Pecho +$${getChestEmbroideryPrice(quantity)}` : ''} ${hasBackEmbroidery ? `Espalda +$${getBackEmbroideryPrice(quantity)}` : ''}`
@@ -705,8 +792,8 @@ export default function ProductDetailModal({
               )}
             </div>
 
-            {/* Personalization Options (Bordados) - Only for garments, not footwear/shoes */}
-            {!isShoe && (
+            {/* Personalization Options (Bordados) - Only for garments with chest/back embroidery */}
+            {supportsEmbroidery && (
               <div className="bg-slate-950 border border-slate-800/80 rounded-xl p-4 space-y-3">
                 <span className="block text-[10px] uppercase tracking-wider text-slate-400 font-semibold border-b border-slate-800/60 pb-1.5">
                   PERSONALIZACIÓN (Bordado Industrial)
@@ -781,7 +868,7 @@ export default function ProductDetailModal({
                 <span className="text-lg font-mono font-bold text-white">
                   {formatCurrency(finalUnitPrice)}
                 </span>
-                {(hasChestEmbroidery || hasBackEmbroidery) && (
+                {supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery) && (
                   <span className="block text-[9px] text-orange-400 font-mono">
                     Prenda: {formatCurrency(unitPrice)}
                     {hasChestEmbroidery && ` + Pecho: ${formatCurrency(getChestEmbroideryPrice(quantity))}`}
@@ -809,7 +896,7 @@ export default function ProductDetailModal({
                 <div className="flex items-center bg-slate-800 border border-slate-700 rounded-lg h-11 px-2 shrink-0">
                   <button
                     onClick={() => {
-                      const minReq = (hasChestEmbroidery || hasBackEmbroidery) ? 6 : 1;
+                      const minReq = (supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery)) ? 6 : 1;
                       setQuantity((prev) => Math.max(minReq, prev - 1));
                     }}
                     className="p-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer text-lg font-bold"
@@ -826,7 +913,7 @@ export default function ProductDetailModal({
                       setQuantity(cleanValue === '' ? 0 : parseInt(cleanValue, 10));
                     }}
                     onBlur={() => {
-                      const minReq = (hasChestEmbroidery || hasBackEmbroidery) ? 6 : 1;
+                      const minReq = (supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery)) ? 6 : 1;
                       if (quantity < minReq) {
                         setQuantity(minReq);
                       }
