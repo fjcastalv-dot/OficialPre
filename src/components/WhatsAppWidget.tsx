@@ -8,11 +8,10 @@ export default function WhatsAppWidget() {
   >([
     {
       sender: 'agent',
-      text: '¡Hola! Bienvenido a Uniformes PRE. Soy Sofía, asesora textil de Cancún. ¿En qué puedo ayudarte hoy?',
+      text: '¡Hola! Bienvenido a Uniformes PRE. Soy Raquel, asesora textil de Cancún. ¿En qué puedo ayudarte hoy?',
       time: 'Justo ahora',
     },
   ]);
-  const [inputVal, setInputVal] = useState('');
   const [isTyping, setIsTyping] = useState(false);
 
   const faqList = [
@@ -22,15 +21,15 @@ export default function WhatsAppWidget() {
     },
     {
       q: '¿Tienen compra mínima?',
-      a: 'Para pedidos con bordado o sublimado personalizado, nuestra cantidad mínima recomendada es de 10 piezas para ofrecerle el mejor precio por volumen.',
+      a: 'Para prendas lisas no manejamos compra mínima. Para pedidos con bordado o personalización, la cantidad mínima es a partir de 6 piezas.',
     },
     {
-      q: '¿Hacen entregas en Playa del Carmen?',
-      a: '¡Sí! Hacemos envíos y entregas programadas en toda la Riviera Maya: Cancún, Isla Mujeres, Playa del Carmen, Cozumel, Tulum y Chetumal.',
+      q: '¿Hacen envíos a todo México?',
+      a: '¡Sí! Realizamos envíos a toda la República Mexicana por paquetería express, además de entregas locales programadas en Cancún y toda la Riviera Maya.',
     },
     {
-      q: '¿Cuánto tardan los bordados?',
-      a: 'Una vez autorizada la pre-prensa y muestra física del logotipo, el tiempo promedio de entrega es de 5 a 8 días hábiles, dependiendo del volumen.',
+      q: '¿Tiempos de entrega y bordado?',
+      a: 'Prendas lisas en inventario entrega inmediata. Para pedidos con bordado: si ya cuentas con ponchado es de 48 a 72 hrs; para ponchados nuevos, de 5 a 7 días hábiles.',
     },
   ];
 
@@ -44,7 +43,6 @@ export default function WhatsAppWidget() {
 
     if (isUserMessage) {
       setMessages((prev) => [...prev, { sender: 'user', text, time: currentTime }]);
-      setInputVal('');
 
       // Find matching FAQ response
       const matchedFaq = faqList.find((faq) => text.toLowerCase().includes(faq.q.toLowerCase()) || faq.q.toLowerCase().includes(text.toLowerCase()));
@@ -57,7 +55,7 @@ export default function WhatsAppWidget() {
       setTimeout(() => {
         setIsTyping(false);
         setMessages((prev) => [...prev, { sender: 'agent', text: responseText, time: currentTime }]);
-      }, 1200);
+      }, 1000);
     }
   };
 
@@ -86,7 +84,7 @@ export default function WhatsAppWidget() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="w-80 sm:w-96 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[500px] animate-fade-in">
+        <div className="w-80 sm:w-96 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[520px] animate-fade-in">
           {/* Header */}
           <div className="bg-emerald-600 text-white p-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -97,7 +95,7 @@ export default function WhatsAppWidget() {
                 <span className="absolute bottom-0 right-0 h-2.5 w-2.5 bg-emerald-400 rounded-full border border-emerald-600" />
               </div>
               <div>
-                <h4 className="font-bold text-sm text-white" style={{ fontFamily: 'Verdana' }}>Sofía</h4>
+                <h4 className="font-bold text-sm text-white" style={{ fontFamily: 'Verdana' }}>Raquel</h4>
                 <p className="text-[10px] text-emerald-100">En línea • Uniformes PRE</p>
               </div>
             </div>
@@ -110,11 +108,11 @@ export default function WhatsAppWidget() {
           </div>
 
           {/* Messages Container */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-900 min-h-[220px] max-h-[300px]">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-900 min-h-[200px] max-h-[260px]">
             {messages.map((msg, idx) => (
               <div
                 key={idx}
-                className={`flex flex-col max-w-[80%] ${
+                className={`flex flex-col max-w-[85%] ${
                   msg.sender === 'user' ? 'ml-auto items-end' : 'mr-auto items-start'
                 }`}
               >
@@ -141,46 +139,36 @@ export default function WhatsAppWidget() {
             )}
           </div>
 
-          {/* Preset Questions (FAQ list chips) */}
-          <div className="p-2 border-t border-slate-800 bg-slate-900/50 flex gap-1.5 overflow-x-auto scrollbar-none">
-            {faqList.map((faq, idx) => (
-              <button
-                key={idx}
-                onClick={() => handleFaqClick(faq)}
-                className="text-[10px] bg-slate-800 hover:bg-slate-700 hover:text-white text-slate-300 py-1.5 px-3.5 rounded-full shrink-0 border border-slate-700/80 transition-colors cursor-pointer"
-              >
-                {faq.q}
-              </button>
-            ))}
+          {/* Preset Questions (FAQ list chips - non-truncated, clear buttons) */}
+          <div className="p-3 border-t border-slate-800 bg-slate-950/90 flex flex-col gap-2">
+            <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">
+              Preguntas Rápidas:
+            </span>
+            <div className="grid grid-cols-1 gap-1.5 max-h-36 overflow-y-auto pr-1">
+              {faqList.map((faq, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleFaqClick(faq)}
+                  className="text-[11px] text-left bg-slate-900 hover:bg-emerald-950/50 hover:border-emerald-500/60 hover:text-white text-slate-300 py-2 px-3 rounded-lg border border-slate-800/80 transition-all cursor-pointer leading-snug flex items-center justify-between group shadow-sm"
+                >
+                  <span>{faq.q}</span>
+                  <span className="text-emerald-400 text-xs opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all ml-1.5 shrink-0">→</span>
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Footer Input */}
-          <div className="p-3 bg-slate-950 border-t border-slate-800 flex items-center gap-2">
-            <input
-              type="text"
-              value={inputVal}
-              onChange={(e) => setInputVal(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleSendMessage(inputVal)}
-              placeholder="Escribe tu mensaje..."
-              className="flex-1 bg-slate-900 border border-slate-800 rounded px-3 py-1.5 text-xs text-white focus:outline-none focus:border-emerald-500 placeholder-slate-600"
-            />
-            <button
-              onClick={() => handleSendMessage(inputVal)}
-              className="p-1.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white transition-colors cursor-pointer"
-            >
-              <Send className="h-3.5 w-3.5" />
-            </button>
-          </div>
-
-          {/* Real WhatsApp link */}
-          <div className="bg-emerald-950/40 p-2 border-t border-slate-800/50 text-center">
+          {/* Real WhatsApp Button - Solid green with white text */}
+          <div className="p-3 bg-slate-950 border-t border-slate-800/80">
             <a
               href="https://wa.me/529989370850"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-[10px] text-emerald-400 hover:text-emerald-300 font-semibold uppercase tracking-wider"
+              className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-900/40 transition-all cursor-pointer"
             >
-              Iniciar Chat Real de WhatsApp <ExternalLink className="h-3 w-3" />
+              <MessageCircle className="h-4 w-4 fill-white" />
+              <span>Iniciar Chat Real de WhatsApp</span>
+              <ExternalLink className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>

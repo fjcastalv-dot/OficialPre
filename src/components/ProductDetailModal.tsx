@@ -51,37 +51,51 @@ export default function ProductDetailModal({
   const [selectedSize, setSelectedSize] = useState('M');
   const [selectedColor, setSelectedColor] = useState('');
   const [galleryIndex, setGalleryIndex] = useState(0);
-  const [selectedCorte, setSelectedCorte] = useState('Dama');
+  const [selectedCorte, setSelectedCorte] = useState('Caballero');
   const [selectedManga, setSelectedManga] = useState<'Manga Corta' | 'Manga Larga'>('Manga Corta');
   const [hasChestEmbroidery, setHasChestEmbroidery] = useState(false);
   const [hasBackEmbroidery, setHasBackEmbroidery] = useState(false);
   const [successMsg, setSuccessMsg] = useState(false);
+  const [isZooming, setIsZooming] = useState(false);
+  const [zoomPos, setZoomPos] = useState({ xPercent: 50, yPercent: 50, lensX: 0, lensY: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPercent = Math.max(0, Math.min(100, (mouseX / rect.width) * 100));
+    const yPercent = Math.max(0, Math.min(100, (mouseY / rect.height) * 100));
+    const lensW = 140;
+    const lensH = 140;
+    const lensX = Math.max(0, Math.min(rect.width - lensW, mouseX - lensW / 2));
+    const lensY = Math.max(0, Math.min(rect.height - lensH, mouseY - lensH / 2));
+    setZoomPos({ xPercent, yPercent, lensX, lensY });
+  };
 
   useEffect(() => {
     if (isOpen && product) {
       setQuantity(1);
       setSelectedSize(product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'M');
-      const initialColor = (() => {
-        const list = (product.damaColors && product.damaColors.length > 0)
-          ? product.damaColors
-          : (product.colors || []);
-        if (list.length === 0) return '';
-        const withImg = list.find((c) => {
-          if (product.id.startsWith('polo-dryfit')) {
-            const n = c.name.toLowerCase();
-            return n.includes('blanco') || n.includes('negro') || n.includes('marino') || n.includes('gris') || n.includes('oxford') || n.includes('carbón') || n.includes('carbon') || n.includes('naranja') || n.includes('rojo') || n.includes('verde agua') || n.includes('turquesa');
-          }
-          return !!c.image || (c.gallery && c.gallery.length > 0);
-        });
-        return withImg ? withImg.name : list[0].name;
-      })();
-      setSelectedColor(initialColor);
-      setGalleryIndex(0);
-      setSelectedCorte('Dama');
+      setSelectedCorte('Caballero');
       setSelectedManga('Manga Corta');
       setHasChestEmbroidery(false);
       setHasBackEmbroidery(false);
       setSuccessMsg(false);
+      setIsZooming(false);
+
+      const initialColor = (() => {
+        if (product.id.startsWith('polo-dryfit')) {
+          return 'Marino';
+        }
+        const list = (product.colors && product.colors.length > 0)
+          ? product.colors
+          : (product.damaColors || []);
+        if (list.length === 0) return '';
+        const withImg = list.find((c) => !!c.image || (c.gallery && c.gallery.length > 0));
+        return withImg ? withImg.name : list[0].name;
+      })();
+      setSelectedColor(initialColor);
+      setGalleryIndex(0);
       trackEvent('view_item', { product_id: product.id, name: product.name, code: product.code });
     }
   }, [isOpen, product]);
@@ -164,6 +178,65 @@ export default function ProductDetailModal({
     return 'none';
   };
 
+  const activeGallery: string[] = (() => {
+    // 1. Dama corte gallery override if selected
+    if (selectedCorte === 'Dama' && product.damaColors && product.damaColors.length > 0) {
+      const damaObj = product.damaColors.find(
+        (c) => c.name.toLowerCase() === selectedColor.toLowerCase()
+      ) || product.damaColors[0];
+      if (damaObj?.gallery && damaObj.gallery.length > 0) {
+        return damaObj.gallery.filter(Boolean);
+      }
+      if (damaObj?.image) {
+        return [damaObj.image];
+      }
+    }
+
+    // 2. Color-specific object
+    const colorObj = product.colors?.find(
+      (c) => c.name.toLowerCase() === selectedColor.toLowerCase()
+    );
+    if (colorObj?.gallery && colorObj.gallery.length > 0) {
+      return colorObj.gallery.filter(Boolean);
+    }
+
+    // 3. Polo Dry-Fit specific assets
+    if (product.id.startsWith('polo-dryfit')) {
+      const name = selectedColor.toLowerCase();
+      if (name.includes('blanco')) return ['https://res.cloudinary.com/boofzznx/image/upload/v1791056117/POLO_BLANCA_CABALLERO.png'];
+      if (name.includes('negro')) return ['https://res.cloudinary.com/boofzznx/image/upload/v1790452434/POLO_NEGRA_MC.png'];
+      if (name.includes('oxford') || name.includes('carbón') || name.includes('carbon') || name.includes('gris')) return [poloCarbon];
+      if (name.includes('marino')) return [
+        'https://res.cloudinary.com/boofzznx/image/upload/v1791056280/POLO_NEGRA2...png',
+        'https://res.cloudinary.com/boofzznx/image/upload/v1791056279/POLO_NEGRA2.png'
+      ];
+      if (name.includes('naranja')) return [poloNaranja];
+      if (name.includes('rojo')) return [poloRojo];
+      if (name.includes('verde agua') || name.includes('turquesa')) return [poloTurquesa];
+      if (colorObj?.gallery && colorObj.gallery.length > 0) return colorObj.gallery.filter(Boolean);
+      if (colorObj?.image) return [colorObj.image];
+      return [];
+    }
+
+    if (colorObj?.image) {
+      return [colorObj.image];
+    }
+
+    // If the product has colors configured, but this color has no photo:
+    if (product.colors && product.colors.length > 0) {
+      return [];
+    }
+
+    if (product.gallery && product.gallery.length > 0) {
+      return product.gallery.filter(Boolean);
+    }
+
+    return product.image ? [product.image] : [];
+  })();
+
+  const currentDisplayImage = (activeGallery[galleryIndex] || activeGallery[0] || (product.colors && product.colors.length > 0 ? '' : product.image) || '').trim();
+  const hasMultipleImages = activeGallery.length > 1;
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" id="product-detail-modal">
       <div className="absolute inset-0 cursor-pointer" onClick={onClose} />
@@ -181,83 +254,47 @@ export default function ProductDetailModal({
 
         {/* Left Column: Product Image & Badges & Gallery */}
         <div className="w-full md:w-1/2 relative bg-slate-950 flex flex-col justify-between p-4 sm:p-6 md:p-8 border-b md:border-b-0 md:border-r border-slate-800">
-          {(() => {
-            const activeGallery: string[] = (() => {
-              // 1. Dama corte gallery override if selected
-              if (selectedCorte === 'Dama' && product.damaColors && product.damaColors.length > 0) {
-                const damaObj = product.damaColors.find(
-                  (c) => c.name.toLowerCase() === selectedColor.toLowerCase()
-                ) || product.damaColors[0];
-                if (damaObj?.gallery && damaObj.gallery.length > 0) {
-                  return damaObj.gallery.filter(Boolean);
-                }
-                if (damaObj?.image) {
-                  return [damaObj.image];
-                }
-              }
-
-              // 2. Color-specific object
-              const colorObj = product.colors?.find(
-                (c) => c.name.toLowerCase() === selectedColor.toLowerCase()
-              );
-              if (colorObj?.gallery && colorObj.gallery.length > 0) {
-                return colorObj.gallery.filter(Boolean);
-              }
-
-              // 3. Polo Dry-Fit specific assets
-              if (product.id.startsWith('polo-dryfit')) {
-                const name = selectedColor.toLowerCase();
-                if (name.includes('blanco')) return [poloBlanco];
-                if (name.includes('negro')) return ['https://res.cloudinary.com/boofzznx/image/upload/v1790452434/POLO_NEGRA_MC.png'];
-                if (name.includes('oxford') || name.includes('carbón') || name.includes('carbon') || name.includes('gris')) return [poloCarbon];
-                if (name.includes('marino')) return [poloMarino];
-                if (name.includes('naranja')) return [poloNaranja];
-                if (name.includes('rojo')) return [poloRojo];
-                if (name.includes('verde agua') || name.includes('turquesa')) return [poloTurquesa];
-                if (colorObj?.image) return [colorObj.image];
-                return [];
-              }
-
-              if (colorObj?.image) {
-                return [colorObj.image];
-              }
-
-              // If the product has colors configured, but this color has no photo:
-              if (product.colors && product.colors.length > 0) {
-                return [];
-              }
-
-              if (product.gallery && product.gallery.length > 0) {
-                return product.gallery.filter(Boolean);
-              }
-
-              return product.image ? [product.image] : [];
-            })();
-
-            const currentDisplayImage = (activeGallery[galleryIndex] || activeGallery[0] || (product.colors && product.colors.length > 0 ? '' : product.image) || '').trim();
-            const hasMultipleImages = activeGallery.length > 1;
-
-            return (
-              <div className="flex flex-col h-full justify-between gap-4">
-                {/* Main Image Container */}
-                <div className="relative w-full flex-1 flex items-center justify-center min-h-[300px] sm:min-h-[380px] bg-slate-900/40 rounded-xl overflow-hidden border border-slate-800/60">
+          <div className="flex flex-col h-full justify-between gap-4">
+            {/* Main Image Container */}
+            <div
+              onMouseEnter={() => currentDisplayImage && setIsZooming(true)}
+              onMouseLeave={() => setIsZooming(false)}
+              onMouseMove={handleMouseMove}
+              className="relative w-full flex-1 flex items-center justify-center min-h-[300px] sm:min-h-[380px] bg-slate-900/40 rounded-xl overflow-hidden border border-slate-800/60 cursor-crosshair group"
+                >
                   {currentDisplayImage ? (
-                    <img
-                      key={currentDisplayImage}
-                      src={currentDisplayImage}
-                      alt={`${product.name} - ${selectedColor}`}
-                      className={`w-full h-80 sm:h-96 md:h-[460px] ${
-                        product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
-                          ? 'object-contain p-3'
-                          : 'object-cover object-top'
-                      } rounded-xl shadow-inner transition-all duration-300`}
-                      referrerPolicy="no-referrer"
-                      onError={(e) => {
-                        if (product.image && e.currentTarget.src !== product.image) {
-                          e.currentTarget.src = product.image;
-                        }
-                      }}
-                    />
+                    <>
+                      <img
+                        key={currentDisplayImage}
+                        src={currentDisplayImage}
+                        alt={`${product.name} - ${selectedColor}`}
+                        className={`w-full h-80 sm:h-96 md:h-[460px] ${
+                          product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
+                            ? 'object-contain p-3'
+                            : 'object-cover object-top'
+                        } rounded-xl shadow-inner transition-all duration-300 select-none`}
+                        referrerPolicy="no-referrer"
+                        onError={(e) => {
+                          if (product.image && e.currentTarget.src !== product.image) {
+                            e.currentTarget.src = product.image;
+                          }
+                        }}
+                      />
+
+                      {/* MercadoLibre-style Zoom Lens */}
+                      {isZooming && (
+                        <div
+                          className="hidden md:block absolute pointer-events-none border-2 border-orange-500/90 bg-slate-900/35 backdrop-blur-[0.5px] shadow-2xl rounded-lg"
+                          style={{
+                            left: `${zoomPos.lensX}px`,
+                            top: `${zoomPos.lensY}px`,
+                            width: '140px',
+                            height: '140px',
+                            zIndex: 20
+                          }}
+                        />
+                      )}
+                    </>
                   ) : (
                     <div className="w-full h-80 sm:h-96 md:h-[460px] flex flex-col items-center justify-center bg-white rounded-xl p-8 text-center border border-slate-200 shadow-sm">
                       <div className="w-16 h-16 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 mb-3 shadow-inner">
@@ -359,12 +396,33 @@ export default function ProductDetailModal({
                   </div>
                 )}
               </div>
-            );
-          })()}
         </div>
 
         {/* Right Column: Detailed Configurations & Price Calculator */}
-        <div className="w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between text-slate-200">
+        <div className="relative w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between text-slate-200">
+          {/* MercadoLibre-style Zoom Window */}
+          {isZooming && currentDisplayImage && (
+            <div className="hidden md:flex absolute inset-2 sm:inset-4 z-40 flex-col bg-slate-950 rounded-2xl border-2 border-orange-500/60 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.85)] overflow-hidden pointer-events-none animate-in fade-in duration-200">
+              <div
+                className="w-full flex-1"
+                style={{
+                  backgroundImage: `url("${currentDisplayImage}")`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: `${zoomPos.xPercent}% ${zoomPos.yPercent}%`,
+                  backgroundSize: '280% 280%',
+                }}
+              />
+              <div className="bg-slate-950/95 border-t border-slate-800/80 px-4 py-2.5 flex items-center justify-between text-xs text-slate-300">
+                <span className="flex items-center gap-1.5 text-orange-400 font-bold tracking-wide">
+                  <Sparkles className="w-3.5 h-3.5 text-orange-400 animate-pulse" /> Vista de Detalle (Zoom 2.8x)
+                </span>
+                <span className="text-[11px] font-mono text-slate-400">
+                  {selectedColor || product.name}
+                </span>
+              </div>
+            </div>
+          )}
+
           <div className="space-y-6">
             {/* Category & Rating */}
             <div className="flex items-center justify-between">
@@ -404,7 +462,9 @@ export default function ProductDetailModal({
 
               <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono">
                 <div className={`p-2 rounded border transition-colors ${quantity <= 12 ? 'bg-orange-950/30 border-orange-500 text-white shadow-sm' : 'bg-slate-900/40 border-slate-800/50 text-slate-400'}`}>
-                  <span className="block text-[8px] uppercase tracking-wider text-slate-400 mb-1 font-sans font-semibold">1 a 12 Pzas</span>
+                  <span className="block text-[8px] uppercase tracking-wider text-slate-400 mb-1 font-sans font-semibold">
+                    {(hasChestEmbroidery || hasBackEmbroidery) ? '6 a 12 Pzas' : '1 a 12 Pzas'}
+                  </span>
                   <span className="font-semibold text-white">
                     ${((product.priceTiers['1-12'] ?? product.priceTiers['1-6'] ?? product.price) + (!isShoe && hasChestEmbroidery ? 45 : 0) + (!isShoe && hasBackEmbroidery ? 80 : 0)).toFixed(2)}
                   </span>
@@ -446,8 +506,8 @@ export default function ProductDetailModal({
                 {!isShoe && (
                   <span className="text-orange-400 font-medium">
                     {hasChestEmbroidery || hasBackEmbroidery
-                      ? `Bordados activos: ${hasChestEmbroidery ? `Pecho +$${getChestEmbroideryPrice(quantity)}` : ''} ${hasBackEmbroidery ? `Espalda +$${getBackEmbroideryPrice(quantity)}` : ''}`
-                      : 'Bordado opcional: Pecho desde $33 | Espalda desde $65'}
+                      ? `Bordados activos (mín. 6 pz): ${hasChestEmbroidery ? `Pecho +$${getChestEmbroideryPrice(quantity)}` : ''} ${hasBackEmbroidery ? `Espalda +$${getBackEmbroideryPrice(quantity)}` : ''}`
+                      : 'Bordado opcional (mínimo 6 pzas): Pecho desde $33 | Espalda desde $65'}
                   </span>
                 )}
               </div>
@@ -657,7 +717,13 @@ export default function ProductDetailModal({
                     <input
                       type="checkbox"
                       checked={hasChestEmbroidery}
-                      onChange={(e) => setHasChestEmbroidery(e.target.checked)}
+                      onChange={(e) => {
+                        const checked = e.target.checked;
+                        setHasChestEmbroidery(checked);
+                        if (checked && quantity < 6) {
+                          setQuantity(6);
+                        }
+                      }}
                       className="h-4 w-4 mt-0.5 rounded border-slate-800 bg-slate-900 text-orange-600 focus:ring-orange-500 cursor-pointer"
                     />
                     <div className="text-xs text-left flex-1">
@@ -668,7 +734,7 @@ export default function ProductDetailModal({
                         </span>
                       </div>
                       <span className="block text-[10px] text-slate-400 mt-0.5">
-                        Adiciona logotipo al frente. Escala: $45 (1-12 pz) · $38 (13-50 pz) · $33 (51+ pz).
+                        Adiciona logotipo al frente. Escala: $45 (6-12 pz) · $38 (13-50 pz) · $33 (51+ pz).
                       </span>
                     </div>
                   </label>
@@ -677,7 +743,13 @@ export default function ProductDetailModal({
                     <input
                       type="checkbox"
                       checked={hasBackEmbroidery}
-                      onChange={(e) => setHasBackEmbroidery(e.target.checked)}
+                      onChange={(e) => {
+                        const checked = e.target.checked;
+                        setHasBackEmbroidery(checked);
+                        if (checked && quantity < 6) {
+                          setQuantity(6);
+                        }
+                      }}
                       className="h-4 w-4 mt-0.5 rounded border-slate-800 bg-slate-900 text-orange-600 focus:ring-orange-500 cursor-pointer"
                     />
                     <div className="text-xs text-left flex-1">
@@ -688,14 +760,14 @@ export default function ProductDetailModal({
                         </span>
                       </div>
                       <span className="block text-[10px] text-slate-400 mt-0.5">
-                        Adiciona diseño o nombre en espalda. Escala: $80 (1-12 pz) · $72 (13-50 pz) · $65 (51+ pz).
+                        Adiciona diseño o nombre en espalda. Escala: $80 (6-12 pz) · $72 (13-50 pz) · $65 (51+ pz).
                       </span>
                     </div>
                   </label>
                 </div>
 
-                <p className="text-[9px] text-slate-500 font-sans leading-tight">
-                  * El bordado requiere ponchado. Si ya cuenta con ponchado, la entrega es de 48 a 72 hrs. De lo contrario, se entrega de 5 a 7 días hábiles.
+                <p className="text-[10px] text-orange-400/90 font-sans leading-tight">
+                  * El bordado aplica a partir de 6 piezas mínimas. Si ya cuenta con ponchado, la entrega es de 48 a 72 hrs. De lo contrario, se entrega de 5 a 7 días hábiles.
                 </p>
               </div>
             )}
@@ -736,7 +808,10 @@ export default function ProductDetailModal({
                 {/* Quantity Selector */}
                 <div className="flex items-center bg-slate-800 border border-slate-700 rounded-lg h-11 px-2 shrink-0">
                   <button
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    onClick={() => {
+                      const minReq = (hasChestEmbroidery || hasBackEmbroidery) ? 6 : 1;
+                      setQuantity((prev) => Math.max(minReq, prev - 1));
+                    }}
                     className="p-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer text-lg font-bold"
                   >
                     -
@@ -751,8 +826,9 @@ export default function ProductDetailModal({
                       setQuantity(cleanValue === '' ? 0 : parseInt(cleanValue, 10));
                     }}
                     onBlur={() => {
-                      if (quantity < 1) {
-                        setQuantity(1);
+                      const minReq = (hasChestEmbroidery || hasBackEmbroidery) ? 6 : 1;
+                      if (quantity < minReq) {
+                        setQuantity(minReq);
                       }
                     }}
                     className="w-12 bg-transparent border-0 text-center font-mono text-sm text-white focus:outline-none focus:ring-0 font-bold p-0"

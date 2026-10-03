@@ -66,7 +66,13 @@ export const PRODUCTS: Product[] = [
     name: 'Playera Polo Dry-Fit Dama / Caballero',
     price: 240.00,
     category: 'hoteleria',
-    image: poloMarino,
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791056280/POLO_NEGRA2...png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791056280/POLO_NEGRA2...png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791056279/POLO_NEGRA2.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791056117/POLO_BLANCA_CABALLERO.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1790452434/POLO_NEGRA_MC.png'
+    ],
     isBestSeller: true,
     isNew: true,
     rating: 4.9,
@@ -81,7 +87,23 @@ export const PRODUCTS: Product[] = [
     hasCorteSelection: true,
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
-      { name: 'Blanco', hex: '#ffffff', code: '332', image: poloBlanco },
+      {
+        name: 'Marino',
+        hex: '#0f172a',
+        code: '343',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791056280/POLO_NEGRA2...png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791056280/POLO_NEGRA2...png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791056279/POLO_NEGRA2.png'
+        ]
+      },
+      {
+        name: 'Blanco',
+        hex: '#ffffff',
+        code: '332',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791056117/POLO_BLANCA_CABALLERO.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1791056117/POLO_BLANCA_CABALLERO.png']
+      },
       {
         name: 'Negro',
         hex: '#000000',
@@ -89,17 +111,9 @@ export const PRODUCTS: Product[] = [
         image: 'https://res.cloudinary.com/boofzznx/image/upload/v1790452434/POLO_NEGRA_MC.png',
         gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1790452434/POLO_NEGRA_MC.png']
       },
-      { name: 'Marino', hex: '#0f172a', code: '343', image: poloMarino },
-      { name: 'Francia', hex: '#1d4ed8', code: '317' },
       { name: 'Gris', hex: '#6b7280', code: '385', image: poloCarbon }
     ],
     damaColors: [
-      {
-        name: 'Negra',
-        hex: '#000000',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789930623/POLO_MC_NEGRADAMA.png',
-        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789930623/POLO_MC_NEGRADAMA.png']
-      },
       {
         name: 'Azul Marino',
         hex: '#1e3a8a',
@@ -107,16 +121,22 @@ export const PRODUCTS: Product[] = [
         gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789930624/POLO_MARINO_DAMA_1.png']
       },
       {
-        name: 'Gris Oxford',
-        hex: '#374151',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789930625/POLO_NEGRA_DAMA.png',
-        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789930625/POLO_NEGRA_DAMA.png']
+        name: 'Negra',
+        hex: '#000000',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789930623/POLO_MC_NEGRADAMA.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789930623/POLO_MC_NEGRADAMA.png']
       },
       {
         name: 'Blanca',
         hex: '#ffffff',
         image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789930628/POLOBLANCAD.png',
         gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789930628/POLOBLANCAD.png']
+      },
+      {
+        name: 'Gris Oxford',
+        hex: '#374151',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789930625/POLO_NEGRA_DAMA.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1789930625/POLO_NEGRA_DAMA.png']
       }
     ],
     priceTiers: {
@@ -560,7 +580,11 @@ export const PRODUCTS: Product[] = [
     name: 'Blusa Manga Larga Oxford',
     price: 390.00,
     category: 'ejecutivo',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789957587/Dise%C3%B1o_sin_t%C3%ADtulo_6.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791057652/BLUSAAZULMANGALARGA.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791057652/BLUSAAZULMANGALARGA.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791057513/mangalargadama.png'
+    ],
     rating: 4.8,
     description: 'Blusa cuello camisero formal manga larga, con un corte elegante y moderno, composición 65% Algodón 35% Poliéster, ofrece frescura, colores duraderos y una apariencia impecable que hará resaltar a tu equipo de trabajo con un estilo formal pero relajado.',
     composition: '65% Algodón 35% Poliéster',
@@ -573,11 +597,17 @@ export const PRODUCTS: Product[] = [
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       {
+        name: 'Azul Cielo',
+        hex: '#7dd3fc',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791057652/BLUSAAZULMANGALARGA.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1791057652/BLUSAAZULMANGALARGA.png']
+      },
+      {
         name: 'Blanco',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789957587/Dise%C3%B1o_sin_t%C3%ADtulo_6.png'
-      },
-      { name: 'Azul Cielo', hex: '#7dd3fc' }
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791057513/mangalargadama.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1791057513/mangalargadama.png']
+      }
     ],
     priceTiers: {
       '1-12': 390.00,
@@ -1569,7 +1599,12 @@ export const PRODUCTS: Product[] = [
     name: 'Short Guardavidas',
     price: 370.00,
     category: 'hoteleria',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789955218/Gemini_Generated_Image_8h7ema8h7ema8h7e.jpg',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791057357/shortfrente.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791057357/shortfrente.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791057355/shortespalda.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789955218/Gemini_Generated_Image_8h7ema8h7ema8h7e.jpg'
+    ],
     rating: 4.8,
     description: 'Short deportivo para salvavidas y monitores de alberca. Corte por encima de la rodilla para agilidad en nado y rescate inmediato con suspensorio interno de malla suave.',
     composition: '100% Poliéster Hidrófugo',

@@ -763,6 +763,9 @@ export default function QuoteCartDrawer({
                                     +Bordado Espalda (+{formatCurrency(backPrice)})
                                   </span>
                                 )}
+                                <span className="text-[8px] bg-slate-900 text-orange-300/90 px-1.5 py-0.5 rounded border border-slate-800 font-mono">
+                                  Mín. 6 pz
+                                </span>
                               </div>
                             )}
 
@@ -798,18 +801,19 @@ export default function QuoteCartDrawer({
                             {/* Scale Quantity Counter */}
                             <div className="flex items-center bg-slate-800/80 border border-slate-700 rounded px-1 py-0.5 mt-1.5">
                               <button
-                                onClick={() =>
+                                onClick={() => {
+                                  const minRequired = (item.hasChestEmbroidery || item.hasBackEmbroidery) ? 6 : 1;
                                   onUpdateQuantity(
                                     item.product.id,
-                                    Math.max(1, item.quantity - 1),
+                                    Math.max(minRequired, item.quantity - 1),
                                     item.size,
                                     item.color,
                                     item.hasChestEmbroidery,
                                     item.hasBackEmbroidery,
                                     item.corte,
                                     item.manga
-                                  )
-                                }
+                                  );
+                                }}
                                 className="p-1 text-slate-400 hover:text-white cursor-pointer"
                               >
                                 <Minus className="h-3 w-3" />
@@ -834,10 +838,11 @@ export default function QuoteCartDrawer({
                                   );
                                 }}
                                 onBlur={() => {
-                                  if (item.quantity < 1) {
+                                  const minRequired = (item.hasChestEmbroidery || item.hasBackEmbroidery) ? 6 : 1;
+                                  if (item.quantity < minRequired) {
                                     onUpdateQuantity(
                                       item.product.id,
-                                      1,
+                                      minRequired,
                                       item.size,
                                       item.color,
                                       item.hasChestEmbroidery,
