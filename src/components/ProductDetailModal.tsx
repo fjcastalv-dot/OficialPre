@@ -100,15 +100,32 @@ export default function ProductDetailModal({
     }
   }, [isOpen, product]);
 
-  // Lock background scroll when modal is open
+  // Lock background scroll when modal is open and restore scroll position on close
+  const scrollYRef = useRef(0);
+
   useEffect(() => {
     if (isOpen) {
+      scrollYRef.current = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
       document.body.classList.add('modal-open');
-      document.documentElement.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+      const targetY = scrollYRef.current;
+      if (targetY > 0) {
+        window.scrollTo({ top: targetY, behavior: 'instant' });
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: targetY, behavior: 'instant' });
+        });
+      }
     }
     return () => {
       document.body.classList.remove('modal-open');
-      document.documentElement.classList.remove('modal-open');
+      const targetY = scrollYRef.current;
+      if (targetY > 0) {
+        window.scrollTo({ top: targetY, behavior: 'instant' });
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: targetY, behavior: 'instant' });
+        });
+      }
     };
   }, [isOpen]);
 

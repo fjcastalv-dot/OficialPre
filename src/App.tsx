@@ -42,7 +42,9 @@ export default function App() {
     localStorage.setItem('pre_theme', 'light');
   }, []);
 
-  // Lock background scroll when any modal or drawer is open
+  // Lock background scroll when any modal or drawer is open and preserve scroll position
+  const savedScrollYRef = useRef(0);
+
   useEffect(() => {
     const isAnyModalOpen = Boolean(
       selectedProduct ||
@@ -54,16 +56,23 @@ export default function App() {
     );
 
     if (isAnyModalOpen) {
+      if (!document.body.classList.contains('modal-open')) {
+        savedScrollYRef.current = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      }
       document.body.classList.add('modal-open');
-      document.documentElement.classList.add('modal-open');
     } else {
       document.body.classList.remove('modal-open');
-      document.documentElement.classList.remove('modal-open');
+      const targetY = savedScrollYRef.current;
+      if (targetY > 0) {
+        window.scrollTo({ top: targetY, behavior: 'instant' });
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: targetY, behavior: 'instant' });
+        });
+      }
     }
 
     return () => {
       document.body.classList.remove('modal-open');
-      document.documentElement.classList.remove('modal-open');
     };
   }, [
     selectedProduct,
@@ -366,14 +375,17 @@ export default function App() {
   // View Detail & URL updating
   const handleViewProduct = (product: Product) => {
     setSelectedProduct(product);
-    window.location.hash = `#catalogo/${product.id}`;
+    try {
+      window.history.replaceState(null, '', `#catalogo/${product.id}`);
+    } catch (e) {}
   };
 
   const handleCloseProductModal = () => {
     setSelectedProduct(null);
-    if (window.location.hash.includes(selectedProduct?.id || '')) {
-      window.location.hash = filterCategory !== 'todos' ? `#catalogo?categoria=${filterCategory}` : '#catalogo';
-    }
+    try {
+      const targetHash = filterCategory !== 'todos' ? `#catalogo?categoria=${filterCategory}` : '#catalogo';
+      window.history.replaceState(null, '', targetHash);
+    } catch (e) {}
   };
 
   // Scroll to top on view changes
