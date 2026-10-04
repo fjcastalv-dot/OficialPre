@@ -342,14 +342,13 @@ export const PRODUCTS: Product[] = [
     name: 'Cazadora Manga Corta Dama y Caballero',
     price: 650.00,
     category: 'restaurante',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788194431/MARINOFRENTE.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075565/Cat%C3%A1logo_tienda_Uniformes_Pre_2.png',
     gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075565/Cat%C3%A1logo_tienda_Uniformes_Pre_2.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075568/Cat%C3%A1logo_tienda_Uniformes_Pre_3.png',
       'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788194431/MARINOFRENTE.png',
       'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788195977/MARINOPECHO_1.png',
       'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788195981/AZULMARINO_1.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788194436/FRENTEB.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788195947/PECHO.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788195950/FRENTE2.png',
       'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788194421/CAZADORA_NEGRA.png',
       'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788196026/NEGROFRENTE_1.png',
       'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788196036/NEGRO_1.png'
@@ -373,6 +372,16 @@ export const PRODUCTS: Product[] = [
     hasCorteSelection: true,
     colors: [
       {
+        name: 'Blanco',
+        hex: '#ffffff',
+        code: '332',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075565/Cat%C3%A1logo_tienda_Uniformes_Pre_2.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075565/Cat%C3%A1logo_tienda_Uniformes_Pre_2.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075568/Cat%C3%A1logo_tienda_Uniformes_Pre_3.png'
+        ]
+      },
+      {
         name: 'Azul Marino',
         hex: '#0f172a',
         code: '343',
@@ -381,18 +390,6 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788194431/MARINOFRENTE.png',
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788195977/MARINOPECHO_1.png',
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788195981/AZULMARINO_1.png'
-        ]
-      },
-      {
-        name: 'Blanco',
-        hex: '#ffffff',
-        code: '332',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788194436/FRENTEB.png',
-        gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788194436/FRENTEB.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788195947/PECHO.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788195950/FRENTE2.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789238098/cazadora_espalda.jpg'
         ]
       },
       {
@@ -409,6 +406,14 @@ export const PRODUCTS: Product[] = [
     ],
     damaColors: [
       {
+        name: 'Blanco',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789238330/cazadora_dama.jpg',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789238330/cazadora_dama.jpg'
+        ]
+      },
+      {
         name: 'Azul Marino',
         hex: '#0f172a',
         image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789238118/cazadoradamamarino.png',
@@ -422,14 +427,6 @@ export const PRODUCTS: Product[] = [
         image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789238140/cazadorda_damanegra.jpg',
         gallery: [
           'https://res.cloudinary.com/boofzznx/image/upload/v1789238140/cazadorda_damanegra.jpg'
-        ]
-      },
-      {
-        name: 'Blanco',
-        hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789238330/cazadora_dama.jpg',
-        gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789238330/cazadora_dama.jpg'
         ]
       }
     ],
@@ -447,9 +444,12 @@ export const PRODUCTS: Product[] = [
     name: 'Cazadora Manga Larga Dama y Caballero',
     price: 750.00,
     category: 'restaurante',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789238159/cazadora_ML.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075724/CAZADORA_BLANCA.png',
     gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789238159/cazadora_ML.png'
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075724/CAZADORA_BLANCA.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075721/ESPALDAMLBLANCA.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075732/MANGALARGANAVY.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075727/CAZADORA_MANGA_LARGANEGRA.png'
     ],
     rating: 4.9,
     description: '100% POLIESTER, LIVIANA, CON STRECH, DURABILIDAD Y FRESCURA. CORTE DAMA O CABALLERO. TALLA XS-S-M-L-XL Y XXL.',
@@ -465,22 +465,32 @@ export const PRODUCTS: Product[] = [
       'Costuras reforzadas'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    hasCorteSelection: true,
     colors: [
       {
-        name: 'Azul Marino',
-        hex: '#0f172a',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789238159/cazadora_ML.png',
+        name: 'Blanco',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075724/CAZADORA_BLANCA.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789238159/cazadora_ML.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075724/CAZADORA_BLANCA.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075721/ESPALDAMLBLANCA.png'
         ]
       },
       {
-        name: 'Blanco',
-        hex: '#ffffff'
+        name: 'Azul Marino',
+        hex: '#0f172a',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075732/MANGALARGANAVY.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075732/MANGALARGANAVY.png'
+        ]
       },
       {
         name: 'Negro',
-        hex: '#000000'
+        hex: '#000000',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075727/CAZADORA_MANGA_LARGANEGRA.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075727/CAZADORA_MANGA_LARGANEGRA.png'
+        ]
       }
     ],
     priceTiers: {
@@ -616,35 +626,42 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 10. CAMISA MANGA CORTA OXFORD
+  // 10. CAMISA MANGA CORTA
   {
     id: 'camisa-manga-corta-oxford',
     code: 'C006C',
-    name: 'Camisa Manga Corta Oxford',
+    name: 'Camisa Manga Corta',
     price: 370.00,
     category: 'ejecutivo',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788575136/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_2.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075394/CAMISAMANCORTA.png',
     gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788575136/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_2.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788575148/Dise%C3%B1o_Sin_T%C3%ADtulo_-_2_2.png'
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075394/CAMISAMANCORTA.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075381/Dise%C3%B1o_sin_t%C3%ADtulo_7.png'
     ],
     rating: 4.8,
     description: 'Una camisa con un corte elegante y moderno, con toda la durabilidad y seguridad para tus colaboradores. Gracias a su composición 35% Algodón 65% Poliéster, ofrece colores duraderos y una apariencia impecable que hará resaltar a tu equipo de trabajo con un estilo formal pero relajado.',
     composition: '35% Algodón 65% Poliéster',
     features: [
-          'Cuello camisero',
-          'Canesú y pinzas en la espalda',
-          'Manga corta'
+      'Cuello camisero',
+      'Canesú y pinzas en la espalda',
+      'Manga corta'
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       {
         name: 'Blanco',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788575136/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_2.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075394/CAMISAMANCORTA.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788575136/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_2.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788575148/Dise%C3%B1o_Sin_T%C3%ADtulo_-_2_2.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075394/CAMISAMANCORTA.png'
+        ]
+      },
+      {
+        name: 'Azul Cielo',
+        hex: '#bae6fd',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075381/Dise%C3%B1o_sin_t%C3%ADtulo_7.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075381/Dise%C3%B1o_sin_t%C3%ADtulo_7.png'
         ]
       }
     ],
@@ -655,36 +672,45 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 11. CAMISA MANGA LARGA OXFORD
+  // 11. CAMISA MANGA LARGA
   {
     id: 'camisa-manga-larga-oxford',
     code: 'C007C',
-    name: 'Camisa Manga Larga Oxford',
+    name: 'Camisa Manga Larga',
     price: 390.00,
     category: 'ejecutivo',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788574414/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_1.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075171/Dise%C3%B1o_Sin_T%C3%ADtulo_-_5.png',
     gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788574414/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_1.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788574419/Dise%C3%B1o_Sin_T%C3%ADtulo_-_2_1.png'
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075171/Dise%C3%B1o_Sin_T%C3%ADtulo_-_5.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075166/Dise%C3%B1o_Sin_T%C3%ADtulo_-_2_-_Editado.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075162/Dise%C3%B1o_sin_t%C3%ADtulo_8.png'
     ],
     rating: 4.9,
     description: 'Una camisa con un corte elegante y moderno, con toda la durabilidad y seguridad para tus colaboradores. Gracias a su composición 35% Algodón 65% Poliéster, ofrece colores duraderos y una apariencia impecable que hará resaltar a tu equipo de trabajo con un estilo formal pero relajado.',
     composition: '35% Algodón 65% Poliéster',
     features: [
-          'Cuello camisero',
-          'Pinzas en busto',
-          'Pinzas al frente y en espalda',
-          'Manga larga'
+      'Cuello camisero',
+      'Pinzas en busto',
+      'Pinzas al frente y en espalda',
+      'Manga larga'
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       {
         name: 'Blanco',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788574414/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_1.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075171/Dise%C3%B1o_Sin_T%C3%ADtulo_-_5.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788574414/Dise%C3%B1o_Sin_T%C3%ADtulo_-_1_1.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788574419/Dise%C3%B1o_Sin_T%C3%ADtulo_-_2_1.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075171/Dise%C3%B1o_Sin_T%C3%ADtulo_-_5.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075166/Dise%C3%B1o_Sin_T%C3%ADtulo_-_2_-_Editado.png'
+        ]
+      },
+      {
+        name: 'Azul Cielo',
+        hex: '#bae6fd',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075162/Dise%C3%B1o_sin_t%C3%ADtulo_8.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075162/Dise%C3%B1o_sin_t%C3%ADtulo_8.png'
         ]
       }
     ],
@@ -889,28 +915,83 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 16. PANTALON DE VESTIR EN SUPREMO
+  // 16. PANTALON BASICO (DAMA Y CABALLERO)
   {
-    id: 'pantalon-vestir-supremo',
-    code: 'PV001S',
-    name: 'Pantalón de Vestir en Supremo',
+    id: 'pantalon-basico',
+    code: 'PB001',
+    name: 'Pantalón Básico',
     price: 390.00,
     category: 'ejecutivo',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791074598/pantalocabbasico.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791074598/pantalocabbasico.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791074596/PANTALON_BASKAKI.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791074711/pantalondamanegro.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791074773/pantalon_damagris.png'
+    ],
     rating: 4.8,
-    description: 'Pantalón corte recto. Diseñado para lucir casual, cómodo y elegante con bolsillos laterales y costuras reforzadas.',
-    composition: '100% Poliéster / Microfibra Supremo',
+    description: 'Pantalón corte recto para dama y caballero. Diseñado para lucir casual, cómodo y elegante con bolsillos laterales y costuras reforzadas.',
+    composition: '65% Poliéster 35% Algodón / Gabardina y Tergal',
     features: [
-          'Corte recto',
-          'Bolsillos laterales',
-          'Costuras reforzadas'
+      'Corte recto para Dama y Caballero',
+      'Bolsillos laterales',
+      'Costuras reforzadas',
+      'Alta resistencia y durabilidad',
+      'Diseño ergonómico y elegante'
     ],
     sizes: ['28', '30', '32', '34', '36', '38', '40', '42'],
+    hasCorteSelection: true,
     colors: [
-      { name: 'Negro', hex: '#000000' },
-      { name: 'Azul Marino', hex: '#1e3a8a' },
-      { name: 'Gris Oxford', hex: '#374151' },
-      { name: 'Kaki', hex: '#d4b996' }
+      {
+        name: 'Azul Marino',
+        hex: '#1e3a8a',
+        image: '',
+        gallery: []
+      },
+      {
+        name: 'Negro',
+        hex: '#000000',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791074598/pantalocabbasico.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1791074598/pantalocabbasico.png']
+      },
+      {
+        name: 'Kaki',
+        hex: '#d4b996',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791074596/PANTALON_BASKAKI.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1791074596/PANTALON_BASKAKI.png']
+      },
+      {
+        name: 'Gris Perla',
+        hex: '#cbd5e1',
+        image: '',
+        gallery: []
+      }
+    ],
+    damaColors: [
+      {
+        name: 'Azul Marino',
+        hex: '#1e3a8a',
+        image: '',
+        gallery: []
+      },
+      {
+        name: 'Negro',
+        hex: '#000000',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791074711/pantalondamanegro.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1791074711/pantalondamanegro.png']
+      },
+      {
+        name: 'Kaki',
+        hex: '#d4b996',
+        image: '',
+        gallery: []
+      },
+      {
+        name: 'Gris Perla',
+        hex: '#cbd5e1',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791074773/pantalon_damagris.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1791074773/pantalon_damagris.png']
+      }
     ],
     priceTiers: {
       '1-12': 390.00,
@@ -919,55 +1000,45 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 17. PANTALON DE VESTIR EN TERGAL
-  {
-    id: 'pantalon-vestir-tergal',
-    code: 'PV002T',
-    name: 'Pantalón de Vestir en Tergal',
-    price: 370.00,
-    category: 'ejecutivo',
-    image: '',
-    rating: 4.7,
-    description: 'Pantalón corte recto, bolsas laterales y costuras reforzadas. Diseñado para lucir casual, cómodo y elegante con alta resistencia al uso continuo.',
-    composition: '65% Poliéster 35% Algodón / Tergal',
-    features: [
-          'Corte recto',
-          'Bolsillos laterales',
-          'Costuras reforzadas'
-    ],
-    sizes: ['28', '30', '32', '34', '36', '38', '40', '42'],
-    colors: [
-      { name: 'Azul Marino', hex: '#1e3a8a' },
-      { name: 'Negro', hex: '#000000' },
-      { name: 'Gris Plomo', hex: '#4b5563' }
-    ],
-    priceTiers: {
-      '1-12': 370.00,
-      '13-50': 355.00,
-      '51+': 345.00
-    }
-  },
 
-
-  // 19. PANTALON CARGO EN GAB.
+  // 19. PANTALON CARGO
   {
     id: 'pantalon-cargo-gabardina',
     code: 'PC001G',
-    name: 'Pantalón Cargo en Gabardina',
+    name: 'Pantalón Cargo',
     price: 450.00,
     category: 'industrial',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075936/PANTALONCARGOGRISOXF.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075936/PANTALONCARGOGRISOXF.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791075932/cargomarino_1.png'
+    ],
     rating: 4.9,
     description: 'Pantalón cargo. Diseñado para uso rudo, con corte recto, bolsillos laterales y bolsas cargo con costuras reforzadas.',
     composition: '60% Algodón 40% Poliéster',
     features: [
-          'Corte recto',
-          'Bolsillos laterales y bolsas cargo',
-          'Costuras reforzadas'
+      'Corte recto',
+      'Bolsillos laterales y bolsas cargo',
+      'Costuras reforzadas'
     ],
     sizes: ['28', '30', '32', '34', '36', '38', '40', '42'],
     colors: [
-      { name: 'Azul Marino', hex: '#1e3a8a' },
+      {
+        name: 'Gris Oxford',
+        hex: '#374151',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075936/PANTALONCARGOGRISOXF.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075936/PANTALONCARGOGRISOXF.png'
+        ]
+      },
+      {
+        name: 'Azul Marino',
+        hex: '#1e3a8a',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075932/cargomarino_1.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791075932/cargomarino_1.png'
+        ]
+      },
       { name: 'Negro', hex: '#000000' },
       { name: 'Kaki', hex: '#d4b996' },
       { name: 'Verde Militar', hex: '#3f6212' }

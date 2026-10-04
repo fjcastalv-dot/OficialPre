@@ -263,13 +263,14 @@ export default function ProductDetailModal({
     if (selectedCorte === 'Dama' && product.damaColors && product.damaColors.length > 0) {
       const damaObj = product.damaColors.find(
         (c) => c.name.toLowerCase() === selectedColor.toLowerCase()
-      ) || product.damaColors[0];
+      );
       if (damaObj?.gallery && damaObj.gallery.length > 0) {
         return damaObj.gallery.filter(Boolean);
       }
       if (damaObj?.image) {
         return [damaObj.image];
       }
+      return [];
     }
 
     // 2. Color-specific object

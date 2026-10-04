@@ -268,10 +268,11 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 border border-orange-400 text-white text-xs font-bold shadow-lg transition-all active:scale-95 group/ig"
+                    style={{ color: '#ffffff' }}
                     title="Ver en Instagram oficial"
                   >
-                    <Instagram className="h-4 w-4 text-white group-hover/ig:scale-110 transition-transform" />
-                    <span className="font-bold text-white tracking-wide text-xs">@uniformespre</span>
+                    <Instagram className="h-4 w-4 text-white group-hover/ig:scale-110 transition-transform" style={{ color: '#ffffff', stroke: '#ffffff' }} />
+                    <span className="font-bold text-white tracking-wide text-xs" style={{ color: '#ffffff' }}>@uniformespre</span>
                   </a>
                   
                   {/* Dots indicator + reel counter */}
@@ -414,7 +415,7 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
               onClick={handleNextReel}
               aria-label="Siguiente video de Instagram"
               title="Siguiente video de Instagram"
-              className="h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-orange-500 hover:bg-orange-600 border border-orange-400 text-white flex items-center justify-center shadow-xl shadow-orange-500/30 transition-all active:scale-90 hover:scale-110 cursor-pointer shrink-0"
+              className="h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-slate-900/90 hover:bg-orange-500 border border-slate-700 hover:border-orange-500 text-white flex items-center justify-center shadow-xl transition-all active:scale-90 hover:scale-110 cursor-pointer shrink-0"
             >
               <ChevronRight className="h-6 w-6 stroke-[2.5]" />
             </button>
