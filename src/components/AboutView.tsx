@@ -242,74 +242,59 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
             </p>
           </div>
 
-          {/* Right: Video Container */}
-          <div className="lg:col-span-7 flex justify-center lg:justify-start">
-            <div 
-              className="relative w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl group select-none"
-              style={{ maxWidth: '380px', aspectRatio: '9 / 16' }}
-            >
-              {/* Top overlay: Instagram badge & reel indicator dots */}
-              <div className="absolute inset-x-0 top-0 p-3 flex items-center justify-between z-20 bg-gradient-to-b from-slate-950/80 via-slate-950/40 to-transparent">
-                <a
-                  href={REEL_VIDEOS[currentReelIndex].instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-slate-900/85 hover:bg-slate-900 border border-white/20 text-white text-xs font-medium backdrop-blur-md transition-all group/ig"
-                  title="Ver en Instagram oficial"
-                >
-                  <Instagram className="h-3.5 w-3.5 text-pink-500 group-hover/ig:scale-110 transition-transform" />
-                  <span className="font-semibold text-white/90">@uniformespre</span>
-                </a>
-                
-                {/* Dots indicator + reel counter */}
-                <div className="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-900/85 border border-white/20 text-[11px] font-medium text-slate-300 backdrop-blur-md">
-                  <div className="flex items-center space-x-1 mr-1">
-                    {REEL_VIDEOS.map((reel, idx) => (
-                      <button
-                        key={reel.id}
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setCurrentReelIndex(idx);
-                        }}
-                        className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                          idx === currentReelIndex ? 'w-4 bg-orange-500' : 'w-1.5 bg-white/40 hover:bg-white/70'
-                        }`}
-                        title={`Ir a video ${idx + 1}`}
-                      />
-                    ))}
-                  </div>
-                  <span>{currentReelIndex + 1} / {REEL_VIDEOS.length}</span>
-                </div>
-              </div>
-
-              {/* Navigation Arrow Right (Siguiente Reel) */}
+          {/* Right: Video Container with Outside Navigation Arrows */}
+          <div className="lg:col-span-7 flex justify-center lg:justify-start items-center">
+            <div className="relative flex items-center justify-center gap-3 sm:gap-4 w-full max-w-[490px]">
+              {/* Previous Reel Button (Outside Left) */}
               <button
                 type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleNextReel();
-                }}
-                aria-label="Siguiente video de Instagram"
-                title="Siguiente video de Instagram"
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 h-11 w-11 rounded-full bg-slate-900/90 hover:bg-orange-600 border border-orange-500/50 text-white flex items-center justify-center shadow-xl backdrop-blur-md transition-all active:scale-90 hover:scale-110 cursor-pointer"
-              >
-                <ChevronRight className="h-6 w-6 stroke-[2.5]" />
-              </button>
-
-              {/* Navigation Arrow Left (Video Anterior) */}
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handlePrevReel();
-                }}
+                onClick={handlePrevReel}
                 aria-label="Video anterior de Instagram"
                 title="Video anterior de Instagram"
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 h-11 w-11 rounded-full bg-slate-900/90 hover:bg-orange-600 border border-orange-500/50 text-white flex items-center justify-center shadow-xl backdrop-blur-md transition-all active:scale-90 hover:scale-110 cursor-pointer"
+                className="h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-slate-900/90 hover:bg-orange-500 border border-slate-700 hover:border-orange-500 text-white flex items-center justify-center shadow-xl transition-all active:scale-90 hover:scale-110 cursor-pointer shrink-0"
               >
                 <ChevronLeft className="h-6 w-6 stroke-[2.5]" />
               </button>
+
+              {/* Video Card */}
+              <div 
+                className="relative w-full rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl group select-none shrink"
+                style={{ maxWidth: '370px', aspectRatio: '9 / 16' }}
+              >
+                {/* Top overlay: Instagram badge & reel indicator dots */}
+                <div className="absolute inset-x-0 top-0 p-3 flex items-center justify-between z-20 bg-gradient-to-b from-slate-950/80 via-slate-950/40 to-transparent">
+                  <a
+                    href={REEL_VIDEOS[currentReelIndex].instagramUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 border border-orange-400 text-white text-xs font-bold shadow-lg transition-all active:scale-95 group/ig"
+                    title="Ver en Instagram oficial"
+                  >
+                    <Instagram className="h-4 w-4 text-white group-hover/ig:scale-110 transition-transform" />
+                    <span className="font-bold text-white tracking-wide text-xs">@uniformespre</span>
+                  </a>
+                  
+                  {/* Dots indicator + reel counter */}
+                  <div className="flex items-center space-x-1.5 px-2.5 py-1.5 rounded-full bg-slate-900/85 border border-white/20 text-[11px] font-medium text-slate-300 backdrop-blur-md">
+                    <div className="flex items-center space-x-1 mr-1">
+                      {REEL_VIDEOS.map((reel, idx) => (
+                        <button
+                          key={reel.id}
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentReelIndex(idx);
+                          }}
+                          className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                            idx === currentReelIndex ? 'w-4 bg-orange-500' : 'w-1.5 bg-white/40 hover:bg-white/70'
+                          }`}
+                          title={`Ir a video ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                    <span>{currentReelIndex + 1} / {REEL_VIDEOS.length}</span>
+                  </div>
+                </div>
 
               <video
                 ref={trayVideoRef}
@@ -393,36 +378,6 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
                       )}
                     </button>
 
-                    {/* Rewind -5s */}
-                    <button
-                      onClick={() => skipTrayTime(-5)}
-                      type="button"
-                      aria-label="Retroceder 5 segundos"
-                      title="Retroceder 5s"
-                      className="px-1.5 py-1 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 transition-all cursor-pointer flex items-center gap-0.5 text-[10px] font-bold"
-                    >
-                      <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="11 17 6 12 11 7" />
-                        <polyline points="18 17 13 12 18 7" />
-                      </svg>
-                      <span>-5s</span>
-                    </button>
-
-                    {/* Forward +5s */}
-                    <button
-                      onClick={() => skipTrayTime(5)}
-                      type="button"
-                      aria-label="Avanzar 5 segundos"
-                      title="Avanzar 5s"
-                      className="px-1.5 py-1 rounded-full bg-slate-900/85 hover:bg-slate-800 border border-white/20 transition-all cursor-pointer flex items-center gap-0.5 text-[10px] font-bold"
-                    >
-                      <span>+5s</span>
-                      <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="13 17 18 12 13 7" />
-                        <polyline points="6 17 11 12 6 7" />
-                      </svg>
-                    </button>
-
                     {/* Time indicator */}
                     <span className="text-[10px] text-slate-300 font-mono tracking-tight pl-1">
                       {formatVideoTime(trayCurrentTime)} / {formatVideoTime(trayDuration)}
@@ -452,7 +407,19 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
                 </div>
               </div>
             </div>
+
+            {/* Next Reel Button (Outside Right) */}
+            <button
+              type="button"
+              onClick={handleNextReel}
+              aria-label="Siguiente video de Instagram"
+              title="Siguiente video de Instagram"
+              className="h-11 w-11 sm:h-12 sm:w-12 rounded-full bg-orange-500 hover:bg-orange-600 border border-orange-400 text-white flex items-center justify-center shadow-xl shadow-orange-500/30 transition-all active:scale-90 hover:scale-110 cursor-pointer shrink-0"
+            >
+              <ChevronRight className="h-6 w-6 stroke-[2.5]" />
+            </button>
           </div>
+        </div>
         </div>
       </section>
 
