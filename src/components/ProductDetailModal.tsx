@@ -197,6 +197,57 @@ export default function ProductDetailModal({
     return true;
   })();
 
+  const isFullFitProduct = (p: Product) => {
+    if (!p) return false;
+    const id = p.id?.toLowerCase() || '';
+    const name = p.name?.toLowerCase() || '';
+    const code = p.code?.toUpperCase() || '';
+    const cat = p.category?.toLowerCase() || '';
+
+    // 1. Pants & Shorts:
+    if (
+      id.includes('pantalon') ||
+      id.includes('short') ||
+      code.startsWith('PB') ||
+      code.startsWith('PC') ||
+      code.startsWith('SG') ||
+      name.includes('pantalón') ||
+      name.includes('pantalon') ||
+      name.includes('short')
+    ) {
+      return true;
+    }
+
+    // 2. Shoes / Footwear:
+    if (
+      cat === 'calzado' ||
+      id.includes('zapato') ||
+      id.includes('calzado') ||
+      id.includes('bota') ||
+      id.includes('tenis') ||
+      code === 'ALINA' ||
+      code === 'PEGASO' ||
+      code.startsWith('BTC') ||
+      code.startsWith('MOD') ||
+      name.includes('zapato') ||
+      name.includes('calzado')
+    ) {
+      return true;
+    }
+
+    // 3. Aprons / Mandiles:
+    if (id.includes('mandil') || name.includes('mandil')) return true;
+
+    // 4. Hats / Caps:
+    if (id.includes('gorra') || id.includes('gorro') || name.includes('gorra') || name.includes('gorro')) return true;
+
+    // 5. Medical 2-piece set:
+    if (id.includes('pijama-medica') || name.includes('pijama médica') || name.includes('pijama medica')) return true;
+
+    return false;
+  };
+
+  const isFullFit = isFullFitProduct(product);
   const isPantalon = Boolean(
     product.id?.includes('pantalon') ||
     product.code?.startsWith('PB') ||
@@ -368,7 +419,11 @@ export default function ProductDetailModal({
                     key={currentDisplayImage}
                     src={currentDisplayImage}
                     alt={`${product.name} - ${selectedColor}`}
-                    className="w-full h-80 sm:h-96 md:h-[560px] object-contain p-2 rounded-xl transition-all duration-300 select-none bg-white"
+                    className={`w-full h-80 sm:h-96 md:h-[560px] ${
+                      isFullFit
+                        ? 'object-contain p-2 bg-white'
+                        : 'object-cover object-top'
+                    } rounded-xl transition-all duration-300 select-none shadow-inner`}
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       if (product.image && e.currentTarget.src !== product.image) {
@@ -542,7 +597,11 @@ export default function ProductDetailModal({
                 <img
                   src={currentDisplayImage}
                   alt={`${product.name} - ${selectedColor}`}
-                  className="zoom-popup-image w-full h-full object-contain p-2 pointer-events-none select-none bg-white"
+                  className={`zoom-popup-image w-full h-full ${
+                    isFullFit
+                      ? 'object-contain p-2 bg-white'
+                      : 'object-cover object-top'
+                  } pointer-events-none select-none`}
                   style={{
                     width: '100%',
                     height: '100%',
