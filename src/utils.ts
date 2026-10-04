@@ -99,3 +99,38 @@ export function getOptimizedImageUrl(url: string | undefined, width?: number): s
 
   return url;
 }
+
+/**
+ * Detects if a product is a shoe / footwear item allowing single-unit purchase.
+ */
+export function isShoeProduct(product: { id?: string; name?: string; code?: string; category?: string } | null | undefined): boolean {
+  if (!product) return false;
+  const id = (product.id || '').toLowerCase();
+  const name = (product.name || '').toLowerCase();
+  const code = (product.code || '').toUpperCase();
+  const category = (product.category || '').toLowerCase();
+  return Boolean(
+    id.startsWith('zapatos-') ||
+    id.startsWith('bota-') ||
+    id.startsWith('tenis-') ||
+    id.startsWith('calzado-') ||
+    code === 'ALINA' ||
+    code === 'PEGASO' ||
+    code.startsWith('BTC') ||
+    name.includes('zapato') ||
+    name.includes('bota') ||
+    name.includes('calzado') ||
+    name.includes('tenis') ||
+    category === 'calzado'
+  );
+}
+
+/**
+ * Returns minimum order quantity (MOQ) for a product:
+ * Shoes: 1 unit minimum
+ * All other garments/uniforms: 12 units minimum
+ */
+export function getProductMinQuantity(product: { id?: string; name?: string; code?: string; category?: string } | null | undefined): number {
+  return isShoeProduct(product) ? 1 : 12;
+}
+

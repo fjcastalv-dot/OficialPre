@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, Heart, Star, ShoppingCart, Shield, Sparkles, Check, CheckCircle, ChevronLeft, ChevronRight, CameraOff } from 'lucide-react';
 import { Product } from '../types';
-import { getProductTierPrice, getChestEmbroideryPrice, getBackEmbroideryPrice, formatCurrency } from '../utils';
+import { getProductTierPrice, getChestEmbroideryPrice, getBackEmbroideryPrice, formatCurrency, isShoeProduct, getProductMinQuantity } from '../utils';
 import { getCategoryName } from '../data';
 import { trackEvent } from '../analytics';
 // @ts-ignore
@@ -74,7 +74,8 @@ export default function ProductDetailModal({
 
   useEffect(() => {
     if (isOpen && product) {
-      setQuantity(1);
+      const minQty = getProductMinQuantity(product);
+      setQuantity(minQty);
       setSelectedSize(product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'M');
       setSelectedCorte('Caballero');
       setSelectedManga('Manga Corta');
@@ -204,8 +205,11 @@ export default function ProductDetailModal({
     product.name?.toLowerCase().includes('pantalon')
   );
 
+  const isShoe = isShoeProduct(product);
+  const minQuantity = getProductMinQuantity(product);
+
   // Dynamic calculations based on utility helpers
-  const displayQuantity = Math.max(1, quantity);
+  const displayQuantity = Math.max(minQuantity, quantity);
   const unitPrice = getProductTierPrice(product, displayQuantity);
   const chestEmbroideryPrice = supportsEmbroidery && hasChestEmbroidery ? getChestEmbroideryPrice(displayQuantity) : 0;
   const backEmbroideryPrice = supportsEmbroidery && hasBackEmbroidery ? getBackEmbroideryPrice(displayQuantity) : 0;
@@ -213,7 +217,7 @@ export default function ProductDetailModal({
   const totalPrice = finalUnitPrice * quantity;
 
   const handleAdd = () => {
-    const finalQty = Math.max(1, quantity);
+    const finalQty = Math.max(minQuantity, quantity);
     onAddToCart(
       product,
       finalQty,
@@ -335,7 +339,7 @@ export default function ProductDetailModal({
       <div className="absolute inset-0 cursor-pointer" onClick={onClose} />
 
       <div
-        className={`relative w-full ${isPantalon ? 'max-w-6xl' : 'max-w-5xl'} bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 flex flex-col md:flex-row max-h-[95vh] md:max-h-[90vh] overflow-y-auto`}
+        className="relative w-full max-w-5xl lg:max-w-6xl bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 flex flex-col md:flex-row max-h-[95vh] md:max-h-[90vh] overflow-y-auto"
         style={{ overscrollBehavior: 'contain' }}
       >
         {/* Close Button */}
@@ -349,35 +353,29 @@ export default function ProductDetailModal({
         </button>
 
         {/* Left Column: Product Image & Badges & Gallery */}
-        <div className={`w-full ${isPantalon ? 'md:w-[54%]' : 'md:w-1/2'} relative bg-slate-950 flex flex-col justify-between p-4 sm:p-6 md:p-8 border-b md:border-b-0 md:border-r border-slate-800`}>
+        <div className="w-full md:w-[52%] lg:w-[50%] relative bg-slate-950 flex flex-col justify-between p-4 sm:p-6 md:p-8 border-b md:border-b-0 md:border-r border-slate-800">
           <div className="flex flex-col h-full justify-between gap-4">
             {/* Main Image Container */}
             <div
               onMouseEnter={() => currentDisplayImage && setIsZooming(true)}
               onMouseLeave={() => setIsZooming(false)}
               onMouseMove={handleMouseMove}
-              className={`relative w-full flex-1 flex items-center justify-center min-h-[300px] sm:min-h-[380px] ${isPantalon ? 'bg-white' : 'bg-slate-900/40'} rounded-xl overflow-hidden border border-slate-800/60 cursor-crosshair group`}
-                >
-                  {currentDisplayImage ? (
-                    <>
-                      <img
-                        key={currentDisplayImage}
-                        src={currentDisplayImage}
-                        alt={`${product.name} - ${selectedColor}`}
-                        className={`w-full h-80 sm:h-96 md:h-[480px] ${
-                          isPantalon
-                            ? 'object-contain bg-white p-2'
-                            : (product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
-                                ? 'object-contain p-3'
-                                : 'object-cover object-top')
-                        } rounded-xl shadow-inner transition-all duration-300 select-none`}
-                        referrerPolicy="no-referrer"
-                        onError={(e) => {
-                          if (product.image && e.currentTarget.src !== product.image) {
-                            e.currentTarget.src = product.image;
-                          }
-                        }}
-                      />
+              className="relative w-full flex-1 flex items-center justify-center min-h-[320px] sm:min-h-[400px] md:min-h-[500px] bg-white rounded-xl overflow-hidden border border-slate-200/80 cursor-crosshair group shadow-sm"
+            >
+              {currentDisplayImage ? (
+                <>
+                  <img
+                    key={currentDisplayImage}
+                    src={currentDisplayImage}
+                    alt={`${product.name} - ${selectedColor}`}
+                    className="w-full h-80 sm:h-96 md:h-[500px] object-contain p-2 rounded-xl transition-all duration-300 select-none bg-white"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      if (product.image && e.currentTarget.src !== product.image) {
+                        e.currentTarget.src = product.image;
+                      }
+                    }}
+                  />
 
                       {/* MercadoLibre-style Zoom Lens */}
                       {isZooming && (
@@ -490,7 +488,7 @@ export default function ProductDetailModal({
                           <img
                             src={imgUrl}
                             alt={`Miniatura ${idx + 1}`}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-contain p-1 bg-white"
                             referrerPolicy="no-referrer"
                           />
                           <span className="absolute bottom-1 right-1 bg-slate-950/85 text-white text-[8px] font-mono px-1 rounded">
@@ -505,7 +503,7 @@ export default function ProductDetailModal({
         </div>
 
         {/* Right Column: Detailed Configurations & Price Calculator */}
-        <div className={`relative w-full ${isPantalon ? 'md:w-[46%]' : 'md:w-1/2'} p-6 sm:p-8 flex flex-col justify-between text-slate-200`}>
+        <div className="relative w-full md:w-[48%] lg:w-[50%] p-6 sm:p-8 flex flex-col justify-between text-slate-200">
           {/* MercadoLibre-style Zoom Window */}
           {isZooming && currentDisplayImage && (
             <div
@@ -544,13 +542,7 @@ export default function ProductDetailModal({
                 <img
                   src={currentDisplayImage}
                   alt={`${product.name} - ${selectedColor}`}
-                  className={`zoom-popup-image w-full h-full ${
-                    isPantalon
-                      ? 'object-contain bg-white p-2'
-                      : (product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
-                          ? 'object-contain p-3'
-                          : 'object-cover object-top')
-                  } pointer-events-none select-none`}
+                  className="zoom-popup-image w-full h-full object-contain p-2 pointer-events-none select-none bg-white"
                   style={{
                     width: '100%',
                     height: '100%',
@@ -612,7 +604,7 @@ export default function ProductDetailModal({
               <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono">
                 <div className={`p-2 rounded border transition-colors ${quantity <= 12 ? 'bg-orange-950/30 border-orange-500 text-white shadow-sm' : 'bg-slate-900/40 border-slate-800/50 text-slate-400'}`}>
                   <span className="block text-[8px] uppercase tracking-wider text-slate-400 mb-1 font-sans font-semibold">
-                    {supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery) ? '6 a 12 Pzas' : '1 a 12 Pzas'}
+                    {isShoe ? (supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery) ? '6 a 12 Pzas' : '1 a 12 Pzas') : '12 Pzas (Mín.)'}
                   </span>
                   <span className="font-semibold text-white">
                     ${((product.priceTiers['1-12'] ?? product.priceTiers['1-6'] ?? product.price) + (supportsEmbroidery && hasChestEmbroidery ? 45 : 0) + (supportsEmbroidery && hasBackEmbroidery ? 80 : 0)).toFixed(2)}
@@ -958,7 +950,7 @@ export default function ProductDetailModal({
                 <div className="flex items-center bg-slate-800 border border-slate-700 rounded-lg h-11 px-2 shrink-0">
                   <button
                     onClick={() => {
-                      const minReq = (supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery)) ? 6 : 1;
+                      const minReq = (supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery)) ? Math.max(6, minQuantity) : minQuantity;
                       setQuantity((prev) => Math.max(minReq, prev - 1));
                     }}
                     className="p-1.5 text-slate-400 hover:text-white transition-colors cursor-pointer text-lg font-bold"
@@ -975,7 +967,7 @@ export default function ProductDetailModal({
                       setQuantity(cleanValue === '' ? 0 : parseInt(cleanValue, 10));
                     }}
                     onBlur={() => {
-                      const minReq = (supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery)) ? 6 : 1;
+                      const minReq = (supportsEmbroidery && (hasChestEmbroidery || hasBackEmbroidery)) ? Math.max(6, minQuantity) : minQuantity;
                       if (quantity < minReq) {
                         setQuantity(minReq);
                       }
@@ -997,7 +989,7 @@ export default function ProductDetailModal({
                   className="flex-1 h-11 bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all duration-200 cursor-pointer flex items-center justify-center gap-2 shadow-lg shadow-orange-950/25 hover:shadow-orange-600/30 hover:-translate-y-0.5 active:scale-95"
                 >
                   <ShoppingCart className="h-4 w-4" />
-                  Agregar a Cotización ({Math.max(1, quantity)} pz)
+                  Agregar a Cotización ({Math.max(minQuantity, quantity)} pz)
                 </button>
 
                 {/* Favorite Toggle Button */}
@@ -1016,7 +1008,9 @@ export default function ProductDetailModal({
               </div>
             )}
             <p className="text-[10px] text-center text-slate-500 leading-tight">
-              ⚡ Al rebasar las 12 piezas, el sistema aplica el descuento de escala mayorista automáticamente en su cotización.
+              {isShoe
+                ? '⚡ Compra unitaria disponible en calzado. Al rebasar las 12 piezas, el sistema aplica automáticamente el descuento de mayoreo.'
+                : '⚡ Compra mínima a partir de 12 piezas. Al rebasar las 12 piezas, el sistema aplica automáticamente el descuento de mayoreo.'}
             </p>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, Trash2, Plus, Minus, FileText, CheckCircle, ArrowRight, Download, RefreshCw, Send, Sparkles, CameraOff, AlertCircle } from 'lucide-react';
 import { CartItem, Product, QuoteRequest } from '../types';
-import { getProductTierPrice, getChestEmbroideryPrice, getBackEmbroideryPrice, formatCurrency } from '../utils';
+import { getProductTierPrice, getChestEmbroideryPrice, getBackEmbroideryPrice, formatCurrency, getProductMinQuantity } from '../utils';
 import {
   sanitizeText,
   stripMaliciousContent,
@@ -802,7 +802,7 @@ export default function QuoteCartDrawer({
                             <div className="flex items-center bg-slate-800/80 border border-slate-700 rounded px-1 py-0.5 mt-1.5">
                               <button
                                 onClick={() => {
-                                  const minRequired = (item.hasChestEmbroidery || item.hasBackEmbroidery) ? 6 : 1;
+                                  const minRequired = (item.hasChestEmbroidery || item.hasBackEmbroidery) ? Math.max(6, getProductMinQuantity(item.product)) : getProductMinQuantity(item.product);
                                   onUpdateQuantity(
                                     item.product.id,
                                     Math.max(minRequired, item.quantity - 1),
@@ -838,7 +838,7 @@ export default function QuoteCartDrawer({
                                   );
                                 }}
                                 onBlur={() => {
-                                  const minRequired = (item.hasChestEmbroidery || item.hasBackEmbroidery) ? 6 : 1;
+                                  const minRequired = (item.hasChestEmbroidery || item.hasBackEmbroidery) ? Math.max(6, getProductMinQuantity(item.product)) : getProductMinQuantity(item.product);
                                   if (item.quantity < minRequired) {
                                     onUpdateQuantity(
                                       item.product.id,

@@ -1,6 +1,7 @@
 import { X, Heart, ShoppingCart, Trash2, ArrowRight, CameraOff } from 'lucide-react';
 import { Product } from '../types';
 import { getCategoryName } from '../data';
+import { getProductMinQuantity } from '../utils';
 // @ts-ignore
 import poloMarino from '../assets/images/polo_marino.webp';
 
@@ -115,7 +116,7 @@ export default function FavoritesDrawer({
                         Ver más
                       </button>
                       <button
-                        onClick={() => onAddToCart(product, 1, 'M')}
+                        onClick={() => onAddToCart(product, getProductMinQuantity(product), 'M')}
                         className="p-1.5 rounded bg-orange-600 hover:bg-orange-700 active:scale-90 text-white transition-all cursor-pointer"
                         title="Agregar a cotización"
                       >

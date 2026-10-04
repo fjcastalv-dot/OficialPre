@@ -588,7 +588,7 @@ export const PRODUCTS: Product[] = [
     id: 'blusa-manga-larga-oxford',
     code: 'B001D',
     name: 'Blusa Manga Larga Oxford',
-    price: 390.00,
+    price: 370.00,
     category: 'ejecutivo',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791057652/BLUSAAZULMANGALARGA.png',
     gallery: [
@@ -620,9 +620,9 @@ export const PRODUCTS: Product[] = [
       }
     ],
     priceTiers: {
-      '1-12': 390.00,
-      '13-50': 370.00,
-      '51+': 365.00
+      '1-12': 370.00,
+      '13-50': 350.00,
+      '51+': 330.00
     }
   },
 
@@ -631,7 +631,7 @@ export const PRODUCTS: Product[] = [
     id: 'camisa-manga-corta-oxford',
     code: 'C006C',
     name: 'Camisa Manga Corta',
-    price: 370.00,
+    price: 350.00,
     category: 'ejecutivo',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791075394/CAMISAMANCORTA.png',
     gallery: [
@@ -666,9 +666,9 @@ export const PRODUCTS: Product[] = [
       }
     ],
     priceTiers: {
-      '1-12': 370.00,
-      '13-50': 350.00,
-      '51+': 345.00
+      '1-12': 350.00,
+      '13-50': 330.00,
+      '51+': 310.00
     }
   },
 
@@ -717,7 +717,7 @@ export const PRODUCTS: Product[] = [
     priceTiers: {
       '1-12': 390.00,
       '13-50': 370.00,
-      '51+': 365.00
+      '51+': 360.00
     }
   },
 
@@ -726,7 +726,7 @@ export const PRODUCTS: Product[] = [
     id: 'filipina-gabardina-antifluido',
     code: 'FI003-AF',
     name: 'FILIPINA REPELENTE AL AGUA MANGA 3/4',
-    price: 490.00,
+    price: 580.00,
     category: 'restaurante',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4.png',
     gallery: [
@@ -771,9 +771,9 @@ export const PRODUCTS: Product[] = [
       }
     ],
     priceTiers: {
-      '1-12': 490.00,
-      '13-50': 460.00,
-      '51+': 430.00
+      '1-12': 580.00,
+      '13-50': 550.00,
+      '51+': 520.00
     }
   },
 
@@ -782,7 +782,7 @@ export const PRODUCTS: Product[] = [
     id: 'filipina-cocina-mc-gab',
     code: 'FI001MC-G',
     name: 'FILIPINA REPELENTE AL AGUA MANGA CORTO',
-    price: 390.00,
+    price: 560.00,
     category: 'restaurante',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791140891/FILIPINABROOKLYN_M_C_BLANCA.png',
     gallery: [
@@ -825,9 +825,9 @@ export const PRODUCTS: Product[] = [
       }
     ],
     priceTiers: {
-      '1-12': 390.00,
-      '13-50': 380.00,
-      '51+': 370.00
+      '1-12': 560.00,
+      '13-50': 540.00,
+      '51+': 510.00
     }
   },
 
@@ -836,7 +836,7 @@ export const PRODUCTS: Product[] = [
     id: 'filipina-cocina-ml-gab',
     code: 'FI001ML-G',
     name: 'FILIPINA DRYFIT Y GABARDINA MANGA 3/4',
-    price: 390.00,
+    price: 410.00,
     category: 'restaurante',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791141303/FGMCFrente.png',
     gallery: [
@@ -877,9 +877,9 @@ export const PRODUCTS: Product[] = [
       }
     ],
     priceTiers: {
-      '1-12': 390.00,
-      '13-50': 380.00,
-      '51+': 370.00
+      '1-12': 410.00,
+      '13-50': 405.00,
+      '51+': 395.00
     }
   },
 
@@ -932,55 +932,6 @@ export const PRODUCTS: Product[] = [
       '1-12': 390.00,
       '13-50': 380.00,
       '51+': 370.00
-    }
-  },
-
-  // 14. FILIPINAS DE COCINA M/L BROOKLYN
-  {
-    id: 'filipina-cocina-ml-brooklyn',
-    code: 'FI002ML-B',
-    name: 'Filipinas de Cocina M/L Brooklyn',
-    price: 580.00,
-    category: 'restaurante',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789934110/FILIPINA_BLANCA_1.png',
-    gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789934110/FILIPINA_BLANCA_1.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789934111/085A7376.jpg'
-    ],
-    rating: 4.9,
-    description: 'Filipina de chef con tecnología de repelencia a líquidos y aceite vegetal, ligera, versátil, resistente, transpirable y de fácil cuidado. Las gotas se deslizan sin absorberse y la grasa no se adhiere.',
-    composition: '65% Poliéster 35% Algodón',
-    features: [
-          'Tecnología repelente a líquidos y aceite vegetal',
-          'Protección inteligente antimanchas',
-          'Fresco y transpirable',
-          'Resistente a lavadas constantes',
-          'Doble abotonadura'
-    ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
-    colors: [
-      {
-        name: 'Blanco',
-        hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789934110/FILIPINA_BLANCA_1.png',
-        gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789934110/FILIPINA_BLANCA_1.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789934111/085A7376.jpg'
-        ]
-      },
-      {
-        name: 'Negro',
-        hex: '#000000',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789934108/filipina_3_1.png',
-        gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789934108/filipina_3_1.png'
-        ]
-      }
-    ],
-    priceTiers: {
-      '1-12': 580.00,
-      '13-50': 550.00,
-      '51+': 520.00
     }
   },
 
@@ -1607,8 +1558,8 @@ export const PRODUCTS: Product[] = [
     id: 'pantalon-pijama-unisex',
     code: 'PPU001',
     name: 'Pantalón Pijama Unisex',
-    price: 390.00,
-    category: 'medico',
+    price: 360.00,
+    category: 'restaurante',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142189/PANTALON_PIJAMA.png',
     gallery: [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791142189/PANTALON_PIJAMA.png'
@@ -1635,9 +1586,9 @@ export const PRODUCTS: Product[] = [
       }
     ],
     priceTiers: {
-      '1-12': 390.00,
-      '13-50': 370.00,
-      '51+': 350.00
+      '1-12': 360.00,
+      '13-50': 350.00,
+      '51+': 340.00
     }
   },
 

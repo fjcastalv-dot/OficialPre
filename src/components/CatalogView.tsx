@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Search, Star, Heart, RefreshCcw, ArrowRight, Check, ChevronLeft, ChevronRight, SearchX, AlertCircle, Sparkles, CameraOff, X } from 'lucide-react';
 import { Product } from '../types';
 import { PRODUCTS, CATEGORIES, getCategoryName, MANTELERIA_GALLERY, TAPICERIA_GALLERY } from '../data';
+import { getProductMinQuantity } from '../utils';
 // @ts-ignore
 import poloMarino from '../assets/images/polo_marino.webp';
 // @ts-ignore
@@ -22,25 +23,23 @@ const extractWords = (text: string): string[] =>
     .filter(Boolean);
 
 const RESTAURANTE_PRIORITY_ORDER: Record<string, number> = {
-  // 1. Filipinas
+  // Hoja 1 (6 prendas): Las 4 Filipinas seguidas inmediatamente de las 2 Cazadoras
   'filipina-gabardina-antifluido': 1,
   'filipina-cocina-mc-gab': 2,
   'filipina-cocina-ml-gab': 3,
   'filipina-dryfit-gabardina-mc': 4,
-  'filipina-cocina-ml-brooklyn': 5,
-  // 2. Mandiles
-  'mandiles-de-peto': 6,
-  'mandiles-largos': 7,
-  'mandil-corto': 8,
-  // 3. Cofias / Gorros de cocina
-  'gorros-de-cocina': 9,
-  // 4. Zapatos de cocina
-  'zapatos-alina': 10,
-  'zapatos-pegaso': 11,
-  'zapatos-cocina-big-apple': 12,
-  // 5. Cazadoras y demás productos (ambas cazadoras en la misma página)
-  'cazadora-manga-corta': 13,
-  'cazadora-manga-larga': 14,
+  'cazadora-manga-corta': 5,
+  'cazadora-manga-larga': 6,
+  // Hoja 2 (6 prendas): Pantalón Pijama Unisex, Mandiles, Gorros, Zapatos Alina
+  'pantalon-pijama-unisex': 7,
+  'mandiles-de-peto': 8,
+  'mandiles-largos': 9,
+  'mandil-corto': 10,
+  'gorros-de-cocina': 11,
+  'zapatos-alina': 12,
+  // Hoja 3 (2 prendas): Zapatos Pegaso y Big Apple
+  'zapatos-pegaso': 13,
+  'zapatos-cocina-big-apple': 14,
 };
 
 interface CatalogViewProps {
@@ -186,8 +185,9 @@ export default function CatalogView({
       onViewProduct(product);
       return;
     }
+    const minQty = getProductMinQuantity(product);
     const size = product.id.includes('zapato') ? undefined : 'M';
-    onAddToCart(product, 1, size);
+    onAddToCart(product, minQty, size);
     setAddedProductId(product.id);
     setTimeout(() => {
       setAddedProductId(null);
@@ -523,17 +523,13 @@ export default function CatalogView({
                   {/* Card Image Wrapper */}
                   <div 
                     onClick={() => onViewProduct(product)}
-                    className="relative aspect-square overflow-hidden bg-slate-950 flex items-center justify-center cursor-pointer"
+                    className="relative aspect-[3/4] overflow-hidden bg-white flex items-center justify-center cursor-pointer"
                   >
                     {product.image ? (
                       <img
                         src={product.image}
                         alt={product.name}
-                        className={`w-full h-full ${
-                          product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
-                            ? 'object-contain p-2.5'
-                            : 'object-cover object-top'
-                        } group-hover:scale-105 transition-transform duration-300`}
+                        className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300 bg-white"
                         referrerPolicy="no-referrer"
                         loading="lazy"
                         onError={(e) => {
