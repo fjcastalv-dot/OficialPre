@@ -196,6 +196,14 @@ export default function ProductDetailModal({
     return true;
   })();
 
+  const isPantalon = Boolean(
+    product.id?.includes('pantalon') ||
+    product.code?.startsWith('PB') ||
+    product.code?.startsWith('PC') ||
+    product.name?.toLowerCase().includes('pantalón') ||
+    product.name?.toLowerCase().includes('pantalon')
+  );
+
   // Dynamic calculations based on utility helpers
   const displayQuantity = Math.max(1, quantity);
   const unitPrice = getProductTierPrice(product, displayQuantity);
@@ -327,7 +335,7 @@ export default function ProductDetailModal({
       <div className="absolute inset-0 cursor-pointer" onClick={onClose} />
 
       <div
-        className="relative w-full max-w-5xl bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 flex flex-col md:flex-row max-h-[95vh] md:max-h-[90vh] overflow-y-auto"
+        className={`relative w-full ${isPantalon ? 'max-w-6xl' : 'max-w-5xl'} bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 flex flex-col md:flex-row max-h-[95vh] md:max-h-[90vh] overflow-y-auto`}
         style={{ overscrollBehavior: 'contain' }}
       >
         {/* Close Button */}
@@ -341,14 +349,14 @@ export default function ProductDetailModal({
         </button>
 
         {/* Left Column: Product Image & Badges & Gallery */}
-        <div className="w-full md:w-1/2 relative bg-slate-950 flex flex-col justify-between p-4 sm:p-6 md:p-8 border-b md:border-b-0 md:border-r border-slate-800">
+        <div className={`w-full ${isPantalon ? 'md:w-[54%]' : 'md:w-1/2'} relative bg-slate-950 flex flex-col justify-between p-4 sm:p-6 md:p-8 border-b md:border-b-0 md:border-r border-slate-800`}>
           <div className="flex flex-col h-full justify-between gap-4">
             {/* Main Image Container */}
             <div
               onMouseEnter={() => currentDisplayImage && setIsZooming(true)}
               onMouseLeave={() => setIsZooming(false)}
               onMouseMove={handleMouseMove}
-              className="relative w-full flex-1 flex items-center justify-center min-h-[300px] sm:min-h-[380px] bg-slate-900/40 rounded-xl overflow-hidden border border-slate-800/60 cursor-crosshair group"
+              className={`relative w-full flex-1 flex items-center justify-center min-h-[300px] sm:min-h-[380px] ${isPantalon ? 'bg-white' : 'bg-slate-900/40'} rounded-xl overflow-hidden border border-slate-800/60 cursor-crosshair group`}
                 >
                   {currentDisplayImage ? (
                     <>
@@ -356,10 +364,12 @@ export default function ProductDetailModal({
                         key={currentDisplayImage}
                         src={currentDisplayImage}
                         alt={`${product.name} - ${selectedColor}`}
-                        className={`w-full h-80 sm:h-96 md:h-[460px] ${
-                          product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
-                            ? 'object-contain p-3'
-                            : 'object-cover object-top'
+                        className={`w-full h-80 sm:h-96 md:h-[480px] ${
+                          isPantalon
+                            ? 'object-contain bg-white p-2'
+                            : (product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
+                                ? 'object-contain p-3'
+                                : 'object-cover object-top')
                         } rounded-xl shadow-inner transition-all duration-300 select-none`}
                         referrerPolicy="no-referrer"
                         onError={(e) => {
@@ -495,7 +505,7 @@ export default function ProductDetailModal({
         </div>
 
         {/* Right Column: Detailed Configurations & Price Calculator */}
-        <div className="relative w-full md:w-1/2 p-6 sm:p-8 flex flex-col justify-between text-slate-200">
+        <div className={`relative w-full ${isPantalon ? 'md:w-[46%]' : 'md:w-1/2'} p-6 sm:p-8 flex flex-col justify-between text-slate-200`}>
           {/* MercadoLibre-style Zoom Window */}
           {isZooming && currentDisplayImage && (
             <div
@@ -511,10 +521,10 @@ export default function ProductDetailModal({
                 zIndex: 50,
                 display: 'flex',
                 flexDirection: 'column',
-                backgroundColor: '#020617',
+                backgroundColor: '#ffffff',
                 border: '2px solid #f97316',
                 borderRadius: '16px',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.9)',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.4)',
                 overflow: 'hidden',
                 pointerEvents: 'none',
               }}
@@ -528,16 +538,18 @@ export default function ProductDetailModal({
                   minHeight: '340px',
                   position: 'relative',
                   overflow: 'hidden',
-                  backgroundColor: '#020617',
+                  backgroundColor: '#ffffff',
                 }}
               >
                 <img
                   src={currentDisplayImage}
                   alt={`${product.name} - ${selectedColor}`}
                   className={`zoom-popup-image w-full h-full ${
-                    product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
-                      ? 'object-contain p-3'
-                      : 'object-cover object-top'
+                    isPantalon
+                      ? 'object-contain bg-white p-2'
+                      : (product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
+                          ? 'object-contain p-3'
+                          : 'object-cover object-top')
                   } pointer-events-none select-none`}
                   style={{
                     width: '100%',
@@ -550,10 +562,10 @@ export default function ProductDetailModal({
                 />
               </div>
               <div
-                className="bg-slate-950/95 border-t border-slate-800 px-4 py-2 flex items-center justify-center text-center text-xs text-slate-400 shrink-0"
+                className="bg-slate-50 border-t border-slate-200 px-4 py-2 flex items-center justify-center text-center text-xs text-slate-600 shrink-0"
                 style={{ height: '38px', boxSizing: 'border-box' }}
               >
-                <span className="text-[11px] text-slate-300 font-sans">
+                <span className="text-[11px] text-slate-600 font-sans">
                   Desplaza el cursor sobre la foto para explorar detalles
                 </span>
               </div>

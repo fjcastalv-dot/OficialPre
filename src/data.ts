@@ -1040,8 +1040,7 @@ export const PRODUCTS: Product[] = [
         ]
       },
       { name: 'Negro', hex: '#000000' },
-      { name: 'Kaki', hex: '#d4b996' },
-      { name: 'Verde Militar', hex: '#3f6212' }
+      { name: 'Kaki', hex: '#d4b996' }
     ],
     priceTiers: {
       '1-12': 450.00,

@@ -264,15 +264,16 @@ export default function AboutView({ setActiveTab }: AboutViewProps) {
                 {/* Top overlay: Instagram badge & reel indicator dots */}
                 <div className="absolute inset-x-0 top-0 p-3 flex items-center justify-between z-20 bg-gradient-to-b from-slate-950/80 via-slate-950/40 to-transparent">
                   <a
+                    id="instagram-reel-btn"
                     href={REEL_VIDEOS[currentReelIndex].instagramUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 border border-orange-400 text-white text-xs font-bold shadow-lg transition-all active:scale-95 group/ig"
-                    style={{ color: '#ffffff' }}
+                    className="instagram-reel-badge flex items-center space-x-1.5 px-3 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 border border-orange-400 text-white !text-white text-xs font-bold shadow-lg transition-all active:scale-95 group/ig"
+                    style={{ color: '#ffffff', textDecoration: 'none' }}
                     title="Ver en Instagram oficial"
                   >
-                    <Instagram className="h-4 w-4 text-white group-hover/ig:scale-110 transition-transform" style={{ color: '#ffffff', stroke: '#ffffff' }} />
-                    <span className="font-bold text-white tracking-wide text-xs" style={{ color: '#ffffff' }}>@uniformespre</span>
+                    <Instagram className="h-4 w-4 text-white !text-white group-hover/ig:scale-110 transition-transform" style={{ color: '#ffffff', stroke: '#ffffff' }} />
+                    <span className="font-bold text-white !text-white tracking-wide text-xs" style={{ color: '#ffffff' }}>@uniformespre</span>
                   </a>
                   
                   {/* Dots indicator + reel counter */}
