@@ -26,20 +26,21 @@ const RESTAURANTE_PRIORITY_ORDER: Record<string, number> = {
   'filipina-gabardina-antifluido': 1,
   'filipina-cocina-mc-gab': 2,
   'filipina-cocina-ml-gab': 3,
-  'filipina-cocina-ml-brooklyn': 4,
+  'filipina-dryfit-gabardina-mc': 4,
+  'filipina-cocina-ml-brooklyn': 5,
   // 2. Mandiles
-  'mandiles-de-peto': 5,
-  'mandiles-largos': 6,
-  'mandil-corto': 7,
+  'mandiles-de-peto': 6,
+  'mandiles-largos': 7,
+  'mandil-corto': 8,
   // 3. Cofias / Gorros de cocina
-  'gorros-de-cocina': 8,
+  'gorros-de-cocina': 9,
   // 4. Zapatos de cocina
-  'zapatos-alina': 9,
-  'zapatos-pegaso': 10,
-  'zapatos-cocina-big-apple': 11,
+  'zapatos-alina': 10,
+  'zapatos-pegaso': 11,
+  'zapatos-cocina-big-apple': 12,
   // 5. Cazadoras y demás productos (ambas cazadoras en la misma página)
-  'cazadora-manga-corta': 12,
-  'cazadora-manga-larga': 13,
+  'cazadora-manga-corta': 13,
+  'cazadora-manga-larga': 14,
 };
 
 interface CatalogViewProps {

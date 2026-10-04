@@ -721,18 +721,20 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 12. FILIPINA GABARDINA ANTIFLUIDO MANGA 3/4
+  // 12. FILIPINA REPELENTE AL AGUA MANGA 3/4
   {
     id: 'filipina-gabardina-antifluido',
     code: 'FI003-AF',
-    name: 'Filipina Gabardina Antifluido Manga 3/4',
+    name: 'FILIPINA REPELENTE AL AGUA MANGA 3/4',
     price: 490.00,
     category: 'restaurante',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789237290/UNIFROMES-chef_frente.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4.png',
     gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789237290/UNIFROMES-chef_frente.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789237288/UNIFROMES-chef_blanco_atras.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789237256/UNIFROMES-21_1.png'
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4_1.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789237256/UNIFROMES-21_1.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791140546/FILIPINABROOKLYN3_4_NEGRA.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1788202984/UNIFROMES-25.png'
     ],
     isBestSeller: true,
     isNew: true,
@@ -751,20 +753,19 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Blanco',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789237290/UNIFROMES-chef_frente.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789237290/UNIFROMES-chef_frente.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789237288/UNIFROMES-chef_blanco_atras.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4_1.png',
           'https://res.cloudinary.com/boofzznx/image/upload/v1789237256/UNIFROMES-21_1.png'
         ]
       },
       {
         name: 'Negro',
         hex: '#000000',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1788572851/UNIFROMES-29_3.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791140546/FILIPINABROOKLYN3_4_NEGRA.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1788572851/UNIFROMES-29_3.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/v1788572850/UNIFROMES-27_1.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791140546/FILIPINABROOKLYN3_4_NEGRA.png',
           'https://res.cloudinary.com/boofzznx/image/upload/v1788202984/UNIFROMES-25.png'
         ]
       }
@@ -776,17 +777,20 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 13. FILIPINA GABARDINA ANTIFLUIDO MANGA CORTA
+  // 13. FILIPINA REPELENTE AL AGUA MANGA CORTO
   {
     id: 'filipina-cocina-mc-gab',
     code: 'FI001MC-G',
-    name: 'Filipina Gabardina Antifluido Manga Corta',
+    name: 'FILIPINA REPELENTE AL AGUA MANGA CORTO',
     price: 390.00,
     category: 'restaurante',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791140891/FILIPINABROOKLYN_M_C_BLANCA.png',
     gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932047/Filipina-para-chef-repelente-manga-corta-blanca-atras.png'
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791140891/FILIPINABROOKLYN_M_C_BLANCA.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791140910/BROOKLYN_M_C_BLANCA.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1789237256/UNIFROMES-21_1.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791141017/FILIPINABROOKLYM_CNEGRA.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1788202984/UNIFROMES-25.png'
     ],
     rating: 4.8,
     description: 'Filipina manga corta con tecnología de repelencia a líquidos y aceite vegetal, ligera, versátil, resistente, transpirable y de fácil cuidado. Con respiradero para alto rendimiento en cocina.',
@@ -803,19 +807,20 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Blanco',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791140891/FILIPINABROOKLYN_M_C_BLANCA.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932048/Filipina-para-chef-repelente-manga-corta-blanca.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/c_crop,w_1200,h_1200,x_0,y_80/v1789932047/Filipina-para-chef-repelente-manga-corta-blanca-atras.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791140891/FILIPINABROOKLYN_M_C_BLANCA.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791140910/BROOKLYN_M_C_BLANCA.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1789237256/UNIFROMES-21_1.png'
         ]
       },
       {
         name: 'Negro',
         hex: '#000000',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/ar_1:1,c_pad,b_white/v1789932319/Dise%C3%B1o_sin_t%C3%ADtulo_2.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791141017/FILIPINABROOKLYM_CNEGRA.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/ar_1:1,c_pad,b_white/v1789932319/Dise%C3%B1o_sin_t%C3%ADtulo_2.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/ar_1:1,c_pad,b_white/v1789932321/Filipina-para-chef-repelente-manga-corta-negro-atras.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791141017/FILIPINABROOKLYM_CNEGRA.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1788202984/UNIFROMES-25.png'
         ]
       }
     ],
@@ -826,22 +831,25 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 14. FILIPINA DRYFIT Y GABARDINA 1/3
+  // 14. FILIPINA DRYFIT Y GABARDINA MANGA 3/4
   {
     id: 'filipina-cocina-ml-gab',
     code: 'FI001ML-G',
-    name: 'Filipina Dryfit y Gabardina 1/3',
+    name: 'FILIPINA DRYFIT Y GABARDINA MANGA 3/4',
     price: 390.00,
     category: 'restaurante',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791141303/FGMCFrente.png',
     gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/v1788571990/Dise%C3%B1o_Sin_T%C3%ADtulo_-_13.png'
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791141303/FGMCFrente.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791141304/FGMLatras.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791141379/gabardinablancoynegro_1.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791141773/Gemini_Generated_Image_cylm4hcylm4hcylm.jpg'
     ],
     rating: 4.9,
-    description: 'Filipina manga larga de chef con doble abotonadura y 2 bolsillos, Dryfit en espalda alta y gabardina en espalda baja.',
+    description: 'Filipina manga 3/4 de chef con doble abotonadura y 2 bolsillos, Dryfit en espalda alta y gabardina en espalda baja.',
     composition: '65% Poliéster 35% Algodón (150 g/m²)',
     features: [
+      'Manga 3/4',
       'Doble abotonadura y 2 bolsillos',
       'Dryfit en espalda alta y gabardina en espalda baja',
       'Tecnología repelente al agua y al aceite',
@@ -850,12 +858,73 @@ export const PRODUCTS: Product[] = [
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       {
+        name: 'Negro',
+        hex: '#000000',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791141303/FGMCFrente.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791141303/FGMCFrente.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791141304/FGMLatras.png'
+        ]
+      },
+      {
         name: 'Blanco',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791141379/gabardinablancoynegro_1.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1788571992/Dise%C3%B1o_Sin_T%C3%ADtulo_-_11.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/v1788571990/Dise%C3%B1o_Sin_T%C3%ADtulo_-_13.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791141379/gabardinablancoynegro_1.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791141773/Gemini_Generated_Image_cylm4hcylm4hcylm.jpg'
+        ]
+      }
+    ],
+    priceTiers: {
+      '1-12': 390.00,
+      '13-50': 380.00,
+      '51+': 370.00
+    }
+  },
+
+  // 15. FILIPINA DRYFIT Y GABARDINA MANGA CORTA
+  {
+    id: 'filipina-dryfit-gabardina-mc',
+    code: 'FI002MC-DG',
+    name: 'FILIPINA DRYFIT Y GABARDINA MANGA CORTA',
+    price: 390.00,
+    category: 'restaurante',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791141932/frente.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791141932/frente.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791141931/gabardinam_corta_3.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791142042/Frente_negri.jpg',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791142043/Gemini_Generated_Image_9te2uz9te2uz9te2.jpg'
+    ],
+    rating: 4.9,
+    description: 'Filipina manga corta de chef con doble abotonadura, Dryfit en espalda para máxima ventilación y gabardina de alta durabilidad repelente.',
+    composition: '65% Poliéster 35% Algodón con combinación Dryfit',
+    features: [
+      'Manga corta',
+      'Espalda con tecnología Dryfit transpirable',
+      'Gabardina de alta resistencia y durabilidad',
+      'Doble abotonadura frontal',
+      'Tecnología repelente al agua y al aceite'
+    ],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    colors: [
+      {
+        name: 'Blanco',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791141932/frente.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791141932/frente.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791141931/gabardinam_corta_3.png'
+        ]
+      },
+      {
+        name: 'Negro',
+        hex: '#000000',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142042/Frente_negri.jpg',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791142042/Frente_negri.jpg',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791142043/Gemini_Generated_Image_9te2uz9te2uz9te2.jpg'
         ]
       }
     ],
@@ -1126,9 +1195,9 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Blanco',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1788722893/MANDIL_BLANCO.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142387/MANDIL_BLANCO1.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1788722893/MANDIL_BLANCO.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791142387/MANDIL_BLANCO1.png'
         ]
       }
     ],
@@ -1172,7 +1241,12 @@ export const PRODUCTS: Product[] = [
     name: 'Mandil Corto',
     price: 150.00,
     category: 'restaurante',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142652/MANDIL_KAKI.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791142652/MANDIL_KAKI.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791142647/mandilnegro.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791142629/MANDIL_BLANCO_1.png'
+    ],
     rating: 4.8,
     description: 'Mandil corto, cómodo y práctico, estilo hotelero, tiras largas en la cintura y bolsas al frente con división para guardar sus notas o comandas.',
     composition: '65% Algodón 35% Poliéster',
@@ -1183,9 +1257,24 @@ export const PRODUCTS: Product[] = [
     ],
     sizes: ['Unitalla'],
     colors: [
-      { name: 'Negro', hex: '#000000' },
-      { name: 'Vino', hex: '#7f1d1d' },
-      { name: 'Azul Marino', hex: '#1e3a8a' }
+      {
+        name: 'Kaki',
+        hex: '#d4b996',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142652/MANDIL_KAKI.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1791142652/MANDIL_KAKI.png']
+      },
+      {
+        name: 'Negro',
+        hex: '#000000',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142647/mandilnegro.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1791142647/mandilnegro.png']
+      },
+      {
+        name: 'Blanco',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142629/MANDIL_BLANCO_1.png',
+        gallery: ['https://res.cloudinary.com/boofzznx/image/upload/v1791142629/MANDIL_BLANCO_1.png']
+      }
     ],
     priceTiers: {
       '1-12': 150.00,
@@ -1201,7 +1290,11 @@ export const PRODUCTS: Product[] = [
     name: 'Gorros de Cocina',
     price: 110.00,
     category: 'restaurante',
-    image: '',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142545/gorro_y_mandil_cheff.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791142545/gorro_y_mandil_cheff.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791142556/GORRO_DE_COCINA.png'
+    ],
     rating: 4.8,
     description: 'Gorro higiénico de cocina tipo boina / champiñón. Fabricado en tejido ligero y fresco con elástico posterior autoajustable que garantiza contención capilar conforme a normas sanitarias.',
     composition: 'Poliéster / Algodón Transpirable',
@@ -1213,8 +1306,16 @@ export const PRODUCTS: Product[] = [
     ],
     sizes: ['Unitalla Universal'],
     colors: [
-      { name: 'Negro', hex: '#000000' },
-      { name: 'Blanco', hex: '#ffffff' }
+      {
+        name: 'Blanco',
+        hex: '#ffffff',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142545/gorro_y_mandil_cheff.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791142545/gorro_y_mandil_cheff.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791142556/GORRO_DE_COCINA.png'
+        ]
+      },
+      { name: 'Negro', hex: '#000000', image: '', gallery: [] }
     ],
     priceTiers: {
       '1-12': 110.00,
@@ -1230,11 +1331,11 @@ export const PRODUCTS: Product[] = [
     name: 'Zapatos de Cocina Alina',
     price: 840.00,
     category: 'restaurante',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787426610/model_4.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1787426610/model_4.png',
     gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787426610/model_4.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787426608/model_por.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787426608/model_por.png'
+      'https://res.cloudinary.com/boofzznx/image/upload/v1787426610/model_4.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791142806/Cat%C3%A1logo_tienda_Uniformes_Pre_5.png',
+      'https://res.cloudinary.com/boofzznx/image/upload/v1787426609/model_2.png'
     ],
     isBestSeller: true,
     rating: 4.9,
@@ -1252,11 +1353,11 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Negro',
         hex: '#000000',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787426610/model_4.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1787426610/model_4.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787426610/model_4.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787426608/model_por.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787426608/model_por.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/v1787426610/model_4.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791142806/Cat%C3%A1logo_tienda_Uniformes_Pre_5.png',
+          'https://res.cloudinary.com/boofzznx/image/upload/v1787426609/model_2.png'
         ]
       }
     ],
@@ -1501,20 +1602,58 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 31. CALZADO CLINICO MOD. 363 BLANCO
+  // PANTALÓN PIJAMA UNISEX
+  {
+    id: 'pantalon-pijama-unisex',
+    code: 'PPU001',
+    name: 'Pantalón Pijama Unisex',
+    price: 390.00,
+    category: 'medico',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142189/PANTALON_PIJAMA.png',
+    gallery: [
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791142189/PANTALON_PIJAMA.png'
+    ],
+    rating: 4.9,
+    description: 'Corte recto, bolsas a los costados, resorte en la cintura.',
+    composition: 'Gabardina Médica 65% Poliéster / 35% Algodón',
+    features: [
+      'Corte recto',
+      'Bolsa a los costados',
+      'Elástico en cintura',
+      'Jareta',
+      'Unisex'
+    ],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    colors: [
+      {
+        name: 'Azul Marino',
+        hex: '#1e3a8a',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142189/PANTALON_PIJAMA.png',
+        gallery: [
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791142189/PANTALON_PIJAMA.png'
+        ]
+      }
+    ],
+    priceTiers: {
+      '1-12': 390.00,
+      '13-50': 370.00,
+      '51+': 350.00
+    }
+  },
+
+  // 31. CALZADO CLINICO MOD. 363 DAMA
   {
     id: 'calzado-clinico-mod-363-blanco',
     code: 'MOD-363',
-    name: 'Calzado Clínico Mod. 363 Blanco',
+    name: 'Calzado Clínico Mod. 363 Dama',
     price: 882.00,
     category: 'medico',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO363_1.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142987/MOD1042_2.png',
     gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO363_1.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO_363_1.png'
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791142987/MOD1042_2.png'
     ],
     rating: 4.9,
-    description: 'Calzado clínico profesional Modelo 363 en color blanco. Estructura ergonómica con soporte de arco plantar, horma ancha para evitar puntos de presión y suela antiderrapante en suelos de hospital.',
+    description: 'Calzado clínico profesional Modelo 363 para dama en color blanco. Estructura ergonómica con soporte de arco plantar, horma ancha para evitar puntos de presión y suela antiderrapante en suelos de hospital.',
     composition: 'Piel genuina suave tratada / Suela de poliuretano inyectado',
     features: [
       'Piel genuina blanca fácil de limpiar y desinfectar',
@@ -1527,10 +1666,9 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Blanco Clínico',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO363_1.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791142987/MOD1042_2.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO363_1.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789944876/MODELO_363_1.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791142987/MOD1042_2.png'
         ]
       }
     ],
@@ -1541,11 +1679,11 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 32. CALZADO CLINICO MOD. 920
+  // 32. CALZADO CLINICO MOD. 920 CABALLERO
   {
     id: 'calzado-clinico-mod-920-blanco',
     code: 'MOD-920-B',
-    name: 'Calzado Clínico Mod. 920',
+    name: 'Calzado Clínico Mod. 920 Caballero',
     price: 1025.00,
     category: 'medico',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789944948/MODEL363_2.png',
@@ -1553,7 +1691,7 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1789944948/MODEL363_2.png'
     ],
     rating: 4.9,
-    description: 'Calzado médico de confort superior Modelo 920 en color blanco. Amortiguación de alto impacto en talón, piel suave flor entera y diseño sin cordones de ajuste elástico lateral.',
+    description: 'Calzado médico de confort superior Modelo 920 para caballero en color blanco. Amortiguación de alto impacto en talón, piel suave flor entera y diseño sin cordones de ajuste elástico lateral.',
     composition: '100% Piel Flor Entera Blanca / Suela Antifatiga',
     features: [
       'Elásticos laterales para calce inmediato y sujeción segura',
@@ -1579,20 +1717,19 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 33. CALZADO CLINICO MOD. 1042
+  // 33. CALZADO CLINICO MOD. 1042 DAMA
   {
     id: 'calzado-clinico-mod-1042-blanco',
     code: 'MOD-1042-B',
-    name: 'Calzado Clínico Mod. 1042',
+    name: 'Calzado Clínico Mod. 1042 Dama',
     price: 1025.00,
     category: 'medico',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789945039/MOD1042_1.png',
+    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791143067/MODELO363D.png.png',
     gallery: [
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789945039/MOD1042_1.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789945037/MODELO1042_1.png'
+      'https://res.cloudinary.com/boofzznx/image/upload/v1791143067/MODELO363D.png.png'
     ],
     rating: 4.9,
-    description: 'Calzado ortopédico clínico Modelo 1042 en color blanco. Máxima amortiguación, suela de doble densidad y diseño cerrado con perforaciones laterales respirables para control térmico.',
+    description: 'Calzado ortopédico clínico Modelo 1042 para dama en color blanco. Máxima amortiguación, suela de doble densidad y diseño cerrado con perforaciones laterales respirables para control térmico.',
     composition: 'Piel Selecta Tratada / Suela Dieléctrica Antiderrapante',
     features: [
       'Suela ligera de doble densidad que previene calambres y fatiga',
@@ -1605,10 +1742,9 @@ export const PRODUCTS: Product[] = [
       {
         name: 'Blanco Hospitalario',
         hex: '#ffffff',
-        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789945039/MOD1042_1.png',
+        image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791143067/MODELO363D.png.png',
         gallery: [
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789945039/MOD1042_1.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789945037/MODELO1042_1.png'
+          'https://res.cloudinary.com/boofzznx/image/upload/v1791143067/MODELO363D.png.png'
         ]
       }
     ],
