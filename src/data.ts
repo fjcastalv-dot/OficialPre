@@ -1754,7 +1754,7 @@ export const PRODUCTS: Product[] = [
     id: 'short-guardavidas',
     code: 'SG001',
     name: 'Short Guardavidas',
-    price: 370.00,
+    price: 390.00,
     category: 'hoteleria',
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791057357/shortfrente.png',
     gallery: [
@@ -1774,9 +1774,9 @@ export const PRODUCTS: Product[] = [
     sizes: ['S', 'M', 'L', 'XL'],
     colors: [],
     priceTiers: {
-      '1-12': 370.00,
-      '13-50': 355.00,
-      '51+': 340.00
+      '1-12': 390.00,
+      '13-50': 370.00,
+      '51+': 350.00
     }
   },
 

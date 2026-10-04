@@ -403,13 +403,17 @@ export default function HomeView({
                 {/* Image */}
                 <div 
                   onClick={() => onViewProduct(product)}
-                  className="relative aspect-[3/4] overflow-hidden bg-white flex items-center justify-center cursor-pointer"
+                  className="relative aspect-square overflow-hidden bg-slate-950 flex items-center justify-center cursor-pointer"
                 >
                   {product.image ? (
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300 bg-white"
+                      className={`w-full h-full ${
+                        product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
+                          ? 'object-contain p-2.5'
+                          : 'object-cover object-top'
+                      } group-hover:scale-105 transition-transform duration-300`}
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       onError={(e) => {

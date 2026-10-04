@@ -360,7 +360,7 @@ export default function ProductDetailModal({
               onMouseEnter={() => currentDisplayImage && setIsZooming(true)}
               onMouseLeave={() => setIsZooming(false)}
               onMouseMove={handleMouseMove}
-              className="relative w-full flex-1 flex items-center justify-center min-h-[320px] sm:min-h-[400px] md:min-h-[500px] bg-white rounded-xl overflow-hidden border border-slate-200/80 cursor-crosshair group shadow-sm"
+              className="relative w-full flex-1 flex items-center justify-center min-h-[360px] sm:min-h-[460px] md:min-h-[560px] bg-white rounded-xl overflow-hidden border border-slate-200/80 cursor-crosshair group shadow-sm"
             >
               {currentDisplayImage ? (
                 <>
@@ -368,7 +368,7 @@ export default function ProductDetailModal({
                     key={currentDisplayImage}
                     src={currentDisplayImage}
                     alt={`${product.name} - ${selectedColor}`}
-                    className="w-full h-80 sm:h-96 md:h-[500px] object-contain p-2 rounded-xl transition-all duration-300 select-none bg-white"
+                    className="w-full h-80 sm:h-96 md:h-[560px] object-contain p-2 rounded-xl transition-all duration-300 select-none bg-white"
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       if (product.image && e.currentTarget.src !== product.image) {
