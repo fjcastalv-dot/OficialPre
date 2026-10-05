@@ -1159,33 +1159,7 @@ export const PRODUCTS: Product[] = [
     }
   },
 
-  // 22. MANDILES LARGOS
-  {
-    id: 'mandiles-largos',
-    code: 'ML001',
-    name: 'Mandiles Largos',
-    price: 250.00,
-    category: 'restaurante',
-    image: 'https://res.cloudinary.com/boofzznx/image/upload/v1789955203/Gemini_Generated_Image_kjfm74kjfm74kjfm.jpg',
-    rating: 4.8,
-    description: 'Mantenga una apariencia profesional e impecable con el exclusivo delantal de chef Premium. Suave, duradero y resistente a la decoloración manteniéndose vivo lavado tras lavado. Incluye tiras largas en la cintura y un bolsillo dividido para guardar todas sus pertenencias.',
-    composition: '60% Algodón 40% Poliéster',
-    features: [
-          'Estilo bistró a la cintura',
-          'Lazos largos',
-          'Doble vista',
-          'Bolsillo dividido de 14.5\' x 9\''
-    ],
-    sizes: ['Unitalla'],
-    colors: [],
-    priceTiers: {
-      '1-12': 250.00,
-      '13-50': 230.00,
-      '51+': 210.00
-    }
-  },
-
-  // 23. MANDIL CORTO
+  // 22. MANDIL CORTO
   {
     id: 'mandil-corto',
     code: 'MC001',

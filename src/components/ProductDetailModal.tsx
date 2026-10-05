@@ -186,9 +186,7 @@ export default function ProductDetailModal({
 
     // Mandiles de cintura (sin peto / pecho)
     if (
-      id === 'mandiles-largos' ||
       id === 'mandil-corto' ||
-      name.includes('mandiles largos') ||
       name.includes('mandil corto')
     ) {
       return false;
@@ -422,8 +420,13 @@ export default function ProductDetailModal({
                     className={`w-full h-80 sm:h-96 md:h-[560px] ${
                       isFullFit
                         ? 'object-contain p-2 bg-white'
-                        : 'object-cover object-top'
+                        : 'object-contain'
                     } rounded-xl transition-all duration-300 select-none shadow-inner`}
+                    style={{
+                      transform: isFullFit ? 'none' : 'scale(1.35)',
+                      transformOrigin: 'top center',
+                      objectPosition: 'top',
+                    }}
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       if (product.image && e.currentTarget.src !== product.image) {
@@ -597,11 +600,7 @@ export default function ProductDetailModal({
                 <img
                   src={currentDisplayImage}
                   alt={`${product.name} - ${selectedColor}`}
-                  className={`zoom-popup-image w-full h-full ${
-                    isFullFit
-                      ? 'object-contain p-2 bg-white'
-                      : 'object-cover object-top'
-                  } pointer-events-none select-none`}
+                  className="zoom-popup-image w-full h-full object-contain p-2 pointer-events-none select-none bg-white"
                   style={{
                     width: '100%',
                     height: '100%',

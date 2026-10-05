@@ -410,7 +410,7 @@ export default function HomeView({
                       src={product.image}
                       alt={product.name}
                       className={`w-full h-full ${
-                        product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
+                        product.id === 'gorra-gabardina'
                           ? 'object-contain p-2.5'
                           : 'object-cover object-top'
                       } group-hover:scale-105 transition-transform duration-300`}

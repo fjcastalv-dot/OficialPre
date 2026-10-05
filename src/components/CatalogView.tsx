@@ -30,16 +30,15 @@ const RESTAURANTE_PRIORITY_ORDER: Record<string, number> = {
   'filipina-dryfit-gabardina-mc': 4,
   'cazadora-manga-corta': 5,
   'cazadora-manga-larga': 6,
-  // Hoja 2 (6 prendas): Pantalón Pijama Unisex, Mandiles, Gorros, Zapatos Alina
+  // Hoja 2 (5 prendas): Pantalón Pijama Unisex, Mandiles, Gorros, Zapatos Alina
   'pantalon-pijama-unisex': 7,
   'mandiles-de-peto': 8,
-  'mandiles-largos': 9,
-  'mandil-corto': 10,
-  'gorros-de-cocina': 11,
-  'zapatos-alina': 12,
+  'mandil-corto': 9,
+  'gorros-de-cocina': 10,
+  'zapatos-alina': 11,
   // Hoja 3 (2 prendas): Zapatos Pegaso y Big Apple
-  'zapatos-pegaso': 13,
-  'zapatos-cocina-big-apple': 14,
+  'zapatos-pegaso': 12,
+  'zapatos-cocina-big-apple': 13,
 };
 
 interface CatalogViewProps {
@@ -530,7 +529,7 @@ export default function CatalogView({
                         src={product.image}
                         alt={product.name}
                         className={`w-full h-full ${
-                          product.id === 'gorra-gabardina' || product.id === 'mandiles-largos'
+                          product.id === 'gorra-gabardina'
                             ? 'object-contain p-2.5'
                             : 'object-cover object-top'
                         } group-hover:scale-105 transition-transform duration-300`}
