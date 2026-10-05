@@ -195,17 +195,7 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729614/MC_NEGRA1.png',
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788729610/MC_NEGRA.png'
         ]
-      },
-      { name: 'Bandera', hex: '#0e6914' },
-      { name: 'Botella', hex: '#072a10' },
-      { name: 'Canario', hex: '#eab308' },
-      { name: 'Gris', hex: '#6b7280' },
-      { name: 'Guinda', hex: '#58111a' },
-      { name: 'Mango', hex: '#ea990c' },
-      { name: 'Naranja', hex: '#ea580c' },
-      { name: 'Rey', hex: '#1d4ed8' },
-      { name: 'Rojo', hex: '#b91c1c' },
-      { name: 'Verde Agua', hex: '#17b5c2' }
+      }
     ],
     priceTiers: {
       '1-12': 190.00,
@@ -321,12 +311,7 @@ export const PRODUCTS: Product[] = [
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430960/1.png',
           'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1787430961/5.png'
         ]
-      },
-      { name: 'Bandera', hex: '#0e6914' },
-      { name: 'Botella', hex: '#072a10' },
-      { name: 'Guinda', hex: '#58111a' },
-      { name: 'Mango', hex: '#ea990c' },
-      { name: 'Naranja', hex: '#ea580c' }
+      }
     ],
     priceTiers: {
       '1-12': 210.00,
@@ -365,7 +350,7 @@ export const PRODUCTS: Product[] = [
       'Fresca y transpirable',
       'Corte elegante y moderno'
     ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL'],
     hasCorteSelection: true,
     colors: [
       {
@@ -458,7 +443,7 @@ export const PRODUCTS: Product[] = [
       'Fresca y transpirable',
       'Corte elegante y moderno'
     ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL'],
     hasCorteSelection: true,
     colors: [
       {
@@ -516,7 +501,7 @@ export const PRODUCTS: Product[] = [
       'Pinzas al frente y en espalda',
       'Manga corta'
     ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    sizes: ['30', '32', '34', '36', '38', '40', '42'],
     colors: [
       {
         name: 'Blanco',
@@ -557,7 +542,7 @@ export const PRODUCTS: Product[] = [
       'Pinzas al frente y en espalda',
       'Manga 3/4'
     ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    sizes: ['30', '32', '34', '36', '38', '40', '42'],
     colors: [
       {
         name: 'Azul Cielo',
@@ -598,7 +583,7 @@ export const PRODUCTS: Product[] = [
       'Pinzas al frente y en espalda',
       'Manga larga'
     ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    sizes: ['30', '32', '34', '36', '38', '40', '42'],
     colors: [
       {
         name: 'Azul Cielo',
@@ -640,7 +625,7 @@ export const PRODUCTS: Product[] = [
       'Canesú y pinzas en la espalda',
       'Manga corta'
     ],
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    sizes: ['34', '36', '38', '40', '42', '44'],
     colors: [
       {
         name: 'Blanco',
@@ -688,7 +673,7 @@ export const PRODUCTS: Product[] = [
       'Pinzas al frente y en espalda',
       'Manga larga'
     ],
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+    sizes: ['34', '36', '38', '40', '42', '44'],
     colors: [
       {
         name: 'Blanco',
@@ -947,7 +932,7 @@ export const PRODUCTS: Product[] = [
       'Bolsillos laterales',
       'Costuras reforzadas'
     ],
-    sizes: ['28', '30', '32', '34', '36', '38', '40', '42'],
+    sizes: ['30', '32', '34', '36', '38', '40', '42'],
     hasCorteSelection: true,
     colors: [
       {
@@ -1029,7 +1014,7 @@ export const PRODUCTS: Product[] = [
       'Bolsillos laterales y bolsas cargo',
       'Costuras reforzadas'
     ],
-    sizes: ['28', '30', '32', '34', '36', '38', '40', '42'],
+    sizes: ['30', '32', '34', '36', '38', '40', '42'],
     colors: [
       {
         name: 'Gris Oxford',
@@ -1216,7 +1201,7 @@ export const PRODUCTS: Product[] = [
       'Únicamente en color negro',
       'Ajuste cómodo y resistente'
     ],
-    sizes: ['Unitalla Universal'],
+    sizes: ['Unitalla'],
     colors: [
       {
         name: 'Blanco',
@@ -1346,7 +1331,7 @@ export const PRODUCTS: Product[] = [
       'Certificación: Producto con certificado ante COFEPRIS.',
       'Estilo: Profesional y funcional, ideal para chefs, cocineros y personal de cocina que buscan comodidad y seguridad durante todo el día.'
     ],
-    sizes: ['22 MX', '23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX', '30 MX'],
+    sizes: ['22', '23', '24', '25', '26', '27', '28', '29', '30'],
     colors: [
       {
         name: 'Blanco',
@@ -1571,7 +1556,7 @@ export const PRODUCTS: Product[] = [
       'Suela antiderrapante de poliuretano',
       'Plantilla con acojinado de látex'
     ],
-    sizes: ['22 MX', '23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX'],
+    sizes: ['22', '23', '24', '25', '26', '27'],
     colors: [
       {
         name: 'Blanco Clínico',
@@ -1609,7 +1594,7 @@ export const PRODUCTS: Product[] = [
       'Suela antiderrapante de poliuretano',
       'Plantilla con acojinado de látex'
     ],
-    sizes: ['23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX', '30 MX'],
+    sizes: ['22', '23', '24', '25', '26', '27'],
     colors: [
       {
         name: 'Blanco Clínico',
@@ -1647,7 +1632,7 @@ export const PRODUCTS: Product[] = [
       'Suela antiderrapante de poliuretano',
       'Plantilla con acojinado de látex'
     ],
-    sizes: ['22 MX', '23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX'],
+    sizes: ['22', '23', '24', '25', '26', '27'],
     colors: [
       {
         name: 'Blanco Hospitalario',
@@ -1687,7 +1672,7 @@ export const PRODUCTS: Product[] = [
       'Logo en pecho y espalda',
       'Licra con protección solar'
     ],
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
       {
         name: 'Rojo Guardavidas',
@@ -1730,7 +1715,7 @@ export const PRODUCTS: Product[] = [
       'Bolsa trasera',
       'Elástico en cintura'
     ],
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [],
     priceTiers: {
       '1-12': 390.00,
