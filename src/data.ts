@@ -76,12 +76,12 @@ export const PRODUCTS: Product[] = [
     isBestSeller: true,
     isNew: true,
     rating: 4.9,
-    description: 'Elaboradas en Dry-Fit., frescas, comodas, trasnspirables y de larga duración. Cómodas, ligeras y resistentes para una transpiracion eficiente.',
-    composition: 'Dryfit, 100% Poliester, 150g.',
+    description: 'Elaboradas en Dry-Fit, frescas, cómodas, transpirables y de larga duración. Cómodas, ligeras y resistentes para una transpiración eficiente.',
+    composition: 'Dry-Fit, 100% Poliéster, 150g.',
     features: [
-      'Botones Transparentes Tela fresca y ligera',
+      'Botones transparentes, tela fresca y ligera',
       'Costuras reforzadas',
-      'Tecnologia Dry-Fit (secado ultra rápido)',
+      'Tecnología Dry-Fit (secado ultra rápido)',
       'Corte caballero y corte dama'
     ],
     hasCorteSelection: true,
@@ -357,13 +357,13 @@ export const PRODUCTS: Product[] = [
     isNew: true,
     rating: 4.9,
     description: 'Una camisa con un corte elegante y moderno, con respiradero, para lucir fresco y casual.',
-    composition: '98% Poliester y 2% Elastano.',
+    composition: '98% Poliéster y 2% Elastano.',
     features: [
       'Cuello camisero',
       'Con respiradero en espalda',
       'Manga corta',
-      'Fresca',
-      'Transpirable'
+      'Fresca y transpirable',
+      'Corte elegante y moderno'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     hasCorteSelection: true,
@@ -450,13 +450,13 @@ export const PRODUCTS: Product[] = [
     ],
     rating: 4.9,
     description: 'Una camisa con un corte elegante y moderno, con respiradero, para lucir fresco y casual.',
-    composition: '98% Poliester y 2% Elastano.',
+    composition: '98% Poliéster y 2% Elastano.',
     features: [
       'Cuello camisero',
       'Con respiradero en espalda',
       'Manga larga',
-      'Fresca',
-      'Transpirable'
+      'Fresca y transpirable',
+      'Corte elegante y moderno'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     hasCorteSelection: true,
@@ -508,8 +508,8 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788577302/BLUSA_BLANCA_FRENTE.png'
     ],
     rating: 4.8,
-    description: 'Blusa cuello en V, manga corta con un corte elegante y moderno,fresca, colores duraderos y una apariencia casual.',
-    composition: '65% Poliester y 35% Algodon.',
+    description: 'Blusa cuello en V, manga corta con un corte elegante y moderno, fresca, colores duraderos y una apariencia casual.',
+    composition: '65% Poliéster y 35% Algodón.',
     features: [
       'Cuello camisero en V',
       'Pinzas en busto',
@@ -549,8 +549,8 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788576771/blusabca3_1.png'
     ],
     rating: 4.8,
-    description: 'Blusa cuello en V, manga 3/4 con un corte elegante y moderno,fresca, colores duraderos y una apariencia casual.',
-    composition: '65% Poliester y 35% Algodon.',
+    description: 'Blusa cuello en V, manga 3/4 con un corte elegante y moderno, fresca, colores duraderos y una apariencia casual.',
+    composition: '65% Poliéster y 35% Algodón.',
     features: [
       'Cuello camisero en V',
       'Pinzas en busto',
@@ -591,7 +591,7 @@ export const PRODUCTS: Product[] = [
     ],
     rating: 4.8,
     description: 'Blusa cuello en V, manga larga, pinzas en busto, frente y espalda, fresca y casual.',
-    composition: '65% Poliester y 35% Algodon.',
+    composition: '65% Poliéster y 35% Algodón.',
     features: [
       'Cuello camisero en V',
       'Pinzas en busto',
@@ -633,11 +633,11 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791075381/Dise%C3%B1o_sin_t%C3%ADtulo_7.png'
     ],
     rating: 4.8,
-    description: 'camisa cuello camisero, manga corta, con pinzas en espalda, frescas y casuales.',
-    composition: '65% Poliester y 35% algodon.',
+    description: 'Camisa cuello camisero, manga corta, con pinzas en espalda, fresca y casual.',
+    composition: '65% Poliéster y 35% Algodón.',
     features: [
       'Cuello camisero',
-      'Canesu y pinzas en la espalda',
+      'Canesú y pinzas en la espalda',
       'Manga corta'
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
@@ -680,8 +680,8 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791075162/Dise%C3%B1o_sin_t%C3%ADtulo_8.png'
     ],
     rating: 4.9,
-    description: 'camisa cuello camisero, manga larga, con pinzas en espalda, frescas y casuales.',
-    composition: '65% Poliester y 35% Algodon.',
+    description: 'Camisa cuello camisero, manga larga, con pinzas en espalda, fresca y casual.',
+    composition: '65% Poliéster y 35% Algodón.',
     features: [
       'Cuello camisero',
       'Pinzas en busto',
@@ -732,13 +732,12 @@ export const PRODUCTS: Product[] = [
     isBestSeller: true,
     isNew: true,
     rating: 5.0,
-    description: 'Filipina manga ¾ , con doble abotonadura, respiradero en espalda, ligera y fresca.',
-    composition: '65% Poliester y 35% algodon.',
+    description: 'Filipina manga 3/4, con doble abotonadura, respiradero en espalda, ligera y fresca.',
+    composition: '65% Poliéster y 35% Algodón.',
     features: [
-      'REPELENTE AL AGUA',
-      'REPELENTE AL ACEITE',
+      'Tecnología repelente al agua y al aceite',
       'Mantiene tu uniforme limpio por más tiempo',
-      'FRESCO Y TRANSPIRABLE',
+      'Fresco y transpirable',
       'Permite la circulación del aire para mayor confort'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
@@ -785,13 +784,12 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1788202984/UNIFROMES-25.png'
     ],
     rating: 4.8,
-    description: 'Filipina manga corta , con doble abotonadura, respiradero en espalda, ligera y fresca.',
-    composition: '65% Poliester y 35% algodon.',
+    description: 'Filipina manga corta, con doble abotonadura, respiradero en espalda, ligera y fresca.',
+    composition: '65% Poliéster y 35% Algodón.',
     features: [
-      'REPELENTE AL AGUA',
-      'REPELENTE AL ACEITE',
+      'Tecnología repelente al agua y al aceite',
       'Mantiene tu uniforme limpio por más tiempo',
-      'FRESCO Y TRANSPIRABLE',
+      'Fresco y transpirable',
       'Permite la circulación del aire para mayor confort'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
@@ -839,7 +837,7 @@ export const PRODUCTS: Product[] = [
     ],
     rating: 4.9,
     description: 'Filipina manga 3/4 con doble abotonadura y 2 bolsillos, pecho y manga, Dryfit en espalda alta y gabardina en espalda baja.',
-    composition: '65% Poliester y 35% algodon. Dryfit 100% poliestér, transpirable.',
+    composition: '65% Poliéster y 35% Algodón. Dry-Fit 100% poliéster, transpirable.',
     features: [
       'Corte clásico',
       'Cuello mao',
@@ -891,7 +889,7 @@ export const PRODUCTS: Product[] = [
     ],
     rating: 4.9,
     description: 'Filipina manga corta, con doble abotonadura y 2 bolsillos, pecho y manga, Dryfit en espalda alta y gabardina en espalda baja.',
-    composition: '65% Poliester y 35% algodon.',
+    composition: '65% Poliéster y 35% Algodón.',
     features: [
       'Corte clásico',
       'Cuello mao',
@@ -942,8 +940,8 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791074773/pantalon_damagris.png'
     ],
     rating: 4.8,
-    description: 'Pantalon Basico para Caballero, corte recto, bolsas a los costados y bolsa trasera.',
-    composition: '65% Poliester y 35% algodon.',
+    description: 'Pantalón básico para caballero, corte recto, bolsas a los costados y bolsa trasera.',
+    composition: '65% Poliéster y 35% Algodón.',
     features: [
       'Corte recto',
       'Bolsillos laterales',
@@ -1024,8 +1022,8 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791075932/cargomarino_1.png'
     ],
     rating: 4.9,
-    description: 'Pantalon Cargo, costuras reforzadas, bolsas laterales,con tapa , bolsa a los costados y bolsa trasera.',
-    composition: '65% POLIESTER Y 35% ALGODON',
+    description: 'Pantalón cargo, costuras reforzadas, bolsas laterales con tapa, bolsa a los costados y bolsa trasera.',
+    composition: '65% Poliéster y 35% Algodón.',
     features: [
       'Bolsa con tapa',
       'Bolsillos laterales y bolsas cargo',
@@ -1104,8 +1102,8 @@ export const PRODUCTS: Product[] = [
     ],
     isBestSeller: true,
     rating: 4.9,
-    description: 'Mandil de cocina, la correa del cuello se ajusta para mayor comodidad. Los lazos en la cintura le permiten un ajuste perfecto. Los dos bolsillos frontales. Estilo comodo y resistente.',
-    composition: '65% Poliester y 35% viscosa.',
+    description: 'Mandil de cocina, la correa del cuello se ajusta para mayor comodidad. Los lazos en la cintura le permiten un ajuste perfecto. Dos bolsillos frontales. Estilo cómodo y resistente.',
+    composition: '65% Poliéster y 35% Viscosa.',
     features: [
       'Estilo con pechera protectora',
       'Correa ajustable en el cuello',
@@ -1163,8 +1161,8 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791142629/MANDIL_BLANCO_1.png'
     ],
     rating: 4.8,
-    description: 'Mandil corto, comodo, practico, Estilo hotelero, tiras largas en la cintura y bolsas al frente, con division para guardar sus notas o comandas.',
-    composition: '65% Poliester y 35% viscosa.',
+    description: 'Mandil corto, cómodo, práctico, estilo hotelero, tiras largas en la cintura y bolsas al frente, con división para guardar sus notas o comandas.',
+    composition: '65% Poliéster y 35% Viscosa.',
     features: [
       'Estilo bistró a la cintura',
       'Lazos largos',
@@ -1211,12 +1209,12 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791142556/GORRO_DE_COCINA.png'
     ],
     rating: 4.8,
-    description: '65% Poliester y 35% viscosa. Unicamente en color negro.',
-    composition: '65% Poliester y 35% viscosa.',
+    description: 'Gorro de cocina clásico. Cómodo y resistente, únicamente en color negro.',
+    composition: '65% Poliéster y 35% Viscosa.',
     features: [
-      'Gorro de cocina',
+      'Gorro de cocina tradicional',
       'Únicamente en color negro',
-      'Ajuste cómodo'
+      'Ajuste cómodo y resistente'
     ],
     sizes: ['Unitalla Universal'],
     colors: [
@@ -1527,11 +1525,11 @@ export const PRODUCTS: Product[] = [
     ],
     rating: 4.9,
     description: 'Corte recto, bolsas a los costados, resorte en la cintura.',
-    composition: '65% Poliester y 35% viscosa.',
+    composition: '65% Poliéster y 35% Viscosa.',
     features: [
       'Corte recto',
-      'Bolsa a los costados',
-      'Elastico en cintura',
+      'Bolsas a los costados',
+      'Elástico en cintura',
       'Jareta',
       'Unisex'
     ],
@@ -1565,13 +1563,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791142987/MOD1042_2.png'
     ],
     rating: 4.9,
-    description: 'Producto: Calzado Clinico. Referencia: Linea Marian´s. Piel: Napa Flor Entera. Plantilla: Calzado de cerdo y forro textil Antimicrobiano. Suela: Antiderrapante Poliuretano. Plantilla: Acojinado de Latex. Caso y Contrafuerte: Poliuretano.',
-    composition: 'Piel: Napa Flor Entera. Suela: Antiderrapante Poliuretano. Plantilla: Calzado de cerdo y forro textil Antimicrobiano.',
+    description: 'Calzado clínico profesional, línea Marian\'s. Confeccionado en piel napa flor entera, plantilla de cerdo y forro textil antimicrobiano con acojinado de látex. Suela antiderrapante de poliuretano, casco y contrafuerte de poliuretano.',
+    composition: 'Piel: Napa Flor Entera. Suela: Antiderrapante Poliuretano. Plantilla: Calzado de cerdo y forro textil antimicrobiano.',
     features: [
       'Piel: Napa Flor Entera',
-      'Forro textil Antimicrobiano',
-      'Suela Antiderrapante Poliuretano',
-      'Plantilla Acojinado de Latex'
+      'Forro textil antimicrobiano',
+      'Suela antiderrapante de poliuretano',
+      'Plantilla con acojinado de látex'
     ],
     sizes: ['22 MX', '23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX'],
     colors: [
@@ -1603,13 +1601,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1789944948/MODEL363_2.png'
     ],
     rating: 4.9,
-    description: 'Producto: Calzado Clinico. Referencia: Linea Marian´s. Piel: Napa Flor Entera. Plantilla: Calzado de cerdo y forro textil Antimicrobiano. Suela: Antiderrapante Poliuretano. Plantilla: Acojinado de Latex. Caso y Contrafuerte: Poliuretano.',
-    composition: 'Piel: Napa Flor Entera. Suela: Antiderrapante Poliuretano. Plantilla: Calzado de cerdo y forro textil Antimicrobiano.',
+    description: 'Calzado clínico profesional, línea Marian\'s. Confeccionado en piel napa flor entera, plantilla de cerdo y forro textil antimicrobiano con acojinado de látex. Suela antiderrapante de poliuretano, casco y contrafuerte de poliuretano.',
+    composition: 'Piel: Napa Flor Entera. Suela: Antiderrapante Poliuretano. Plantilla: Calzado de cerdo y forro textil antimicrobiano.',
     features: [
       'Piel: Napa Flor Entera',
-      'Forro textil Antimicrobiano',
-      'Suela Antiderrapante Poliuretano',
-      'Plantilla Acojinado de Latex'
+      'Forro textil antimicrobiano',
+      'Suela antiderrapante de poliuretano',
+      'Plantilla con acojinado de látex'
     ],
     sizes: ['23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX', '30 MX'],
     colors: [
@@ -1641,13 +1639,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791143067/MODELO363D.png.png'
     ],
     rating: 4.9,
-    description: 'Producto: Calzado Clinico. Referencia: Linea Marian´s. Piel: Napa Flor Entera. Plantilla: Calzado de cerdo y forro textil Antimicrobiano. Suela: Antiderrapante Poliuretano. Plantilla: Acojinado de Latex. Caso y Contrafuerte: Poliuretano.',
-    composition: 'Piel: Napa Flor Entera. Suela: Antiderrapante Poliuretano. Plantilla: Calzado de cerdo y forro textil Antimicrobiano.',
+    description: 'Calzado clínico profesional, línea Marian\'s. Confeccionado en piel napa flor entera, plantilla de cerdo y forro textil antimicrobiano con acojinado de látex. Suela antiderrapante de poliuretano, casco y contrafuerte de poliuretano.',
+    composition: 'Piel: Napa Flor Entera. Suela: Antiderrapante Poliuretano. Plantilla: Calzado de cerdo y forro textil antimicrobiano.',
     features: [
       'Piel: Napa Flor Entera',
-      'Forro textil Antimicrobiano',
-      'Suela Antiderrapante Poliuretano',
-      'Plantilla Acojinado de Latex'
+      'Forro textil antimicrobiano',
+      'Suela antiderrapante de poliuretano',
+      'Plantilla con acojinado de látex'
     ],
     sizes: ['22 MX', '23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX'],
     colors: [
@@ -1681,13 +1679,13 @@ export const PRODUCTS: Product[] = [
     ],
     isBestSeller: true,
     rating: 4.9,
-    description: 'Rash manga larga, cuello redondo, sublimado en pecho y espalda. Licra con proteccion solar.',
-    composition: 'Poliester 87% y Elastano 13%.',
+    description: 'Rash manga larga, cuello redondo, sublimado en pecho y espalda. Licra con protección solar.',
+    composition: '87% Poliéster y 13% Elastano.',
     features: [
       'Manga larga',
       'Cuello redondo',
       'Logo en pecho y espalda',
-      'Licra con proteccion solar'
+      'Licra con protección solar'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     colors: [
@@ -1724,13 +1722,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1789955218/Gemini_Generated_Image_8h7ema8h7ema8h7e.jpg'
     ],
     rating: 4.8,
-    description: 'Short de rapido secado, bolsas a los costados, bolsa parchada, elastico en cintura.',
-    composition: '97 %Poliester y 3% elastano. Rapido secado.',
+    description: 'Short de rápido secado, bolsas a los costados, bolsa tipo parche, elástico en cintura.',
+    composition: '97% Poliéster y 3% Elastano. Rápido secado.',
     features: [
-      'Rapido secado',
+      'Rápido secado',
       'Bolsas laterales',
       'Bolsa trasera',
-      'Elastico en cintura'
+      'Elástico en cintura'
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     colors: [],
