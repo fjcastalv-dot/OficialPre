@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomeView from './components/HomeView';
@@ -374,6 +374,11 @@ export default function App() {
 
   // View Detail & URL updating
   const handleViewProduct = (product: Product) => {
+    const curY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    if (curY > 0) {
+      (window as any).__modalScrollBackup = curY;
+      savedScrollYRef.current = curY;
+    }
     setSelectedProduct(product);
     try {
       window.history.replaceState(null, '', `#catalogo/${product.id}`);
@@ -381,11 +386,23 @@ export default function App() {
   };
 
   const handleCloseProductModal = () => {
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+    const targetY = (window as any).__modalScrollBackup || savedScrollYRef.current || 0;
     setSelectedProduct(null);
     try {
       const targetHash = filterCategory !== 'todos' ? `#catalogo?categoria=${filterCategory}` : '#catalogo';
       window.history.replaceState(null, '', targetHash);
     } catch (e) {}
+    if (targetY > 0) {
+      const restore = () => window.scrollTo({ top: targetY, behavior: 'instant' });
+      restore();
+      requestAnimationFrame(restore);
+      setTimeout(restore, 20);
+      setTimeout(restore, 80);
+      setTimeout(restore, 200);
+    }
   };
 
   // Scroll to top on view changes

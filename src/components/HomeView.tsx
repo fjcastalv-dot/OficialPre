@@ -55,6 +55,18 @@ export default function HomeView({
     }
   };
 
+  const handleOpenProduct = (product: Product, e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    if (currentY > 0) {
+      (window as any).__modalScrollBackup = currentY;
+    }
+    onViewProduct(product);
+  };
+
   // Get best sellers
   const bestSellers = PRODUCTS.filter((p) => p.isBestSeller).slice(0, 3);
 
@@ -402,7 +414,7 @@ export default function HomeView({
               >
                 {/* Image */}
                 <div 
-                  onClick={() => onViewProduct(product)}
+                  onClick={(e) => handleOpenProduct(product, e)}
                   className="relative aspect-square overflow-hidden bg-slate-950 flex items-center justify-center cursor-pointer"
                 >
                   {product.image ? (
@@ -465,7 +477,7 @@ export default function HomeView({
                       </span>
                     </div>
                     <h3
-                      onClick={() => onViewProduct(product)}
+                      onClick={(e) => handleOpenProduct(product, e)}
                       className="font-bold text-white text-base truncate group-hover:text-orange-500 transition-colors cursor-pointer"
                       style={{ fontFamily: 'Verdana, sans-serif' }}
                     >
@@ -485,7 +497,8 @@ export default function HomeView({
                       <span className="text-[8px] text-slate-400 uppercase tracking-wider">Mayoreo Neto</span>
                     </div>
                     <button
-                      onClick={() => onViewProduct(product)}
+                      type="button"
+                      onClick={(e) => handleOpenProduct(product, e)}
                       className="py-1.5 px-4 rounded bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
                     >
                       COTIZAR

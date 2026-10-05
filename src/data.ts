@@ -76,13 +76,13 @@ export const PRODUCTS: Product[] = [
     isBestSeller: true,
     isNew: true,
     rating: 4.9,
-    description: 'Elaboradas en Dry-Fit, son ideales para el uso diario, deportivo o para uniformes empresariales. Cómodas, ligeras y resistentes para una transpiración eficiente.',
-    composition: '150 g/m2 DRY-FIT 100% Poliéster',
+    description: 'Elaboradas en Dry-Fit., frescas, comodas, trasnspirables y de larga duración. Cómodas, ligeras y resistentes para una transpiracion eficiente.',
+    composition: 'Dryfit, 100% Poliester, 150g.',
     features: [
-          'Botones cosidos en cruz para asegurar su durabilidad',
-          'Tela fresca y ligera',
-          'Costuras reforzadas',
-          'Tecnología Dry-Fit (secado ultra rápido)'
+      'Botones Transparentes Tela fresca y ligera',
+      'Costuras reforzadas',
+      'Tecnologia Dry-Fit (secado ultra rápido)',
+      'Corte caballero y corte dama'
     ],
     hasCorteSelection: true,
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
@@ -356,17 +356,14 @@ export const PRODUCTS: Product[] = [
     isBestSeller: true,
     isNew: true,
     rating: 4.9,
-    description: '100% POLIESTER, LIVIANA, CON STRECH, DURABILIDAD Y FRESCURA. CORTE DAMA O CABALLERO. TALLA XS-S-M-L-XL Y XXL.',
-    composition: '100% Poliéster con strech',
+    description: 'Una camisa con un corte elegante y moderno, con respiradero, para lucir fresco y casual.',
+    composition: '98% Poliester y 2% Elastano.',
     features: [
-      '100% Poliéster',
-      'Liviana y con strech',
-      'Durabilidad y frescura',
-      'Corte Dama o Caballero',
       'Cuello camisero',
-      'Canesú y respiradero en espalda',
+      'Con respiradero en espalda',
       'Manga corta',
-      'Fresca y transpirable'
+      'Fresca',
+      'Transpirable'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     hasCorteSelection: true,
@@ -452,17 +449,14 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791075727/CAZADORA_MANGA_LARGANEGRA.png'
     ],
     rating: 4.9,
-    description: '100% POLIESTER, LIVIANA, CON STRECH, DURABILIDAD Y FRESCURA. CORTE DAMA O CABALLERO. TALLA XS-S-M-L-XL Y XXL.',
-    composition: '100% Poliéster con strech',
+    description: 'Una camisa con un corte elegante y moderno, con respiradero, para lucir fresco y casual.',
+    composition: '98% Poliester y 2% Elastano.',
     features: [
-      '100% Poliéster',
-      'Liviana y con strech',
-      'Durabilidad y frescura',
-      'Corte Dama o Caballero',
       'Cuello camisero',
-      'Canesú y respiradero en espalda',
+      'Con respiradero en espalda',
       'Manga larga',
-      'Costuras reforzadas'
+      'Fresca',
+      'Transpirable'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     hasCorteSelection: true,
@@ -514,13 +508,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788577302/BLUSA_BLANCA_FRENTE.png'
     ],
     rating: 4.8,
-    description: 'Blusa cuello en V, manga corta con un corte elegante y moderno, composición 65% Algodón 35% Poliéster, ofrece frescura, colores duraderos y una apariencia impecable que hará resaltar a tu equipo de trabajo con un estilo formal pero relajado.',
-    composition: '65% Algodón 35% Poliéster',
+    description: 'Blusa cuello en V, manga corta con un corte elegante y moderno,fresca, colores duraderos y una apariencia casual.',
+    composition: '65% Poliester y 35% Algodon.',
     features: [
-          'Cuello camisero en V',
-          'Pinzas en busto',
-          'Pinzas al frente y en espalda',
-          'Manga corta'
+      'Cuello camisero en V',
+      'Pinzas en busto',
+      'Pinzas al frente y en espalda',
+      'Manga corta'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     colors: [
@@ -555,13 +549,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/f_auto,q_auto/v1788576771/blusabca3_1.png'
     ],
     rating: 4.8,
-    description: 'Blusa cuello camisero, con un corte elegante y casual, manga 3/4, composición 65% Algodón 35% Poliéster, tela fresca, colores duraderos y una apariencia impecable que hará resaltar a tu equipo de trabajo con un estilo formal pero relajado.',
-    composition: '65% Algodón 35% Poliéster',
+    description: 'Blusa cuello en V, manga 3/4 con un corte elegante y moderno,fresca, colores duraderos y una apariencia casual.',
+    composition: '65% Poliester y 35% Algodon.',
     features: [
-          'Cuello camisero en V',
-          'Pinzas en busto',
-          'Pinzas al frente y en espalda',
-          'Manga 3/4'
+      'Cuello camisero en V',
+      'Pinzas en busto',
+      'Pinzas al frente y en espalda',
+      'Manga 3/4'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     colors: [
@@ -596,13 +590,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791057513/mangalargadama.png'
     ],
     rating: 4.8,
-    description: 'Blusa cuello camisero formal manga larga, con un corte elegante y moderno, composición 65% Algodón 35% Poliéster, ofrece frescura, colores duraderos y una apariencia impecable que hará resaltar a tu equipo de trabajo con un estilo formal pero relajado.',
-    composition: '65% Algodón 35% Poliéster',
+    description: 'Blusa cuello en V, manga larga, pinzas en busto, frente y espalda, fresca y casual.',
+    composition: '65% Poliester y 35% Algodon.',
     features: [
-          'Cuello camisero',
-          'Pinzas en busto',
-          'Pinzas al frente y en espalda',
-          'Manga larga'
+      'Cuello camisero en V',
+      'Pinzas en busto',
+      'Pinzas al frente y en espalda',
+      'Manga larga'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
@@ -639,11 +633,11 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791075381/Dise%C3%B1o_sin_t%C3%ADtulo_7.png'
     ],
     rating: 4.8,
-    description: 'Una camisa con un corte elegante y moderno, con toda la durabilidad y seguridad para tus colaboradores. Gracias a su composición 35% Algodón 65% Poliéster, ofrece colores duraderos y una apariencia impecable que hará resaltar a tu equipo de trabajo con un estilo formal pero relajado.',
-    composition: '35% Algodón 65% Poliéster',
+    description: 'camisa cuello camisero, manga corta, con pinzas en espalda, frescas y casuales.',
+    composition: '65% Poliester y 35% algodon.',
     features: [
       'Cuello camisero',
-      'Canesú y pinzas en la espalda',
+      'Canesu y pinzas en la espalda',
       'Manga corta'
     ],
     sizes: ['S', 'M', 'L', 'XL', 'XXL'],
@@ -686,8 +680,8 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791075162/Dise%C3%B1o_sin_t%C3%ADtulo_8.png'
     ],
     rating: 4.9,
-    description: 'Una camisa con un corte elegante y moderno, con toda la durabilidad y seguridad para tus colaboradores. Gracias a su composición 35% Algodón 65% Poliéster, ofrece colores duraderos y una apariencia impecable que hará resaltar a tu equipo de trabajo con un estilo formal pero relajado.',
-    composition: '35% Algodón 65% Poliéster',
+    description: 'camisa cuello camisero, manga larga, con pinzas en espalda, frescas y casuales.',
+    composition: '65% Poliester y 35% Algodon.',
     features: [
       'Cuello camisero',
       'Pinzas en busto',
@@ -731,22 +725,21 @@ export const PRODUCTS: Product[] = [
     image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4.png',
     gallery: [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4_1.png',
-      'https://res.cloudinary.com/boofzznx/image/upload/v1789237256/UNIFROMES-21_1.png',
+            'https://res.cloudinary.com/boofzznx/image/upload/v1789237256/UNIFROMES-21_1.png',
       'https://res.cloudinary.com/boofzznx/image/upload/v1791140546/FILIPINABROOKLYN3_4_NEGRA.png',
       'https://res.cloudinary.com/boofzznx/image/upload/v1788202984/UNIFROMES-25.png'
     ],
     isBestSeller: true,
     isNew: true,
     rating: 5.0,
-    description: 'Filipina con tecnología de repelencia a líquidos y aceite vegetal, ligera, versátil, resistente, transpirable y de fácil cuidado. Con respiradero para alto rendimiento en cocina.',
-    composition: '65% Poliéster 35% Algodón con tecnología antifluido y repelente a aceites',
+    description: 'Filipina manga ¾ , con doble abotonadura, respiradero en espalda, ligera y fresca.',
+    composition: '65% Poliester y 35% algodon.',
     features: [
-      'Manga 3/4',
-      'Repele el aceite vegetal y el agua',
-      'Ligera, versátil y resistente',
-      'Transpirable y fácil cuidado',
-      'Con respiradero'
+      'REPELENTE AL AGUA',
+      'REPELENTE AL ACEITE',
+      'Mantiene tu uniforme limpio por más tiempo',
+      'FRESCO Y TRANSPIRABLE',
+      'Permite la circulación del aire para mayor confort'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
@@ -756,8 +749,7 @@ export const PRODUCTS: Product[] = [
         image: 'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4.png',
         gallery: [
           'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/v1791140411/brooklyn_frente_y_espalda3_4_1.png',
-          'https://res.cloudinary.com/boofzznx/image/upload/v1789237256/UNIFROMES-21_1.png'
+                    'https://res.cloudinary.com/boofzznx/image/upload/v1789237256/UNIFROMES-21_1.png'
         ]
       },
       {
@@ -793,14 +785,14 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1788202984/UNIFROMES-25.png'
     ],
     rating: 4.8,
-    description: 'Filipina manga corta con tecnología de repelencia a líquidos y aceite vegetal, ligera, versátil, resistente, transpirable y de fácil cuidado. Con respiradero para alto rendimiento en cocina.',
-    composition: '65% Poliéster 35% Algodón con tecnología antifluido y repelente a aceites',
+    description: 'Filipina manga corta , con doble abotonadura, respiradero en espalda, ligera y fresca.',
+    composition: '65% Poliester y 35% algodon.',
     features: [
-      'Manga corta',
-      'Repele el aceite vegetal y el agua',
-      'Ligera, versátil y resistente',
-      'Transpirable y fácil cuidado',
-      'Con respiradero para alto rendimiento en cocina'
+      'REPELENTE AL AGUA',
+      'REPELENTE AL ACEITE',
+      'Mantiene tu uniforme limpio por más tiempo',
+      'FRESCO Y TRANSPIRABLE',
+      'Permite la circulación del aire para mayor confort'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
@@ -846,14 +838,14 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791141773/Gemini_Generated_Image_cylm4hcylm4hcylm.jpg'
     ],
     rating: 4.9,
-    description: 'Filipina manga 3/4 de chef con doble abotonadura y 2 bolsillos, Dryfit en espalda alta y gabardina en espalda baja.',
-    composition: '65% Poliéster 35% Algodón (150 g/m²)',
+    description: 'Filipina manga 3/4 con doble abotonadura y 2 bolsillos, pecho y manga, Dryfit en espalda alta y gabardina en espalda baja.',
+    composition: '65% Poliester y 35% algodon. Dryfit 100% poliestér, transpirable.',
     features: [
-      'Manga 3/4',
-      'Doble abotonadura y 2 bolsillos',
-      'Dryfit en espalda alta y gabardina en espalda baja',
-      'Tecnología repelente al agua y al aceite',
-      'Protección inteligente que no absorbe grasa'
+      'Corte clásico',
+      'Cuello mao',
+      'Doble abotonadura',
+      '1 bolsillo en el pecho',
+      '1 bolsillo en la manga'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
@@ -898,14 +890,14 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791142043/Gemini_Generated_Image_9te2uz9te2uz9te2.jpg'
     ],
     rating: 4.9,
-    description: 'Filipina manga corta de chef con doble abotonadura, Dryfit en espalda para máxima ventilación y gabardina de alta durabilidad repelente.',
-    composition: '65% Poliéster 35% Algodón con combinación Dryfit',
+    description: 'Filipina manga corta, con doble abotonadura y 2 bolsillos, pecho y manga, Dryfit en espalda alta y gabardina en espalda baja.',
+    composition: '65% Poliester y 35% algodon.',
     features: [
-      'Manga corta',
-      'Espalda con tecnología Dryfit transpirable',
-      'Gabardina de alta resistencia y durabilidad',
-      'Doble abotonadura frontal',
-      'Tecnología repelente al agua y al aceite'
+      'Corte clásico',
+      'Cuello mao',
+      'Doble abotonadura',
+      '1 bolsillo en el pecho',
+      '1 bolsillo en la manga'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
     colors: [
@@ -950,14 +942,12 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791074773/pantalon_damagris.png'
     ],
     rating: 4.8,
-    description: 'Pantalón corte recto para dama y caballero. Diseñado para lucir casual, cómodo y elegante con bolsillos laterales y costuras reforzadas.',
-    composition: '65% Poliéster 35% Algodón / Gabardina y Tergal',
+    description: 'Pantalon Basico para Caballero, corte recto, bolsas a los costados y bolsa trasera.',
+    composition: '65% Poliester y 35% algodon.',
     features: [
-      'Corte recto para Dama y Caballero',
+      'Corte recto',
       'Bolsillos laterales',
-      'Costuras reforzadas',
-      'Alta resistencia y durabilidad',
-      'Diseño ergonómico y elegante'
+      'Costuras reforzadas'
     ],
     sizes: ['28', '30', '32', '34', '36', '38', '40', '42'],
     hasCorteSelection: true,
@@ -1034,10 +1024,10 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791075932/cargomarino_1.png'
     ],
     rating: 4.9,
-    description: 'Pantalón cargo. Diseñado para uso rudo, con corte recto, bolsillos laterales y bolsas cargo con costuras reforzadas.',
-    composition: '60% Algodón 40% Poliéster',
+    description: 'Pantalon Cargo, costuras reforzadas, bolsas laterales,con tapa , bolsa a los costados y bolsa trasera.',
+    composition: '65% POLIESTER Y 35% ALGODON',
     features: [
-      'Corte recto',
+      'Bolsa con tapa',
       'Bolsillos laterales y bolsas cargo',
       'Costuras reforzadas'
     ],
@@ -1114,13 +1104,13 @@ export const PRODUCTS: Product[] = [
     ],
     isBestSeller: true,
     rating: 4.9,
-    description: 'Mandil de peto, la correa del cuello se ajusta para mayor comodidad. Los lazos en la cintura le permiten un ajuste perfecto. Los dos bolsillos frontales mantienen sus pertenencias a mano y organizadas. Estilo cómodo y resistente que se mantiene impecable lavado tras lavado.',
-    composition: '65% Algodón 35% Poliéster',
+    description: 'Mandil de cocina, la correa del cuello se ajusta para mayor comodidad. Los lazos en la cintura le permiten un ajuste perfecto. Los dos bolsillos frontales. Estilo comodo y resistente.',
+    composition: '65% Poliester y 35% viscosa.',
     features: [
-          'Estilo con pechera protectora',
-          'Correa ajustable en el cuello',
-          'Se ata a la cintura',
-          'Bolsillo frontal dividido'
+      'Estilo con pechera protectora',
+      'Correa ajustable en el cuello',
+      'Se ata a la cintura',
+      'Bolsillo frontal dividido'
     ],
     sizes: ['Unitalla'],
     colors: [
@@ -1173,12 +1163,12 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791142629/MANDIL_BLANCO_1.png'
     ],
     rating: 4.8,
-    description: 'Mandil corto, cómodo y práctico, estilo hotelero, tiras largas en la cintura y bolsas al frente con división para guardar sus notas o comandas.',
-    composition: '65% Algodón 35% Poliéster',
+    description: 'Mandil corto, comodo, practico, Estilo hotelero, tiras largas en la cintura y bolsas al frente, con division para guardar sus notas o comandas.',
+    composition: '65% Poliester y 35% viscosa.',
     features: [
-          'Estilo bistró a la cintura',
-          'Lazos largos',
-          'Bolsillo frontal dividido'
+      'Estilo bistró a la cintura',
+      'Lazos largos',
+      'Bolsillo frontal dividido'
     ],
     sizes: ['Unitalla'],
     colors: [
@@ -1221,13 +1211,12 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791142556/GORRO_DE_COCINA.png'
     ],
     rating: 4.8,
-    description: 'Gorro higiénico de cocina tipo boina / champiñón. Fabricado en tejido ligero y fresco con elástico posterior autoajustable que garantiza contención capilar conforme a normas sanitarias.',
-    composition: 'Poliéster / Algodón Transpirable',
+    description: '65% Poliester y 35% viscosa. Unicamente en color negro.',
+    composition: '65% Poliester y 35% viscosa.',
     features: [
-      'Elástico posterior para ajuste universal confortable',
-      'Banda frontal antitranspirante interna',
-      'Cumple con normativas de higiene alimentaria',
-      'Lavado rápido y secado ágil'
+      'Gorro de cocina',
+      'Únicamente en color negro',
+      'Ajuste cómodo'
     ],
     sizes: ['Unitalla Universal'],
     colors: [
@@ -1264,14 +1253,13 @@ export const PRODUCTS: Product[] = [
     ],
     isBestSeller: true,
     rating: 4.9,
-    description: 'Calzado ergonómico de protección Tipo I certificado bajo la NOM-113-STPS-2009. Diseñado especialmente para gastronomía, hotelería y servicios con suela de inyección directa al corte de 100% poliuretano con base poliéster, alta resistencia a aceites y flexión extrema (35,000 ciclos), dieléctrico y antiderrapante.',
-    composition: '100% Poliuretano base poliéster (Dureza 38-43° Shore A, densidad 0.45 gr/cm³)',
+    description: 'Calzado de cocina ergonómico tipo zueco para dama. Tipo de uso: Rudo. Transpirable, dieléctrico y antiderrapante. Resistencia a hidrocarburos (Tolueno y Gasolina) y aceites. Abrasión de 0 a 130 mg máx 150 mg, flexión de 0 a 100% tolerancia hasta 200%. NOM 113 STPS 2009.',
+    composition: 'Tipo de material: 100% Poliuretano. Base de material: Poliéster. Dureza: 38-43° Shore A. Densidad talla central: 0.45 gr/cm³.',
     features: [
-      'Certificación Oficial NOM-113-STPS-2009 Calzado de Protección Tipo I',
-      'Inyección directa al corte (100% Poliuretano base poliéster)',
-      'Resistencia a aceites, solventes, abrasión y flexión extrema (35,000 ciclos)',
-      'Calce ergonómico con ajuste de horma EEE y suela antiderrapante',
-      'Propiedades dieléctricas y absorción de impacto antifatiga'
+      'Tipo de uso: Rudo',
+      'Resistente a Hidrocarburos como Tolueno y Gasolina',
+      'Resistencia a Aceites',
+      'Abrasión: De 0 a 130 mg máx 150 mg'
     ],
     sizes: ['22', '23', '24', '25', '26', '27'],
     colors: [
@@ -1308,14 +1296,13 @@ export const PRODUCTS: Product[] = [
     ],
     isBestSeller: true,
     rating: 4.9,
-    description: 'Calzado de protección Tipo I certificado bajo la NOM-113-STPS-2009 Modelo Pegaso. Confección en inyección directa al corte en poliuretano base poliéster con dureza 38-43° Shore A, máxima resistencia a grasas animales, vegetales, hidrocarburos y solventes, antiderrapante y dieléctrico.',
-    composition: '100% Poliuretano base poliéster (Dureza 38-43° Shore A, densidad 0.45 gr/cm³)',
+    description: 'Calzado de cocina ergonómico, transpirable, dieléctrico y antiderrapante. Resistencia a aceites, solventes, abrasión y a la flexión (incremento de abertura a 35,000 ciclos). Ajuste: Horma EEE. NOM 113 STPS 2009.',
+    composition: 'Tipo de material: 100% Poliuretano. Base de material: Poliéster. Dureza: 38-43° Shore A. Densidad talla central: 0.45 gr/cm³.',
     features: [
-      'Certificación Oficial NOM-113-STPS-2009 Calzado de Protección Tipo I',
-      'Inyección directa al corte de alta densidad (0.45 gr/cm³)',
-      'Resistencia comprobada a grasas, aceites e hidrocarburos (Tolueno/Gasolina)',
-      'Resistencia a abrasión y flexión continua a 35,000 ciclos',
-      'Calce ergonómico, suela antiderrapante, dieléctrico y horma anatómica EEE'
+      'Ajuste: Horma EEE',
+      'Resistencia a los aceites (incremento de volumen)',
+      'Resistencia a los solventes y a la abrasión',
+      'Resistencia a la flexión (incremento de abertura a 35,000 ciclos)'
     ],
     sizes: ['25', '26', '27', '28', '29', '30'],
     colors: [
@@ -1540,11 +1527,11 @@ export const PRODUCTS: Product[] = [
     ],
     rating: 4.9,
     description: 'Corte recto, bolsas a los costados, resorte en la cintura.',
-    composition: 'Gabardina Médica 65% Poliéster / 35% Algodón',
+    composition: '65% Poliester y 35% viscosa.',
     features: [
       'Corte recto',
       'Bolsa a los costados',
-      'Elástico en cintura',
+      'Elastico en cintura',
       'Jareta',
       'Unisex'
     ],
@@ -1578,13 +1565,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791142987/MOD1042_2.png'
     ],
     rating: 4.9,
-    description: 'Calzado clínico profesional Modelo 363 para dama en color blanco. Estructura ergonómica con soporte de arco plantar, horma ancha para evitar puntos de presión y suela antiderrapante en suelos de hospital.',
-    composition: 'Piel genuina suave tratada / Suela de poliuretano inyectado',
+    description: 'Producto: Calzado Clinico. Referencia: Linea Marian´s. Piel: Napa Flor Entera. Plantilla: Calzado de cerdo y forro textil Antimicrobiano. Suela: Antiderrapante Poliuretano. Plantilla: Acojinado de Latex. Caso y Contrafuerte: Poliuretano.',
+    composition: 'Piel: Napa Flor Entera. Suela: Antiderrapante Poliuretano. Plantilla: Calzado de cerdo y forro textil Antimicrobiano.',
     features: [
-      'Piel genuina blanca fácil de limpiar y desinfectar',
-      'Suela antiderrapante ligera que no genera ruido al caminar',
-      'Forro interno transpirable que evita la humedad',
-      'Plantilla acolchada con memory foam'
+      'Piel: Napa Flor Entera',
+      'Forro textil Antimicrobiano',
+      'Suela Antiderrapante Poliuretano',
+      'Plantilla Acojinado de Latex'
     ],
     sizes: ['22 MX', '23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX'],
     colors: [
@@ -1616,13 +1603,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1789944948/MODEL363_2.png'
     ],
     rating: 4.9,
-    description: 'Calzado médico de confort superior Modelo 920 para caballero en color blanco. Amortiguación de alto impacto en talón, piel suave flor entera y diseño sin cordones de ajuste elástico lateral.',
-    composition: '100% Piel Flor Entera Blanca / Suela Antifatiga',
+    description: 'Producto: Calzado Clinico. Referencia: Linea Marian´s. Piel: Napa Flor Entera. Plantilla: Calzado de cerdo y forro textil Antimicrobiano. Suela: Antiderrapante Poliuretano. Plantilla: Acojinado de Latex. Caso y Contrafuerte: Poliuretano.',
+    composition: 'Piel: Napa Flor Entera. Suela: Antiderrapante Poliuretano. Plantilla: Calzado de cerdo y forro textil Antimicrobiano.',
     features: [
-      'Elásticos laterales para calce inmediato y sujeción segura',
-      'Suela de alta flexibilidad que amortigua cada paso',
-      'Plantilla ergonómica antibacterial extraíble',
-      'Excelente soporte para turnos de guardia médica prolongados'
+      'Piel: Napa Flor Entera',
+      'Forro textil Antimicrobiano',
+      'Suela Antiderrapante Poliuretano',
+      'Plantilla Acojinado de Latex'
     ],
     sizes: ['23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX', '30 MX'],
     colors: [
@@ -1654,13 +1641,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1791143067/MODELO363D.png.png'
     ],
     rating: 4.9,
-    description: 'Calzado ortopédico clínico Modelo 1042 para dama en color blanco. Máxima amortiguación, suela de doble densidad y diseño cerrado con perforaciones laterales respirables para control térmico.',
-    composition: 'Piel Selecta Tratada / Suela Dieléctrica Antiderrapante',
+    description: 'Producto: Calzado Clinico. Referencia: Linea Marian´s. Piel: Napa Flor Entera. Plantilla: Calzado de cerdo y forro textil Antimicrobiano. Suela: Antiderrapante Poliuretano. Plantilla: Acojinado de Latex. Caso y Contrafuerte: Poliuretano.',
+    composition: 'Piel: Napa Flor Entera. Suela: Antiderrapante Poliuretano. Plantilla: Calzado de cerdo y forro textil Antimicrobiano.',
     features: [
-      'Suela ligera de doble densidad que previene calambres y fatiga',
-      'Diseño con perforaciones laterales que disipan calor',
-      'Piel suave repelente a líquidos',
-      'Recomendado para enfermería, quirófano y laboratorio'
+      'Piel: Napa Flor Entera',
+      'Forro textil Antimicrobiano',
+      'Suela Antiderrapante Poliuretano',
+      'Plantilla Acojinado de Latex'
     ],
     sizes: ['22 MX', '23 MX', '24 MX', '25 MX', '26 MX', '27 MX', '28 MX', '29 MX'],
     colors: [
@@ -1694,13 +1681,13 @@ export const PRODUCTS: Product[] = [
     ],
     isBestSeller: true,
     rating: 4.9,
-    description: 'Mantente protegido y cómodo con nuestras rash de Guardavidas manga larga. Confeccionada en tejido protector contra los rayos UV con cuello redondo y máxima durabilidad.',
-    composition: '100% Poliéster',
+    description: 'Rash manga larga, cuello redondo, sublimado en pecho y espalda. Licra con proteccion solar.',
+    composition: 'Poliester 87% y Elastano 13%.',
     features: [
-          'Manga larga',
-          'Cuello redondo',
-          'Logo en pecho y espalda',
-          'Protector contra los rayos UV'
+      'Manga larga',
+      'Cuello redondo',
+      'Logo en pecho y espalda',
+      'Licra con proteccion solar'
     ],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     colors: [
@@ -1737,13 +1724,13 @@ export const PRODUCTS: Product[] = [
       'https://res.cloudinary.com/boofzznx/image/upload/v1789955218/Gemini_Generated_Image_8h7ema8h7ema8h7e.jpg'
     ],
     rating: 4.8,
-    description: 'Short deportivo para salvavidas y monitores de alberca. Corte por encima de la rodilla para agilidad en nado y rescate inmediato con suspensorio interno de malla suave.',
-    composition: '100% Poliéster Hidrófugo',
+    description: 'Short de rapido secado, bolsas a los costados, bolsa parchada, elastico en cintura.',
+    composition: '97 %Poliester y 3% elastano. Rapido secado.',
     features: [
-      'Suspensorio interior higiénico transpirable',
-      'Cintura elastizada con jareta de amarre rápido',
-      'Bolsa trasera con ojillo para escape de agua',
-      'Tejido ligero que no retiene peso en el agua'
+      'Rapido secado',
+      'Bolsas laterales',
+      'Bolsa trasera',
+      'Elastico en cintura'
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     colors: [],

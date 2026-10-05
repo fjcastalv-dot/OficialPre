@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X, Heart, Star, ShoppingCart, Shield, Sparkles, Check, CheckCircle, ChevronLeft, ChevronRight, CameraOff } from 'lucide-react';
 import { Product } from '../types';
 import { getProductTierPrice, getChestEmbroideryPrice, getBackEmbroideryPrice, formatCurrency, isShoeProduct, getProductMinQuantity } from '../utils';
@@ -104,30 +104,66 @@ export default function ProductDetailModal({
   // Lock background scroll when modal is open and restore scroll position on close
   const scrollYRef = useRef(0);
 
+  const handleModalClose = (e?: React.MouseEvent | KeyboardEvent) => {
+    if (e && 'preventDefault' in e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
+    const targetY = (window as any).__modalScrollBackup || scrollYRef.current || (window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0);
+    onClose();
+    if (targetY > 0) {
+      const restore = () => window.scrollTo({ top: targetY, behavior: 'instant' });
+      restore();
+      requestAnimationFrame(restore);
+      setTimeout(restore, 20);
+      setTimeout(restore, 80);
+      setTimeout(restore, 200);
+    }
+  };
+
   useEffect(() => {
     if (isOpen) {
-      scrollYRef.current = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      const curY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+      if (curY > 0) {
+        (window as any).__modalScrollBackup = curY;
+        scrollYRef.current = curY;
+      }
       document.body.classList.add('modal-open');
+
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          handleModalClose(e);
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+        document.body.classList.remove('modal-open');
+        const targetY = (window as any).__modalScrollBackup || scrollYRef.current;
+        if (targetY > 0) {
+          const restore = () => window.scrollTo({ top: targetY, behavior: 'instant' });
+          restore();
+          requestAnimationFrame(restore);
+          setTimeout(restore, 20);
+          setTimeout(restore, 80);
+          setTimeout(restore, 200);
+        }
+      };
     } else {
       document.body.classList.remove('modal-open');
-      const targetY = scrollYRef.current;
+      const targetY = (window as any).__modalScrollBackup || scrollYRef.current;
       if (targetY > 0) {
-        window.scrollTo({ top: targetY, behavior: 'instant' });
-        requestAnimationFrame(() => {
-          window.scrollTo({ top: targetY, behavior: 'instant' });
-        });
+        const restore = () => window.scrollTo({ top: targetY, behavior: 'instant' });
+        restore();
+        requestAnimationFrame(restore);
+        setTimeout(restore, 20);
+        setTimeout(restore, 80);
       }
     }
-    return () => {
-      document.body.classList.remove('modal-open');
-      const targetY = scrollYRef.current;
-      if (targetY > 0) {
-        window.scrollTo({ top: targetY, behavior: 'instant' });
-        requestAnimationFrame(() => {
-          window.scrollTo({ top: targetY, behavior: 'instant' });
-        });
-      }
-    };
   }, [isOpen]);
 
   if (!isOpen || !product) return null;
@@ -385,7 +421,7 @@ export default function ProductDetailModal({
       id="product-detail-modal"
       style={{ overscrollBehavior: 'contain' }}
     >
-      <div className="absolute inset-0 cursor-pointer" onClick={onClose} />
+      <div className="absolute inset-0 cursor-pointer" onClick={handleModalClose} />
 
       <div
         className="relative w-full max-w-5xl lg:max-w-6xl bg-slate-900 rounded-2xl overflow-hidden shadow-2xl border border-slate-800 flex flex-col md:flex-row max-h-[95vh] md:max-h-[90vh] overflow-y-auto"
@@ -393,7 +429,8 @@ export default function ProductDetailModal({
       >
         {/* Close Button */}
         <button
-          onClick={onClose}
+          type="button"
+          onClick={handleModalClose}
           className="absolute top-4 right-4 z-10 p-2 rounded-full bg-slate-950/80 hover:bg-slate-800 text-slate-400 hover:text-white transition-all cursor-pointer border border-slate-800"
           aria-label="Cerrar detalles de producto"
           id="close-detail-modal-btn"

@@ -227,21 +227,22 @@ export default function QuoteCartDrawer({
       doc.rect(0, 0, 210, 36, 'F');
 
       // Company Logo Image & Address
+      const PDF_LOGO_URL = 'https://res.cloudinary.com/boofzznx/image/upload/v1791162492/Dise%C3%B1o_sin_t%C3%ADtulo_12.png';
       try {
         const logoImg = await new Promise<HTMLImageElement>((resolve, reject) => {
           const img = new Image();
           img.crossOrigin = 'anonymous';
           img.onload = () => resolve(img);
           img.onerror = reject;
-          img.src = brandLogo;
+          img.src = PDF_LOGO_URL;
         });
 
         // Compute aspect ratio preserving fit
         const maxW = 55;
-        const maxH = 18;
+        const maxH = 22;
         const ratio = (logoImg.naturalWidth && logoImg.naturalHeight)
           ? (logoImg.naturalWidth / logoImg.naturalHeight)
-          : 2.8;
+          : 1.676;
         let w = maxW;
         let h = maxW / ratio;
         if (h > maxH) {
@@ -249,7 +250,7 @@ export default function QuoteCartDrawer({
           w = maxH * ratio;
         }
 
-        doc.addImage(logoImg, 'PNG', 15, 6, w, h);
+        doc.addImage(logoImg, 'PNG', 15, 4, w, h);
       } catch (imgErr) {
         // Fallback text if image fails to render
         doc.setTextColor(255, 255, 255);

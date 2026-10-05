@@ -179,9 +179,21 @@ export default function CatalogView({
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
 
+  const handleOpenProduct = (product: Product, e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const currentY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+    if (currentY > 0) {
+      (window as any).__modalScrollBackup = currentY;
+    }
+    onViewProduct(product);
+  };
+
   const handleQuickAdd = (product: Product) => {
     if (product.hasCorteSelection) {
-      onViewProduct(product);
+      handleOpenProduct(product);
       return;
     }
     const minQty = getProductMinQuantity(product);
@@ -521,7 +533,7 @@ export default function CatalogView({
                 >
                   {/* Card Image Wrapper */}
                   <div 
-                    onClick={() => onViewProduct(product)}
+                    onClick={(e) => handleOpenProduct(product, e)}
                     className="relative aspect-square overflow-hidden bg-slate-950 flex items-center justify-center cursor-pointer"
                   >
                     {product.image ? (
@@ -595,7 +607,7 @@ export default function CatalogView({
                         </span>
                       </div>
                       <h3
-                        onClick={() => onViewProduct(product)}
+                        onClick={(e) => handleOpenProduct(product, e)}
                         className="font-bold text-white text-base truncate group-hover:text-orange-500 transition-colors cursor-pointer"
                         style={{ fontFamily: 'Verdana, sans-serif' }}
                       >
@@ -627,7 +639,8 @@ export default function CatalogView({
 
                       <div className="flex gap-2">
                         <button
-                          onClick={() => onViewProduct(product)}
+                          type="button"
+                          onClick={(e) => handleOpenProduct(product, e)}
                           className="py-2 px-3 rounded border border-slate-700 hover:bg-slate-800 text-slate-300 font-semibold text-xs transition-colors cursor-pointer"
                         >
                           Ficha
